@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+         #
+#    By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/21 16:36:51 by hawadh            #+#    #+#              #
-#    Updated: 2022/09/20 11:44:26 by makhtar          ###   ########.fr        #
+#    Updated: 2022/09/26 17:27:33 by hawadh           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,9 +39,9 @@ MLXFLG		=	./libmlx.a -framework OpenGL -framework Appkit
 
 OBJS		=	${SRCS:.c=.o}
 
-CC			=	gcc -g3
+CC			=	gcc
 
-CFLAGS		=	
+CFLAGS		=	-Wall -Werror -Wextra -g3
 
 ${NAME}:	${OBJS}
 			${MAKE} -C ${GNLDIR}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 23:05:19 by hawadh            #+#    #+#             */
-/*   Updated: 2022/09/26 12:00:27 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/09/26 17:29:36 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	crosshair_handler(t_info *inf)
 	int	y;
 
 	i = -20;
-	x = 960;
-	y = 540;
+	x = WIDTH / 2;
+	y = HEIGHT / 2;
 	while (i <= -3)
 	{
 		my_pixel_put(inf, x, y + i, 0x0000FF00);
@@ -47,8 +47,8 @@ void	init_cursor(t_info *inf)
 	int	y;
 
 	i = 3;
-	x = 960;
-	y = 540;
+	x = WIDTH / 2;
+	y = HEIGHT / 2;
 	while (i < 20)
 	{
 		my_pixel_put(inf, x + i, y, 0x0000FF00);

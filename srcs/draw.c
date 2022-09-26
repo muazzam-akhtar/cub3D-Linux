@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 09:28:29 by hawadh            #+#    #+#             */
-/*   Updated: 2022/07/21 19:42:28 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/09/26 19:41:35 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,29 +27,22 @@ void	my_pixel_put(t_info *inf, int x, int y, int rgb)
 /**
 **	Function to calculate size of xpm and add them to image
 **/
-static void	add_xpm(t_info *info, t_xpm *xpm, int x, int y)
+static void	add_xpm(t_info *info, t_xpm *xpm, t_rays *ray, int x)
 {
-	int	x_reset;
 	int	xpm_y;
-	int	xpm_x;
+	int	y;
 	int	i;
 
 	xpm_y = 0;
-	while (xpm_y < xpm->hi - 4)
+	y = ray->y;
+	while (xpm_y < ray->height)
 	{
-		x_reset = x;
-		xpm_x = 0;
-		while (xpm_x < xpm->wi - 4)
+		i = 0;
+		while (i < 4)
 		{
-			i = 0;
-			while (i < 4)
-			{
-				info->image->addr[((x_reset * 4) + 4 * (WIDTH * y)) + i]
-					= xpm->addr[((xpm_x * 4) + 4 * (xpm->wi * xpm_y)) + i];
-				i++;
-			}
-			xpm_x++;
-			x_reset++;
+			info->image->addr[((x * 4) + 4 * (WIDTH * y)) + i]
+				= xpm->addr[((x * 4) + 4 * (xpm->wi * xpm_y)) + i];
+			i++;
 		}
 		xpm_y++;
 		y++;
@@ -57,23 +50,18 @@ static void	add_xpm(t_info *info, t_xpm *xpm, int x, int y)
 }
 
 /**
-**	Calls xpm struct based on player orientation at start
+**	Calls xpm struct based on player orientation
 **/
-static void	place_xpm(t_info *info, t_data *data)
+void	place_walls(t_info *inf, t_rays *ray, int x)
 {
-	int	y;
-	int	x;
-
-	x = 640;
-	y = 200;
-	if (info->player->view == 'N')
-		add_xpm(info, &data->xpm[NO], x, y);
-	if (info->player->view == 'S')
-		add_xpm(info, &data->xpm[SO], x, y);
-	if (info->player->view == 'W')
-		add_xpm(info, &data->xpm[WE], x, y);
-	if (info->player->view == 'E')
-		add_xpm(info, &data->xpm[EA], x, y);
+	if (ray->ang >= (210 * RADIAN) && ray->ang <= (330 * RADIAN))
+		add_xpm(inf, &inf->data->xpm[NO], ray, x);
+	if (ray->ang >= (120 * RADIAN) && ray->ang <= (210 * RADIAN))
+		add_xpm(inf, &inf->data->xpm[SO], ray, x);
+	if (ray->ang >= (60 * RADIAN) && ray->ang <= (120 * RADIAN))
+		add_xpm(inf, &inf->data->xpm[WE], ray, x);
+	if (ray->ang <= 330 && ray->ang <= (60 * RADIAN))
+		add_xpm(inf, &inf->data->xpm[EA], ray, x);
 }
 
 /**
@@ -85,7 +73,7 @@ void	draw_map(t_info *info)
 {
 	find_player(info->data, info->player);
 	ceiling_floor(info);
-	place_xpm(info, info->data);
+	place_walls(info, info->player->rays, 0);
 	draw_minimap(info, info->mini);
 	init_cursor(info);
 }

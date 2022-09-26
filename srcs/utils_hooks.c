@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_hooks.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 19:28:36 by hawadh            #+#    #+#             */
-/*   Updated: 2022/08/18 16:45:08 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/09/26 19:09:34 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,17 @@ static void	handle_pause(t_info *inf)
 	if (inf->mouse->flag == 0)
 	{
 		mlx_put_image_to_window(inf->mlx, inf->win, \
-		inf->data->pause, 550, 250);
+		inf->data->pause, WIDTH / 4, HEIGHT / 3);
 		mlx_mouse_show(inf->mlx, inf->win);
 		inf->mouse->flag = 1;
 	}
 	else if (inf->mouse->flag == 1)
 	{
 		inf->mouse->flag = 0;
-		mlx_clear_window(inf->mlx, inf->win);
 		draw_map(inf);
 		mlx_put_image_to_window(inf->mlx, inf->win, inf->img, 0, 0);
-		mlx_put_image_to_window(inf->mlx, inf->win, inf->data->gun, 840, 520);
+		mlx_put_image_to_window(
+			inf->mlx, inf->win, inf->data->gun, WIDTH - HEIGHT, (HEIGHT / 2));
 		mlx_put_image_to_window(inf->mlx, inf->win, inf->mini_map, 30, 30);
 	}
 }
@@ -126,7 +126,6 @@ int	controls(int keycode)
 **/
 int	key_hook_manage(int hook_num, t_info *inf)
 {
-	// printf("Keycode: %d\n", hook_num);
 	if (hook_num == ESC)
 	{
 		esc_win(inf);
@@ -135,7 +134,14 @@ int	key_hook_manage(int hook_num, t_info *inf)
 	if (hook_num == P)
 		handle_pause(inf);
 	if (controls(hook_num))
+	{
 		moves(hook_num, inf);
+		draw_minimap(inf, inf->mini);
+		mlx_put_image_to_window(inf->mlx, inf->win, inf->img, 0, 0);
+		mlx_put_image_to_window(inf->mlx, inf->win,
+			inf->data->gun, WIDTH - HEIGHT, (HEIGHT / 2));
+		mlx_put_image_to_window(inf->mlx, inf->win, inf->mini_map, 30, 30);
+	}
 	printf("\n");
 	// handle_wall_collision(inf);
 	int	i = 0;
