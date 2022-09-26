@@ -36,7 +36,8 @@ https://lodev.org/cgtutor/raycasting.html
 12.	~~***HA:***	in `add_xpm();` image not placing in only Blue~~
 13.	~~***HA:***	Map not redrawing on clearing window when hitting pause button a second time~~
 14.	~~***HA:***	Minimap skipping areas and not drawing in walls~~
-15. ***HA:***	Minimap not drawing walls when player is closer to left side of array
+15. ***HA:***	Minimap not drawing walls when player is closer to **TOP** side of array
+16.	***HA:***	Walls not drawing in correct position of window
 
 `#TODO:`
 
@@ -58,7 +59,8 @@ https://lodev.org/cgtutor/raycasting.html
 16.	***HA:***	Figure out what is the event that detects clicking on window edges
 17.	~~***HA:***	Figure out XPM image for pause in center of screen and implement removal~~
 18.	~~***HA:***	Correctly implement # 14~~
-19.	***HA:***	Fix minimap drawing to draw when player is closer to left side of array coords, possibly due coords calculation making coords negative and invalid read
+19.	~~***HA:***	Fix minimap drawing to draw when player is closer to left side of array coords, possibly due coords calculation making coords negative and invalid read~~
+20.	***HA:***	Fix walls drawing in wrong position of image, perhaps because ra->y not correct value. X is also not increment in correct amount.
 
 `#CURRENT STATUS`
 
@@ -173,6 +175,8 @@ https://lodev.org/cgtutor/raycasting.html
 107. Swapped `EA` and `NO` walls images
 108. New function `find_player();` in `player.c` to find player position in map array, Function is `NOT STATIC` so it can be recalled with each iteration to redraw mini-map, added function call in `draw.c draw_map();`
 109. WIP free xpm struct array in `memory_mngmnt.c` and new test map `zmap.cub`
+110. Refactored `place_walls()` in `draw.c` now takes angle and draws wall texture accordingly.
+110. Added `if (x == 0){ x = ray.x; }` in `moves.c` line `#244` and added place walls call line `#251` along with `x = 0 line `#255`
 
 `MAK:	4 July 2022`
 

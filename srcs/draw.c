@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 09:28:29 by hawadh            #+#    #+#             */
-/*   Updated: 2022/09/26 19:33:35 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/09/26 19:41:35 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	draw_map(t_info *info)
 {
 	find_player(info->data, info->player);
 	ceiling_floor(info);
-	// place_walls(info, info->player->rays);
+	place_walls(info, info->player->rays, 0);
 	draw_minimap(info, info->mini);
 	init_cursor(info);
 }
