@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 15:49:11 by makhtar           #+#    #+#             */
-/*   Updated: 2022/08/20 23:36:20 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/09/26 15:59:18 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,6 +200,30 @@ int	check_wall(t_info *inf, double x, double y)
 	return (1);
 }
 
+void	init_walls_ray(t_ray *ray, t_info *inf)
+{
+	ray->x = inf->player->x_pos;
+	ray->y = inf->player->y_pos;
+	ray->wall = 0;
+	ray->grid_x = (int)ray->x;
+	ray->grid_y = (int)ray->y;
+	while (!ray->wall)
+	{
+		ray->x += (cos(ray->angle) * 0.01);
+		ray->y += (sin(ray->angle) * 0.01);
+		ray->wall = check_wall(inf, ray->x, ray->y);
+		// if (!ray->wall && (ray->grid_x != (int)ray->x && ray->grid_y != (int)ray->y))
+		// 	ray.wall = edge_case(ray->x, ray->y, ray->grid_x, ray->grid_y, inf);
+	}
+	inf->player->rays[120 - ray->count].x = ray->x;
+	inf->player->rays[120 - ray->count].y = ray->y;
+	inf->player->rays[120 - ray->count].dist = get_dist(inf->player->x_pos, inf->player->y_pos, ray->x, ray->y);
+	inf->player->rays[120 - ray->count].height = (BLOCK_SIZE * 1080) / (inf->player->rays[120 - ray->count].dist * 310);
+	if (inf->player->rays[120 - ray->count].height > 1080)
+		inf->player->rays[120 - ray->count].height = 1080;
+	ray->y = 540 - (inf->player->rays[120 - ray->count].height / 2);
+}
+
 void	init_rays(t_info *inf)
 {
 	t_ray	ray;
@@ -211,36 +235,11 @@ void	init_rays(t_info *inf)
 	ray.x1 = 0;
 	while (ray.count > 0)
 	{
-		ray.x = inf->player->x_pos;
-		ray.y = inf->player->y_pos;
-		ray.wall = 0;
-		ray.grid_x = (int)ray.x;
-		ray.grid_y = (int)ray.y;
-		while (!ray.wall)
-		{
-			ray.x += (cos(ray.angle) * 0.01);
-			ray.y += (sin(ray.angle) * 0.01);
-			ray.wall = check_wall(inf, ray.x, ray.y);
-			if (!wall && (grid_x != (int)x && grid_y != (int)y))
-				wall = edge_case(x, y, grid_x, grid_y, vars);
-		}
-		inf->player->rays[120 - ray.count].x = ray.x;
-		inf->player->rays[120 - ray.count].y = ray.y;
-		inf->player->rays[120 - ray.count].dist = get_dist(inf->player->x_pos, inf->player->y_pos, ray.x, ray.y);
-		inf->player->rays[120 - ray.count].height = (BLOCK_SIZE * 700) / (inf->player->rays[120 - ray.count].dist * 87.5);
-		// printf("Dist: %f\n", vars->ray[120 - count].height);
-		// printf("Ang: %f\n", angle);
-		if (inf->player->rays[120 - ray.count].height > 700)
-			inf->player->rays[120 - ray.count].height = 700;
-		// double	row;
-		// double	col;
-		// row = (x * 87.5) + 700;
-		// printf("Row: %f\n", row);
-		// col = y * 87.5;
-		// draw_point(vars, (x * 87) + 700, y * 87);
-		// make_line(vars, x * 87, y * 87);
-		ray.y = 350 - (inf->player->rays[120 - ray.count].height / 2);
-		// make_wall(vars, &x1, &y);
+		init_walls_ray(&ray, inf);
+		if (inf->player->rays[120 - ray.count].height > 1080)
+			inf->player->rays[120 - ray.count].height = 1080;
+		ray.y = 540 - (inf->player->rays[120 - ray.count].height / 2);
+		// make_wall(inf, &ray.x1, &ray.y);
 		ray.angle += 0.009603175; // (PI / 180) * (70 / RAYS)
 		if (ray.angle > 2 * PI)
 			ray.angle -= 2 * PI;

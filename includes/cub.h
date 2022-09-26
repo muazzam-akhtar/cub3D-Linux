@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/08/18 17:21:01 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/09/26 12:07:30 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,30 @@
 # include <stdlib.h>
 # include <sys/stat.h>
 # include "../libft/libft.h"
-# include "../minilibx_linux/mlx.h"
+# include "../minilibx_opengl/mlx.h"
 # include "../get_next_line/get_next_line.h"
 # include <math.h>
-# define ESC 65307
-# define W 119
-# define D 100
-# define E 101
-# define S 115
-# define A 97
-# define P 112
-# define ARROW_R 65363
-# define ARROW_L 65361
+// # define ESC 65307
+// # define W 119
+// # define D 100
+// # define E 101
+// # define S 115
+// # define A 97
+// # define P 112
+// # define ARROW_R 65363
+// # define ARROW_L 65361
+# define W 13
+# define D 2
+# define A 0
+# define S 1
+# define P 35
+# define ARROW_L 123
+# define ARROW_R 124
+# define ESC 53
 # define PI 3.141592653589793238
 # define RADIAN PI / 180
-# define BLOCK_SIZE 32
-# define RAYS 100
+# define BLOCK_SIZE 128
+# define RAYS 120
 
 /**
 **	ENUM for Compass perspective of Player

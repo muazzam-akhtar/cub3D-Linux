@@ -6,7 +6,7 @@
 #    By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/21 16:36:51 by hawadh            #+#    #+#              #
-#    Updated: 2022/08/17 16:31:36 by makhtar          ###   ########.fr        #
+#    Updated: 2022/09/20 11:44:26 by makhtar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,9 +33,9 @@ SRCS		=	./srcs/main.c ./srcs/parse_file.c ./srcs/errors.c \
 
 MLX			=	libmlx.a
 
-MLXDIR		=	./minilibx_linux
+MLXDIR		=	./minilibx_opengl
 
-MLXFLG		=	./libmlx.a -Lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+MLXFLG		=	./libmlx.a -framework OpenGL -framework Appkit
 
 OBJS		=	${SRCS:.c=.o}
 

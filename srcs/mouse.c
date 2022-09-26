@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 23:05:19 by hawadh            #+#    #+#             */
-/*   Updated: 2022/08/14 19:32:46 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/09/26 12:00:27 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,11 @@ void	init_cursor(t_info *inf)
 **/
 int	mouse_move(int x, int y, t_info *info)
 {
-	mlx_mouse_get_pos(info->mlx, info->win, &x, &y);
+	mlx_mouse_get_pos(info->win, &x, &y);
 	if (info->mouse->flag == 0)
 	{
 		init_cursor(info);
-		mlx_mouse_move(info->mlx, info->win, x, 540);
+		mlx_mouse_move(info->win, x, 540);
 		mlx_mouse_hide(info->mlx, info->win);
 	}
 	else
