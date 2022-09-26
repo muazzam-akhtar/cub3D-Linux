@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 17:49:05 by hawadh            #+#    #+#             */
-/*   Updated: 2022/08/16 14:41:32 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/09/20 17:34:48 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ static int	find_player_index(char *map)
 			return (x_pos);
 		if (map[x_pos] == 'E')
 			return (x_pos);
+		if (map[x_pos] == 'P')
+			return (x_pos);
 		x_pos++;
 	}
 	return (0);
@@ -52,6 +54,8 @@ static int	find_player_array(char **map)
 		if (ft_strchr(map[y_pos], 'W'))
 			return (y_pos);
 		if (ft_strchr(map[y_pos], 'E'))
+			return (y_pos);
+		if (ft_strchr(map[y_pos], 'P'))
 			return (y_pos);
 		y_pos++;
 	}

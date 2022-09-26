@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/09/26 12:07:30 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/09/26 19:33:54 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,18 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 # define MINI_SCALE 29
+# define W 13
+# define D 2
+# define A 0
+# define S 1
+# define P 35
+# define ARROW_L 123
+# define ARROW_R 124
+# define ESC 53
+# define PI 3.14159265358979323846
+# define RADIAN PI / 180
+# define BLOCK_SIZE 32
+# define RAYS 100
 
 # include <unistd.h>
 # include <fcntl.h>
@@ -35,18 +47,7 @@
 // # define P 112
 // # define ARROW_R 65363
 // # define ARROW_L 65361
-# define W 13
-# define D 2
-# define A 0
-# define S 1
-# define P 35
-# define ARROW_L 123
-# define ARROW_R 124
-# define ESC 53
-# define PI 3.141592653589793238
-# define RADIAN PI / 180
-# define BLOCK_SIZE 128
-# define RAYS 120
+// # define PI 3.141592653589793238
 
 /**
 **	ENUM for Compass perspective of Player
@@ -85,7 +86,7 @@ typedef struct s_wall
 	int		wall_back;
 	int		wall_left;
 	int		wall_right;	
-}				t_wall;
+}	t_wall;
 
 /**
 **	Rays Structure
@@ -104,7 +105,7 @@ typedef struct s_rays
 	double	y;
 	double	width;
 	double	height;
-}				t_rays;
+}	t_rays;
 
 typedef struct s_ray
 {
@@ -116,7 +117,7 @@ typedef struct s_ray
 	int		count;
 	int		grid_x;
 	int		grid_y;
-}				t_ray;
+}	t_ray;
 
 /**
 **	Player Structure
@@ -126,7 +127,7 @@ typedef struct s_ray
 **/
 typedef struct s_player
 {
-	char	view;
+	char		view;
 	double		y_pos;
 	double		x_pos;
 	double		angle;
@@ -288,6 +289,7 @@ void	draw_cursor(t_info *info);
 void	draw_map(t_info *info);
 void	ceiling_floor(t_info *info);
 void	draw_minimap(t_info *info, t_mini *mini);
+void	place_walls(t_info *inf, t_rays *ray, int x);
 
 /**
 **	player struct functions

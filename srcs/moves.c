@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 15:49:11 by makhtar           #+#    #+#             */
-/*   Updated: 2022/09/26 15:59:18 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/09/26 19:33:26 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	get_2d_len(char **map)
 **/
 void	move_frwrd(t_info *inf)
 {
-	int	row;
-	int	col;
+	int		row;
+	int		col;
 	double	x;
 	double	y;
 
@@ -60,8 +60,8 @@ void	move_frwrd(t_info *inf)
 **/
 void	move_back(t_info *inf)
 {
-	int	row;
-	int	col;
+	int		row;
+	int		col;
 	double	x;
 	double	y;
 
@@ -92,8 +92,8 @@ void	move_back(t_info *inf)
 **/
 void	move_left(t_info *inf)
 {
-	int	row;
-	int	col;
+	int		row;
+	int		col;
 	double	x;
 	double	y;
 
@@ -124,8 +124,8 @@ void	move_left(t_info *inf)
 **/
 void	move_right(t_info *inf)
 {
-	int	row;
-	int	col;
+	int		row;
+	int		col;
 	double	x;
 	double	y;
 
@@ -226,7 +226,8 @@ void	init_walls_ray(t_ray *ray, t_info *inf)
 
 void	init_rays(t_info *inf)
 {
-	t_ray	ray;
+	t_ray			ray;
+	static int		x;
 
 	ray.angle = inf->player->angle - (33 * RADIAN);
 	if (ray.angle < 0)
@@ -240,12 +241,18 @@ void	init_rays(t_info *inf)
 			inf->player->rays[120 - ray.count].height = 1080;
 		ray.y = 540 - (inf->player->rays[120 - ray.count].height / 2);
 		// make_wall(inf, &ray.x1, &ray.y);
+		if (x == 0)
+			x = ray.x;
+		inf->player->rays[120 - ray.count].ang = ray.angle;
 		ray.angle += 0.009603175; // (PI / 180) * (70 / RAYS)
 		if (ray.angle > 2 * PI)
 			ray.angle -= 2 * PI;
 		ray.x1 += 6.38; // 11.6 * (70 / RAYS)
+		place_walls(inf, &inf->player->rays[120 - ray.count], x);
+		x++;
 		ray.count--;
 	}
+	x = 0;
 }
 
 /**

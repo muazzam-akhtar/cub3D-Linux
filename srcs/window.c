@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 11:48:10 by hawadh            #+#    #+#             */
-/*   Updated: 2022/08/18 14:42:59 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/09/26 13:19:40 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ int	init_window(t_info *info)
 	hook_management(info);
 	draw_map(info);
 	mlx_put_image_to_window(info->mlx, info->win, info->img, 0, 0);
-	mlx_put_image_to_window(info->mlx, info->win, info->data->gun, 840, 520);
+	mlx_put_image_to_window(info->mlx, info->win,
+		info->data->gun, WIDTH - HEIGHT, (HEIGHT / 2));
 	mlx_put_image_to_window(info->mlx, info->win, info->mini_map, 30, 30);
 	mlx_loop(info->mlx);
 	return (EXIT_SUCCESS);
