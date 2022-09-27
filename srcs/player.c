@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 17:49:05 by hawadh            #+#    #+#             */
-/*   Updated: 2022/09/20 17:34:48 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/09/27 16:26:06 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,10 @@ void	find_player(t_data *d, t_player *p)
 		p->angle = 270 * (PI / 180);
 	else if (p->view == 'S')
 		p->angle = 90 * (PI / 180);
-	else if (p->view == 'E')
-		p->angle = 180 * (PI / 180);
 	else if (p->view == 'W')
-		p->angle = 0 * (PI / 180);
+		p->angle = 180 * (PI / 180);
+	else if (p->view == 'E')
+		p->angle = 360 * (PI / 180);
 }
 
 /**
@@ -96,6 +96,4 @@ void	init_player(t_info *inf)
 			err_return(7, inf);
 	}
 	find_player(inf->data, inf->player);
-	printf("\nPlayer Pos:\nY:	%f\nX:	%f\nView:	%c\n", inf->player->y_pos, \
-	inf->player->x_pos, inf->player->view);
 }

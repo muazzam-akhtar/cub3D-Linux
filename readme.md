@@ -37,7 +37,8 @@ https://lodev.org/cgtutor/raycasting.html
 13.	~~***HA:***	Map not redrawing on clearing window when hitting pause button a second time~~
 14.	~~***HA:***	Minimap skipping areas and not drawing in walls~~
 15. ***HA:***	Minimap not drawing walls when player is closer to **TOP** side of array
-16.	***HA:***	Walls not drawing in correct position of window
+16.	~~***HA:***	Walls not drawing in correct position of window~~
+17. ***MAK:***	Walls not drawing in correct distance, it is drawing as inversed distance.
 
 `#TODO:`
 
@@ -60,7 +61,8 @@ https://lodev.org/cgtutor/raycasting.html
 17.	~~***HA:***	Figure out XPM image for pause in center of screen and implement removal~~
 18.	~~***HA:***	Correctly implement # 14~~
 19.	~~***HA:***	Fix minimap drawing to draw when player is closer to left side of array coords, possibly due coords calculation making coords negative and invalid read~~
-20.	***HA:***	Fix walls drawing in wrong position of image, perhaps because ra->y not correct value. X is also not increment in correct amount.
+20.	~~***HA:***	Fix walls drawing in wrong position of image, perhaps because ra->y not correct value. X is also not increment in correct amount.~~
+21.	***HA && MAK:***	Figure out solution to fish-eye effect.
 
 `#CURRENT STATUS`
 
@@ -176,7 +178,10 @@ https://lodev.org/cgtutor/raycasting.html
 108. New function `find_player();` in `player.c` to find player position in map array, Function is `NOT STATIC` so it can be recalled with each iteration to redraw mini-map, added function call in `draw.c draw_map();`
 109. WIP free xpm struct array in `memory_mngmnt.c` and new test map `zmap.cub`
 110. Refactored `place_walls()` in `draw.c` now takes angle and draws wall texture accordingly.
-110. Added `if (x == 0){ x = ray.x; }` in `moves.c` line `#244` and added place walls call line `#251` along with `x = 0 line `#255`
+111. Added `if (x == 0){ x = ray.x; }` in `moves.c` line `#244` and added place walls call line `#251` along with `x = 0 line `#255`
+112. Added correct values for `ra->ang` comparison with `int * RADIAN` with two separate conditions for east
+113. Made short loop for `while (x < ray.x1 (ray.x1 == 0 && x == 0))` with a call `place_walls();` and made `ray.x1 += 16.1` increments
+114. Walls now drawing in correct width and height, but see bug `#17`
 
 `MAK:	4 July 2022`
 

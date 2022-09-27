@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 09:28:29 by hawadh            #+#    #+#             */
-/*   Updated: 2022/09/26 19:41:35 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/09/27 16:38:09 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,13 @@ static void	add_xpm(t_info *info, t_xpm *xpm, t_rays *ray, int x)
 {
 	int	xpm_y;
 	int	y;
+	int	wall_height;
 	int	i;
 
 	xpm_y = 0;
-	y = ray->y;
-	while (xpm_y < ray->height)
+	y = ray->height;
+	wall_height = HEIGHT - ray->height;
+	while (xpm_y < wall_height && y < wall_height)
 	{
 		i = 0;
 		while (i < 4)
@@ -54,13 +56,15 @@ static void	add_xpm(t_info *info, t_xpm *xpm, t_rays *ray, int x)
 **/
 void	place_walls(t_info *inf, t_rays *ray, int x)
 {
-	if (ray->ang >= (210 * RADIAN) && ray->ang <= (330 * RADIAN))
+	if (ray->ang >= ((270 - 45) * RADIAN) && ray->ang < ((270 + 45) * RADIAN))
 		add_xpm(inf, &inf->data->xpm[NO], ray, x);
-	if (ray->ang >= (120 * RADIAN) && ray->ang <= (210 * RADIAN))
+	if (ray->ang >= ((180 - 45) * RADIAN) && ray->ang < ((180 + 45) * RADIAN))
 		add_xpm(inf, &inf->data->xpm[SO], ray, x);
-	if (ray->ang >= (60 * RADIAN) && ray->ang <= (120 * RADIAN))
+	if (ray->ang >= ((90 - 45) * RADIAN) && ray->ang < ((90 + 45) * RADIAN))
 		add_xpm(inf, &inf->data->xpm[WE], ray, x);
-	if (ray->ang <= 330 && ray->ang <= (60 * RADIAN))
+	if (ray->ang >= 0 && ray->ang < ((0 + 45) * RADIAN))
+		add_xpm(inf, &inf->data->xpm[EA], ray, x);
+	else if (ray->ang >= ((360 - 45) * RADIAN) && ray->ang < (360 * RADIAN))
 		add_xpm(inf, &inf->data->xpm[EA], ray, x);
 }
 
@@ -72,8 +76,7 @@ void	place_walls(t_info *inf, t_rays *ray, int x)
 void	draw_map(t_info *info)
 {
 	find_player(info->data, info->player);
-	ceiling_floor(info);
-	place_walls(info, info->player->rays, 0);
+	init_rays(info);
 	draw_minimap(info, info->mini);
 	init_cursor(info);
 }
