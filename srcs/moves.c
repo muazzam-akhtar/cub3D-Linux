@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 15:49:11 by makhtar           #+#    #+#             */
-/*   Updated: 2022/09/26 19:33:26 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/09/27 16:38:04 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,7 @@ void	move_frwrd(t_info *inf)
 		row = inf->player->x_pos + inf->player->dx;
 		col = inf->player->y_pos + inf->player->dy;
 		if (inf->data->map[col][row] == '1' || inf->player->wall.wall_front)
-		{
-			// draw_point(vars, (vars->p.x_co * 87) + 700, (vars->p.y_co * 87));
 			return ;
-		}
 		inf->data->map[(int)inf->player->y_pos][(int)inf->player->x_pos] = '0';
 		inf->player->x_pos += inf->player->dx;
 		inf->player->y_pos += inf->player->dy;
@@ -75,10 +72,7 @@ void	move_back(t_info *inf)
 		row = inf->player->x_pos - inf->player->dx;
 		col = inf->player->y_pos - inf->player->dy;
 		if (inf->data->map[col][row] == '1' || inf->player->wall.wall_back)
-		{
-			// draw_point(vars, (vars->p.x_co * 87) + 700, (vars->p.y_co * 87));
 			return ;
-		}
 		inf->data->map[(int)inf->player->y_pos][(int)inf->player->x_pos] = '0';
 		inf->player->x_pos -= inf->player->dx;
 		inf->player->y_pos -= inf->player->dy;
@@ -107,10 +101,7 @@ void	move_left(t_info *inf)
 		row = inf->player->x_pos - inf->player->dx;
 		col = inf->player->y_pos - inf->player->dy;
 		if (inf->data->map[col][row] == '1' || inf->player->wall.wall_left)
-		{
-			// draw_point(vars, (vars->p.x_co * 87) + 700, (vars->p.y_co * 87));
 			return ;
-		}
 		inf->data->map[(int)inf->player->y_pos][(int)inf->player->x_pos] = '0';
 		inf->player->x_pos -= inf->player->dx;
 		inf->player->y_pos -= inf->player->dy;
@@ -139,10 +130,7 @@ void	move_right(t_info *inf)
 		row = inf->player->x_pos + inf->player->dx;
 		col = inf->player->y_pos + inf->player->dy;
 		if (inf->data->map[col][row] == '1' || inf->player->wall.wall_right)
-		{
-			// draw_point(vars, (vars->p.x_co * 87) + 700, (vars->p.y_co * 87));
 			return ;
-		}
 		inf->data->map[(int)inf->player->y_pos][(int)inf->player->x_pos] = '0';
 		inf->player->x_pos += inf->player->dx;
 		inf->player->y_pos += inf->player->dy;
@@ -226,33 +214,31 @@ void	init_walls_ray(t_ray *ray, t_info *inf)
 
 void	init_rays(t_info *inf)
 {
-	t_ray			ray;
-	static int		x;
+	t_ray	ray;
+	int		x;
 
+	x = 0;
 	ray.angle = inf->player->angle - (33 * RADIAN);
 	if (ray.angle < 0)
 		ray.angle += 2 * PI;
 	ray.count = 120;
 	ray.x1 = 0;
+	ceiling_floor(inf);
 	while (ray.count > 0)
 	{
 		init_walls_ray(&ray, inf);
 		if (inf->player->rays[120 - ray.count].height > 1080)
 			inf->player->rays[120 - ray.count].height = 1080;
 		ray.y = 540 - (inf->player->rays[120 - ray.count].height / 2);
-		// make_wall(inf, &ray.x1, &ray.y);
-		if (x == 0)
-			x = ray.x;
 		inf->player->rays[120 - ray.count].ang = ray.angle;
-		ray.angle += 0.009603175; // (PI / 180) * (70 / RAYS)
+		ray.angle += 0.009603175; // (PI / 180) * (60 / RAYS)
 		if (ray.angle > 2 * PI)
 			ray.angle -= 2 * PI;
-		ray.x1 += 6.38; // 11.6 * (70 / RAYS)
-		place_walls(inf, &inf->player->rays[120 - ray.count], x);
-		x++;
+		while (x < ray.x1 || (ray.x1 == 0 && x == 0))
+			place_walls(inf, &inf->player->rays[120 - ray.count], x++);
+		ray.x1 += 16.1; // 11.6 * (60 / RAYS)
 		ray.count--;
 	}
-	x = 0;
 }
 
 /**
