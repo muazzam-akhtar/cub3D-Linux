@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 15:49:11 by makhtar           #+#    #+#             */
-/*   Updated: 2022/09/27 16:38:04 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/09/28 16:51:17 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,7 +206,7 @@ void	init_walls_ray(t_ray *ray, t_info *inf)
 	inf->player->rays[120 - ray->count].x = ray->x;
 	inf->player->rays[120 - ray->count].y = ray->y;
 	inf->player->rays[120 - ray->count].dist = get_dist(inf->player->x_pos, inf->player->y_pos, ray->x, ray->y);
-	inf->player->rays[120 - ray->count].height = (BLOCK_SIZE * 1080) / (inf->player->rays[120 - ray->count].dist * 310);
+	inf->player->rays[120 - ray->count].height = (BLOCK_SIZE * 277) / inf->player->rays[120 - ray->count].dist;
 	if (inf->player->rays[120 - ray->count].height > 1080)
 		inf->player->rays[120 - ray->count].height = 1080;
 	ray->y = 540 - (inf->player->rays[120 - ray->count].height / 2);
@@ -239,6 +239,7 @@ void	init_rays(t_info *inf)
 		ray.x1 += 16.1; // 11.6 * (60 / RAYS)
 		ray.count--;
 	}
+	init_cursor(inf);
 }
 
 /**

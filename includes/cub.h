@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/09/27 13:33:57 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/09/28 12:37:42 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define ESC 53
 # define PI 3.14159265358979323846
 # define RADIAN PI / 180
-# define BLOCK_SIZE 32
+# define BLOCK_SIZE 8
 # define RAYS 100
 
 # include <unistd.h>
@@ -146,7 +146,6 @@ typedef struct s_xpm
 	int		end;
 	int		wi;
 	int		hi;
-	int		divisible;
 }	t_xpm;
 
 /**

@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 09:28:29 by hawadh            #+#    #+#             */
-/*   Updated: 2022/09/27 16:38:09 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/09/28 18:02:08 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,15 @@ static void	add_xpm(t_info *info, t_xpm *xpm, t_rays *ray, int x)
 {
 	int	xpm_y;
 	int	y;
-	int	wall_height;
 	int	i;
+	int	dist;
 
 	xpm_y = 0;
-	y = ray->height;
-	wall_height = HEIGHT - ray->height;
-	while (xpm_y < wall_height && y < wall_height)
+	dist = ray->dist;
+	if (dist > 4)
+		printf("dist: %d\n", dist);
+	y = (HEIGHT / 2) - (ray->height / 2);
+	while (xpm_y < ray->height && y < ray->height)
 	{
 		i = 0;
 		while (i < 4)
@@ -46,8 +48,10 @@ static void	add_xpm(t_info *info, t_xpm *xpm, t_rays *ray, int x)
 				= xpm->addr[((x * 4) + 4 * (xpm->wi * xpm_y)) + i];
 			i++;
 		}
-		xpm_y++;
-		y++;
+		if (i)
+			y++;
+		if ((dist % 4))
+			xpm_y++;
 	}
 }
 

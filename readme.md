@@ -38,7 +38,7 @@ https://lodev.org/cgtutor/raycasting.html
 14.	~~***HA:***	Minimap skipping areas and not drawing in walls~~
 15. ***HA:***	Minimap not drawing walls when player is closer to **TOP** side of array
 16.	~~***HA:***	Walls not drawing in correct position of window~~
-17. ***MAK:***	Walls not drawing in correct distance, it is drawing as inversed distance.
+17. ~~***MAK:***	Walls not drawing in correct distance, it is drawing as inversed distance.~~
 
 `#TODO:`
 
@@ -182,6 +182,9 @@ https://lodev.org/cgtutor/raycasting.html
 112. Added correct values for `ra->ang` comparison with `int * RADIAN` with two separate conditions for east
 113. Made short loop for `while (x < ray.x1 (ray.x1 == 0 && x == 0))` with a call `place_walls();` and made `ray.x1 += 16.1` increments
 114. Walls now drawing in correct width and height, but see bug `#17`
+115. Removed Variable xpm->divisible as is no longer needed.
+116. Refactored line `#208` in `moves.c` for height calculation.
+117. Line `#37` in `draw.c` to now make `y = (HEIGHT / 2) - (ray>height / 2);`
 
 `MAK:	4 July 2022`
 
