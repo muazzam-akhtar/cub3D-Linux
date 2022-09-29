@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 20:06:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/09/27 16:32:13 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/09/28 12:50:46 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static void	get_xpm_addr(t_info *info, t_xpm *xpm, char *xpm_str)
 	if (!xpm->addr)
 		err_return(4, info);
 	xpm->addr = xpm->addr + (xpm->len * (xpm->bitspix / 8));
-	xpm->divisible = 1;
 }
 
 /**

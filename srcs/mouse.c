@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 23:05:19 by hawadh            #+#    #+#             */
-/*   Updated: 2022/09/26 17:29:36 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/09/29 16:20:06 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,18 @@ void	init_cursor(t_info *inf)
 	crosshair_handler(inf);
 }
 
+void	mouse_rotation(int x, t_info *info)
+{
+	mlx_destroy_image(info->mlx, info->img);
+	info->img = mlx_new_image(info->mlx, WIDTH, HEIGHT);
+	if (x < 960)
+		rotation(ARROW_L, info);
+	else if (x > 960)
+		rotation(ARROW_R, info);
+	init_rays(info);
+	init_cursor(info);
+}
+
 /**
 **	Mouse event trigger manager
 *	mouse->flag == 0;		Hide and reposition mouse
@@ -74,8 +86,14 @@ int	mouse_move(int x, int y, t_info *info)
 	if (info->mouse->flag == 0)
 	{
 		init_cursor(info);
-		mlx_mouse_move(info->win, x, 540);
 		mlx_mouse_hide(info->mlx, info->win);
+		mouse_rotation(x, info);
+		mlx_mouse_move(info->win, 960, 540);
+		draw_minimap(info, info->mini);
+		mlx_put_image_to_window(info->mlx, info->win, info->img, 0, 0);
+		mlx_put_image_to_window(info->mlx, info->win,
+			info->data->gun, WIDTH - HEIGHT, (HEIGHT / 2));
+		mlx_put_image_to_window(info->mlx, info->win, info->mini_map, 30, 30);
 	}
 	else
 		mlx_mouse_show(info->mlx, info->win);

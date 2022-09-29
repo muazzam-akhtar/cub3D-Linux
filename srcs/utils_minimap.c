@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 19:44:52 by hawadh            #+#    #+#             */
-/*   Updated: 2022/07/18 22:08:31 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/09/29 16:20:54 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,7 @@ static void	draw_mini_walls(t_info *info, int x, int y, int rgb)
 	int	y_one;
 	int	x_one;
 	int	x_rst;
-	int	y_strt;
 
-	y_strt = y;
 	y_one = y + MINI_SCALE - 1;
 	while (y < y_one)
 	{
@@ -72,7 +70,6 @@ static void	draw_mini_walls(t_info *info, int x, int y, int rgb)
 
 /**
 **	Draws minimap interior
-*	TODO:	Draw miniature version of file map
 **/
 void	mini_interior(t_info *info, t_mini *mini)
 {

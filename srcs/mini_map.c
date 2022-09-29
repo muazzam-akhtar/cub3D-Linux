@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 19:43:20 by hawadh            #+#    #+#             */
-/*   Updated: 2022/07/18 22:12:01 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/09/27 17:57:37 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,28 +48,6 @@ static void	draw_mini_player(t_mini *mini, int x, int y, int rgb)
 }
 
 /**
-*!	TEMP FUNCTION 
-**/
-static void	draw_square(t_mini *mini, int x, int y, int rgb)
-{
-	int	x_reset;
-
-	while (y < 109)
-	{
-		x_reset = x;
-		while (x_reset < 109)
-		{
-			if (y == 78 || y == 108)
-				mini_pixel_put(mini, x_reset, y, rgb);
-			else if (x_reset == 78 || x_reset == 108)
-				mini_pixel_put(mini, x_reset, y, rgb);
-			x_reset++;
-		}
-		y++;
-	}
-}
-
-/**
 **	Draws closer borders and calls function to draw
 **	Outer borders. Calls to draw minimap interior
 **/
@@ -92,7 +70,6 @@ void	draw_minimap(t_info *info, t_mini *mini)
 		y++;
 	}
 	draw_mini_player(mini, 85, 85, 0x003D8758);
-	draw_square(mini, 78, 78, 0x00FFFFFF);
 	mini_interior(info, mini);
 }
 

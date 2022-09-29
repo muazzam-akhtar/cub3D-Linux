@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   place_rgb.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 10:56:12 by makhtar           #+#    #+#             */
-/*   Updated: 2022/07/05 10:56:43 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/09/29 14:08:32 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 static void	fetch_rgb_ceil(char *str, t_info *info)
 {
-	int			col;
 	static int	n;
 
-	col = 0;
 	n++;
 	if (n == 1)
 		info->data->ceil.red = ft_atoi(str);
