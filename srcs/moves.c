@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 15:49:11 by makhtar           #+#    #+#             */
-/*   Updated: 2022/09/28 16:51:17 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/09/29 16:01:36 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,7 +236,7 @@ void	init_rays(t_info *inf)
 			ray.angle -= 2 * PI;
 		while (x < ray.x1 || (ray.x1 == 0 && x == 0))
 			place_walls(inf, &inf->player->rays[120 - ray.count], x++);
-		ray.x1 += 16.1; // 11.6 * (60 / RAYS)
+		ray.x1 += 16.13; // 11.6 * (60 / RAYS)
 		ray.count--;
 	}
 	init_cursor(inf);

@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/09/28 12:37:42 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/09/29 15:13:38 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -324,6 +324,7 @@ void	hook_management(t_info *info);
 **	Mouse Functions
 **/
 void	init_cursor(t_info *inf);
+void	rotation(int hook_num, t_info *inf);
 int		init_mouse(t_info *info);
 int		mouse_move(int x, int y, t_info *info);
 
