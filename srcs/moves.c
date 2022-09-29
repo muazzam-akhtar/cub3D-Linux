@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 15:49:11 by makhtar           #+#    #+#             */
-/*   Updated: 2022/09/29 16:01:36 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/09/29 18:31:19 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,8 +227,9 @@ void	init_rays(t_info *inf)
 	while (ray.count > 0)
 	{
 		init_walls_ray(&ray, inf);
-		if (inf->player->rays[120 - ray.count].height > 1080)
-			inf->player->rays[120 - ray.count].height = 1080;
+		if (inf->player->rays[120 - ray.count].height < 370)
+			inf->player->rays[120 - ray.count].height = 370;
+		printf("Height: %f\n", inf->player->rays[120 - ray.count].height);
 		ray.y = 540 - (inf->player->rays[120 - ray.count].height / 2);
 		inf->player->rays[120 - ray.count].ang = ray.angle;
 		ray.angle += 0.009603175; // (PI / 180) * (60 / RAYS)
