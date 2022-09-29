@@ -63,6 +63,7 @@ https://lodev.org/cgtutor/raycasting.html
 19.	~~***HA:***	Fix minimap drawing to draw when player is closer to left side of array coords, possibly due coords calculation making coords negative and invalid read~~
 20.	~~***HA:***	Fix walls drawing in wrong position of image, perhaps because ra->y not correct value. X is also not increment in correct amount.~~
 21.	***HA && MAK:***	Figure out solution to fish-eye effect.
+22. **MA**
 
 `#CURRENT STATUS`
 
