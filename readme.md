@@ -39,6 +39,7 @@ https://lodev.org/cgtutor/raycasting.html
 15. ***HA:***	Minimap not drawing walls when player is closer to **TOP** side of array
 16.	~~***HA:***	Walls not drawing in correct position of window~~
 17. ~~***MAK:***	Walls not drawing in correct distance, it is drawing as inversed distance.~~
+18.	~~***MAK:***Check if bugs are present when have 1920 rays for walls.~~
 
 `#TODO:`
 
@@ -63,7 +64,7 @@ https://lodev.org/cgtutor/raycasting.html
 19.	~~***HA:***	Fix minimap drawing to draw when player is closer to left side of array coords, possibly due coords calculation making coords negative and invalid read~~
 20.	~~***HA:***	Fix walls drawing in wrong position of image, perhaps because ra->y not correct value. X is also not increment in correct amount.~~
 21.	***HA && MAK:***	Figure out solution to fish-eye effect.
-22. **MA**
+22. **MA** Parse spaces of the map.
 
 `#CURRENT STATUS`
 
@@ -195,5 +196,11 @@ https://lodev.org/cgtutor/raycasting.html
 4.	Updated crosshair with green line and minimal size of the crosshair.
 5.	Updated parsing function to fetch the values based on the requirements like path to different xpm files, colours given based on RGB combination for floor and ceilings.
 6.	Updated Crosshair
+7.	Rotations are done.
+8.	Movements of the player are functioning perfectly.
+9.	Given the field of view as 70 degree and number of rays are 1920.
+10.	With the Help of shooting rays, we have the height formula given the distance of the rays when hits the wall.
+11.	Iteration of each ray in X-coordinate is 1 and the angle iteration is 0.000636318 in radian.
+12.	The project is functioning perfectly in MAC and Linux OS.
 
 

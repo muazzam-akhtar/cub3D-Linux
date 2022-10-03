@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/09/29 18:48:50 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/10/03 13:31:24 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define PI 3.14159265358979323846
 # define RADIAN PI / 180
 # define BLOCK_SIZE 8
-# define RAYS 1080
+# define RAYS 1920
 
 # include <unistd.h>
 # include <fcntl.h>
@@ -36,6 +36,7 @@
 # include <sys/stat.h>
 # include "../libft/libft.h"
 # include "../minilibx_opengl/mlx.h"
+// # include "../minilibx_linux/mlx.h"
 # include "../get_next_line/get_next_line.h"
 # include <math.h>
 // # define ESC 65307
@@ -134,7 +135,7 @@ typedef struct s_player
 	double		dx;
 	double		dy;
 	t_wall		wall;
-	t_rays		rays[1080];
+	t_rays		rays[1920];
 }	t_player;
 
 typedef struct s_xpm
