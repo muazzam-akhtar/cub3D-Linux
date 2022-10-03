@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 23:05:19 by hawadh            #+#    #+#             */
-/*   Updated: 2022/10/03 13:31:06 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/10/03 14:46:16 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,15 @@ void	init_cursor(t_info *inf)
 	crosshair_handler(inf);
 }
 
+/**
+**	Mouse rotation
+*	Half window width = (WIDTH / 2)
+**/
 void	mouse_rotation(int x, t_info *info)
 {
-	mlx_destroy_image(info->mlx, info->img);
-	info->img = mlx_new_image(info->mlx, WIDTH, HEIGHT);
-	if (x < 960)
+	if (x < WIDTH / 2)
 		rotation(ARROW_L, info);
-	else if (x > 960)
+	else if (x > WIDTH / 2)
 		rotation(ARROW_R, info);
 	init_rays(info);
 	init_cursor(info);
