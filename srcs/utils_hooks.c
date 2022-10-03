@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 19:28:36 by hawadh            #+#    #+#             */
-/*   Updated: 2022/09/26 19:09:34 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/09/29 17:17:30 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,11 +142,6 @@ int	key_hook_manage(int hook_num, t_info *inf)
 			inf->data->gun, WIDTH - HEIGHT, (HEIGHT / 2));
 		mlx_put_image_to_window(inf->mlx, inf->win, inf->mini_map, 30, 30);
 	}
-	printf("\n");
-	// handle_wall_collision(inf);
-	int	i = 0;
-	while (inf->data->map[i])
-		printf("Map	:	%s\n", inf->data->map[i++]);
 	printf("\n");
 	printf("Degree Angle: %f\n", inf->player->angle * (180 / PI));
 	printf("Radian Angle: %f\n", inf->player->angle);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 09:28:29 by hawadh            #+#    #+#             */
-/*   Updated: 2022/09/29 18:51:51 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/10/03 12:16:26 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,29 +28,27 @@ void	my_pixel_put(t_info *inf, int x, int y, int rgb)
 **	Function to calculate size of xpm and add them to image
 **/
 static void	add_xpm(t_info *info, t_xpm *xpm, t_rays *ray, int x)
-{
+{		
 	int	xpm_y;
+	int	xpm_x;
 	int	y;
 	int	i;
 
 	xpm_y = 0;
+	xpm_x = x;
 	y = (HEIGHT / 2) - (ray->height / 2);
-	while (xpm_y < ray->height && y < ray->height)
+	while (xpm_y < xpm->hi && y < ray->height)
 	{
 		i = 0;
-		while (i < 4)
+		while (i < 4 && y >= 0 && y < 1080 && xpm_y < 1080)
 		{
-			if (xpm_y < 1080)
-				info->image->addr[((x * 4) + 4 * (WIDTH * y)) + i]
-					= xpm->addr[((x * 4) + 4 * (xpm->wi * xpm_y)) + i];
+			info->image->addr[((x * 4) + 4 * (WIDTH * y)) + i]
+				= xpm->addr[(((xpm_x) * 4) + 4 * (xpm->wi * xpm_y)) + i];
 			i++;
 		}
-		if (i)
-			y++;
+		y++;
 		xpm_y++;
 	}
-	if (ray->dist > 0.56 && ray->ang >= 0 && ray->ang < ((0 + 45) * RADIAN))
-		ray->height--;
 }
 
 /**

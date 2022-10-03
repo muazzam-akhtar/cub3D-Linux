@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/10/03 16:56:33 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/10/03 18:47:50 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ typedef struct s_player
 	double		dx;
 	double		dy;
 	t_wall		wall;
-	t_rays		rays[1920];
+	t_rays		rays[RAYS];
 }	t_player;
 
 typedef struct s_xpm
