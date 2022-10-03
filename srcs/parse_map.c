@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 13:41:18 by makhtar           #+#    #+#             */
-/*   Updated: 2022/08/14 21:19:08 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/10/03 18:22:21 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,19 @@
 static int	valid_key(int c)
 {
 	if (c == '0')
-		return ('0');
+		return (c);
 	else if (c == '1')
-		return ('1');
+		return (c);
 	else if (c == 'N')
-		return ('N');
+		return (c);
 	else if (c == 'W')
-		return ('W');
+		return (c);
 	else if (c == 'S')
-		return ('S');
+		return (c);
 	else if (c == 'E')
-		return ('E');
+		return (c);
 	else if (c == 'M')
-		return ('M');
+		return (c);
 	return (FALSE);
 }
 
@@ -50,6 +50,8 @@ static int	parse_walls(char *str)
 		else
 			return (EXIT_FAILURE);
 	}
+	if (str[--i] != '1')
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 
@@ -61,14 +63,14 @@ static int	parse_walls(char *str)
 static int	key_layout(int c)
 {
 	if (valid_key(c) == 'W')
-		return (1);
+		return (TRUE);
 	else if (valid_key(c) == 'E')
-		return (1);
+		return (TRUE);
 	else if (valid_key(c) == 'S')
-		return (1);
+		return (TRUE);
 	else if (valid_key(c) == 'N')
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
+		return (TRUE);
+	return (FALSE);
 }
 
 /**
@@ -82,9 +84,8 @@ static int	key_layout(int c)
 *	S: South Navigator
 *	E: East Navigator
 **/
-static int	parse_env(char *str)
+static int	parse_env(char *str, int *trigger)
 {
-	static int	trigger;
 	int			i;
 
 	i = 0;
@@ -92,9 +93,9 @@ static int	parse_env(char *str)
 	{
 		if (key_layout(str[i]))
 		{
-			if (trigger)
+			if (*trigger)
 				return (EXIT_FAILURE);
-			trigger = 1;
+			*trigger = 1;
 		}
 		else if (!valid_key(str[i]) && !ft_isspace(str[i]))
 			return (EXIT_FAILURE);
@@ -111,18 +112,21 @@ static int	parse_env(char *str)
 **/
 int	parse_map(char **str, int index)
 {
-	int	i;
+	int			i;
+	static int	trigger;
 
 	i = index;
 	if (parse_walls(str[i++]))
 		return (EXIT_FAILURE);
+	if (str[i] == NULL)
+		return (EXIT_FAILURE);
 	while (str[i + 1] != NULL)
 	{
-		if (parse_env(str[i]))
+		if (parse_env(str[i], &trigger))
 			return (EXIT_FAILURE);
 		i++;
 	}
-	if (parse_walls(str[i]))
+	if (!trigger || parse_walls(str[i]) || parse_spaces(&str[index]))
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

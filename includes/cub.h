@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/10/03 13:31:24 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/10/03 16:56:33 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 # define MINI_SCALE 29
-# define W 13
-# define D 2
-# define A 0
-# define S 1
-# define P 35
-# define ARROW_L 123
-# define ARROW_R 124
-# define ESC 53
+// # define W 13
+// # define D 2
+// # define A 0
+// # define S 1
+// # define P 35
+// # define ARROW_L 123
+// # define ARROW_R 124
+// # define ESC 53
 # define PI 3.14159265358979323846
 # define RADIAN PI / 180
 # define BLOCK_SIZE 8
@@ -35,19 +35,19 @@
 # include <stdlib.h>
 # include <sys/stat.h>
 # include "../libft/libft.h"
-# include "../minilibx_opengl/mlx.h"
-// # include "../minilibx_linux/mlx.h"
+// # include "../minilibx_opengl/mlx.h"
+# include "../minilibx_linux/mlx.h"
 # include "../get_next_line/get_next_line.h"
 # include <math.h>
-// # define ESC 65307
-// # define W 119
-// # define D 100
-// # define E 101
-// # define S 115
-// # define A 97
-// # define P 112
-// # define ARROW_R 65363
-// # define ARROW_L 65361
+# define ESC 65307
+# define W 119
+# define D 100
+# define E 101
+# define S 115
+# define A 97
+# define P 112
+# define ARROW_R 65363
+# define ARROW_L 65361
 // # define PI 3.141592653589793238
 
 /**
@@ -231,6 +231,22 @@ typedef struct s_data
 *	mouse		struct
 *	minimap		struct
 **/
+typedef struct s_str
+{
+	int		i;
+	char	**map;
+	char	*str;
+}	t_str;
+
+/**
+**	Main Struct with all info including struct Pointers
+*	minilibx	*mlx
+*	window		*window
+*	image		*img		
+*	data		struct
+*	mouse		struct
+*	minimap		struct
+**/
 typedef struct s_info
 {
 	void		*mlx;
@@ -249,6 +265,12 @@ typedef struct s_info
 **/
 void	free_split(char **str);
 void	free_data(t_info *info);
+
+/**
+**	Math Functions
+**/
+double	sq(double num);
+double	get_dist(double x_one, double y_one, double x_two, double y_two);
 
 /**
 **	Parsing Functions
@@ -271,6 +293,9 @@ int		check_line(char *input);
 int		check_rgb(char *str, const char *layout, t_info *info);
 int		parse_config(char *str, const char *layout, t_info *info);
 int		parse_config_rgb(char *str, const char *layout, t_info *info);
+int		get_2d_len(char **str);
+int		ft_strlen_int(char *str);
+int		parse_spaces(char **str);
 int		parse_map(char **str, int index);
 int		parse_arg(char **maps, t_info *info);
 
@@ -318,6 +343,11 @@ size_t	rgb(t_data *data, int status);
 **	Hook Functions
 **/
 void	handle_wall_collision(t_info *inf);
+void	move_frwrd(t_info *inf);
+void	move_back(t_info *inf);
+void	move_left(t_info *inf);
+void	move_right(t_info *inf);
+void	rotation(int hook_num, t_info *inf);
 void	moves(int hook_num, t_info *inf);
 void	hook_management(t_info *info);
 

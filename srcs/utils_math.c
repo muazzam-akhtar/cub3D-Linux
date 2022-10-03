@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ptrptrlen.c                                     :+:      :+:    :+:   */
+/*   utils_math.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/20 16:11:58 by hawadh            #+#    #+#             */
-/*   Updated: 2022/10/03 15:25:51 by makhtar          ###   ########.fr       */
+/*   Created: 2022/10/03 16:44:02 by makhtar           #+#    #+#             */
+/*   Updated: 2022/10/03 16:44:03 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/cub.h"
 
-/**
-**	Returns 2D array **ptr size
-**/
-size_t	ft_ptrptrlen(char **ptr)
+double	sq(double num)
 {
-	size_t	count;
+	return (num * num);
+}
 
-	count = 0;
-	while (ptr[count] != NULL)
-		count++;
-	return (count);
+double	get_dist(double x_one, double y_one, double x_two, double y_two)
+{
+	double	dist;
+
+	dist = sqrt(sq(x_two - x_one) + sq(y_two - y_one));
+	return (dist);
 }

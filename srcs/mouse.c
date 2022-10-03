@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 23:05:19 by hawadh            #+#    #+#             */
-/*   Updated: 2022/10/03 13:31:06 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/10/03 13:51:57 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,15 +82,15 @@ void	mouse_rotation(int x, t_info *info)
 **/
 int	mouse_move(int x, int y, t_info *info)
 {
-	mlx_mouse_get_pos(info->win, &x, &y);
-	// mlx_mouse_get_pos(info->mlx, info->win, &x, &y);
+	// mlx_mouse_get_pos(info->win, &x, &y);
+	mlx_mouse_get_pos(info->mlx, info->win, &x, &y);
 	if (info->mouse->flag == 0)
 	{
 		init_cursor(info);
 		mlx_mouse_hide(info->mlx, info->win);
 		mouse_rotation(x, info);
-		mlx_mouse_move(info->win, 960, 540);
-		// mlx_mouse_move(info->mlx, info->win, 960, 540);
+		// mlx_mouse_move(info->win, 960, 540);
+		mlx_mouse_move(info->mlx, info->win, 960, 540);
 		draw_minimap(info, info->mini);
 		mlx_put_image_to_window(info->mlx, info->win, info->img, 0, 0);
 		mlx_put_image_to_window(info->mlx, info->win,
