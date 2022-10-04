@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:42:22 by makhtar           #+#    #+#             */
-/*   Updated: 2022/10/03 17:12:36 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/10/04 17:20:30 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,21 +41,28 @@ static void	init_walls_ray(t_ray *ray, t_info *inf)
 		ray->x += (cos(ray->angle) * 0.01);
 		ray->y += (sin(ray->angle) * 0.01);
 		ray->wall = check_wall(inf, ray->x, ray->y);
-		// if (!ray->wall && (ray->grid_x != (int)ray->x
-		// 		&& ray->grid_y != (int)ray->y))
-		// 	ray->wall = edge_case(ray->x, ray->y, ray->grid_x,
-		// 			ray->grid_y, inf);
+		if (!ray->wall && (ray->grid_x != (int)ray->x
+				&& ray->grid_y != (int)ray->y))
+			ray->wall = edge_case(ray->x, ray->y, inf);
 	}
 	inf->player->rays[1920 - ray->count].x = ray->x;
 	inf->player->rays[1920 - ray->count].y = ray->y;
+	// printf("Ray X: %f, Ray Y: %f\tPX: %f, PY: %f\n", ray->x, ray->y,
+		// inf->player->x_pos, inf->player->y_pos);
 	inf->player->rays[1920 - ray->count].dist = get_dist(inf->player->x_pos,
 			inf->player->y_pos, ray->x, ray->y);
 	inf->player->rays[1920 - ray->count].height = (BLOCK_SIZE * 277)
-		/ inf->player->rays[1920 - ray->count].dist;
+		/ (inf->player->rays[1920 - ray->count].dist
+			* cos(inf->player->rays[1920 - ray->count].ang
+				- inf->player->angle));
 	if (inf->player->rays[1920 - ray->count].height > 1080)
 		inf->player->rays[1920 - ray->count].height = 1080;
 	ray->y = 540 - (inf->player->rays[1920 - ray->count].height / 2);
 }
+/*
+**	// printf("Angle of the player: %f, Height: %f, Angle of the ray: %f\n",
+**	// 	(inf->player->angle * (180 / PI)), inf->player->rays[1920
+**	// 	- ray->count].height, (inf->player->rays[1920 - ray->count].ang * (180 / PI)));*/
 
 void	init_rays(t_info *inf)
 {

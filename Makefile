@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+         #
+#    By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/21 16:36:51 by hawadh            #+#    #+#              #
-#    Updated: 2022/10/03 19:27:08 by makhtar          ###   ########.fr        #
+#    Updated: 2022/10/04 15:09:03 by makhtar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ SRCS		=	./srcs/main.c ./srcs/parse_file.c ./srcs/errors.c \
 				./srcs/player.c ./srcs/utils_minimap.c ./srcs/utils_memory_mngmnt.c \
 				./srcs/moves.c ./srcs/wall_coll.c ./srcs/parse_spaces.c \
 				./srcs/utils_str.c ./srcs/rays.c ./srcs/utils_math.c \
-				./srcs/basic_movements.c
+				./srcs/basic_movements.c ./srcs/edge_cases.c
 
 
 MLX			=	libmlx.a

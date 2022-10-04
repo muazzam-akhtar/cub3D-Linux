@@ -41,6 +41,7 @@ https://lodev.org/cgtutor/raycasting.html
 17. ~~***MAK:***	Walls not drawing in correct distance, it is drawing as inversed distance.~~
 18.	~~***MAK:***Check if bugs are present when have 1920 rays for walls.~~
 19.	~~***MAK:***Parse spaces for the map.~~
+20. ~~***MAK && HA:***Fish Eye fixed.~~
 
 `#TODO:`
 
@@ -64,8 +65,9 @@ https://lodev.org/cgtutor/raycasting.html
 18.	~~***HA:***	Correctly implement # 14~~
 19.	~~***HA:***	Fix minimap drawing to draw when player is closer to left side of array coords, possibly due coords calculation making coords negative and invalid read~~
 20.	~~***HA:***	Fix walls drawing in wrong position of image, perhaps because ra->y not correct value. X is also not increment in correct amount.~~
-21.	***HA && MAK:***	Figure out solution to fish-eye effect.
-22. **MA** Implement edge cases for the rays.
+21.	~~***HA && MAK:***	Figure out solution to fish-eye effect.~~
+22. ~~**MA** Implement edge cases for the rays.~~
+23. **MA**Need to work on fixing the directions of the rays when hits the wall.
 
 `#CURRENT STATUS`
 
@@ -210,6 +212,8 @@ https://lodev.org/cgtutor/raycasting.html
 17. Created New file parse_spaces.The function will help us to check if there is a space at any index of the map, then there should be either the wall or the space else it will throw an error.
 18.	Created New file utils_math.c to store the function sq and dist.
 19.	Created New file utils_str.c since the function ptrptrlen and strlen returns the values in size_t, we needed the same function but to return as an int to avoid memory leaks in parsing. So the names are get_2d_len, ft_strlen_int.
+20. Finished working on Fish eye effect.
+21. Finished working on the edge cases.
 
 
 

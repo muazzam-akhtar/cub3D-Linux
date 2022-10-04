@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 09:28:29 by hawadh            #+#    #+#             */
-/*   Updated: 2022/10/03 18:43:12 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/10/04 17:20:28 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,13 @@ static void	add_xpm(t_info *info, t_xpm *xpm, t_rays *ray, int x)
 {		
 	int	xpm_y;
 	int	xpm_x;
-	int	diff;
 	int	y;
 	int	i;
 
 	xpm_y = 0;
 	xpm_x = x;
 	y = (HEIGHT / 2) - (ray->height / 2);
-	diff = (HEIGHT / 2) - y;
-	if (diff < 370)
-		diff = 370;
-	while (xpm_y < xpm->hi && y < diff)
+	while (xpm_y < xpm->hi && y < ray->height)
 	{
 		i = 0;
 		while (i < 4 && y >= 0 && y < 1080 && xpm_y < 1080)

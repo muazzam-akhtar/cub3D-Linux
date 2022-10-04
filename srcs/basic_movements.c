@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   basic_movements.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:40:38 by makhtar           #+#    #+#             */
-/*   Updated: 2022/10/03 16:40:39 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/10/04 17:31:50 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	move_frwrd(t_info *inf)
 	double	x;
 	double	y;
 
-	inf->player->dx = cos(inf->player->angle) * 0.0556;
-	inf->player->dy = sin(inf->player->angle) * 0.0556;
+	inf->player->dx = cos(inf->player->angle) * 0.15;
+	inf->player->dy = sin(inf->player->angle) * 0.15;
 	y = inf->player->y_pos + inf->player->dy;
 	x = inf->player->x_pos + inf->player->dx;
 	if ((y >= 0) && (y < ft_ptrptrlen(inf->data->map))

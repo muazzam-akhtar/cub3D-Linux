@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/10/03 19:28:29 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/10/04 15:09:26 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -362,6 +362,7 @@ int		mouse_move(int x, int y, t_info *info);
 /**
 **	RayCasting functions
 **/
+int		edge_case(double x, double y, t_info *vars);
 void	init_rays(t_info *inf);
 
 #endif
