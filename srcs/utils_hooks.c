@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_hooks.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 19:28:36 by hawadh            #+#    #+#             */
-/*   Updated: 2022/09/29 17:17:30 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/10/05 21:05:02 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,61 +61,6 @@ int	controls(int keycode)
 		return (TRUE);
 	return (FALSE);
 }
-
-// void	init_wall_coll(t_info *inf)
-// {
-// 	inf->player->wall.count = 7;
-// 	inf->player->wall.row = 0;
-// 	inf->player->wall.col = 0;
-// 	inf->player->wall.x = 0;
-// 	inf->player->wall.y = 0;
-// 	inf->player->wall.angle = 0;
-// }
-
-// void	wall_coll(t_info *inf, int *wall_trigger, double angle)
-// {
-// 	init_wall_coll(inf);
-// 	*wall_trigger = 0;
-// 	inf->player->wall.angle = inf->player->angle - (30 * (PI / 180));
-// 	if (inf->player->wall.angle < 0)
-// 		inf->player->wall.angle += 2 * PI;
-// 	while (inf->player->wall.count > 0)
-// 	{
-// 		inf->player->wall.x = inf->player->x_pos + (cos(inf->player->wall.angle) * 0.125);
-// 		inf->player->wall.y = inf->player->y_pos + (sin(inf->player->wall.angle) * 0.125);
-// 		inf->player->wall.row = (int)inf->player->wall.x;
-// 		inf->player->wall.col = (int)inf->player->wall.y;
-// 		if (!inf->data->map[inf->player->wall.col][inf->player->wall.row]
-// 			|| (inf->data->map[inf->player->wall.col][inf->player->wall.row]
-// 			&& inf->data->map[inf->player->wall.col][inf->player->wall.row] == '1'))
-// 			*wall_trigger = 1;
-// 		inf->player->wall.angle += (10 * PI / 180);
-// 		if (inf->player->wall.angle > 2 * PI)
-// 			inf->player->wall.angle -= 2 * PI;
-// 		inf->player->wall.count--;
-// 	}
-// }
-
-// int	handle_wall_collision(t_info *inf)
-// {
-// 	double	angle;
-
-// 	angle = inf->player->angle;
-// 	wall_coll(inf, &inf->player->wall.wall_front, angle); //wall forward
-// 	angle = inf->player->angle - PI;
-// 	if (angle < 0)
-// 		angle += 2 * PI;
-// 	wall_coll(inf, &inf->player->wall.wall_back, angle); //wall back
-// 	angle = inf->player->angle += (3 * PI / 2);
-// 	if (angle > 2 * PI)
-// 		angle -= 2 * PI;
-// 	wall_coll(inf, &inf->player->wall.wall_left, angle); //wall left
-// 	angle = inf->player->angle += (PI / 2);
-// 	if (angle > 2 * PI)
-// 		angle -= 2 * PI;
-// 	wall_coll(inf, &inf->player->wall.wall_right, angle); //wall right
-// 	return (0);
-// }
 
 /**
 **	To manage key hooks (presses)

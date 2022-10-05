@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:42:22 by makhtar           #+#    #+#             */
-/*   Updated: 2022/10/04 17:20:30 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/10/05 21:59:56 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,24 @@ static int	check_wall(t_info *inf, double x, double y)
 	return (1);
 }
 
+
+
 static void	init_walls_ray(t_ray *ray, t_info *inf)
 {
+	double	old_x;
+	double	old_y;
+
 	ray->x = inf->player->x_pos;
 	ray->y = inf->player->y_pos;
+	old_x = ray->x;
+	old_y = ray->y;
 	ray->wall = 0;
 	ray->grid_x = (int)ray->x;
 	ray->grid_y = (int)ray->y;
 	while (!ray->wall)
 	{
+		old_x = ray->x;
+		old_y = ray->y;
 		ray->x += (cos(ray->angle) * 0.01);
 		ray->y += (sin(ray->angle) * 0.01);
 		ray->wall = check_wall(inf, ray->x, ray->y);
@@ -45,6 +54,8 @@ static void	init_walls_ray(t_ray *ray, t_info *inf)
 				&& ray->grid_y != (int)ray->y))
 			ray->wall = edge_case(ray->x, ray->y, inf);
 	}
+	inf->player->rays[1920 - ray->count].dir_wall
+		= wall_hit_direction(ray, old_x, old_y, inf);
 	inf->player->rays[1920 - ray->count].x = ray->x;
 	inf->player->rays[1920 - ray->count].y = ray->y;
 	// printf("Ray X: %f, Ray Y: %f\tPX: %f, PY: %f\n", ray->x, ray->y,

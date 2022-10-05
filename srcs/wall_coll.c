@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   wall_coll.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/05 21:05:19 by makhtar           #+#    #+#             */
+/*   Updated: 2022/10/05 21:07:43 by makhtar          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub.h"
 
 void	init_wall_coll(t_wall *inf)
@@ -25,7 +37,8 @@ void	wall_coll(t_info *inf, int *wall_trigger, double angle)
 		inf->player->wall.col = (int)inf->player->wall.y;
 		if (!inf->data->map[inf->player->wall.col][inf->player->wall.row]
 			|| (inf->data->map[inf->player->wall.col][inf->player->wall.row]
-			&& inf->data->map[inf->player->wall.col][inf->player->wall.row] == '1'))
+			&& inf->data->map[inf->player->wall.col][inf->player->wall.row]
+			== '1'))
 			*wall_trigger = 1;
 		angle += (10 * PI / 180);
 		if (angle > 2 * PI)

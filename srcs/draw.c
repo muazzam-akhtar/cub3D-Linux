@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 09:28:29 by hawadh            #+#    #+#             */
-/*   Updated: 2022/10/04 17:20:28 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/10/05 22:03:20 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,29 @@ static void	add_xpm(t_info *info, t_xpm *xpm, t_rays *ray, int x)
 **/
 void	place_walls(t_info *inf, t_rays *ray, int x)
 {
-	if (ray->ang >= ((270 - 45) * RADIAN) && ray->ang < ((270 + 45) * RADIAN))
+	if (ray->dir_wall == 1)
 		add_xpm(inf, &inf->data->xpm[NO], ray, x);
-	if (ray->ang >= ((180 - 45) * RADIAN) && ray->ang < ((180 + 45) * RADIAN))
+	if (ray->dir_wall == 2)
 		add_xpm(inf, &inf->data->xpm[SO], ray, x);
-	if (ray->ang >= ((90 - 45) * RADIAN) && ray->ang < ((90 + 45) * RADIAN))
+	if (ray->dir_wall == 3)
 		add_xpm(inf, &inf->data->xpm[WE], ray, x);
-	if (ray->ang >= 0 && ray->ang < ((0 + 45) * RADIAN))
+	if (ray->dir_wall == 4)
 		add_xpm(inf, &inf->data->xpm[EA], ray, x);
-	else if (ray->ang >= ((360 - 45) * RADIAN) && ray->ang < (360 * RADIAN))
-		add_xpm(inf, &inf->data->xpm[EA], ray, x);
+	else if (ray->dir_wall == 5)
+	{
+		if (ray->ang >= ((270 - 45) * RADIAN)
+			&& ray->ang < ((270 + 45) * RADIAN))
+			add_xpm(inf, &inf->data->xpm[NO], ray, x);
+		if (ray->ang >= ((180 - 45) * RADIAN)
+			&& ray->ang < ((180 + 45) * RADIAN))
+			add_xpm(inf, &inf->data->xpm[SO], ray, x);
+		if (ray->ang >= ((90 - 45) * RADIAN) && ray->ang < ((90 + 45) * RADIAN))
+			add_xpm(inf, &inf->data->xpm[WE], ray, x);
+		if (ray->ang >= 0 && ray->ang < ((0 + 45) * RADIAN))
+			add_xpm(inf, &inf->data->xpm[EA], ray, x);
+		else if (ray->ang >= ((360 - 45) * RADIAN) && ray->ang < (360 * RADIAN))
+			add_xpm(inf, &inf->data->xpm[EA], ray, x);
+	}
 }
 
 /**
