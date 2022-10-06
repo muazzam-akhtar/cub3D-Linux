@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_draw.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 18:06:53 by hawadh            #+#    #+#             */
-/*   Updated: 2022/10/04 17:20:46 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/10/04 21:25:24 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	draw_ceiling(t_info *info)
 	int	y;
 
 	y = 0;
-	while (y < 361)
+	while (y < 540)
 	{
 		x = 0;
 		while (x < 1920)
@@ -42,7 +42,7 @@ static void	draw_floor(t_info *info)
 	int	x;
 	int	y;
 
-	y = 361;
+	y = 540;
 	while (y < 1080)
 	{
 		x = 0;

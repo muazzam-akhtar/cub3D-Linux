@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:42:22 by makhtar           #+#    #+#             */
-/*   Updated: 2022/10/06 15:50:00 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/10/06 18:09:56 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,15 +71,15 @@ static void	hit_wall_check(t_ray *ray, t_info *inf)
 				&& ray->grid_y != (int)ray->y))
 			ray->wall = edge_case(ray->x, ray->y, inf);
 	}
-	inf->player->rays[1920 - ray->count].dir_wall
+	inf->player->rays[RAYS - ray->count].dir_wall
 		= wall_hit_direction(ray, old_x, old_y, inf);
-	inf->player->rays[1920 - ray->count].x = ray->x;
-	inf->player->rays[1920 - ray->count].y = ray->y;
-	inf->player->rays[1920 - ray->count].dist = get_dist(inf->player->x_pos,
+	inf->player->rays[RAYS - ray->count].x = ray->x;
+	inf->player->rays[RAYS - ray->count].y = ray->y;
+	inf->player->rays[RAYS - ray->count].dist = get_dist(inf->player->x_pos,
 			inf->player->y_pos, ray->x, ray->y);
-	inf->player->rays[1920 - ray->count].height
-		= get_height(inf->player->rays[1920 - ray->count].dist,
-			inf->player->rays[1920 - ray->count].ang, inf->player->angle);
+	inf->player->rays[RAYS - ray->count].height
+		= get_height(inf->player->rays[RAYS - ray->count].dist,
+			inf->player->rays[RAYS - ray->count].ang, inf->player->angle);
 }
 /*
 **	// printf("Angle of the player: %f, Height: %f, Angle of the ray: %f\n",
@@ -111,20 +111,20 @@ void	init_rays(t_info *inf)
 	ray.angle = inf->player->angle - (35 * RADIAN);
 	if (ray.angle < 0)
 		ray.angle += 2 * PI;
-	ray.count = 1920;
+	ray.count = RAYS;
 	ray.x1 = 0;
 	ceiling_floor(inf);
 	while (ray.count > 0)
 	{
 		hit_wall_check(&ray, inf);
-		if (inf->player->rays[1920 - ray.count].height < 370)
-			inf->player->rays[1920 - ray.count].height = 370;
-		ray.y = 540 - (inf->player->rays[1920 - ray.count].height / 2);
-		inf->player->rays[1920 - ray.count].ang = ray.angle;
+		if (inf->player->rays[RAYS - ray.count].height < 540)
+			inf->player->rays[RAYS - ray.count].height = 540;
+		ray.y = 540 - (inf->player->rays[RAYS - ray.count].height / 2);
+		inf->player->rays[RAYS - ray.count].ang = ray.angle;
 		ray.angle += 0.000636318; // (PI / 180) * (60 / RAYS)
 		revise_ang_x_co(&ray);
 		while (x < ray.x1 || (ray.x1 == 0 && x == 0))
-			place_walls(inf, &inf->player->rays[1920 - ray.count], x++);
+			place_walls(inf, &inf->player->rays[RAYS - ray.count], x++);
 		ray.x1 += 1; // 11.6 * (60 / RAYS)
 		ray.count--;
 	}
