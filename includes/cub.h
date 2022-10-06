@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/10/05 21:59:28 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/10/06 15:42:17 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 # define MINI_SCALE 29
-// # define W 13
-// # define D 2
-// # define A 0
-// # define S 1
-// # define P 35
-// # define ARROW_L 123
-// # define ARROW_R 124
-// # define ESC 53
+# define W 13
+# define D 2
+# define A 0
+# define S 1
+# define P 35
+# define ARROW_L 123
+# define ARROW_R 124
+# define ESC 53
 # define PI 3.14159265358979323846
 # define RADIAN PI / 180
 # define BLOCK_SIZE 8
@@ -35,19 +35,19 @@
 # include <stdlib.h>
 # include <sys/stat.h>
 # include "../libft/libft.h"
-// # include "../minilibx_opengl/mlx.h"
-# include "../minilibx_linux/mlx.h"
+# include "../minilibx_opengl/mlx.h"
+// # include "../minilibx_linux/mlx.h"
 # include "../get_next_line/get_next_line.h"
 # include <math.h>
-# define ESC 65307
-# define W 119
-# define D 100
-# define E 101
-# define S 115
-# define A 97
-# define P 112
-# define ARROW_R 65363
-# define ARROW_L 65361
+// # define ESC 65307
+// # define W 119
+// # define D 100
+// # define E 101
+// # define S 115
+// # define A 97
+// # define P 112
+// # define ARROW_R 65363
+// # define ARROW_L 65361
 // # define PI 3.141592653589793238
 
 /**
@@ -272,6 +272,7 @@ void	free_data(t_info *info);
 **/
 double	sq(double num);
 double	get_dist(double x_one, double y_one, double x_two, double y_two);
+double	get_height(double dist, double r_ang, double p_ang);
 
 /**
 **	Parsing Functions

@@ -29,7 +29,7 @@ https://lodev.org/cgtutor/raycasting.html
 5.	~~***HA:***	Crosshair was not drawing~~
 6.	~~***HA:***	Map printed with extra spaces~~
 7.	~~***HA:***	Memory leak in `parse_layout();` in my function `store_confg_map();` line `#47`~~
-8.	~~***MAK:***	Parser returning invalid map on checking walls if any `0` is present, `line #13` in file.cub~~
+8.	~~***MAK:*** Parser returning invalid map on checking walls if any `0` is present, `line #13` in file.cub~~
 9.	~~***HA:***	xpm file opening failing~~
 10.	~~***HA:***	On full screen, pause causes window to turn red if window resized to full screen~~
 11.	~~***HA:***	Parser function `check_tabs();` had issue with iteration (Did I write this late night?) where `i = -1` and `while (++i > 0)`~~
@@ -38,10 +38,13 @@ https://lodev.org/cgtutor/raycasting.html
 14.	~~***HA:***	Minimap skipping areas and not drawing in walls~~
 15. ***HA:***	Minimap not drawing walls when player is closer to **TOP** side of array
 16.	~~***HA:***	Walls not drawing in correct position of window~~
-17. ~~***MAK:***	Walls not drawing in correct distance, it is drawing as inversed distance.~~
-18.	~~***MAK:***Check if bugs are present when have 1920 rays for walls.~~
-19.	~~***MAK:***Parse spaces for the map.~~
+17. ~~***MAK:*** Walls not drawing in correct distance, it is drawing as inversed distance.~~
+18.	~~***MAK:*** Check if bugs are present when have 1920 rays for walls.~~
+19.	~~***MAK:*** Parse spaces for the map.~~
 20. ~~***MAK && HA:***Fish Eye fixed.~~
+21. ~~***MAK:*** Given directions of all the sides of the wall in the game with direction.c, function named wall_hit_direction.~~
+21. ***MAK && HA:*** When the game starts the position of player is different than playing the game, even with the pause function- the player is somewhere else in the map not when in his latest position. Need to be fixed. Probably the init_rays function is not functioning it properly.
+22. ***MAK && HA:***    Fixed Pause bug, its not a bug, it's a feature. :D
 
 `#TODO:`
 
@@ -67,7 +70,7 @@ https://lodev.org/cgtutor/raycasting.html
 20.	~~***HA:***	Fix walls drawing in wrong position of image, perhaps because ra->y not correct value. X is also not increment in correct amount.~~
 21.	~~***HA && MAK:***	Figure out solution to fish-eye effect.~~
 22. ~~**MA** Implement edge cases for the rays.~~
-23. **MA**Need to work on fixing the directions of the rays when hits the wall.
+23. ~~**MA** Need to work on fixing the directions of the rays when hits the wall.~~
 
 `#CURRENT STATUS`
 
@@ -214,6 +217,9 @@ https://lodev.org/cgtutor/raycasting.html
 19.	Created New file utils_str.c since the function ptrptrlen and strlen returns the values in size_t, we needed the same function but to return as an int to avoid memory leaks in parsing. So the names are get_2d_len, ft_strlen_int.
 20. Finished working on Fish eye effect.
 21. Finished working on the edge cases.
+22. Created a new function get_height which does the formula and revise it if it exceeds the window.
+23. Created a new file directions.c and added a function named wall_hit_direction which gives the direction of all the sides of the wall.
+24. Edited some codes in draw.c which can link it with the wall_hit_direction to give a better clarity to the game.
 
 
 

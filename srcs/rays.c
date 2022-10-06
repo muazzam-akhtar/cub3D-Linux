@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:42:22 by makhtar           #+#    #+#             */
-/*   Updated: 2022/10/05 21:59:56 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/10/06 15:50:00 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
+/*
+** Checks with New Coordinates of the Raycast if it hit the wall.
+*/
 static int	check_wall(t_info *inf, double x, double y)
 {
 	int	col;
@@ -29,20 +32,34 @@ static int	check_wall(t_info *inf, double x, double y)
 	return (1);
 }
 
+/*
+**	Initialisation of the ray structure before the calculation
+*/
 
+static void	init_vars(t_ray *ray, t_info *inf, double *old_x, double *old_y)
+{
+	ray->x = inf->player->x_pos;
+	ray->y = inf->player->y_pos;
+	*old_x = ray->x;
+	*old_y = ray->y;
+	ray->wall = 0;
+	ray->grid_x = (int)ray->x;
+	ray->grid_y = (int)ray->y;
+}
 
-static void	init_walls_ray(t_ray *ray, t_info *inf)
+/*
+**	Sub Main process which runs the rays for all the scenarios
+**	Basic wall hits
+**	Edge Cases
+**	Direction of wall
+**	Getting the height of the wall
+*/
+static void	hit_wall_check(t_ray *ray, t_info *inf)
 {
 	double	old_x;
 	double	old_y;
 
-	ray->x = inf->player->x_pos;
-	ray->y = inf->player->y_pos;
-	old_x = ray->x;
-	old_y = ray->y;
-	ray->wall = 0;
-	ray->grid_x = (int)ray->x;
-	ray->grid_y = (int)ray->y;
+	init_vars(ray, inf, &old_x, &old_y);
 	while (!ray->wall)
 	{
 		old_x = ray->x;
@@ -58,23 +75,33 @@ static void	init_walls_ray(t_ray *ray, t_info *inf)
 		= wall_hit_direction(ray, old_x, old_y, inf);
 	inf->player->rays[1920 - ray->count].x = ray->x;
 	inf->player->rays[1920 - ray->count].y = ray->y;
-	// printf("Ray X: %f, Ray Y: %f\tPX: %f, PY: %f\n", ray->x, ray->y,
-		// inf->player->x_pos, inf->player->y_pos);
 	inf->player->rays[1920 - ray->count].dist = get_dist(inf->player->x_pos,
 			inf->player->y_pos, ray->x, ray->y);
-	inf->player->rays[1920 - ray->count].height = (BLOCK_SIZE * 277)
-		/ (inf->player->rays[1920 - ray->count].dist
-			* cos(inf->player->rays[1920 - ray->count].ang
-				- inf->player->angle));
-	if (inf->player->rays[1920 - ray->count].height > 1080)
-		inf->player->rays[1920 - ray->count].height = 1080;
-	ray->y = 540 - (inf->player->rays[1920 - ray->count].height / 2);
+	inf->player->rays[1920 - ray->count].height
+		= get_height(inf->player->rays[1920 - ray->count].dist,
+			inf->player->rays[1920 - ray->count].ang, inf->player->angle);
 }
 /*
 **	// printf("Angle of the player: %f, Height: %f, Angle of the ray: %f\n",
 **	// 	(inf->player->angle * (180 / PI)), inf->player->rays[1920
-**	// 	- ray->count].height, (inf->player->rays[1920 - ray->count].ang * (180 / PI)));*/
+**	// 	- ray->count].height, (inf->player->rays[1920 - ray->count].ang
+* (180 / PI)));*/
 
+/*
+**	The revised conditions if the angle is negative and the x_co exceeds 1920
+*/
+static void	revise_ang_x_co(t_ray *ray)
+{
+	if (ray->angle > 2 * PI)
+			ray->angle -= 2 * PI;
+	if (ray->x1 > 1920)
+		ray->x1 = 1920;
+}
+
+/*
+** The Main Process of the raycasting which deals with pixel
+put for ceiling, floor, walls
+*/
 void	init_rays(t_info *inf)
 {
 	t_ray	ray;
@@ -89,16 +116,13 @@ void	init_rays(t_info *inf)
 	ceiling_floor(inf);
 	while (ray.count > 0)
 	{
-		init_walls_ray(&ray, inf);
+		hit_wall_check(&ray, inf);
 		if (inf->player->rays[1920 - ray.count].height < 370)
 			inf->player->rays[1920 - ray.count].height = 370;
 		ray.y = 540 - (inf->player->rays[1920 - ray.count].height / 2);
 		inf->player->rays[1920 - ray.count].ang = ray.angle;
 		ray.angle += 0.000636318; // (PI / 180) * (60 / RAYS)
-		if (ray.angle > 2 * PI)
-			ray.angle -= 2 * PI;
-		if (ray.x1 > 1920)
-			ray.x1 = 1920;
+		revise_ang_x_co(&ray);
 		while (x < ray.x1 || (ray.x1 == 0 && x == 0))
 			place_walls(inf, &inf->player->rays[1920 - ray.count], x++);
 		ray.x1 += 1; // 11.6 * (60 / RAYS)

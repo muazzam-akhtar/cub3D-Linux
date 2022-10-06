@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 09:28:29 by hawadh            #+#    #+#             */
-/*   Updated: 2022/10/05 22:03:20 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/10/06 17:57:27 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,10 @@ static void	add_xpm(t_info *info, t_xpm *xpm, t_rays *ray, int x)
 **/
 void	place_walls(t_info *inf, t_rays *ray, int x)
 {
+	static int	old_colour;
+
+	if (!old_colour && ray->dir_wall != 5)
+		old_colour = ray->dir_wall;
 	if (ray->dir_wall == 1)
 		add_xpm(inf, &inf->data->xpm[NO], ray, x);
 	if (ray->dir_wall == 2)
@@ -64,21 +68,12 @@ void	place_walls(t_info *inf, t_rays *ray, int x)
 		add_xpm(inf, &inf->data->xpm[WE], ray, x);
 	if (ray->dir_wall == 4)
 		add_xpm(inf, &inf->data->xpm[EA], ray, x);
-	else if (ray->dir_wall == 5)
+	else if (ray->dir_wall == 0 || ray->dir_wall == 5)
 	{
-		if (ray->ang >= ((270 - 45) * RADIAN)
-			&& ray->ang < ((270 + 45) * RADIAN))
-			add_xpm(inf, &inf->data->xpm[NO], ray, x);
-		if (ray->ang >= ((180 - 45) * RADIAN)
-			&& ray->ang < ((180 + 45) * RADIAN))
-			add_xpm(inf, &inf->data->xpm[SO], ray, x);
-		if (ray->ang >= ((90 - 45) * RADIAN) && ray->ang < ((90 + 45) * RADIAN))
-			add_xpm(inf, &inf->data->xpm[WE], ray, x);
-		if (ray->ang >= 0 && ray->ang < ((0 + 45) * RADIAN))
-			add_xpm(inf, &inf->data->xpm[EA], ray, x);
-		else if (ray->ang >= ((360 - 45) * RADIAN) && ray->ang < (360 * RADIAN))
-			add_xpm(inf, &inf->data->xpm[EA], ray, x);
+		add_xpm(inf, &inf->data->xpm[old_colour - 1], ray, x);
+		return ;
 	}
+	old_colour = ray->dir_wall;
 }
 
 /**
@@ -88,7 +83,13 @@ void	place_walls(t_info *inf, t_rays *ray, int x)
 **/
 void	draw_map(t_info *info)
 {
-	find_player(info->data, info->player);
+	static int	timer;
+
+	if (!timer)
+	{
+		find_player(info->data, info->player);
+		timer = 1;
+	}
 	init_rays(info);
 	draw_minimap(info, info->mini);
 	init_cursor(info);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+         #
+#    By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/21 16:36:51 by hawadh            #+#    #+#              #
-#    Updated: 2022/10/05 20:27:14 by makhtar          ###   ########.fr        #
+#    Updated: 2022/10/06 13:32:43 by makhtar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,11 +35,11 @@ SRCS		=	./srcs/main.c ./srcs/parse_file.c ./srcs/errors.c \
 
 MLX			=	libmlx.a
 
-# MLXDIR		=	./minilibx_opengl
-MLXDIR		=	./minilibx_linux
+MLXDIR		=	./minilibx_opengl
+# MLXDIR		=	./minilibx_linux
 
-# MLXFLG		=	./libmlx.a -framework OpenGL -framework Appkit
-MLXFLG		=	./libmlx.a -lXext -lX11 -lm -lz
+MLXFLG		=	./libmlx.a -framework OpenGL -framework Appkit
+# MLXFLG		=	./libmlx.a -lXext -lX11 -lm -lz
 
 OBJS		=	${SRCS:.c=.o}
 
