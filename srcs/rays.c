@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:42:22 by makhtar           #+#    #+#             */
-/*   Updated: 2022/10/06 18:09:56 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/10/06 22:38:42 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,6 @@ void	init_rays(t_info *inf)
 	while (ray.count > 0)
 	{
 		hit_wall_check(&ray, inf);
-		if (inf->player->rays[RAYS - ray.count].height < 540)
-			inf->player->rays[RAYS - ray.count].height = 540;
 		ray.y = 540 - (inf->player->rays[RAYS - ray.count].height / 2);
 		inf->player->rays[RAYS - ray.count].ang = ray.angle;
 		ray.angle += 0.000636318; // (PI / 180) * (60 / RAYS)

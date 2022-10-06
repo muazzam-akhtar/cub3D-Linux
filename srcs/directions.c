@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   directions.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 19:30:47 by makhtar           #+#    #+#             */
-/*   Updated: 2022/10/06 15:49:49 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/10/06 19:33:16 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@
 // 	}
 // }
 
-/*
+/**
 **	Fetches the side of the wall when hitted with the ray
-*/
+**/
 int	wall_hit_direction(t_ray *ray, double old_x, double old_y, t_info *inf)
 {
 	double		diff_x;

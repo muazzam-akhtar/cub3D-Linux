@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 09:28:29 by hawadh            #+#    #+#             */
-/*   Updated: 2022/10/06 17:57:27 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/10/06 22:37:58 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,25 +29,25 @@ void	my_pixel_put(t_info *inf, int x, int y, int rgb)
 **/
 static void	add_xpm(t_info *info, t_xpm *xpm, t_rays *ray, int x)
 {		
-	int	xpm_y;
-	int	xpm_x;
-	int	y;
-	int	i;
+	int				xpm_y;
+	int				xpm_x;
+	int				y;
+	int				i;
 
-	xpm_y = 0;
 	xpm_x = x;
 	y = (HEIGHT / 2) - (ray->height / 2);
-	while (xpm_y < xpm->hi && y < ray->height)
+	xpm_y = y;
+	while (xpm_y < xpm->hi - 4 && y < ray->height)
 	{
 		i = 0;
-		while (i < 4 && y >= 0 && y < 1080 && xpm_y < 1080)
+		while (i < 4 && y >= 0 && y < ray->height && xpm_y < xpm->hi)
 		{
 			info->image->addr[((x * 4) + 4 * (WIDTH * y)) + i]
 				= xpm->addr[(((xpm_x) * 4) + 4 * (xpm->wi * xpm_y)) + i];
 			i++;
 		}
-		y++;
 		xpm_y++;
+		y++;
 	}
 }
 
