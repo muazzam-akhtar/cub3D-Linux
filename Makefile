@@ -3,14 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+         #
+#    By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/21 16:36:51 by hawadh            #+#    #+#              #
-#    Updated: 2022/10/06 13:32:43 by makhtar          ###   ########.fr        #
+#    Updated: 2022/10/07 19:26:28 by hawadh           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	cub3d
+
+NAME		=	cub3D
 
 LIBFT		=	libft.a
 
@@ -31,21 +32,28 @@ SRCS		=	./srcs/main.c ./srcs/parse_file.c ./srcs/errors.c \
 				./srcs/moves.c ./srcs/wall_coll.c ./srcs/parse_spaces.c \
 				./srcs/utils_str.c ./srcs/rays.c ./srcs/utils_math.c \
 				./srcs/basic_movements.c ./srcs/edge_cases.c ./srcs/directions.c \
+				./srcs/linux_osx_mouse.c
 
 
 MLX			=	libmlx.a
 
-MLXDIR		=	./minilibx_opengl
-# MLXDIR		=	./minilibx_linux
-
-MLXFLG		=	./libmlx.a -framework OpenGL -framework Appkit
-# MLXFLG		=	./libmlx.a -lXext -lX11 -lm -lz
+#Checks current OS and determines which to flags to set
+OS:= ${shell uname}
+ifeq (${OS},Darwin)
+	MLXDIR		=	./minilibx_opengl
+	MLXFLG		=	./libmlx.a -framework OpenGL -framework Appkit
+	CFLAGS		+=	-D OSX
+else
+	MLXDIR		=	./minilibx_linux
+	MLXFLG		=	./libmlx.a -lXext -lX11 -lm -lz
+	CFLAGS		+=	-D LINUX
+endif
 
 OBJS		=	${SRCS:.c=.o}
 
 CC			=	gcc
 
-CFLAGS		=	-Wall -Werror -Wextra -g3
+CFLAGS		+=	-Wall -Werror -Wextra -g3
 
 ${NAME}:	${OBJS}
 			${MAKE} -C ${GNLDIR}

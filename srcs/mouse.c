@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 23:05:19 by hawadh            #+#    #+#             */
-/*   Updated: 2022/10/06 15:48:49 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/10/07 19:24:14 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,15 +84,13 @@ void	mouse_rotation(int x, t_info *info)
 **/
 int	mouse_move(int x, int y, t_info *info)
 {
-	mlx_mouse_get_pos(info->win, &x, &y);
-	// mlx_mouse_get_pos(info->mlx, info->win, &x, &y);
+	linux_osx_mouse(info, x, y);
 	if (info->mouse->flag == 0)
 	{
 		init_cursor(info);
 		mlx_mouse_hide(info->mlx, info->win);
 		mouse_rotation(x, info);
-		mlx_mouse_move(info->win, 960, 540);
-		// mlx_mouse_move(info->mlx, info->win, 960, 540);
+		linux_osx_mouse(info, x, y);
 		draw_minimap(info, info->mini);
 		mlx_put_image_to_window(info->mlx, info->win, info->img, 0, 0);
 		mlx_put_image_to_window(info->mlx, info->win,

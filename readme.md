@@ -192,7 +192,16 @@ https://lodev.org/cgtutor/raycasting.html
 114. Walls now drawing in correct width and height, but see bug `#17`
 115. Removed Variable xpm->divisible as is no longer needed.
 116. Refactored line `#208` in `moves.c` for height calculation.
-117. Line `#37` in `draw.c` to now make `y = (HEIGHT / 2) - (ray>height / 2);`
+117. New function called  `linux_osx_mouse();` lines `#88` && `#95` in `mouse.c`
+function placed in `linux_osx_mouse.c`
+118. Line `#37` in `draw.c` to now make `y = (HEIGHT / 2) - (ray>height / 2);`
+119. Implemented `ifeq` and `else` in `Makefile` to determine OSX or Linux lines `#40` -> `#50'.
+120. New file `linux_osx_mouse.c` calls mouse functions depending on OSX or Linux.
+121. Changed all values within `ray.c` to `RAYS` as defined to ease change.
+122. Attempting new method of calculating `x` and `y` positions in XPM file and `xpm_y` iteration in `draw.c` `add_xpm();`
+123. Removed unused variables in `init_rays();` and `wall_ht_direction();`
+124. Added `#ifdef OSX`, `#ifdef LINUX` in `cub.h` to ease transition between `OSX` and `Linux`.
+
 
 `MAK:	4 July 2022`
 

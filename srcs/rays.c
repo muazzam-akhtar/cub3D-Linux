@@ -6,15 +6,15 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:42:22 by makhtar           #+#    #+#             */
-/*   Updated: 2022/10/06 22:38:42 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/10/10 13:35:47 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-/*
-** Checks with New Coordinates of the Raycast if it hit the wall.
-*/
+/**
+**	Checks with New Coordinates of the Raycast if it hit the wall.
+**/
 static int	check_wall(t_info *inf, double x, double y)
 {
 	int	col;
@@ -32,10 +32,9 @@ static int	check_wall(t_info *inf, double x, double y)
 	return (1);
 }
 
-/*
+/**
 **	Initialisation of the ray structure before the calculation
-*/
-
+**/
 static void	init_vars(t_ray *ray, t_info *inf, double *old_x, double *old_y)
 {
 	ray->x = inf->player->x_pos;
@@ -47,13 +46,13 @@ static void	init_vars(t_ray *ray, t_info *inf, double *old_x, double *old_y)
 	ray->grid_y = (int)ray->y;
 }
 
-/*
+/**
 **	Sub Main process which runs the rays for all the scenarios
 **	Basic wall hits
 **	Edge Cases
 **	Direction of wall
 **	Getting the height of the wall
-*/
+**/
 static void	hit_wall_check(t_ray *ray, t_info *inf)
 {
 	double	old_x;
@@ -87,27 +86,25 @@ static void	hit_wall_check(t_ray *ray, t_info *inf)
 **	// 	- ray->count].height, (inf->player->rays[1920 - ray->count].ang
 * (180 / PI)));*/
 
-/*
+/**
 **	The revised conditions if the angle is negative and the x_co exceeds 1920
-*/
+**/
 static void	revise_ang_x_co(t_ray *ray)
 {
 	if (ray->angle > 2 * PI)
 			ray->angle -= 2 * PI;
-	if (ray->x1 > 1920)
-		ray->x1 = 1920;
+	if (ray->x1 > RAYS)
+		ray->x1 = RAYS;
 }
 
-/*
-** The Main Process of the raycasting which deals with pixel
-put for ceiling, floor, walls
-*/
+/**
+**	The Main Process of the raycasting which deals with pixel
+**	put for ceiling, floor, walls
+**/
 void	init_rays(t_info *inf)
 {
 	t_ray	ray;
-	int		x;
 
-	x = 0;
 	ray.angle = inf->player->angle - (35 * RADIAN);
 	if (ray.angle < 0)
 		ray.angle += 2 * PI;
@@ -121,8 +118,7 @@ void	init_rays(t_info *inf)
 		inf->player->rays[RAYS - ray.count].ang = ray.angle;
 		ray.angle += 0.000636318; // (PI / 180) * (60 / RAYS)
 		revise_ang_x_co(&ray);
-		while (x < ray.x1 || (ray.x1 == 0 && x == 0))
-			place_walls(inf, &inf->player->rays[RAYS - ray.count], x++);
+		place_walls(inf, &inf->player->rays[RAYS - ray.count], ray.x1);
 		ray.x1 += 1; // 11.6 * (60 / RAYS)
 		ray.count--;
 	}

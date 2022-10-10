@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 09:28:29 by hawadh            #+#    #+#             */
-/*   Updated: 2022/10/06 22:37:58 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/10/10 13:31:14 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,24 +29,24 @@ void	my_pixel_put(t_info *inf, int x, int y, int rgb)
 **/
 static void	add_xpm(t_info *info, t_xpm *xpm, t_rays *ray, int x)
 {		
-	int				xpm_y;
-	int				xpm_x;
-	int				y;
-	int				i;
+	int			xpm_y;
+	int			xpm_x;
+	int			y;
+	int			i;
 
-	xpm_x = x;
+	xpm_x = WIDTH % (int)ray->height;
 	y = (HEIGHT / 2) - (ray->height / 2);
-	xpm_y = y;
-	while (xpm_y < xpm->hi - 4 && y < ray->height)
+	xpm_y = 0;
+	while (xpm_y < xpm->hi - 4 && y < ray->height - 4 && y < HEIGHT)
 	{
 		i = 0;
-		while (i < 4 && y >= 0 && y < ray->height && xpm_y < xpm->hi)
+		while (i < 4 && y >= 0 && y < HEIGHT && xpm_y < xpm->hi)
 		{
 			info->image->addr[((x * 4) + 4 * (WIDTH * y)) + i]
 				= xpm->addr[(((xpm_x) * 4) + 4 * (xpm->wi * xpm_y)) + i];
 			i++;
 		}
-		xpm_y++;
+		xpm_y += ray->height / HEIGHT;
 		y++;
 	}
 }

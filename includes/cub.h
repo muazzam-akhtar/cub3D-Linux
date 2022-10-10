@@ -3,30 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/10/06 15:42:17 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/10/10 13:34:51 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB_H
 # define CUB_H
-# define WIDTH 1920
-# define HEIGHT 1080
-# define MINI_SCALE 29
-# define W 13
-# define D 2
-# define A 0
-# define S 1
-# define P 35
-# define ARROW_L 123
-# define ARROW_R 124
-# define ESC 53
-# define PI 3.14159265358979323846
-# define RADIAN PI / 180
-# define BLOCK_SIZE 8
-# define RAYS 1920
+
+# ifdef OSX
+#  include "../minilibx_opengl/mlx.h"
+#  define WIDTH 1920
+#  define HEIGHT 1080
+#  define MINI_SCALE 29
+#  define W 13
+#  define D 2
+#  define A 0
+#  define S 1
+#  define P 35
+#  define ARROW_L 123
+#  define ARROW_R 124
+#  define ESC 53
+#  define PI 3.14159265358979323846
+#  define RADIAN PI / 180
+#  define BLOCK_SIZE 8
+#  define RAYS 1920
+# endif
+
+# ifdef LINUX
+#  include "../minilibx_linux/mlx.h"
+#  define ESC 65307
+#  define W 119
+#  define D 100
+#  define E 101
+#  define S 115
+#  define A 97
+#  define P 112
+#  define ARROW_R 65363
+#  define ARROW_L 65361
+#  define PI 3.141592653589793238
+# endif
 
 # include <unistd.h>
 # include <fcntl.h>
@@ -35,20 +53,8 @@
 # include <stdlib.h>
 # include <sys/stat.h>
 # include "../libft/libft.h"
-# include "../minilibx_opengl/mlx.h"
-// # include "../minilibx_linux/mlx.h"
 # include "../get_next_line/get_next_line.h"
 # include <math.h>
-// # define ESC 65307
-// # define W 119
-// # define D 100
-// # define E 101
-// # define S 115
-// # define A 97
-// # define P 112
-// # define ARROW_R 65363
-// # define ARROW_L 65361
-// # define PI 3.141592653589793238
 
 /**
 **	ENUM for Compass perspective of Player
@@ -356,6 +362,7 @@ void	hook_management(t_info *info);
 /**
 **	Mouse Functions
 **/
+void	linux_osx_mouse(t_info *info, int x, int y);
 void	init_cursor(t_info *inf);
 void	rotation(int hook_num, t_info *inf);
 int		init_mouse(t_info *info);

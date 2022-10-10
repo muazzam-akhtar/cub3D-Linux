@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 19:30:47 by makhtar           #+#    #+#             */
-/*   Updated: 2022/10/06 19:33:16 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/10/07 17:05:00 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,6 @@
 **/
 int	wall_hit_direction(t_ray *ray, double old_x, double old_y, t_info *inf)
 {
-	double		diff_x;
-	double		diff_y;
-
-	diff_x = ray->x - old_x;
-	diff_y = ray->y - old_y;
 	if (inf->data->map[(int)ray->y][(int)old_x] == '1')
 	{
 		if (old_y < ray->y)
