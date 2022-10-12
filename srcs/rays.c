@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:42:22 by makhtar           #+#    #+#             */
-/*   Updated: 2022/10/10 13:35:47 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/10/12 13:10:44 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ static void	hit_wall_check(t_ray *ray, t_info *inf)
 	inf->player->rays[RAYS - ray->count].y = ray->y;
 	inf->player->rays[RAYS - ray->count].dist = get_dist(inf->player->x_pos,
 			inf->player->y_pos, ray->x, ray->y);
+	inf->player->rays[RAYS - ray->count].dist = euclidean(ray, inf, inf->player->rays[RAYS - ray->count].dist);
 	inf->player->rays[RAYS - ray->count].height
 		= get_height(inf->player->rays[RAYS - ray->count].dist,
 			inf->player->rays[RAYS - ray->count].ang, inf->player->angle);

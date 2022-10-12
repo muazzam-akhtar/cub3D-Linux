@@ -201,6 +201,7 @@ function placed in `linux_osx_mouse.c`
 122. Attempting new method of calculating `x` and `y` positions in XPM file and `xpm_y` iteration in `draw.c` `add_xpm();`
 123. Removed unused variables in `init_rays();` and `wall_ht_direction();`
 124. Added `#ifdef OSX`, `#ifdef LINUX` in `cub.h` to ease transition between `OSX` and `Linux`.
+125. New function in `utils_math.c` called `euclidean();` called in `rays.c` line `#79` to calculate real distance from player view plane
 
 
 `MAK:	4 July 2022`
