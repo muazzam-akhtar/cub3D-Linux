@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 09:28:29 by hawadh            #+#    #+#             */
-/*   Updated: 2022/10/12 15:13:32 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/10/13 21:14:50 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,20 @@ void	my_pixel_put(t_info *inf, int x, int y, int rgb)
 static void	add_xpm(t_info *info, t_xpm *xpm, t_rays *ray, int x)
 {		
 	int			xpm_y;
-	int			xpm_x;
 	int			y;
 	int			i;
+	int			xpm_x;
 
-	xpm_x = xpm->wi % ++x;
+	xpm_x = ray->y * xpm->wi;
 	y = HEIGHT - ray->height;
 	xpm_y = 0;
-	while (xpm_y < xpm->hi - 4 && y < ray->height - 4 && y < HEIGHT)
+	while (xpm_y < xpm->hi - 4 && y < ray->height - 4)
 	{
 		i = 0;
-		while (i < 4 && y >= 0 && y < HEIGHT && xpm_y < xpm->hi)
+		while (i < 4 && y >= 0 && y < HEIGHT)
 		{
 			info->image->addr[((x * 4) + 4 * (WIDTH * y)) + i]
-				= xpm->addr[(((xpm_x) * 4) + 4 * (xpm->wi * xpm_y)) + i];
+				= xpm->addr[((xpm_x * 4) + 4 * (xpm->wi * xpm_y)) + i];
 			i++;
 		}
 		xpm_y++;
