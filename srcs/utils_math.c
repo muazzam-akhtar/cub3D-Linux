@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_math.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:44:02 by makhtar           #+#    #+#             */
-/*   Updated: 2022/10/12 14:09:58 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/10/13 14:50:22 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,24 @@ double	get_dist(double x_one, double y_one, double x_two, double y_two)
 	return (dist);
 }
 
-double	euclidean(t_ray *ray, t_info *inf, double dist)
+double	euclidean(t_ray *ray, double dist)
 {
-	double	real_dist;
+	double		real_dist;
+	static int	rays;
 
-	(void)inf;
-	real_dist = sin(ray->angle) * dist;
+	real_dist = 0;
+	if ((ray->angle >= 145 * (PI / 180) && ray->angle < 225 * (PI / 180))
+		|| (ray->angle >= 0 && ray->angle < 45 * (PI / 180))
+		|| (ray->angle >= 315 * (PI / 180) && ray->angle < (2 * PI)))
+		real_dist = cos(ray->angle) * dist;
+	else
+		real_dist = sin(ray->angle) * dist;
 	if (real_dist < 0)
-		real_dist = sin(ray->angle) / dist;
+		real_dist *= -1;
+	// printf("Rays: %d\tHypotenuse: %f\tOpposite: %f\tRayAngle: %f\n", rays + 1, dist, real_dist, ray->angle * (180 / PI));
+	rays++;
+	if (rays == 1920)
+		rays = 0;
 	return (real_dist);
 }
 

@@ -45,6 +45,7 @@ https://lodev.org/cgtutor/raycasting.html
 21. ~~***MAK:*** Given directions of all the sides of the wall in the game with direction.c, function named wall_hit_direction.~~
 21. ***MAK && HA:*** When the game starts the position of player is different than playing the game, even with the pause function- the player is somewhere else in the map not when in his latest position. Need to be fixed. Probably the init_rays function is not functioning it properly.
 22. ***MAK && HA:***    Fixed Pause bug, its not a bug, it's a feature. :D
+23. ***MAK:***  Fixed Euclidean Algorithm.
 
 `#TODO:`
 
@@ -230,6 +231,7 @@ function placed in `linux_osx_mouse.c`
 22. Created a new function get_height which does the formula and revise it if it exceeds the window.
 23. Created a new file directions.c and added a function named wall_hit_direction which gives the direction of all the sides of the wall.
 24. Edited some codes in draw.c which can link it with the wall_hit_direction to give a better clarity to the game.
+25. Created a new Function Euclidean which handles the functions for right angle triangle for different rays.
 
 
 

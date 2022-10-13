@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/10/12 13:11:05 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/10/13 14:51:20 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -374,6 +374,6 @@ int		mouse_move(int x, int y, t_info *info);
 int		edge_case(double x, double y, t_info *vars);
 int		wall_hit_direction(t_ray *ray, double old_x, double old_y, t_info *inf);
 void	init_rays(t_info *inf);
-double	euclidean(t_ray *ray, t_info *inf, double dist);
+double	euclidean(t_ray *ray, double dist);
 
 #endif
