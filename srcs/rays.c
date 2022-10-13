@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:42:22 by makhtar           #+#    #+#             */
-/*   Updated: 2022/10/13 15:02:38 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/10/13 18:33:13 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static void	hit_wall_check(t_ray *ray, t_info *inf)
 	inf->player->rays[RAYS - ray->count].y = ray->y;
 	inf->player->rays[RAYS - ray->count].dist = euclidean(ray,
 			get_dist(inf->player->x_pos,
-				inf->player->y_pos, ray->x, ray->y));
+				inf->player->y_pos, ray->x, ray->y), inf->player->angle);
 	inf->player->rays[RAYS - ray->count].height
 		= get_height(inf->player->rays[RAYS - ray->count].dist,
 			inf->player->rays[RAYS - ray->count].ang, inf->player->angle);
