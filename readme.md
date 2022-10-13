@@ -203,6 +203,7 @@ function placed in `linux_osx_mouse.c`
 123. Removed unused variables in `init_rays();` and `wall_ht_direction();`
 124. Added `#ifdef OSX`, `#ifdef LINUX` in `cub.h` to ease transition between `OSX` and `Linux`.
 125. New function in `utils_math.c` called `euclidean();` called in `rays.c` line `#79` to calculate real distance from player view plane
+126. Added `free(info->mlx);` in `memory_mngment.c` lines `#100 -> #104`
 
 
 `MAK:	4 July 2022`

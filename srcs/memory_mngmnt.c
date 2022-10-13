@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 20:02:35 by hawadh            #+#    #+#             */
-/*   Updated: 2022/07/21 20:43:41 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/10/12 18:37:53 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,10 @@ void	free_data(t_info *info)
 	{
 		free(info->mouse);
 		info->mouse = NULL;
+	}
+	if (info->mlx)
+	{
+		free(info->mlx);
+		info->mlx = NULL;
 	}
 }
