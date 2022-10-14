@@ -1,6 +1,6 @@
 # Raycasting Algorithm
 
-My Approach for the algorithm some references I gathered from the guideline of cub3D and some references from the videos of raycasting. 
+My Approach for the algorithm are references which I gathered from the guideline of cub3D and from the videos of raycasting. 
 
 Angles defined in the algorithm are mostly in degrees, some are mentioned in radians.
 
