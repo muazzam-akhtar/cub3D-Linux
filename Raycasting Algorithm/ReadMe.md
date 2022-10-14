@@ -35,3 +35,28 @@ Observing the figure of polar coordinates, we can slice the angles in four quadr
 ![quadrants](https://user-images.githubusercontent.com/81755254/195952993-769a7544-bb9c-446d-bffc-cf5db67e8199.png)
 
 In case, if angle is less than 0, this indicates that the angle lies in the fourth quadrant, so we can add the resulted angle with 360. Vice versa, if the angle is greater than 360, this indicates that the angle lies in the first quadrant, so we can deduct the resulted angle with 360.
+
+## Movements:
+In case of movements, we can calculate the change in value of x coordinate and y coordinate. Since we have the angle of the player.
+###### Forward Movement:
+   * To check the change in x-coordinate: cos(angle of the player) * distance.
+   * To check the change in y-coordinate: sin(angle of the player) * distance. Why?
+
+> In account if we implement Euler's theorem which states that how we can convert cartesian coordinates(x, y) to polar coordinates(r, angle). the change will give you the result with the help of polar coordinates.
+Then we can update the player's position by adding the position of the player with the change in both the coordinates.
+
+![cartesian-polar-coordinates-conversion-formulas](https://user-images.githubusercontent.com/81755254/195955095-87f89a15-1b1c-4581-9e83-1b04e7d6040a.png)                                                                      ![math_polar](https://user-images.githubusercontent.com/81755254/195955121-6c418c72-a16c-4dfa-a4c1-850eb61c0456.png)
+
+###### Backward Movement:
+  * Same as the previous step except instead of adding the change in both the coordinates, we deduct it.
+
+###### Right Movement:
+  This time we will work with angles:
+* To check the change in x-coordinate: cos(angle of the player + 90) * distance.
+* To check the change in y-coordinate: sin(angle of the player + 90) * distance.
+Update the player's position by adding the position of the player with the change in both the coordinates.
+
+###### Left Movement:
+  * Same as the Right Movement except instead of adding the change in both the coordinates, we deduct it.
+
+        Note: It's upto you how much distance you want for your player to cover.
