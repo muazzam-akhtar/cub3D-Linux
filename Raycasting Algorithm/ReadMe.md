@@ -32,4 +32,6 @@ Observing the figure of polar coordinates, we can slice the angles in four quadr
 * Third quadrant: 180 <= angle < 270
 * Fourth quadrant: 270 <= angle < 360
 
+![quadrants](https://user-images.githubusercontent.com/81755254/195952993-769a7544-bb9c-446d-bffc-cf5db67e8199.png)
+
 In case, if angle is less than 0, this indicates that the angle lies in the fourth quadrant, so we can add the resulted angle with 360. Vice versa, if the angle is greater than 360, this indicates that the angle lies in the first quadrant, so we can deduct the resulted angle with 360.
