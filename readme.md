@@ -20,7 +20,7 @@ https://lodev.org/cgtutor/raycasting.html
 
 ```
 
-`#BUGS: #15`
+`#BUGS: #21, #22, #23`
 
 1.	~~***HA:***	Segfaul in `get_next_line();` due to `ft_strchr();` in `libft`~~
 2.	~~***HA:***	Function parses whole file, should stop at first line of map~~
@@ -44,8 +44,9 @@ https://lodev.org/cgtutor/raycasting.html
 20. ~~***MAK && HA:***Fish Eye fixed.~~
 21. ~~***MAK:*** Given directions of all the sides of the wall in the game with direction.c, function named wall_hit_direction.~~
 21. ***MAK && HA:*** When the game starts the position of player is different than playing the game, even with the pause function- the player is somewhere else in the map not when in his latest position. Need to be fixed. Probably the init_rays function is not functioning it properly.
-22. ***MAK && HA:***    Fixed Pause bug, its not a bug, it's a feature. :D
-23. ***MAK:***  Fixed Euclidean Algorithm.
+22.	***HA && MAK:***	Bug, NO, SO, EA, WE can be in any order, our parser fails it.
+23.	***MAK && HA:***	Map should not contain any spaces within the map. Spaces in the middle of the map with 1's and 0's should be invalid? Need to confirm this.
+24.	***HA:***	`add_xpm();` still not incrementing y in correct increments to draw walls
 
 `#TODO:`
 
@@ -70,8 +71,9 @@ https://lodev.org/cgtutor/raycasting.html
 19.	~~***HA:***	Fix minimap drawing to draw when player is closer to left side of array coords, possibly due coords calculation making coords negative and invalid read~~
 20.	~~***HA:***	Fix walls drawing in wrong position of image, perhaps because ra->y not correct value. X is also not increment in correct amount.~~
 21.	~~***HA && MAK:***	Figure out solution to fish-eye effect.~~
-22. ~~**MA** Implement edge cases for the rays.~~
-23. ~~**MA** Need to work on fixing the directions of the rays when hits the wall.~~
+22. ~~***MA*** Implement edge cases for the rays.~~
+23. ~~***MA*** Need to work on fixing the directions of the rays when hits the wall.~~
+24.	***HA:***	Figure out y step increments
 
 `#CURRENT STATUS`
 
@@ -205,6 +207,8 @@ function placed in `linux_osx_mouse.c`
 125. New function in `utils_math.c` called `euclidean();` called in `rays.c` line `#79` to calculate real distance from player view plane
 126. Added `free(info->mlx);` in `memory_mngment.c` lines `#100 -> #104`
 127. `xpm_x = ray->y * xpm->wi` to extract x coordinate on texture, still need step incrementation for y
+128. Adjust conditions for `while` loop in `draw.c` current lines `#40` and `#43` and changed `y` value calculation to `y = (HEIGHT - ray->height) / 2;` to get correct wall height drawing.
+129. Implemented `if (ray->dir_wall == 1 || ray->dir_wall == 2) { xpm_x = ray->x * xpm->wi; }` in `draw.c` current lines `#38 -> #39`
 
 
 `MAK:	4 July 2022`
