@@ -11,7 +11,7 @@ Thanks to @MisterTooh for collaborating with me on this fun project. Hope to wor
 # Basic Raycasting
 
 Let's talk about the field of view for the player. 
-For my raycasting I took the field of view as 70 degree which will be 35 degree from the left and the 35 degree to the right.
+For my raycasting I took the field of view as 70 degree which will be 35 degrees from the left and the 35 degrees to the right.
 
 Based on the project cub3D:
 * If the player is facing North: Angle of the player will be 270 degree.
