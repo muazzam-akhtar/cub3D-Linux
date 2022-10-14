@@ -1,10 +1,10 @@
-NO ./imgs/northWall.xpm
 SO ./imgs/southWall.xpm
 WE ./imgs/westWall.xpm
-EA ./imgs/eastWall.xpm
 
-F 100,100,100
+NO ./imgs/northWall.xpm
 C 53,180,220
+EA ./imgs/eastWall.xpm
+F 100,100,100
 
         1
        101

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/10/13 18:33:41 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/10/14 22:45:24 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 
 # ifdef OSX
 #  include "../minilibx_opengl/mlx.h"
-#  define WIDTH 1920
-#  define HEIGHT 1080
-#  define MINI_SCALE 29
 #  define W 13
 #  define D 2
 #  define A 0
@@ -26,10 +23,6 @@
 #  define ARROW_L 123
 #  define ARROW_R 124
 #  define ESC 53
-#  define PI 3.14159265358979323846
-#  define RADIAN PI / 180
-#  define BLOCK_SIZE 8
-#  define RAYS 1920
 # endif
 
 # ifdef LINUX
@@ -43,8 +36,15 @@
 #  define P 112
 #  define ARROW_R 65363
 #  define ARROW_L 65361
-#  define PI 3.141592653589793238
 # endif
+
+# define PI 3.14159265358979323846
+# define RADIAN PI / 180
+# define BLOCK_SIZE 8
+# define RAYS 1920
+# define WIDTH 1920
+# define HEIGHT 1080
+# define MINI_SCALE 29
 
 # include <unistd.h>
 # include <fcntl.h>
@@ -70,6 +70,25 @@ typedef enum e_compass
 	WE,
 	EA,
 }	t_pers;
+
+/**
+**	ENUM for Parsing of the type
+*	NO	0	NORTH
+*	SO	1	SOUTH
+*	WE	2	WEST
+*	EA	3	EAST
+*	F	4	FLOOR
+*	C	5	CEILING
+**/
+typedef enum e_type
+{
+	NORTH,
+	SOUTH,
+	WEST,
+	EAST,
+	FLOOR,
+	CEILING,
+}	t_type;
 
 /**
 **	Wall Structure
@@ -301,6 +320,10 @@ int		check_line(char *input);
 int		check_rgb(char *str, const char *layout, t_info *info);
 int		parse_config(char *str, const char *layout, t_info *info);
 int		parse_config_rgb(char *str, const char *layout, t_info *info);
+int		data_init(t_info *info, int *i, int *ret);
+char	*get_layouts(char *str);
+int		get_raw_layout(char *line);
+char	*get_type_str(int type);
 int		get_2d_len(char **str);
 int		ft_strlen_int(char *str);
 int		parse_spaces(char **str);

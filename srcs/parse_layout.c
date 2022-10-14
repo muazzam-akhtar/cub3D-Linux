@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_layout.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 14:19:03 by makhtar           #+#    #+#             */
-/*   Updated: 2022/07/12 21:29:45 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/10/14 22:43:55 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,28 +54,46 @@ static int	store_map(t_data *data)
 **/
 static int	parse_layout(char **line, int *index, t_info *info)
 {
-	int	i;
+	int		i;
+	int		ret;
 
-	i = 0;
-	info->data->confg = (char **)ft_calloc(confg_count(info->data->file)
-			+ 1, sizeof(char *));
-	if (!info->data->confg)
+	if (data_init(info, &i, &ret))
 		return (EXIT_FAILURE);
-	if (line[i] != NULL && parse_config(line[i++], "NO", info))
+	while (i < 6 && line[i] != NULL)
+	{
+		ret = get_raw_layout(line[i]);
+		if (ret == FALSE)
+			return (EXIT_FAILURE);
+		else if (ret == 5 || ret == 6)
+		{
+			if (parse_config_rgb(line[i++], get_type_str(ret), info))
+				return (EXIT_FAILURE);
+		}
+		else
+		{
+			if (parse_config(line[i++], get_type_str(ret), info))
+				return (EXIT_FAILURE);
+		}
+	}
+	*index = i;
+	return (EXIT_SUCCESS);
+}
+	/*if (line[i] != NULL && parse_config(line[i++], "NO", info))
 		return (EXIT_FAILURE);
 	if (line[i] != NULL && parse_config(line[i++], "SO", info))
 		return (EXIT_FAILURE);
 	if (line[i] != NULL && parse_config(line[i++], "WE", info))
+		return (EXIT_FAILURE);
+	info->data->confg = (char **)ft_calloc(confg_count(info->data->file)
+			+ 1, sizeof(char *));
+	if (!info->data->confg)
 		return (EXIT_FAILURE);
 	if (line[i] != NULL && parse_config(line[i++], "EA", info))
 		return (EXIT_FAILURE);
 	if (line[i] != NULL && parse_config_rgb(line[i++], "F", info))
 		return (EXIT_FAILURE);
 	if (line[i] != NULL && parse_config_rgb(line[i++], "C", info))
-		return (EXIT_FAILURE);
-	*index = i;
-	return (EXIT_SUCCESS);
-}
+		return (EXIT_FAILURE);*/
 
 static void	print_xpm(t_data *d)
 {

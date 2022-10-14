@@ -74,6 +74,8 @@ https://lodev.org/cgtutor/raycasting.html
 22. ~~***MA*** Implement edge cases for the rays.~~
 23. ~~***MA*** Need to work on fixing the directions of the rays when hits the wall.~~
 24.	***HA:***	Figure out y step increments
+25. ***MA*** Work on sprites when rays will hit.
+26. ***MA*** Animation effect when the AK-47 is triggered.
 
 `#CURRENT STATUS`
 
@@ -238,6 +240,8 @@ function placed in `linux_osx_mouse.c`
 23. Created a new file directions.c and added a function named wall_hit_direction which gives the direction of all the sides of the wall.
 24. Edited some codes in draw.c which can link it with the wall_hit_direction to give a better clarity to the game.
 25. Created a new Function Euclidean which handles the functions for right angle triangle for different rays.
+26. Parsing for different orders of the layout is completed.
+27. Created a new file named utils_type and inside created new functions which are linked in this way- NO 1, SO 2, WE 3, EA 4, C 5, F 6, with any type of input I get the value as string or an int.
 
 
 
