@@ -70,15 +70,15 @@ Update the player's position by adding the position of the player with the chang
     w_y = y_coordinate of the player + sin(w_ang) * constant;
     Initial value of w_ang = angle of the player - 35 degrees.
     
-I gave constant as 0.125. Then we can increment the angle of the wall collision by 10 degrees(in radian: 10 * PI / 180) and have iteration in 7 loops. Have wall collision flag if any of the coordinates hits the wall.
+I gave constant as 0.125. Then we can increment the angle of the wall collision by 10 degrees(in radian: 10 * PI / 180) and have this iteration in 7 loops. Have wall collision flag if any of the coordinates hits the wall.
 We can do the same for the other directions as well.
-For the right, Initial value of angle of the wall collision(initial) = PI / 2 + angle of the player - 35 degrees.
-For the left, Initial value of angle of the wall collision(initial) = (3 * PI / 2) + angle of the player - 35 degrees.
-For backward, Initial value of angle of the wall collision(initial) = angle of the player - 35 degrees - PI.
+* For the right direction, Initial value of angle of the wall collision(initial) = PI / 2 + angle of the player - 35 degrees.
+* For the left direction, Initial value of angle of the wall collision(initial) = (3 * PI / 2) + angle of the player - 35 degrees.
+* For backward direction, Initial value of angle of the wall collision(initial) = angle of the player - 35 degrees - PI.
 
 It would look like this
 
-![wall_coll](https://user-images.githubusercontent.com/81755254/195991609-c3a19443-cf7e-4740-a97c-66be97adf7b6.gif)
+![wall_coll](https://user-images.githubusercontent.com/81755254/195994034-553e5022-1572-4bab-ba32-dd18bb083d0c.gif)
 
 ## Edge Cases:
 This is the last bug which we want to make it perfect for the player not to go through the walls if walls are placed as diagonals. For example
