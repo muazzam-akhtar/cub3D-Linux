@@ -35,6 +35,7 @@ Observing the figure of polar coordinates, we can slice the angles in four quadr
 ![quadrants](https://user-images.githubusercontent.com/81755254/195952993-769a7544-bb9c-446d-bffc-cf5db67e8199.png)
 
 In case, if angle is less than 0, this indicates that the angle lies in the fourth quadrant, so we can add the resulted angle with 360. Vice versa, if the angle is greater than 360, this indicates that the angle lies in the first quadrant, so we can deduct the resulted angle with 360.
+![rot_right](https://user-images.githubusercontent.com/81755254/195990993-2953b0fc-03d2-4e74-9be7-b268f00640b7.gif)                 ![rot_left](https://user-images.githubusercontent.com/81755254/195990961-4604b47e-a510-4ed2-8c4e-5a2addd344f5.gif)
 
 ## Movements:
 In case of movements, we can calculate the change in value of x coordinate and y coordinate. Since we have the angle of the player.
@@ -60,3 +61,32 @@ Update the player's position by adding the position of the player with the chang
   * Same as the Right Movement except instead of adding the change in both the coordinates, we deduct it.
 
         Note: It's upto you how much distance you want for your player to cover.
+
+## Wall Collision:
+  To fix wall collision, what I did was I placed four arcs around my player which can detect a wall. Just like the rays but this time we will have the specific distance away from the player's psoition, for example for one arc for forward wall collision we will calculate 7 coordinates. We can have an initial angle about angle of the player - 35 degrees. Based on the angle we can have coordinates:
+  
+    w_x(A variable for the x-coordinate of the wall collision detector), w_y(A variable for the y-coordinate of the wall collision detector), w_angle(Angle of this variable)
+    w_x = x_coordinate of the player + cos(w_ang) * constant
+    w_y = y_coordinate of the player + sin(w_ang) * constant;
+    Initial value of w_ang = angle of the player - 35 degrees.
+    
+I gave constant as 0.125. Then we can increment the angle of the wall collision by 10 degrees(in radian: 10 * PI / 180) and have iteration in 7 loops. Have wall collision flag if any of the coordinates hits the wall.
+We can do the same for the other directions as well.
+For the right, Initial value of angle of the wall collision(initial) = PI / 2 + angle of the player - 35 degrees.
+For the left, Initial value of angle of the wall collision(initial) = (3 * PI / 2) + angle of the player - 35 degrees.
+For backward, Initial value of angle of the wall collision(initial) = angle of the player - 35 degrees - PI.
+
+It would look like this
+
+![wall_coll](https://user-images.githubusercontent.com/81755254/195991609-c3a19443-cf7e-4740-a97c-66be97adf7b6.gif)
+
+## Edge Cases:
+This is the last bug which we want to make it perfect for the player not to go through the walls if walls are placed as diagonals. For example
+
+The given figure represents that the wall doesn't exist but practically this is wrong. This is known as the edge cases. In order to fix this bug I hard coded this problem.
+
+![Edge cases](https://user-images.githubusercontent.com/81755254/195991974-f7cac467-ec46-4b92-964c-da2a4c4d2c94.png)
+
+After implementing the basics of raycasting, this what it would look like in 2D perspective.
+
+![posted](https://user-images.githubusercontent.com/81755254/179372759-3deef13a-9706-4695-9ed9-31cfe4b3f0b9.gif)
