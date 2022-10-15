@@ -65,7 +65,7 @@ Update the player's position by adding the position of the player with the chang
 ## Wall Collision:
   To fix wall collision, what I did was I placed four arcs around my player which can detect a wall. Just like the rays but this time we will have the specific distance away from the player's psoition, for example for one arc for forward wall collision we will calculate 7 coordinates. We can have an initial angle about angle of the player - 35 degrees. Based on the angle we can have coordinates:
   
-    w_x(A variable for the x-coordinate of the wall collision detector), w_y(A variable for the y-coordinate of the wall collision detector), w_angle(Angle of this variable)
+    w_x(A variable for the x-coordinate of the wall collision detector), w_y(A variable for the y-coordinate of the wall collision detector), w_angle(Angle of this wall_detector variable)
     w_x = x_coordinate of the player + cos(w_ang) * constant
     w_y = y_coordinate of the player + sin(w_ang) * constant;
     Initial value of w_ang = angle of the player - 35 degrees.
@@ -83,10 +83,10 @@ It would look like this
 ## Edge Cases:
 This is the last bug which we want to make it perfect for the player not to go through the walls if walls are placed as diagonals. For example
 
-The given figure represents that the wall doesn't exist but practically this is wrong. This is known as the edge cases. In order to fix this bug I hard coded this problem.
+The given figure represents that the wall doesn't exist but practically this is wrong. This is known as the edge cases of raycasting. In order to fix this bug I hard coded this problem.
 
 ![Edge cases](https://user-images.githubusercontent.com/81755254/195991974-f7cac467-ec46-4b92-964c-da2a4c4d2c94.png)
 
-After implementing the basics of raycasting, this what it would look like in 2D perspective.
+After implementing the basics of raycasting, this is what it would look like in 2D perspective.
 
 ![posted](https://user-images.githubusercontent.com/81755254/179372759-3deef13a-9706-4695-9ed9-31cfe4b3f0b9.gif)
