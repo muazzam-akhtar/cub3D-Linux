@@ -1,10 +1,10 @@
 # Raycasting Algorithm
 
-My Approach for the algorithm are references which I gathered from the guideline of [cub3D](https://lodev.org/cgtutor/raycasting.html) and from the videos of raycasting. 
+My Approach for the algorithm are the references which I gathered from the guideline of [cub3D](https://lodev.org/cgtutor/raycasting.html) and from the videos of raycasting. 
 
 Angles defined in the algorithm are mostly in degrees, some are mentioned in radians.
 
-Thanks to @MisterTooh for collaborating with me on this fun project. Hope to work with you again in future projects. Now, Let's begin!
+Thanks to [Hussain]@MisterTooh for collaborating with me on this fun project. Hope to work with you again in future projects. Now, Let's begin!
 
 ![begin](https://user-images.githubusercontent.com/81755254/195951594-38adbeff-ec0a-4c3b-9cce-2159907b9a0f.gif)
 
