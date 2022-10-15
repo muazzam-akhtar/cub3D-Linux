@@ -83,9 +83,12 @@ It would look like this
 ## Edge Cases:
 This is the last bug which we want to make it perfect for the player not to go through the walls if walls are placed as diagonals. For example
 
-The given figure represents that the wall doesn't exist but practically this is wrong. This is known as the edge cases of raycasting. In order to fix this bug I hard coded this problem.
+![edge cases](https://user-images.githubusercontent.com/81755254/195993457-09751416-e1b4-4da7-b539-1013debec8a4.gif)
 
-![Edge cases](https://user-images.githubusercontent.com/81755254/195991974-f7cac467-ec46-4b92-964c-da2a4c4d2c94.png)
+
+The given figure represents that the wall doesn't exist between edges but practically this is wrong. This is known as the edge cases of raycasting. In order to fix this bug I hard coded this problem.
+
+![Edge cases](https://user-images.githubusercontent.com/81755254/195993497-0ad5e8fb-fd08-4f2d-9a3b-5f5dfeb9735f.png)
 
 After implementing the basics of raycasting, this is what it would look like in 2D perspective.
 
