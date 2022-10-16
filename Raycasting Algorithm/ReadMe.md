@@ -139,6 +139,8 @@ Lets draw one ray which can hit the wall, take the angle of the ray as player's 
           wall_hit = 1;
       }
       
+      Cover should be better to have small number in order to have accurate results when hitting the wall.
+
 This is the ray which shoots from player's position and hit the wall which is either (further away from)/ (nearer to) the player. Since we have the coordinates of this ray now
 Let's get the distance between the ray at which the wall hit and the player's position.
 
