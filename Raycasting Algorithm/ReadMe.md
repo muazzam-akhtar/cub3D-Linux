@@ -2,7 +2,10 @@
 
 My Approach for the algorithm are the references which I gathered from the guideline of [cub3D](https://lodev.org/cgtutor/raycasting.html) and from the videos of raycasting. 
 
-Angles defined in the algorithm are mostly in degrees, some are mentioned in radians.
+Angles defined in the algorithm are mostly in degrees, some are mentioned in radians. Why? The math functions in C languages works in Radians.
+
+      Note: Degree To Radian: angle x (PI / 180)
+            Radian To Degree: angle x (180 / PI)
 
 Thanks to [Hussain Awadh](https://github.com/MisterTooh) for collaborating with me on this fun project. Hope to work with you again in future projects.
 Topics covered in this project are:
@@ -11,6 +14,7 @@ Topics covered in this project are:
 * [Movements of the Player](https://github.com/Genius-gambit/cub3D-Linux/edit/master/Raycasting%20Algorithm/ReadMe.md#movements).
 * [Wall Collision](https://github.com/Genius-gambit/cub3D-Linux/edit/master/Raycasting%20Algorithm/ReadMe.md#wall-collision).
 * [Edge Cases](https://github.com/Genius-gambit/cub3D-Linux/edit/master/Raycasting%20Algorithm/ReadMe.md#edge-cases).
+* [3D Perspective](https://github.com/Genius-gambit/cub3D-Linux/edit/master/Raycasting%20Algorithm/ReadMe.md#3d-perspective)
 
 ![begin](https://user-images.githubusercontent.com/81755254/195951594-38adbeff-ec0a-4c3b-9cce-2159907b9a0f.gif)
 
@@ -49,18 +53,26 @@ In case of movements, we can calculate the change in value of x coordinate and y
    * To check the change in x-coordinate: cos(angle of the player) * distance.
    * To check the change in y-coordinate: sin(angle of the player) * distance. Why?
 
-> In account if we implement Euler's theorem which states that how we can convert cartesian coordinates(x, y) to polar coordinates(r, angle). the change will give you the result with the help of polar coordinates.
+> In account if we implement Euler's theorem which states that how we can convert cartesian coordinates(x, y) to polar coordinates(r, angle). Then with any point in (x, y). If we plan to move one or any amount of grids away at any angle. The change will give us the result with the help of polar coordinates.
 Then we can update the player's position by adding the position of the player with the change in both the coordinates.
+For example if point is at the origin, angle lies in the first quadrant and we're moving one grid away(r = 1).
+
+![polar_curve61](https://user-images.githubusercontent.com/81755254/196059957-8a15bb60-b5ca-4b18-bdaa-d36dd52f367f.png)
+
+And let's say if we're moving half a grid away and taking all the angles.
+
+![polar_curve11](https://user-images.githubusercontent.com/81755254/196059895-2e035193-7a20-49e9-90da-3ea1f5d33d2c.png)
+
 
 ![cartesian-polar-coordinates-conversion-formulas](https://user-images.githubusercontent.com/81755254/195955095-87f89a15-1b1c-4581-9e83-1b04e7d6040a.png)                                                                      ![math_polar](https://user-images.githubusercontent.com/81755254/195955121-6c418c72-a16c-4dfa-a4c1-850eb61c0456.png)
 
 ###### Backward Movement:
-  * Same as the previous step except instead of adding the change in both the coordinates, we deduct it.
+  * Same as the previous step except this time instead of adding the change in both the coordinates, we deduct it.
 
 ###### Right Movement:
   This time we will work with angles:
-* To check the change in x-coordinate: cos(angle of the player + 90) * distance.
-* To check the change in y-coordinate: sin(angle of the player + 90) * distance.
+* To check the change in x-coordinate: cos(angle of the player + 90 degrees) * distance.
+* To check the change in y-coordinate: sin(angle of the player + 90 degrees) * distance.
 Update the player's position by adding the position of the player with the change in both the coordinates.
 
 ###### Left Movement:
@@ -69,9 +81,13 @@ Update the player's position by adding the position of the player with the chang
         Note: It's upto you how much distance you want for your player to cover.
 
 ## Wall Collision:
-  To fix wall collision, what I did was I placed four arcs around my player which can detect a wall. Just like the rays but this time we will have the specific distance away from the player's psoition, for example for one arc for forward wall collision we will calculate 7 coordinates. We can have an initial angle about angle of the player - 35 degrees. Based on the angle we can have coordinates:
+  To fix wall collision, what I did was I placed four arcs around my player which can detect a wall. Just like the rays but this time we will have the specific distance away from the player's position, For example: Forward wall collision will carry an arc. For that arc, we will calculate 7 coordinates. Initial angle will be the angle of the player - 35 degrees. Based on the angle we can have coordinates:
   
-    w_x(A variable for the x-coordinate of the wall collision detector), w_y(A variable for the y-coordinate of the wall collision detector), w_angle(Angle of this wall_detector variable)
+    w_x(A variable for the x-coordinate of the wall collision detector),
+    w_y(A variable for the y-coordinate of the wall collision detector),
+    w_angle(Angle of this wall_detector variable)
+    constant is for how much distance we want from the player to detect the wall.(Your Choice)
+    
     w_x = x_coordinate of the player + cos(w_ang) * constant
     w_y = y_coordinate of the player + sin(w_ang) * constant;
     Initial value of w_ang = angle of the player - 35 degrees.
@@ -103,3 +119,27 @@ The given figure represents that the wall doesn't exist between edges but practi
 After implementing the basics of raycasting, this is what it would look like in 2D perspective.
 
 ![posted](https://user-images.githubusercontent.com/81755254/179372759-3deef13a-9706-4695-9ed9-31cfe4b3f0b9.gif)
+
+# 3D Perspective:
+
+Lets draw one ray which can hit the wall at what our player's facing.
+      
+      x = x-coordinate of the ray, y = y-coordinate of the ray, cover = distance for the ray to cover in each iteration,
+      wall_hit = a hit trigger.
+
+      x = player's_pos_x_co;
+      y = player's_pos_y_co;
+      while (!wall_hit)
+      {
+        x += cover * cos(angle of the player);
+        y += cover * sin(angle of the player);
+        if (map[y][x] == '1'
+          wall_hit = 1;
+      }
+      
+This is the ray which shoots from player's position at what he is facing and this ray just hit the wall so we have the x and y coordinates for this ray now.
+Let's get the distance between the ray at which the wall hit and the player's position.
+
+![1](https://user-images.githubusercontent.com/81755254/196061701-d6f2a160-6471-46ed-8c70-9fdb6b370f1c.jpg)
+
+  
