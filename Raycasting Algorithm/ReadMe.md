@@ -122,7 +122,9 @@ After implementing the basics of raycasting, this is what it would look like in 
 
 # 3D Perspective:
 
-Lets draw one ray which can hit the wall, take the angle of the ray as player's angle - 35 .
+## Ray
+
+Lets draw one ray which can hit the wall, take the angle of the ray as player's angle - 35 degrees.
       
       x = x-coordinate of the ray, y = y-coordinate of the ray, cover = distance for the ray to cover in each iteration,
       wall_hit = a hit trigger.
