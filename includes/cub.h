@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/10/14 22:45:24 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/10/16 19:27:40 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,27 @@ typedef struct s_wall
 	int		wall_left;
 	int		wall_right;	
 }	t_wall;
+
+/**
+ ** Sprite Structure
+ **	x_pos in double an x-coordinate
+ **	y_pos in double a y-coordinate
+ **	x_grid in int an x-coordinate
+ **	y_grid in int a y-coordinate
+ **	ang = angle of the sprite
+ ** dist = distance of the sprite.
+ ** height of the sprite.
+ **/
+typedef struct s_sprite
+{
+	double	x_pos;
+	double	y_pos;
+	int		x_grid;
+	int		y_grid;
+	double	ang;
+	double	dist;
+	double	height;
+}				t_sprite;
 
 /**
 **	Rays Structure
@@ -289,114 +310,122 @@ typedef struct s_info
 /**
 **	Memory Management
 **/
-void	free_split(char **str);
-void	free_data(t_info *info);
+void		free_split(char **str);
+void		free_data(t_info *info);
 
 /**
 **	Math Functions
 **/
-double	sq(double num);
-double	get_dist(double x_one, double y_one, double x_two, double y_two);
-double	get_height(double dist, double r_ang, double p_ang);
+double		sq(double num);
+double		get_dist(double x_one, double y_one, double x_two, double y_two);
+double		get_height(double dist, double r_ang, double p_ang);
+
+/**
+**	Sprites Management
+**/
+int			key_sprite(int c);
+void		dup_values(t_sprite *new_spr, t_sprite *old_spr, t_ray *ray);
+t_sprite	**new_alloc_sprite(t_sprite **old_spr);
+t_sprite	**check_sprite(t_sprite **spr, t_ray *ray, t_info *inf);
 
 /**
 **	Parsing Functions
 **/
-size_t	get_act_size(char **input);
-size_t	confg_count(char **file);
-void	error_print(char *str);
-void	err_return(int status, t_info *info);
-void	check_map(t_info *info, char *str);
-void	fetch_rgb(char *str, t_info *info, const char *layout);
-char	**clean_whitespace(char **input);
-char	**squash_lines(char **file, char **input);
-char	*squash(char *input);
-int		store_data(t_data *d, char **input);
-int		check_if_map(char *input);
-int		isdir(char *str);
-int		get_size(t_info *info, char *str);
-int		compare_ext(char *str);
-int		check_line(char *input);
-int		check_rgb(char *str, const char *layout, t_info *info);
-int		parse_config(char *str, const char *layout, t_info *info);
-int		parse_config_rgb(char *str, const char *layout, t_info *info);
-int		data_init(t_info *info, int *i, int *ret);
-char	*get_layouts(char *str);
-int		get_raw_layout(char *line);
-char	*get_type_str(int type);
-int		get_2d_len(char **str);
-int		ft_strlen_int(char *str);
-int		parse_spaces(char **str);
-int		parse_map(char **str, int index);
-int		parse_arg(char **maps, t_info *info);
+size_t		get_act_size(char **input);
+size_t		confg_count(char **file);
+void		error_print(char *str);
+void		err_return(int status, t_info *info);
+void		check_map(t_info *info, char *str);
+void		fetch_rgb(char *str, t_info *info, const char *layout);
+char		**clean_whitespace(char **input);
+char		**squash_lines(char **file, char **input);
+char		*squash(char *input);
+int			store_data(t_data *d, char **input);
+int			check_if_map(char *input);
+int			isdir(char *str);
+int			get_size(t_info *info, char *str);
+int			compare_ext(char *str);
+int			check_line(char *input);
+int			check_rgb(char *str, const char *layout, t_info *info);
+int			parse_config(char *str, const char *layout, t_info *info);
+int			parse_config_rgb(char *str, const char *layout, t_info *info);
+int			data_init(t_info *info, int *i, int *ret);
+char		*get_layouts(char *str);
+int			get_raw_layout(char *line);
+char		*get_type_str(int type);
+int			get_2d_len(char **str);
+int			ft_strlen_int(char *str);
+int			parse_spaces(char **str);
+int			parse_map(char **str, int index);
+int			parse_arg(char **maps, t_info *info);
 
 /**
 **	Window Functions
 **/
-int		init_window(t_info *info);
-int		key_hook_manage(int hook_num, t_info *info);
-int		esc_win(t_info *info);
+int			init_window(t_info *info);
+int			key_hook_manage(int hook_num, t_info *info);
+int			esc_win(t_info *info);
 
 /**
 **	Drawing Functions
 **/
-void	my_pixel_put(t_info *inf, int x, int y, int rgb);
-void	draw_cursor(t_info *info);
-void	draw_map(t_info *info);
-void	ceiling_floor(t_info *info);
-void	draw_minimap(t_info *info, t_mini *mini);
-void	place_walls(t_info *inf, t_rays *ray, int x);
+void		my_pixel_put(t_info *inf, int x, int y, int rgb);
+void		draw_cursor(t_info *info);
+void		draw_map(t_info *info);
+void		ceiling_floor(t_info *info);
+void		draw_minimap(t_info *info, t_mini *mini);
+void		place_walls(t_info *inf, t_rays *ray, int x);
 
 /**
 **	player struct functions
 **/
-void	init_player(t_info *info);
-void	find_player(t_data *data, t_player *player);
+void		init_player(t_info *info);
+void		find_player(t_data *data, t_player *player);
 
 /**
 **	Mini-map functions
 **/
-void	init_minimap(t_info *info);
-void	mini_interior(t_info *info, t_mini *mini);
-void	mini_pixel_put(t_mini *mini, int x, int y, int rgb);
+void		init_minimap(t_info *info);
+void		mini_interior(t_info *info, t_mini *mini);
+void		mini_pixel_put(t_mini *mini, int x, int y, int rgb);
 
 /**
 **	XPM Functions 
 **/
-int		init_xpm(t_info *info, t_data *data);
+int			init_xpm(t_info *info, t_data *data);
 
 /**
 **	RGB Functions
 **/
-size_t	rgb(t_data *data, int status);
+size_t		rgb(t_data *data, int status);
 
 /**
 **	Hook Functions
 **/
-void	handle_wall_collision(t_info *inf);
-void	move_frwrd(t_info *inf);
-void	move_back(t_info *inf);
-void	move_left(t_info *inf);
-void	move_right(t_info *inf);
-void	rotation(int hook_num, t_info *inf);
-void	moves(int hook_num, t_info *inf);
-void	hook_management(t_info *info);
+void		handle_wall_collision(t_info *inf);
+void		move_frwrd(t_info *inf);
+void		move_back(t_info *inf);
+void		move_left(t_info *inf);
+void		move_right(t_info *inf);
+void		rotation(int hook_num, t_info *inf);
+void		moves(int hook_num, t_info *inf);
+void		hook_management(t_info *info);
 
 /**
 **	Mouse Functions
 **/
-void	linux_osx_mouse(t_info *info, int x, int y);
-void	init_cursor(t_info *inf);
-void	rotation(int hook_num, t_info *inf);
-int		init_mouse(t_info *info);
-int		mouse_move(int x, int y, t_info *info);
+void		linux_osx_mouse(t_info *info, int x, int y);
+void		init_cursor(t_info *inf);
+void		rotation(int hook_num, t_info *inf);
+int			init_mouse(t_info *info);
+int			mouse_move(int x, int y, t_info *info);
 
 /**
 **	RayCasting functions
 **/
-int		edge_case(double x, double y, t_info *vars);
-int		wall_hit_direction(t_ray *ray, double old_x, double old_y, t_info *inf);
-void	init_rays(t_info *inf);
-double	euclidean(t_ray *ray, double dist, double p_ang);
+int			edge_case(double x, double y, t_info *vars);
+int			wall_hit_direction(t_ray *ray, double old_x, double old_y, t_info *inf);
+void		init_rays(t_info *inf);
+double		euclidean(t_ray *ray, double dist, double p_ang);
 
 #endif

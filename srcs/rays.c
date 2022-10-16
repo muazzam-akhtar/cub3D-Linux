@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:42:22 by makhtar           #+#    #+#             */
-/*   Updated: 2022/10/13 18:33:13 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/10/16 19:30:48 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,31 @@ static void	init_vars(t_ray *ray, t_info *inf, double *old_x, double *old_y)
 }
 
 /**
+**	The revised conditions if the angle is negative and the x_co exceeds 1920
+**	calculating the adjacent side when wall hits
+**/
+static void	revise_calc(t_rays *rays, t_ray *ray, t_info *inf,
+	int calc_height)
+{
+	if (calc_height == 0)
+	{
+		if (ray->angle > 2 * PI)
+				ray->angle -= 2 * PI;
+		if (ray->x1 > RAYS)
+			ray->x1 = RAYS;
+	}
+	else
+	{
+		rays->dist = euclidean(ray,
+				get_dist(inf->player->x_pos,
+					inf->player->y_pos, ray->x, ray->y), inf->player->angle);
+		rays->height
+			= get_height(rays->dist,
+				rays->ang, inf->player->angle);
+	}
+}
+
+/**
 **	Sub Main process which runs the rays for all the scenarios
 **	Basic wall hits
 **	Edge Cases
@@ -55,8 +80,8 @@ static void	init_vars(t_ray *ray, t_info *inf, double *old_x, double *old_y)
 **/
 static void	hit_wall_check(t_ray *ray, t_info *inf)
 {
-	double	old_x;
-	double	old_y;
+	double		old_x;
+	double		old_y;
 
 	init_vars(ray, inf, &old_x, &old_y);
 	while (!ray->wall)
@@ -74,29 +99,15 @@ static void	hit_wall_check(t_ray *ray, t_info *inf)
 		= wall_hit_direction(ray, old_x, old_y, inf);
 	inf->player->rays[RAYS - ray->count].x = ray->x;
 	inf->player->rays[RAYS - ray->count].y = ray->y;
-	inf->player->rays[RAYS - ray->count].dist = euclidean(ray,
-			get_dist(inf->player->x_pos,
-				inf->player->y_pos, ray->x, ray->y), inf->player->angle);
-	inf->player->rays[RAYS - ray->count].height
-		= get_height(inf->player->rays[RAYS - ray->count].dist,
-			inf->player->rays[RAYS - ray->count].ang, inf->player->angle);
+	inf->player->rays[RAYS - ray->count].x = ray->x;
+	inf->player->rays[RAYS - ray->count].y = ray->y;
+	revise_calc(&inf->player->rays[RAYS - ray->count], ray, inf, 1);
 }
 /*
 **	// printf("Angle of the player: %f, Height: %f, Angle of the ray: %f\n",
 **	// 	(inf->player->angle * (180 / PI)), inf->player->rays[1920
 **	// 	- ray->count].height, (inf->player->rays[1920 - ray->count].ang
 * (180 / PI)));*/
-
-/**
-**	The revised conditions if the angle is negative and the x_co exceeds 1920
-**/
-static void	revise_ang_x_co(t_ray *ray)
-{
-	if (ray->angle > 2 * PI)
-			ray->angle -= 2 * PI;
-	if (ray->x1 > RAYS)
-		ray->x1 = RAYS;
-}
 
 /**
 **	The Main Process of the raycasting which deals with pixel
@@ -118,7 +129,7 @@ void	init_rays(t_info *inf)
 		ray.y = 540 - (inf->player->rays[RAYS - ray.count].height / 2);
 		inf->player->rays[RAYS - ray.count].ang = ray.angle;
 		ray.angle += 0.000636318; // (PI / 180) * (60 / RAYS)
-		revise_ang_x_co(&ray);
+		revise_calc(NULL, &ray, inf, 0);
 		place_walls(inf, &inf->player->rays[RAYS - ray.count], ray.x1);
 		ray.x1 += 1; // 11.6 * (60 / RAYS)
 		ray.count--;

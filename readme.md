@@ -76,6 +76,8 @@ https://lodev.org/cgtutor/raycasting.html
 24.	***HA:***	Figure out y step increments
 25. ***MA*** Work on sprites when rays will hit.
 26. ***MA*** Animation effect when the AK-47 is triggered.
+27. ***MA*** Work on the management of sprites.
+28. ***MA*** Have character types for different types of sprites like D for Door, F for fire, B for barrel, etc.
 
 `#CURRENT STATUS`
 
@@ -243,6 +245,7 @@ function placed in `linux_osx_mouse.c`
 26. Parsing for different orders of the layout is completed.
 27. Created a new file named utils_type and inside created new functions which are linked in this way- NO 1, SO 2, WE 3, EA 4, C 5, F 6, with any type of input I get the value as string or an int.
 28. Created a new Folder named Raycasting Algorithm which contains a text document. For to post it on how the collaboration was as a team and what we have developed in cub3D.
+29. Created new files sprite.c, utils_sprite.c. Working on the management of sprites- parsing in rays, allocation for structure of sprites and more.
 
 
 

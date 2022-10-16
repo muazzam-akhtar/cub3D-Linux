@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_hooks.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 19:28:36 by hawadh            #+#    #+#             */
-/*   Updated: 2022/10/05 21:05:02 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/10/16 19:32:49 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	key_hook_manage(int hook_num, t_info *inf)
 		mlx_put_image_to_window(inf->mlx, inf->win, inf->mini_map, 30, 30);
 	}
 	printf("\n");
-	printf("Degree Angle: %f\n", inf->player->angle * (180 / PI));
-	printf("Radian Angle: %f\n", inf->player->angle);
+	// printf("Degree Angle: %f\n", inf->player->angle * (180 / PI));
+	// printf("Radian Angle: %f\n", inf->player->angle);
 	return (EXIT_SUCCESS);
 }
