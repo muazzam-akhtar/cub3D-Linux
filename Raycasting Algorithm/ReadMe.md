@@ -102,7 +102,7 @@ It would look like this
 
 ![wall_coll](https://user-images.githubusercontent.com/81755254/195994638-c56f147a-b2fc-4248-821b-4fa26f985072.png)
 
-These purple arcs will be the wall detectors for our player.
+These purple arcs will act as the wall detectors for our player.
 
 ![wall_coll](https://user-images.githubusercontent.com/81755254/195994034-553e5022-1572-4bab-ba32-dd18bb083d0c.gif)
 
