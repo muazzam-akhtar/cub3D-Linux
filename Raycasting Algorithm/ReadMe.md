@@ -122,7 +122,7 @@ After implementing the basics of raycasting, this is what it would look like in 
 
 # 3D Perspective:
 
-Lets draw one ray which can hit the wall at what our player's facing.
+Lets draw one ray which can hit the wall, take the angle of the ray as player's angle - 35 .
       
       x = x-coordinate of the ray, y = y-coordinate of the ray, cover = distance for the ray to cover in each iteration,
       wall_hit = a hit trigger.
@@ -137,7 +137,7 @@ Lets draw one ray which can hit the wall at what our player's facing.
           wall_hit = 1;
       }
       
-This is the ray which shoots from player's position at what he is facing and this ray just hit the wall so we have the x and y coordinates for this ray now.
+This is the ray which shoots from player's position and hit the wall which is either (further away from)/ (nearer to) the player. Since we have the coordinates of this ray now
 Let's get the distance between the ray at which the wall hit and the player's position.
 
 ![1](https://user-images.githubusercontent.com/81755254/196061701-d6f2a160-6471-46ed-8c70-9fdb6b370f1c.jpg)
