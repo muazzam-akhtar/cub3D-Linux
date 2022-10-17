@@ -15,6 +15,10 @@ Topics covered in this project are:
 * [Wall Collision](https://github.com/Genius-gambit/cub3D-Linux/edit/master/Raycasting%20Algorithm/ReadMe.md#wall-collision).
 * [Edge Cases](https://github.com/Genius-gambit/cub3D-Linux/edit/master/Raycasting%20Algorithm/ReadMe.md#edge-cases).
 * [3D Perspective](https://github.com/Genius-gambit/cub3D-Linux/edit/master/Raycasting%20Algorithm/ReadMe.md#3d-perspective)
+* [Ray](https://github.com/Genius-gambit/cub3D-Linux/edit/master/Raycasting%20Algorithm/ReadMe.md#ray)
+* [Right Angle Triangle](https://github.com/Genius-gambit/cub3D-Linux/edit/master/Raycasting%20Algorithm/ReadMe.md#right-angle-triangle)
+* [Cube](https://github.com/Genius-gambit/cub3D-Linux/edit/master/Raycasting%20Algorithm/ReadMe.md#cube)
+* [Wall Height](https://github.com/Genius-gambit/cub3D-Linux/edit/master/Raycasting%20Algorithm/ReadMe.md#wall-height)
 
 ![begin](https://user-images.githubusercontent.com/81755254/195951594-38adbeff-ec0a-4c3b-9cce-2159907b9a0f.gif)
 
@@ -144,9 +148,53 @@ Lets draw one ray which can hit the wall, take the angle of the ray as player's 
 ![raycastmiss](https://user-images.githubusercontent.com/81755254/196062368-404c8c02-22ce-4a87-bfda-e326db01c2af.gif)
 ![raycastmiss2](https://user-images.githubusercontent.com/81755254/196062372-c2942a51-ea9d-4d88-be5d-2000b801b2a1.gif)
 
-This is the ray which shoots from player's position and hit the wall which is either (further away from)/ (nearer to) the player. Since we have the coordinates of this ray now
+## Right Angle Triangle
+
+From the figure below, This is the ray which shoots from player's position and hit the wall which is either (further away from)/ (nearer to) the player. Since we have the coordinates of this ray now
+
+![ray](https://user-images.githubusercontent.com/81755254/196182339-13b024c3-1e33-443d-90ad-66f9aeebd962.png)
+
 Let's get the distance between the ray at which the wall hit and the player's position.
 
 ![1](https://user-images.githubusercontent.com/81755254/196061701-d6f2a160-6471-46ed-8c70-9fdb6b370f1c.jpg)
 
-  
+From C to A we have the distance of the wall. But this is not the correct distance from the wall. As from the figure, Ray distance is more than when the player is facing the wall so we can calculate the adjacent side of this triangle using [Pythagoras Theorem](https://www.cuemath.com/geometry/pythagoras-theorem/) and since we have the value for AC, we can calculate the distance of BC.
+
+      Right Angle Triangle Properties:
+      
+      AC = Hypotenuse, BC = adjacent, AB = Perpendicular
+      AC^2 = sqrt(BC^2 + AB^2)
+      Sum of all the angles = 180 degrees.
+      One of the angles is always 90 degrees
+      In this case, Angle B is 90 degrees.
+      
+      Calculating the Adjacent side:
+           BC = AC x cos(angle of the ray), since cos(angle) = Adjacent / Hypotenuse
+
+## Cube
+
+Now we have got the adjacent side we will draw a line which will act as a wall height. Since we're working with cubes. A brief description for the [Cube](https://en.wikipedia.org/wiki/Cube). Cube has all sides equal. So say if we take block size as 8. Then all the sides of this cube is 8.
+Now let's draw one wall height with the given ray.
+      
+      scalar = a value which can make the picture perfect for the window size,
+      BLOCK_SIZE = 8, adjacent = adjacent side of the wall for the ray.
+      
+      wall_height = (BLOCK_SIZE x scalar) / adjacent 
+
+## Wall Height
+
+<img width="100" alt="cube_one1" src="https://user-images.githubusercontent.com/81755254/196187666-619849e9-fd60-488c-bae9-8a68268165d5.png">
+
+The above result is the wall height of one ray. Lets continue the iteration for multiple rays.
+For iterations, it would be better if we're moving by 1 in x-coordinate.
+      
+      For iterations in angles: angle += (FIELD_OF_VIEW / NUMBER OF RAYS)- this operation will result in degrees, convert it in radians.
+
+Repeat the process for rays from [here](https://github.com/Genius-gambit/cub3D-Linux/edit/master/Raycasting%20Algorithm/ReadMe.md#ray) then.
+
+After performing the whole operation, we will get this.
+
+<img width="200" alt="cube" src="https://user-images.githubusercontent.com/81755254/196190055-e4ade114-f29e-4ea7-acd3-d9ba2d1a0678.png">
+
+
+
