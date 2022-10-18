@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 19:23:07 by hawadh            #+#    #+#             */
-/*   Updated: 2022/10/10 13:32:53 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/10/17 17:01:53 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,19 @@
 
 #ifdef LINUX
 
-void	linux_osx_mouse(t_info *info, int x, int y)
+void	linux_osx_mouse(t_info *info, int x, int y, int status)
 {
-	mlx_mouse_move(info->mlx, info->win, 960, 540);
+	if (status == 1)
+		mlx_mouse_move(info->mlx, info->win, 960, 540);
 	mlx_mouse_get_pos(info->mlx, info->win, &x, &y);
 }
 #endif
 #ifndef LINUX
 
-void	linux_osx_mouse(t_info *info, int x, int y)
+void	linux_osx_mouse(t_info *info, int x, int y, int status)
 {
-	mlx_mouse_move(info->win, 960, 540);
+	if (status == 1)
+		mlx_mouse_move(info->win, 960, 540);
 	mlx_mouse_get_pos(info->win, &x, &y);
 }
 #endif

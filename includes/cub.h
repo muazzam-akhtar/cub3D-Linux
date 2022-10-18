@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/10/18 18:32:05 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/10/18 18:53:46 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ typedef struct s_sprite
 	double	ang;
 	double	dist;
 	double	height;
-}				t_sprite;
+}	t_sprite;
 
 /**
 **	Rays Structure
