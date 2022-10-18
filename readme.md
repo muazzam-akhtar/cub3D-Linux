@@ -47,6 +47,7 @@ https://lodev.org/cgtutor/raycasting.html
 22.	***HA && MAK:***	Bug, NO, SO, EA, WE can be in any order, our parser fails it.
 23.	***MAK && HA:***	Map should not contain any spaces within the map. Spaces in the middle of the map with 1's and 0's should be invalid? Need to confirm this.
 24.	***HA:***	`add_xpm();` still not incrementing y in correct increments to draw walls
+25. ***HA:***	~~Mouse not being released on hitting pause~~
 
 `#TODO:`
 
@@ -213,6 +214,7 @@ function placed in `linux_osx_mouse.c`
 127. `xpm_x = ray->y * xpm->wi` to extract x coordinate on texture, still need step incrementation for y
 128. Adjust conditions for `while` loop in `draw.c` current lines `#40` and `#43` and changed `y` value calculation to `y = (HEIGHT - ray->height) / 2;` to get correct wall height drawing.
 129. Implemented `if (ray->dir_wall == 1 || ray->dir_wall == 2) { xpm_x = ray->x * xpm->wi; }` in `draw.c` current lines `#38 -> #39`
+130. Fixed issue with mouse not being released on hitting pause, by implementing `int status` in function parameter `linux_osx_mouse(t_info *info, int x, int y, int status)` to only trigger mouse move when pause flag is triggered.
 
 
 `MAK:	4 July 2022`
