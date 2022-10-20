@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/10/18 16:08:01 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/10/19 14:50:08 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -304,6 +304,7 @@ typedef struct s_info
 	t_mouse		*mouse;
 	t_img		*image;
 	t_mini		*mini;
+	t_sprite	*sprite;
 	t_player	*player;
 }	t_info;
 
@@ -414,7 +415,7 @@ void		hook_management(t_info *info);
 /**
 **	Mouse Functions
 **/
-void		linux_osx_mouse(t_info *info, int x, int y);
+void		linux_osx_mouse(t_info *info, int x, int y, int status);
 void		init_cursor(t_info *inf);
 void		rotation(int hook_num, t_info *inf);
 int			init_mouse(t_info *info);
