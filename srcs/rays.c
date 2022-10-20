@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:42:22 by makhtar           #+#    #+#             */
-/*   Updated: 2022/10/19 13:20:27 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/10/20 15:06:23 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ static void	hit_wall_check(t_ray *ray, t_info *inf)
 		old_y = ray->y;
 		ray->x += (cos(ray->angle) * 0.01);
 		ray->y += (sin(ray->angle) * 0.01);
+		if (key_sprite(inf->data->map[(int)ray->y][(int)ray->x]))
+			check_sprite(ray, inf);
 		ray->wall = check_wall(inf, ray->x, ray->y);
 		if (!ray->wall && (ray->grid_x != (int)ray->x
 				&& ray->grid_y != (int)ray->y))
@@ -134,5 +136,6 @@ void	init_rays(t_info *inf)
 		ray.x1 += 1;
 		ray.count--;
 	}
+	free (inf->spr);
 	init_cursor(inf);
 }

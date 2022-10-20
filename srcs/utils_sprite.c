@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 17:02:45 by makhtar           #+#    #+#             */
-/*   Updated: 2022/10/16 19:28:07 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/10/18 18:35:46 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	key_sprite(int c)
 	else if (c == 'V')
 		return (TRUE);
 	else if (c == 'W')
+		return (TRUE);
+	else if (c == 'D')
 		return (TRUE);
 	return (FALSE);
 }
@@ -45,23 +47,23 @@ void	dup_values(t_sprite *new_spr, t_sprite *old_spr, t_ray *ray)
 	}
 }
 
-t_sprite	**new_alloc_sprite(t_sprite **old_spr)
-{
-	int			count;
-	t_sprite	**new;
+// t_sprite	**new_alloc_sprite(t_sprite **old_spr, t_info *inf)
+// {
+// 	int			count;
+// 	t_sprite	**new;
 
-	count = 0;
-	while (old_spr[count] != NULL)
-		count++;
-	new = (t_sprite **)malloc(sizeof(t_sprite *) * (count + 1));
-	if (new == NULL)
-		return (NULL);
-	count = 0;
-	while (old_spr[count] != NULL)
-	{
-		dup_values((*(&new[count])), (*(&old_spr[count])), NULL);
-		count++;
-	}
-	new[count] = NULL;
-	return (new);
-}
+// 	count = 0;
+// 	while (old_spr[count] != NULL)
+// 		count++;
+// 	new = (t_sprite **)malloc(sizeof(t_sprite *) * (count + 1));
+// 	if (new == NULL)
+// 		return (NULL);
+// 	count = 0;
+// 	while (old_spr[count] != NULL)
+// 	{
+// 		dup_values((*(&new[count])), (*(&old_spr[count])), NULL);
+// 		count++;
+// 	}
+// 	new[count] = NULL;
+// 	return (new);
+// }

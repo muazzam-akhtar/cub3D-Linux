@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/10/19 14:50:08 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/10/20 15:06:22 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 # endif
 
 # define PI 3.14159265358979323846
-# define RADIAN PI / 180
+# define RADIAN 0.017453292519943
 # define BLOCK_SIZE 8
 # define RAYS 1920
 # define WIDTH 1920
@@ -270,13 +270,10 @@ typedef struct s_data
 }	t_data;
 
 /**
-**	Main Struct with all info including struct Pointers
-*	minilibx	*mlx
-*	window		*window
-*	image		*img		
-*	data		struct
-*	mouse		struct
-*	minimap		struct
+**	Parsing for 2d map
+*	i			iterator;
+*	map			2d string
+*	str			index of the map
 **/
 typedef struct s_str
 {
@@ -306,6 +303,7 @@ typedef struct s_info
 	t_mini		*mini;
 	t_sprite	*sprite;
 	t_player	*player;
+	t_sprite	**spr;
 }	t_info;
 
 /**
@@ -327,7 +325,7 @@ double		get_height(double dist, double r_ang, double p_ang);
 int			key_sprite(int c);
 void		dup_values(t_sprite *new_spr, t_sprite *old_spr, t_ray *ray);
 t_sprite	**new_alloc_sprite(t_sprite **old_spr);
-t_sprite	**check_sprite(t_sprite **spr, t_ray *ray, t_info *inf);
+void		check_sprite(t_ray *ray, t_info *inf);
 
 /**
 **	Parsing Functions
@@ -425,7 +423,8 @@ int			mouse_move(int x, int y, t_info *info);
 **	RayCasting functions
 **/
 int			edge_case(double x, double y, t_info *vars);
-int			wall_hit_direction(t_ray *ray, double old_x, double old_y, t_info *inf);
+int			wall_hit_direction(t_ray *ray, double old_x, double old_y,
+				t_info *inf);
 void		init_rays(t_info *inf);
 double		euclidean(t_ray *ray, double dist, double p_ang);
 

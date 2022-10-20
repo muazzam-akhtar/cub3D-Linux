@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 13:41:18 by makhtar           #+#    #+#             */
-/*   Updated: 2022/10/03 18:22:21 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/10/18 17:05:02 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ static int	valid_key(int c)
 	else if (c == 'E')
 		return (c);
 	else if (c == 'M')
+		return (c);
+	else if (c == 'D')
+		return (c);
+	else if (c == 'U')
+		return (c);
+	else if (c == 'V')
 		return (c);
 	return (FALSE);
 }
