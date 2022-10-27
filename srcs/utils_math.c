@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_math.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:44:02 by makhtar           #+#    #+#             */
-/*   Updated: 2022/10/18 17:37:14 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/10/27 14:44:21 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,20 @@ double	euclidean(t_ray *ray, double dist, double p_ang)
 	if (real_dist < 0)
 		real_dist *= -1;
 	rays++;
-	if (rays == 1920)
+	if (rays == RAYS)
 		rays = 0;
 	return (real_dist);
 }
 
-/*// if ((ray->angle >= 145 * (PI / 180) && ray->angle < 225 * (PI / 180))
-// 	|| (ray->angle >= 0 && ray->angle < 45 * (PI / 180))
-// 	|| (ray->angle >= 315 * (PI / 180) && ray->angle < (2 * PI)))
-// else
-// printf("Rays: %d\tHypotenuse: %f\tOpposite: %f\tRayAngle: %f\n",
-rays + 1, dist, real_dist, ray->angle * (180 / PI));
-// 	real_dist = sin(ray->angle) * dist;*/
-
+/**
+*	if ((ray->angle >= 145 * (PI / 180) && ray->angle < 225 * (PI / 180))
+*		|| (ray->angle >= 0 && ray->angle < 45 * (PI / 180))
+*		|| (ray->angle >= 315 * (PI / 180) && ray->angle < (2 * PI)))
+*	else
+*	printf("Rays: %d\tHypotenuse: %f\tOpposite: %f\tRayAngle: %f\n",
+*		rays + 1, dist, real_dist, ray->angle * (180 / PI));
+* 	real_dist = sin(ray->angle) * dist;
+**/
 double	get_height(double dist, double r_ang, double p_ang)
 {
 	double	height;
@@ -57,7 +58,5 @@ double	get_height(double dist, double r_ang, double p_ang)
 	if (c_angle < 0)
 		c_angle += 2 * PI;
 	height = (BLOCK_SIZE * 277) / dist;
-	if (height > 1080)
-		height = 1080;
 	return (height);
 }

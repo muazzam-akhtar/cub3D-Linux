@@ -215,6 +215,7 @@ function placed in `linux_osx_mouse.c`
 128. Adjust conditions for `while` loop in `draw.c` current lines `#40` and `#43` and changed `y` value calculation to `y = (HEIGHT - ray->height) / 2;` to get correct wall height drawing.
 129. Implemented `if (ray->dir_wall == 1 || ray->dir_wall == 2) { xpm_x = ray->x * xpm->wi; }` in `draw.c` current lines `#38 -> #39`
 130. Fixed issue with mouse not being released on hitting pause, by implementing `int status` in function parameter `linux_osx_mouse(t_info *info, int x, int y, int status)` to only trigger mouse move when pause flag is triggered.
+131. Muazzam gave calculation `step = ((xpm->hi * xpm->wi) / ray->dist) / ray->height;` implemented in `draw.c` in current line `#46`, step was placed in `xpm->addr[]`
 
 
 `MAK:	4 July 2022`

@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 09:28:29 by hawadh            #+#    #+#             */
-/*   Updated: 2022/10/20 15:04:38 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/10/27 21:19:03 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,20 @@ static void	add_xpm(t_info *info, t_xpm *xpm, t_rays *ray, int x)
 	int			i;
 	double		step;
 
+	xpm_y = 0;
 	xpm_x = ray->y * xpm->wi;
 	if (ray->dir_wall == 1 || ray->dir_wall == 2)
 		xpm_x = ray->x * xpm->wi;
 	y = (HEIGHT - ray->height) / 2;
-	step = 1.0 * HEIGHT / ray->height;
-	xpm_y = 0;
-	while (xpm_y < HEIGHT && y < HEIGHT \
-	&& xpm_y < xpm->hi && xpm_y < ray->height)
+	while (y < HEIGHT)
 	{
 		i = 0;
-		while (i < 4 && xpm_y < xpm->hi)
+		step = ((xpm->hi * xpm->wi) / ray->dist) / ray->height;
+		while (i < 4 && y >= 0 && xpm_y >= 0)
 		{
-			info->image->addr[((x * 4) + 4 * (WIDTH * y)) + i]
-				= xpm->addr[((xpm_x * 4) + 4 * (xpm->wi * xpm_y)) + i];
+			if (xpm_y < ray->height - 4 && y >= 0)
+				info->image->addr[((x * 4) + 4 * (WIDTH * y)) + i]
+					= xpm->addr[((xpm_x * 4) + 4 * (xpm->wi * (int)step)) + i];
 			i++;
 		}
 		xpm_y++;

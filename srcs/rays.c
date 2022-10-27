@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:42:22 by makhtar           #+#    #+#             */
-/*   Updated: 2022/10/20 15:06:23 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/10/27 13:18:39 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,10 @@ void	init_rays(t_info *inf)
 		ray.x1 += 1;
 		ray.count--;
 	}
-	free (inf->spr);
+	if (inf->spr)
+	{
+		free(inf->spr);
+		inf->spr = NULL;
+	}
 	init_cursor(inf);
 }

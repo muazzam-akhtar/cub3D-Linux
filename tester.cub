@@ -1,0 +1,12 @@
+NO  ./imgs/northWall.xpm
+SO  ./imgs/southWall.xpm
+WE  ./imgs/westWall.xpm
+EA  ./imgs/eastWall.xpm
+
+F  100,100,100
+C  53,180,220
+
+111111111111111
+100000000000001
+1000W0000000001
+111111111111111
