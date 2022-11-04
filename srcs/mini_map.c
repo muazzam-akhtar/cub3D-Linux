@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 19:43:20 by hawadh            #+#    #+#             */
-/*   Updated: 2022/09/27 17:57:37 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/03 17:41:04 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,22 @@ static void	draw_mini_player(t_mini *mini, int x, int y, int rgb)
 	}
 }
 
+void	get_map_dimensions(t_data *data)
+{
+	int	temp;
+
+	data->map_h = 0;
+	while (data->map[data->map_h])
+	{
+		temp = 0;
+		while (data->map[data->map_h][temp])
+			temp++;
+		if (data->map_w < temp)
+			data->map_w = temp;
+		data->map_h++;
+	}
+}
+
 /**
 **	Draws closer borders and calls function to draw
 **	Outer borders. Calls to draw minimap interior
@@ -69,6 +85,7 @@ void	draw_minimap(t_info *info, t_mini *mini)
 		}
 		y++;
 	}
+	get_map_dimensions(info->data);
 	draw_mini_player(mini, 85, 85, 0x003D8758);
 	mini_interior(info, mini);
 }

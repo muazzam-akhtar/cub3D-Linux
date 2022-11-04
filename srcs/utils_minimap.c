@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 19:44:52 by hawadh            #+#    #+#             */
-/*   Updated: 2022/09/29 16:20:54 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/04 18:06:32 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,25 @@ static void	draw_mini_walls(t_info *info, int x, int y, int rgb)
 	}
 }
 
+static void	find_start(t_info *info, t_mini *mini)
+{
+	int	i;
+	int	j;
+	int	y;
+	int	x;
+
+	y = 94 - ((MINI_SCALE + 5) * 3);
+	x = 94 - ((MINI_SCALE + 5) * 3);
+	i = info->player->y_pos;
+	j = info->player->x_pos;
+	while ()
+		y -= MINI_SCALE;
+	while ()
+		x -= MINI_SCALE;
+	mini->y_pos = y;
+	mini->x_pos = x;
+}
+
 /**
 **	Draws minimap interior
 **/
@@ -78,22 +97,27 @@ void	mini_interior(t_info *info, t_mini *mini)
 	int		i;
 	int		j;
 
-	i = info->player->y_pos - 3;
-	y = 94 - ((MINI_SCALE + 5) * 3);
-	while (i >= 0 && info->data->map[i] && y < 183)
+
+	find_start(info, mini);
+	i = 0;
+	y = mini->y_pos;
+	while (info->data->map[i] && y < 183)
 	{
-		j = info->player->x_pos - 3;
-		x = 94 - ((MINI_SCALE + 5) * 3);
-		while (j >= 0 && info->data->map[i][j] && x < 183)
+		j = 0;
+		x = mini->x_pos;
+		while (info->data->map[i][j] && x < 183)
 		{
-			if (info->data->map[i][j] == '1')
-				draw_mini_walls(info, x, y, 0x00000032);
-			else if (info->data->map[i][j] == 'M')
-				draw_mini_enemy(mini, x + 7, y + 7, 0x00990000);
-			x += MINI_SCALE;
+			if (x >= 0 && y >= 0) {
+				if (info->data->map[i][j] == '1')
+					draw_mini_walls(info, x, y, 0x00000032);
+				else if (info->data->map[i][j] == 'M')
+					draw_mini_enemy(mini, x + 7, y + 7, 0x00990000);
+				x += MINI_SCALE;
+			}
 			j++;
 		}
-		y += MINI_SCALE;
+		if (x >= 0 && y >= 0)
+			y += MINI_SCALE;
 		i++;
 	}
 }

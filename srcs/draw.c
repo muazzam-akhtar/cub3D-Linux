@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 09:28:29 by hawadh            #+#    #+#             */
-/*   Updated: 2022/10/27 21:19:03 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/03 17:04:23 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ static void	add_xpm(t_info *info, t_xpm *xpm, t_rays *ray, int x)
 	while (y < HEIGHT)
 	{
 		i = 0;
-		step = ((xpm->hi * xpm->wi) / ray->dist) / ray->height;
-		while (i < 4 && y >= 0 && xpm_y >= 0)
+		step = ((ray->y * xpm->hi) / (ray->dist * WIDTH / 1000)) / ray->height;
+		while (i < 4 && y >= 0 && xpm_y >= 0 && xpm_y < ray->height)
 		{
-			if (xpm_y < ray->height - 4 && y >= 0)
+			if (y >= 0 && y <= HEIGHT)
 				info->image->addr[((x * 4) + 4 * (WIDTH * y)) + i]
 					= xpm->addr[((xpm_x * 4) + 4 * (xpm->wi * (int)step)) + i];
 			i++;

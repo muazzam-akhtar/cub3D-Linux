@@ -79,6 +79,7 @@ https://lodev.org/cgtutor/raycasting.html
 26. ***MA*** Animation effect when the AK-47 is triggered.
 27. ***MA*** Work on the management of sprites.
 28. ***MA*** Have character types for different types of sprites like D for Door, F for fire, B for barrel, etc.
+29. ***HA:***	Refactor minimap drawing in `utils_minimap.c` see `mini_interior();` on brach hawadh-minimap
 
 `#CURRENT STATUS`
 
@@ -216,6 +217,7 @@ function placed in `linux_osx_mouse.c`
 129. Implemented `if (ray->dir_wall == 1 || ray->dir_wall == 2) { xpm_x = ray->x * xpm->wi; }` in `draw.c` current lines `#38 -> #39`
 130. Fixed issue with mouse not being released on hitting pause, by implementing `int status` in function parameter `linux_osx_mouse(t_info *info, int x, int y, int status)` to only trigger mouse move when pause flag is triggered.
 131. Muazzam gave calculation `step = ((xpm->hi * xpm->wi) / ray->dist) / ray->height;` implemented in `draw.c` in current line `#46`, step was placed in `xpm->addr[]`
+132. Branched from main to `hawadh-minimap` branch & refactoring minimap drawing algorithm.
 
 
 `MAK:	4 July 2022`
