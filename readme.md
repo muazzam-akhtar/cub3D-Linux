@@ -216,6 +216,7 @@ function placed in `linux_osx_mouse.c`
 129. Implemented `if (ray->dir_wall == 1 || ray->dir_wall == 2) { xpm_x = ray->x * xpm->wi; }` in `draw.c` current lines `#38 -> #39`
 130. Fixed issue with mouse not being released on hitting pause, by implementing `int status` in function parameter `linux_osx_mouse(t_info *info, int x, int y, int status)` to only trigger mouse move when pause flag is triggered.
 131. Muazzam gave calculation `step = ((xpm->hi * xpm->wi) / ray->dist) / ray->height;` implemented in `draw.c` in current line `#46`, step was placed in `xpm->addr[]`
+133. ***<--- Leave as 133*** Branched from main to brach hawadh-minimap for minimap refactoring.
 
 
 `MAK:	4 July 2022`
