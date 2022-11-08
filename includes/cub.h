@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/08 19:10:21 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/08 19:26:43 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 # define MINI_SCALE 29
-# define SHIFT_KEY 257
 
 # include <unistd.h>
 # include <fcntl.h>
