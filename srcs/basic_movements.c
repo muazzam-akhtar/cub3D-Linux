@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:40:38 by makhtar           #+#    #+#             */
-/*   Updated: 2022/10/06 17:48:46 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/08 19:08:34 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	move_frwrd(t_info *inf)
 	double	x;
 	double	y;
 
-	inf->player->dx = cos(inf->player->angle) * 0.0556;
-	inf->player->dy = sin(inf->player->angle) * 0.0556;
+	inf->player->dx = cos(inf->player->angle) * inf->player->speed;
+	inf->player->dy = sin(inf->player->angle) * inf->player->speed;
 	y = inf->player->y_pos + inf->player->dy;
 	x = inf->player->x_pos + inf->player->dx;
 	if ((y >= 0) && (y < ft_ptrptrlen(inf->data->map))
@@ -52,8 +52,8 @@ void	move_back(t_info *inf)
 	double	x;
 	double	y;
 
-	inf->player->dx = cos(inf->player->angle) * 0.0556;
-	inf->player->dy = sin(inf->player->angle) * 0.0556;
+	inf->player->dx = cos(inf->player->angle) * inf->player->speed;
+	inf->player->dy = sin(inf->player->angle) * inf->player->speed;
 	y = inf->player->y_pos + inf->player->dy;
 	x = inf->player->x_pos + inf->player->dx;
 	if ((y >= 0) && (y < ft_ptrptrlen(inf->data->map))
@@ -81,8 +81,8 @@ void	move_left(t_info *inf)
 	double	x;
 	double	y;
 
-	inf->player->dx = cos((PI / 2) + (inf->player->angle)) * 0.0556;
-	inf->player->dy = sin((PI / 2) + (inf->player->angle)) * 0.0556;
+	inf->player->dx = cos((PI / 2) + (inf->player->angle)) * inf->player->speed;
+	inf->player->dy = sin((PI / 2) + (inf->player->angle)) * inf->player->speed;
 	y = inf->player->y_pos + inf->player->dy;
 	x = inf->player->x_pos + inf->player->dx;
 	if ((y >= 0) && (y < ft_ptrptrlen(inf->data->map))
@@ -110,8 +110,8 @@ void	move_right(t_info *inf)
 	double	x;
 	double	y;
 
-	inf->player->dx = cos((PI / 2) + (inf->player->angle)) * 0.0556;
-	inf->player->dy = sin((PI / 2) + (inf->player->angle)) * 0.0556;
+	inf->player->dx = cos((PI / 2) + (inf->player->angle)) * inf->player->speed;
+	inf->player->dy = sin((PI / 2) + (inf->player->angle)) * inf->player->speed;
 	y = inf->player->y_pos + inf->player->dy;
 	x = inf->player->x_pos + inf->player->dx;
 	if ((y >= 0) && (y < ft_ptrptrlen(inf->data->map))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_hooks.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 19:28:36 by hawadh            #+#    #+#             */
-/*   Updated: 2022/10/18 16:06:48 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/08 19:06:38 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int	controls(int keycode)
 		return (TRUE);
 	else if (keycode == ARROW_R)
 		return (TRUE);
+	else if (keycode == SHIFT_KEY)
+		return (TRUE);
 	return (FALSE);
 }
 
@@ -80,6 +82,13 @@ int	key_hook_manage(int hook_num, t_info *inf)
 		handle_pause(inf);
 	if (controls(hook_num))
 	{
+		if (hook_num == SHIFT_KEY)
+		{
+			if (inf->player->speed == 0.15)
+				inf->player->speed = 0.0556;
+			else
+				inf->player->speed = 0.15;
+		}
 		moves(hook_num, inf);
 		draw_minimap(inf, inf->mini);
 		mlx_put_image_to_window(inf->mlx, inf->win, inf->img, 0, 0);
