@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/03 21:14:13 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/08 14:48:44 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -266,8 +266,6 @@ typedef struct s_data
 	char	**confg;
 	char	*pause;
 	char	*gun;
-	int		map_h;
-	int		map_w;
 	t_xpm	*xpm;
 	t_floor	floor;
 	t_ceil	ceil;

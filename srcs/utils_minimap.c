@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 19:44:52 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/04 18:06:32 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/08 15:08:17 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,56 +68,49 @@ static void	draw_mini_walls(t_info *info, int x, int y, int rgb)
 	}
 }
 
-static void	find_start(t_info *info, t_mini *mini)
+/**
+**	Draws minimap interior
+**/
+void	find_end(t_info *info)
 {
-	int	i;
-	int	j;
-	int	y;
-	int	x;
-
-	y = 94 - ((MINI_SCALE + 5) * 3);
-	x = 94 - ((MINI_SCALE + 5) * 3);
-	i = info->player->y_pos;
-	j = info->player->x_pos;
-	while ()
-		y -= MINI_SCALE;
-	while ()
-		x -= MINI_SCALE;
-	mini->y_pos = y;
-	mini->x_pos = x;
+	info->mini->y_pos = 93 + 14;
+	while (info->mini->y_pos < 183)
+	{
+		info->mini->y_pos += MINI_SCALE;
+	}
+	info->mini->x_pos = 93 + 14;
+	while (info->mini->x_pos < 183)
+		info->mini->x_pos += MINI_SCALE;
 }
 
 /**
 **	Draws minimap interior
+*	TODO:	Needto fix i and j to start from correct position
 **/
-void	mini_interior(t_info *info, t_mini *mini)
+static void	mini_interior(t_info *info, t_mini *mini)
 {
 	float	y;
 	float	x;
 	int		i;
 	int		j;
 
-
-	find_start(info, mini);
-	i = 0;
-	y = mini->y_pos;
-	while (info->data->map[i] && y < 183)
+	find_end(mini);
+	i = info->player->y_pos;
+	y = 183;
+	while (info->data->map[i] && y > 3)
 	{
-		j = 0;
-		x = mini->x_pos;
-		while (info->data->map[i][j] && x < 183)
+		j = info->player->x_pos;
+		x = 183;
+		while (info->data->map[i][j] && x > 3)
 		{
-			if (x >= 0 && y >= 0) {
-				if (info->data->map[i][j] == '1')
-					draw_mini_walls(info, x, y, 0x00000032);
-				else if (info->data->map[i][j] == 'M')
-					draw_mini_enemy(mini, x + 7, y + 7, 0x00990000);
-				x += MINI_SCALE;
-			}
-			j++;
+			if (info->data->map[i][j] == '1')
+				draw_mini_walls(info, x, y, 0x00000032);
+			else if (info->data->map[i][j] == 'M')
+				draw_mini_enemy(mini, x + 7, y + 7, 0x00990000);
+			x -= MINI_SCALE;
+			j--;
 		}
-		if (x >= 0 && y >= 0)
-			y += MINI_SCALE;
-		i++;
+		y -= MINI_SCALE;
+		i--;
 	}
 }
