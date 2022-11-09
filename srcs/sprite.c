@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 17:09:19 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/09 20:09:59 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/09 20:13:57 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	working_spr(t_info *inf, t_ray *ray)
 {
+	(void)inf;
+	(void)ray;
 	if (ray->spr == NULL)
 	{
 		ray->spr_len++;
