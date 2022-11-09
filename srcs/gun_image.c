@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sprite.c                                           :+:      :+:    :+:   */
+/*   gun_image.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/16 17:09:19 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/09 20:09:59 by makhtar          ###   ########.fr       */
+/*   Created: 2022/11/09 19:43:00 by makhtar           #+#    #+#             */
+/*   Updated: 2022/11/09 19:43:06 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-void	working_spr(t_info *inf, t_ray *ray)
+void	gun_image(t_info *inf)
 {
-	if (ray->spr == NULL)
-	{
-		ray->spr_len++;
-	}
+	if (inf->fire == 0)
+		mlx_put_image_to_window(inf->mlx, inf->win,
+			inf->data->gun, WIDTH - HEIGHT, (HEIGHT / 2));
+	else
+		mlx_put_image_to_window(inf->mlx, inf->win,
+			inf->data->gun_anim, WIDTH - HEIGHT, (HEIGHT / 2));
 }

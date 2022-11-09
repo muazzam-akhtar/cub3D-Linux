@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 18:49:26 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/08 18:57:41 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/09 20:08:44 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	init_dda_vars(t_info *inf, t_ray *ray)
 	ray->m_x = (int)inf->player->x_pos;
 	ray->m_y = (int)inf->player->y_pos;
 	ray->wall = 0;
+	ray->spr = NULL;
+	ray->spr_len = 0;
 }
 
 void	init_x_y_steps(t_info *inf, t_ray *ray)
@@ -104,6 +106,8 @@ void	raycasting(t_info *inf, t_ray *ray)
 		}
 		if (inf->data->map[ray->m_y][ray->m_x] == '1')
 			ray->wall = 1;
+		else if (key_sprite(inf->data->map[ray->m_y][ray->m_x]))
+			working_spr(inf, ray);
 	}
 	if (ray->side == 0)
 		new_y_val(inf, ray);

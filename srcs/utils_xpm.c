@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 20:06:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/09 18:13:51 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/09 19:40:07 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ static int	open_xpm(t_info *info, t_data *data, size_t len)
 		i++;
 	}
 	data->gun = mlx_xpm_file_to_image(info->mlx, "./imgs/Ak47.xpm", &x, &y);
-	data->gun_anim = mlx_xpm_file_to_image(info->mlx, "./imgs/Ak47Fired.xpm", &x, &y);
+	data->gun_anim = mlx_xpm_file_to_image(info->mlx, "./imgs/Ak47Fired.xpm",
+			&x, &y);
 	data->pause = mlx_xpm_file_to_image(info->mlx, "./imgs/pause.xpm", &x, &y);
 	if (!data->pause || !data->gun)
 		err_return(5, info);

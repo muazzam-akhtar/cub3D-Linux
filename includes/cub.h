@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/09 19:26:57 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/09 20:01:16 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,8 @@ typedef struct s_sprite
 	double	ang;
 	double	dist;
 	double	height;
+	void	*prev;
+	void	*next;
 }	t_sprite;
 
 /**
@@ -159,25 +161,27 @@ typedef struct s_rays
 
 typedef struct s_ray
 {
-	double	angle;
-	double	x;
-	double	y;
-	double	x1;
-	int		wall;
-	int		count;
-	int		grid_x;
-	int		grid_y;
-	double	cx;
-	double	cy;
-	double	dx;
-	double	dy;
-	int		m_x;
-	int		m_y;
-	double	x_step;
-	double	y_step;
-	double	side_dist_x;
-	double	side_dist_y;
-	int		side;
+	double		angle;
+	double		x;
+	double		y;
+	double		x1;
+	int			wall;
+	int			count;
+	int			grid_x;
+	int			grid_y;
+	double		cx;
+	double		cy;
+	double		dx;
+	double		dy;
+	int			m_x;
+	int			m_y;
+	double		x_step;
+	double		y_step;
+	double		side_dist_x;
+	double		side_dist_y;
+	int			side;
+	t_sprite	*spr;
+	int			spr_len;
 }	t_ray;
 
 /**
@@ -391,6 +395,7 @@ void		draw_cursor(t_info *info);
 void		draw_map(t_info *info);
 void		ceiling_floor(t_info *info);
 void		draw_minimap(t_info *info, t_mini *mini);
+void		gun_image(t_info *inf);
 void		place_walls(t_info *inf, t_rays *ray, int x);
 
 /**
