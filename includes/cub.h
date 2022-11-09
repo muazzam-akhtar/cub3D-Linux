@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/09 20:16:08 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/09 20:27:51 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -338,8 +338,8 @@ void		free_data(t_info *info);
 double		sq(double num);
 double		get_dist(double x_one, double y_one, double x_two, double y_two);
 double		get_height(double dist, double r_ang, double p_ang);
-double		dda_x(double new_x, double old_x, double old_y, double ang);
-double		dda_y(double new_y, double old_y, double old_x, double ang);
+double		new_x_val(t_info *inf, t_ray *ray);
+double		new_y_val(t_info *inf, t_ray *ray);
 
 /**
 **	Sprites Management

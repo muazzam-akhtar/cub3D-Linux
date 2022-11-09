@@ -6,13 +6,13 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 18:49:26 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/09 20:08:44 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/09 20:28:15 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-void	init_dda_vars(t_info *inf, t_ray *ray)
+static void	init_dda_vars(t_info *inf, t_ray *ray)
 {
 	ray->cx = cos(ray->angle);
 	ray->cy = sin(ray->angle);
@@ -51,38 +51,6 @@ void	init_x_y_steps(t_info *inf, t_ray *ray)
 	}
 }
 
-void	new_y_val(t_info *inf, t_ray *ray)
-{
-	if (ray->cx < 0)
-	{
-		ray->x = ray->m_x + 1;
-		ray->y = dda_x(ray->x, inf->player->x_pos,
-				inf->player->y_pos, ray->angle);
-	}
-	else
-	{
-		ray->x = ray->m_x;
-		ray->y = dda_x(ray->x, inf->player->x_pos,
-				inf->player->y_pos, ray->angle);
-	}
-}
-
-void	new_x_val(t_info *inf, t_ray *ray)
-{
-	if (ray->cy < 0)
-	{
-		ray->y = ray->m_y + 1;
-		ray->x = dda_y(ray->y, inf->player->y_pos,
-				inf->player->x_pos, ray->angle);
-	}
-	else
-	{
-		ray->y = ray->m_y;
-		ray->x = dda_y(ray->y, inf->player->y_pos,
-				inf->player->x_pos, ray->angle);
-	}
-}
-
 /*
 **	side = 0 or 1 indicates x_coordinate hit or y-coordinate
 */
@@ -110,7 +78,7 @@ void	raycasting(t_info *inf, t_ray *ray)
 			working_spr(inf, ray);
 	}
 	if (ray->side == 0)
-		new_y_val(inf, ray);
+		ray->y = new_y_val(inf, ray);
 	else
-		new_x_val(inf, ray);
+		ray->x = new_x_val(inf, ray);
 }
