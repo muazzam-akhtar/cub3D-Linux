@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   utils_math.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:44:02 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/08 18:48:44 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/09 19:16:02 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
+
+/**
+**	Extracts Decimal point.
+**/
+double	extract_decimal(t_player *player)
+{
+	double			diff;
+
+	diff = modf(player->x_pos, &diff);
+	return (diff);
+}
 
 double	sq(double num)
 {
@@ -41,7 +52,7 @@ double	euclidean(t_ray *ray, double dist, double p_ang)
 }
 
 /**
-*	
+**	Calculates the height of wall for each ray.
 **/
 double	get_height(double dist, double r_ang, double p_ang)
 {
