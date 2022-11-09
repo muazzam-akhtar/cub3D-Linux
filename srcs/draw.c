@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 09:28:29 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/09 14:04:57 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/09 19:26:57 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static void	add_xpm(t_info *info, t_xpm *xpm, t_rays *ray, int x)
 	int				step;
 
 	xpm_y = 0;
+	step = 4;
 	xpm_x = ray->y * xpm->wi;
 	if (ray->side == 1)
 	{
@@ -45,7 +46,6 @@ static void	add_xpm(t_info *info, t_xpm *xpm, t_rays *ray, int x)
 	while (y < HEIGHT)
 	{
 		i = 0;
-		step = (((xpm->hi * xpm->wi) / ray->dist) / ray->height) + 1;
 		while (i < 4 && y >= 0 && xpm_y >= 0)
 		{
 			if (y >= 0 && xpm_y < ray->height)
