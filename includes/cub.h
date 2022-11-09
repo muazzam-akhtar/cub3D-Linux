@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/09 20:01:16 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/09 20:16:08 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -348,6 +348,7 @@ int			key_sprite(int c);
 void		dup_values(t_sprite *new_spr, t_sprite *old_spr, t_ray *ray);
 t_sprite	**new_alloc_sprite(t_sprite **old_spr);
 void		check_sprite(t_ray *ray, t_info *inf);
+void		working_spr(t_info *inf, t_ray *ray);
 
 /**
 **	Parsing Functions
