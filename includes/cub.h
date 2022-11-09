@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/08 19:26:43 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/09 17:39:54 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -278,6 +278,7 @@ typedef struct s_data
 	char	**confg;
 	char	*pause;
 	char	*gun;
+	char	*gun_anim;
 	t_xpm	*xpm;
 	t_floor	floor;
 	t_ceil	ceil;
