@@ -6,7 +6,7 @@
 #    By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/21 16:36:51 by hawadh            #+#    #+#              #
-#    Updated: 2022/11/09 15:39:05 by makhtar          ###   ########.fr        #
+#    Updated: 2022/11/09 19:33:35 by makhtar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,8 @@ endif
 OBJS		=	${SRCS:.c=.o}
 
 CC			=	gcc
+
+CFLAGS 		+= -Wall -Werror -Wextra -g3
 
 ${NAME}:	${OBJS}
 			${MAKE} -C ${GNLDIR}

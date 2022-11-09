@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 23:05:19 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/09 17:59:53 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/09 19:30:42 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,12 @@ int	mouse_move(int x, int y, t_info *info)
 		linux_osx_mouse(info, x, y, 1);
 		draw_minimap(info, info->mini);
 		mlx_put_image_to_window(info->mlx, info->win, info->img, 0, 0);
-		mlx_put_image_to_window(info->mlx, info->win,
-			info->data->gun, WIDTH - HEIGHT, (HEIGHT / 2));
+		if (info->fire == 0)
+			mlx_put_image_to_window(info->mlx, info->win,
+				info->data->gun, WIDTH - HEIGHT, (HEIGHT / 2));
+		else
+			mlx_put_image_to_window(info->mlx, info->win,
+				info->data->gun_anim, WIDTH - HEIGHT, (HEIGHT / 2));
 		mlx_put_image_to_window(info->mlx, info->win, info->mini_map, 30, 30);
 	}
 	else
@@ -115,6 +119,7 @@ int	init_mouse(t_info *info)
 		err_return(4, info);
 	}
 	info->mouse->flag = 0;
+	info->fire = 0;
 	init_cursor(info);
 	mlx_mouse_hide(info->mlx, info->win);
 	return (EXIT_SUCCESS);

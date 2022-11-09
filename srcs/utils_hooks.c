@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 19:28:36 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/08 19:06:38 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/09 19:32:03 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,12 @@ int	key_hook_manage(int hook_num, t_info *inf)
 		moves(hook_num, inf);
 		draw_minimap(inf, inf->mini);
 		mlx_put_image_to_window(inf->mlx, inf->win, inf->img, 0, 0);
-		mlx_put_image_to_window(inf->mlx, inf->win,
-			inf->data->gun, WIDTH - HEIGHT, (HEIGHT / 2));
+		if (inf->fire == 0)
+			mlx_put_image_to_window(inf->mlx, inf->win,
+				inf->data->gun, WIDTH - HEIGHT, (HEIGHT / 2));
+		else
+			mlx_put_image_to_window(inf->mlx, inf->win,
+				inf->data->gun_anim, WIDTH - HEIGHT, (HEIGHT / 2));
 		mlx_put_image_to_window(inf->mlx, inf->win, inf->mini_map, 30, 30);
 	}
 	// printf("\n");
