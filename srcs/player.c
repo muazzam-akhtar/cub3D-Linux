@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 17:49:05 by hawadh            #+#    #+#             */
-/*   Updated: 2022/09/27 16:26:06 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/08 19:07:15 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,18 @@ void	find_player(t_data *d, t_player *p)
 **/
 void	init_player(t_info *inf)
 {
+	static int	init;
+
 	if (!inf->player)
 	{
 		inf->player = (t_player *)ft_calloc(1, sizeof(t_player));
 		if (!inf->player)
 			err_return(7, inf);
+	}
+	if (!init)
+	{
+		inf->player->speed = 0.0556;
+		init++;
 	}
 	find_player(inf->data, inf->player);
 }

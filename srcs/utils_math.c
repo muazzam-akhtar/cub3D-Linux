@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_math.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:44:02 by makhtar           #+#    #+#             */
-/*   Updated: 2022/10/27 14:44:21 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/08 18:48:44 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,7 @@ double	euclidean(t_ray *ray, double dist, double p_ang)
 }
 
 /**
-*	if ((ray->angle >= 145 * (PI / 180) && ray->angle < 225 * (PI / 180))
-*		|| (ray->angle >= 0 && ray->angle < 45 * (PI / 180))
-*		|| (ray->angle >= 315 * (PI / 180) && ray->angle < (2 * PI)))
-*	else
-*	printf("Rays: %d\tHypotenuse: %f\tOpposite: %f\tRayAngle: %f\n",
-*		rays + 1, dist, real_dist, ray->angle * (180 / PI));
-* 	real_dist = sin(ray->angle) * dist;
+*	
 **/
 double	get_height(double dist, double r_ang, double p_ang)
 {

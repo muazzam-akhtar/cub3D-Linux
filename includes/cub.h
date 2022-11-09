@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/08 14:48:44 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/09 11:47:20 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 #  define P 35
 #  define ARROW_L 123
 #  define ARROW_R 124
+#  define SHIFT_KEY 257
 #  define ESC 53
 # endif
 
@@ -153,6 +154,7 @@ typedef struct s_rays
 	double	width;
 	double	height;
 	int		dir_wall;
+	int		side;
 }	t_rays;
 
 typedef struct s_ray
@@ -165,6 +167,17 @@ typedef struct s_ray
 	int		count;
 	int		grid_x;
 	int		grid_y;
+	double	cx;
+	double	cy;
+	double	dx;
+	double	dy;
+	int		m_x;
+	int		m_y;
+	double	x_step;
+	double	y_step;
+	double	side_dist_x;
+	double	side_dist_y;
+	int		side;
 }	t_ray;
 
 /**
@@ -181,6 +194,7 @@ typedef struct s_player
 	double		angle;
 	double		dx;
 	double		dy;
+	double		speed;
 	t_wall		wall;
 	t_rays		rays[RAYS];
 }	t_player;
@@ -320,6 +334,8 @@ void		free_data(t_info *info);
 double		sq(double num);
 double		get_dist(double x_one, double y_one, double x_two, double y_two);
 double		get_height(double dist, double r_ang, double p_ang);
+double		dda_x(double new_x, double old_x, double old_y, double ang);
+double		dda_y(double new_y, double old_y, double old_x, double ang);
 
 /**
 **	Sprites Management
@@ -424,9 +440,9 @@ int			mouse_move(int x, int y, t_info *info);
 /**
 **	RayCasting functions
 **/
+void		raycasting(t_info *inf, t_ray *ray);
 int			edge_case(double x, double y, t_info *vars);
-int			wall_hit_direction(t_ray *ray, double old_x, double old_y,
-				t_info *inf);
+int			wall_hit_direction(t_ray *ray);
 void		init_rays(t_info *inf);
 double		euclidean(t_ray *ray, double dist, double p_ang);
 

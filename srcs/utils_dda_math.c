@@ -1,47 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   directions.c                                       :+:      :+:    :+:   */
+/*   dda_math_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/05 19:30:47 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/08 14:34:33 by makhtar          ###   ########.fr       */
+/*   Created: 2022/11/08 18:48:02 by makhtar           #+#    #+#             */
+/*   Updated: 2022/11/08 19:31:31 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-void	print_map(char **str)
+double	dda_x(double new_x, double old_x, double old_y, double ang)
 {
-	int	i;
+	double	y;
+	double	diff;
 
-	i = 0;
-	while (str[i] != NULL)
-	{
-		printf("%s\n", str[i]);
-		i++;
-	}
+	diff = new_x - old_x;
+	y = ((diff) * tan(ang)) + old_y;
+	return (y);
 }
 
-/**
-**	Fetches the side of the wall when hitted with the ray
-**/
-int	wall_hit_direction(t_ray *ray)
+double	dda_y(double new_y, double old_y, double old_x, double ang)
 {
-	if (ray->side == 0)
-	{
-		if (ray->cx < 0)
-			return (3);
-		else
-			return (4);
-	}
-	else
-	{
-		if (ray->cy < 0)
-			return (1);
-		else
-			return (2);
-	}
-	return (FALSE);
+	double	x;
+	double	diff;
+
+	diff = new_y - old_y;
+	x = (diff / tan(ang)) + old_x;
+	return (x);
 }

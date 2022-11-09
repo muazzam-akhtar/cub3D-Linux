@@ -3,34 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:42:22 by makhtar           #+#    #+#             */
-/*   Updated: 2022/10/27 13:18:39 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/08 16:31:36 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
-
-/**
-**	Checks with New Coordinates of the Raycast if it hit the wall.
-**/
-static int	check_wall(t_info *inf, double x, double y)
-{
-	int	col;
-	int	row;
-
-	if ((y >= 0) && (y < ft_ptrptrlen(inf->data->map))
-		&& (x >= 0 && x < ft_strlen(inf->data->map[(int)y])))
-	{
-		row = (int)x;
-		col = (int)y;
-		if (inf->data->map[col][row] == '1')
-			return (1);
-		return (0);
-	}
-	return (1);
-}
 
 /**
 **	Initialisation of the ray structure before the calculation
@@ -88,21 +68,16 @@ static void	hit_wall_check(t_ray *ray, t_info *inf)
 	{
 		old_x = ray->x;
 		old_y = ray->y;
-		ray->x += (cos(ray->angle) * 0.01);
-		ray->y += (sin(ray->angle) * 0.01);
-		if (key_sprite(inf->data->map[(int)ray->y][(int)ray->x]))
-			check_sprite(ray, inf);
-		ray->wall = check_wall(inf, ray->x, ray->y);
+		raycasting(inf, ray);
 		if (!ray->wall && (ray->grid_x != (int)ray->x
 				&& ray->grid_y != (int)ray->y))
 			ray->wall = edge_case(ray->x, ray->y, inf);
 	}
 	inf->player->rays[RAYS - ray->count].dir_wall
-		= wall_hit_direction(ray, old_x, old_y, inf);
+		= wall_hit_direction(ray);
 	inf->player->rays[RAYS - ray->count].x = ray->x;
 	inf->player->rays[RAYS - ray->count].y = ray->y;
-	inf->player->rays[RAYS - ray->count].x = ray->x;
-	inf->player->rays[RAYS - ray->count].y = ray->y;
+	inf->player->rays[RAYS - ray->count].side = ray->side;
 	revise_calc(&inf->player->rays[RAYS - ray->count], ray, inf, 1);
 }
 /*
