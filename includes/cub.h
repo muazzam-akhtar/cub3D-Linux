@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/09 19:26:42 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/09 19:36:34 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -315,6 +315,7 @@ typedef struct s_info
 	void		*win;
 	void		*img;
 	void		*mini_map;
+	int			fire;
 	t_data		*data;
 	t_mouse		*mouse;
 	t_img		*image;
