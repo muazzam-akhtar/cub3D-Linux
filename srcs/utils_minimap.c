@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_minimap.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 19:44:52 by hawadh            #+#    #+#             */
-/*   Updated: 2022/09/29 16:20:54 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/10 14:17:17 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ void	mini_interior(t_info *info, t_mini *mini)
 				draw_mini_walls(info, x, y, 0x00000032);
 			else if (info->data->map[i][j] == 'M')
 				draw_mini_enemy(mini, x + 7, y + 7, 0x00990000);
+			else if (info->data->map[i][j] == 'D')
+				draw_mini_enemy(mini, x + 7, y + 7, 0x00005000);
 			x += MINI_SCALE;
 			j++;
 		}

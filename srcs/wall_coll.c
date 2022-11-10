@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_coll.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 21:05:19 by makhtar           #+#    #+#             */
-/*   Updated: 2022/10/05 21:07:43 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/10 18:52:09 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	wall_coll(t_info *inf, int *wall_trigger, double angle)
 	angle -= (30 * RADIAN);
 	if (angle < 0)
 		angle += 2 * PI;
+	inf->player->door_collide = 0;
 	while (inf->player->wall.count > 0)
 	{
 		inf->player->wall.x = inf->player->x_pos + (cos(angle) * 0.125);
@@ -40,6 +41,13 @@ void	wall_coll(t_info *inf, int *wall_trigger, double angle)
 			&& inf->data->map[inf->player->wall.col][inf->player->wall.row]
 			== '1'))
 			*wall_trigger = 1;
+		if (inf->player->wall.row == inf->doors[lookup_door(inf,
+					inf->player->wall.row, inf->player->wall.col)].m_x
+			&& inf->player->wall.col == inf->doors[lookup_door(inf,
+					inf->player->wall.row, inf->player->wall.col)].m_y)
+		{
+			inf->player->door_collide = 1;
+		}
 		angle += (10 * PI / 180);
 		if (angle > 2 * PI)
 			angle -= 2 * PI;
@@ -51,17 +59,17 @@ void	handle_wall_collision(t_info *inf)
 {
 	double	angle;
 
-	wall_coll(inf, &inf->player->wall.wall_front, inf->player->angle); //wall forward
+	wall_coll(inf, &inf->player->wall.wall_front, inf->player->angle);
 	angle = inf->player->angle - PI;
 	if (angle < 0)
 		angle += 2 * PI;
-	wall_coll(inf, &inf->player->wall.wall_back, angle); //wall backward
+	wall_coll(inf, &inf->player->wall.wall_back, angle);
 	angle = inf->player->angle + (PI / 2);
 	if (angle > 2 * PI)
 		angle -= 2 * PI;
-	wall_coll(inf, &inf->player->wall.wall_right, angle); //wall right
+	wall_coll(inf, &inf->player->wall.wall_right, angle);
 	angle = inf->player->angle + (3 * PI / 2);
 	if (angle > 2 * PI)
 		angle -= 2 * PI;
-	wall_coll(inf, &inf->player->wall.wall_left, angle); //wall left
+	wall_coll(inf, &inf->player->wall.wall_left, angle);
 }

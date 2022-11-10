@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:42:22 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/08 16:31:36 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/10 20:09:03 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	revise_calc(t_rays *rays, t_ray *ray, t_info *inf,
 	if (calc_height == 0)
 	{
 		if (ray->angle > 2 * PI)
-				ray->angle -= 2 * PI;
+			ray->angle -= 2 * PI;
 		if (ray->x1 > RAYS)
 			ray->x1 = RAYS;
 	}
@@ -69,9 +69,6 @@ static void	hit_wall_check(t_ray *ray, t_info *inf)
 		old_x = ray->x;
 		old_y = ray->y;
 		raycasting(inf, ray);
-		if (!ray->wall && (ray->grid_x != (int)ray->x
-				&& ray->grid_y != (int)ray->y))
-			ray->wall = edge_case(ray->x, ray->y, inf);
 	}
 	inf->player->rays[RAYS - ray->count].dir_wall
 		= wall_hit_direction(ray);
@@ -103,6 +100,11 @@ void	init_rays(t_info *inf)
 	while (ray.count > 0)
 	{
 		hit_wall_check(&ray, inf);
+		if (inf->player->door_collide == 1 && inf->player->door_flag == 1
+			&& inf->integrate == 1)
+			inf->integrate = 1;
+		else
+			inf->integrate = 0;
 		ray.y = 540 - (inf->player->rays[RAYS - ray.count].height / 2);
 		inf->player->rays[RAYS - ray.count].ang = ray.angle;
 		ray.angle += 0.000636318; // (PI / 180) * (60 / RAYS)
@@ -111,10 +113,10 @@ void	init_rays(t_info *inf)
 		ray.x1 += 1;
 		ray.count--;
 	}
-	if (inf->spr)
+	if (ray.spr != NULL)
 	{
-		free(inf->spr);
-		inf->spr = NULL;
+		free_spr(ray.spr);
+		ray.spr = NULL;
 	}
 	init_cursor(inf);
 }
