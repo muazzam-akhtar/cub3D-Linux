@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 19:44:52 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/09 19:24:48 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/10 10:19:47 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,22 @@ void	mini_interior(t_info *info, t_mini *mini)
 	int		i;
 	int		j;
 
-	i = info->player->y_pos;
-	y = MINI_DIM / 2;
+	i = info->player->y_pos - 3;
+	y = 0;
+	if (i < 0)
+	{
+		y = (i * -1) * MINI_SCALE;
+		i = 0;
+	}
 	while (info->data->map[i] && y < 180)
 	{
-		j = info->player->x_pos;
-		x = MINI_DIM / 2;
+		j = info->player->x_pos - 3;
+		x = 0;
+		if (j < 0)
+		{
+			x = (j * -1) * MINI_SCALE;
+			j = 0;
+		}
 		while (info->data->map[i][j] && x < 180)
 		{
 			if (info->data->map[i][j] == '1')

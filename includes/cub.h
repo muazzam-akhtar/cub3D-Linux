@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/09 19:36:34 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/10 09:21:56 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -408,11 +408,7 @@ void		find_player(t_data *data, t_player *player);
 void		init_minimap(t_info *info);
 void		mini_interior(t_info *info, t_mini *mini);
 void		mini_pixel_put(t_mini *mini, int x, int y, int rgb);
-
-/**
-**	Math Functions 
-**/
-double		extract_decimal(t_player *player);
+double		extract_decimal(t_player *player, char status);
 
 /**
 **	XPM Functions 

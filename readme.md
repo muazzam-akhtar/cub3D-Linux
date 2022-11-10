@@ -80,7 +80,7 @@ https://lodev.org/cgtutor/raycasting.html
 27. ***MA*** Animation effect when the AK-47 is triggered.
 28. ***MA*** Work on the management of sprites.
 29. ***MA*** Have character types for different types of sprites like D for Door, F for fire, B for barrel, etc.
-30. ***HA:***	Refactor minimap drawing in `utils_minimap.c` see `mini_interior();` on brach hawadh-minimap
+30. ***HA:***	Refactor minimap drawing in `utils_minimap.c` see `mini_interior();` on branch hawadh-minimap
 
 `#CURRENT STATUS`
 
