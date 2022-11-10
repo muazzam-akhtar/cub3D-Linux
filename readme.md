@@ -82,6 +82,7 @@ https://lodev.org/cgtutor/raycasting.html
 29. ***MA*** Have character types for different types of sprites like D for Door, F for fire, B for barrel, etc.
 30.	~~***MA*** Finished working on the parsing for doors.~~
 31. ***MA*** Allocate structure for the doors and put xpm addresses in the sprites structures when the wall hits.
+32. ***MA*** Working on Integration for the doors.
 
 `#CURRENT STATUS`
 
