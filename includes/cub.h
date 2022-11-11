@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/10 18:20:28 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/11 15:00:15 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -359,6 +359,7 @@ void		free_data(t_info *info);
 **	Math Functions
 **/
 double		sq(double num);
+double		fix_angle(double ang);
 double		get_dist(double x_one, double y_one, double x_two, double y_two);
 double		get_height(double dist, double r_ang, double p_ang);
 double		new_x_val(t_info *inf, t_ray *ray);

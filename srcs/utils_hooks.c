@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 19:28:36 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/10 20:06:29 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/11 14:21:40 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int	key_hook_manage(int hook_num, t_info *inf)
 	}
 	if (hook_num == P)
 		handle_pause(inf);
-	if (controls(hook_num))
+	if (controls(hook_num) && inf->mouse->flag == 0)
 	{
 		handle_integration(hook_num, inf);
 		moves(hook_num, inf);
@@ -115,8 +115,6 @@ int	key_hook_manage(int hook_num, t_info *inf)
 		mlx_put_image_to_window(inf->mlx, inf->win,
 			inf->mini_map, 30, 30);
 		gun_image(inf);
-		printf("Collider: %d, flag: %d, integrable: %d\n",
-			inf->player->door_collide, inf->player->door_flag, inf->integrate);
 		if (inf->integrate == 1)
 			printf("Integrating\n");
 	}

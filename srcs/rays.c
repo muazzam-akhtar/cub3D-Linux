@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:42:22 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/10 20:09:03 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/11 15:01:06 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ static void	revise_calc(t_rays *rays, t_ray *ray, t_info *inf,
 {
 	if (calc_height == 0)
 	{
-		if (ray->angle > 2 * PI)
-			ray->angle -= 2 * PI;
+		ray->angle += 0.000636318;
+		ray->angle = fix_angle(ray->angle);
 		if (ray->x1 > RAYS)
 			ray->x1 = RAYS;
 	}
@@ -92,8 +92,7 @@ void	init_rays(t_info *inf)
 	t_ray	ray;
 
 	ray.angle = inf->player->angle - (35 * RADIAN);
-	if (ray.angle < 0)
-		ray.angle += 2 * PI;
+	ray.angle = fix_angle(ray.angle);
 	ray.count = RAYS;
 	ray.x1 = 0;
 	ceiling_floor(inf);
@@ -107,16 +106,12 @@ void	init_rays(t_info *inf)
 			inf->integrate = 0;
 		ray.y = 540 - (inf->player->rays[RAYS - ray.count].height / 2);
 		inf->player->rays[RAYS - ray.count].ang = ray.angle;
-		ray.angle += 0.000636318; // (PI / 180) * (60 / RAYS)
 		revise_calc(NULL, &ray, inf, 0);
 		place_walls(inf, &inf->player->rays[RAYS - ray.count], ray.x1);
 		ray.x1 += 1;
 		ray.count--;
 	}
 	if (ray.spr != NULL)
-	{
 		free_spr(ray.spr);
-		ray.spr = NULL;
-	}
 	init_cursor(inf);
 }

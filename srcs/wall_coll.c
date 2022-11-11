@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 21:05:19 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/10 18:52:09 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/11 14:24:38 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,15 @@ void	init_wall_coll(t_wall *inf)
 	inf->x = 0;
 	inf->y = 0;
 	inf->angle = 0;
+}
+
+static void	handle_sprite_coll(t_info *inf)
+{
+	if (inf->player->wall.row == inf->doors[lookup_door(inf,
+				inf->player->wall.row, inf->player->wall.col)].m_x
+		&& inf->player->wall.col == inf->doors[lookup_door(inf,
+				inf->player->wall.row, inf->player->wall.col)].m_y)
+		inf->player->door_collide = 1;
 }
 
 void	wall_coll(t_info *inf, int *wall_trigger, double angle)
@@ -41,13 +50,7 @@ void	wall_coll(t_info *inf, int *wall_trigger, double angle)
 			&& inf->data->map[inf->player->wall.col][inf->player->wall.row]
 			== '1'))
 			*wall_trigger = 1;
-		if (inf->player->wall.row == inf->doors[lookup_door(inf,
-					inf->player->wall.row, inf->player->wall.col)].m_x
-			&& inf->player->wall.col == inf->doors[lookup_door(inf,
-					inf->player->wall.row, inf->player->wall.col)].m_y)
-		{
-			inf->player->door_collide = 1;
-		}
+		handle_sprite_coll(inf);
 		angle += (10 * PI / 180);
 		if (angle > 2 * PI)
 			angle -= 2 * PI;

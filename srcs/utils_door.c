@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_door.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/11 15:02:39 by makhtar           #+#    #+#             */
+/*   Updated: 2022/11/11 15:02:40 by makhtar          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub.h"
 
 static int	door_check(t_info *inf, int y, int x)
@@ -90,6 +102,5 @@ int	parse_doors(t_info *inf)
 		y++;
 	}
 	allocate_doors(inf, count);
-	print_door_info(inf);
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:44:02 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/08 18:48:44 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/11 14:34:40 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,15 @@
 double	sq(double num)
 {
 	return (num * num);
+}
+
+double	fix_angle(double ang)
+{
+	if (ang < 0)
+		return (ang + (2 * PI));
+	else if (ang > (2 * PI))
+		return (ang - (2 * PI));
+	return (ang);
 }
 
 double	get_dist(double x_one, double y_one, double x_two, double y_two)

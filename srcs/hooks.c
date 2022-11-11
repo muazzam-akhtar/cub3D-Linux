@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 14:33:53 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/09 19:51:07 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/11 13:56:31 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	mouse_click(int keycode, int x, int y, t_info *info)
 
 	(void)x;
 	(void)y;
-	if (keycode == 1)
+	if (keycode == 1 && info->mouse->flag == 0)
 	{
 		if (!trig)
 		{
