@@ -80,9 +80,10 @@ https://lodev.org/cgtutor/raycasting.html
 26. ~~***MA*** Work on sprites when rays will hit.~~
 28. ***MA*** Work on the management of sprites.
 29. ***MA*** Have character types for different types of sprites like D for Door, F for fire, B for barrel, etc.
-30.	~~***MA*** Finished working on the parsing for doors.~~
-31. ***MA*** Allocate structure for the doors and put xpm addresses in the sprites structures when the wall hits.
-32. ***MA*** Working on Integration for the doors.
+30. ***HA:***	Refactor minimap drawing in `utils_minimap.c` see `mini_interior();` on branch hawadh-minimap
+31.	~~***MA*** Finished working on the parsing for doors.~~
+32. ***MA*** Allocate structure for the doors and put xpm addresses in the sprites structures when the wall hits.
+33. ***MA*** Working on Integration for the doors.
 
 `#CURRENT STATUS`
 
@@ -220,7 +221,7 @@ function placed in `linux_osx_mouse.c`
 129. Implemented `if (ray->dir_wall == 1 || ray->dir_wall == 2) { xpm_x = ray->x * xpm->wi; }` in `draw.c` current lines `#38 -> #39`
 130. Fixed issue with mouse not being released on hitting pause, by implementing `int status` in function parameter `linux_osx_mouse(t_info *info, int x, int y, int status)` to only trigger mouse move when pause flag is triggered.
 131. Muazzam gave calculation `step = ((xpm->hi * xpm->wi) / ray->dist) / ray->height;` implemented in `draw.c` in current line `#46`, step was placed in `xpm->addr[]`
-133. ***<--- Leave as 133*** Branched from main to brach hawadh-minimap for minimap refactoring.
+132. Branched from main to `hawadh-minimap` branch & refactoring minimap drawing algorithm.
 
 
 `MAK:	4 July 2022`

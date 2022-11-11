@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_minimap.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 19:44:52 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/10 14:17:17 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/11 15:46:35 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	draw_mini_enemy(t_mini *mini, int x, int y, int rgb)
 		x_lmt = x_rst + 15;
 		while (x_rst < x_lmt)
 		{
-			if (x_rst > 2 && x_rst < 183 && y > 2 && y < 183)
+			if (x_rst > 2 && x_rst < MINI_DIM - 3 && y > 2 && y < MINI_DIM - 3)
 			{
 				if (x_rst == x || x_rst == x_lmt - 1
 					|| y == y_lmt - 1 || y == y_brdr)
@@ -53,14 +53,14 @@ static void	draw_mini_walls(t_info *info, int x, int y, int rgb)
 	int	x_one;
 	int	x_rst;
 
-	y_one = y + MINI_SCALE - 1;
-	while (y < y_one)
+	y_one = y + (extract_decimal(info->player, 'y') * MINI_SCALE);
+	while (y - (extract_decimal(info->player, 'y') * MINI_SCALE) < y_one)
 	{
-		x_one = x + MINI_SCALE - 1;
-		x_rst = x;
+		x_one = x + (extract_decimal(info->player, 'x') * MINI_SCALE);
+		x_rst = x - (extract_decimal(info->player, 'x') * MINI_SCALE);
 		while (x_rst < x_one)
 		{
-			if (x_rst > 2 && x_rst < 183 && y > 2 && y < 183)
+			if (y > 2 && x_rst > 2 && y < 177 && x_rst < 177)
 				mini_pixel_put(info->mini, x_rst, y, rgb);
 			x_rst++;
 		}
@@ -73,29 +73,37 @@ static void	draw_mini_walls(t_info *info, int x, int y, int rgb)
 **/
 void	mini_interior(t_info *info, t_mini *mini)
 {
-	float	y;
-	float	x;
+	double	x;
+	double	y;
 	int		i;
 	int		j;
 
 	i = info->player->y_pos - 3;
-	y = 94 - ((MINI_SCALE + 5) * 3);
-	while (i >= 0 && info->data->map[i] && y < 183)
+	y = -15;
+	if (i < 0)
+	{
+		y = (i * MINI_SCALE - 15) * -1;
+		i = 0;
+	}
+	while (info->data->map[i] && y < 180)
 	{
 		j = info->player->x_pos - 3;
-		x = 94 - ((MINI_SCALE + 5) * 3);
-		while (j >= 0 && info->data->map[i][j] && x < 183)
+		x = -15;
+		if (j < 0)
+		{
+			x = (j * MINI_SCALE -15) * -1;
+			j = 0;
+		}
+		while (info->data->map[i][j] && x < 180)
 		{
 			if (info->data->map[i][j] == '1')
-				draw_mini_walls(info, x, y, 0x00000032);
-			else if (info->data->map[i][j] == 'M')
+				draw_mini_walls(info, x, y, 0x00000066);
+			if (info->data->map[i][j] == 'M')
 				draw_mini_enemy(mini, x + 7, y + 7, 0x00990000);
-			else if (info->data->map[i][j] == 'D')
-				draw_mini_enemy(mini, x + 7, y + 7, 0x00005000);
-			x += MINI_SCALE;
 			j++;
+			x += MINI_SCALE;
 		}
-		y += MINI_SCALE;
 		i++;
+		y += MINI_SCALE;
 	}
 }

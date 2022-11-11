@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/11 15:00:15 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/11 15:45:32 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@
 # define RAYS 1920
 # define WIDTH 1920
 # define HEIGHT 1080
-# define MINI_SCALE 29
+# define MINI_DIM 180
+# define MINI_SCALE 30
 
 # include <unistd.h>
 # include <fcntl.h>
@@ -71,6 +72,7 @@ typedef enum e_compass
 	SO,
 	WE,
 	EA,
+	DO,
 }	t_pers;
 
 /**
@@ -161,6 +163,7 @@ typedef struct s_rays
 	double	height;
 	int		dir_wall;
 	int		side;
+	int		token;
 }	t_rays;
 
 typedef struct s_ray
@@ -243,6 +246,8 @@ typedef struct s_minimap
 	int		bitspix;
 	int		len;
 	int		end;
+	int		x_pos;
+	int		y_pos;
 }	t_mini;
 
 /**
@@ -424,8 +429,8 @@ void		draw_cursor(t_info *info);
 void		draw_map(t_info *info);
 void		ceiling_floor(t_info *info);
 void		draw_minimap(t_info *info, t_mini *mini);
+void		place_walls(t_info *inf, t_sprite *sprite, t_rays *ray, int x);
 void		gun_image(t_info *inf);
-void		place_walls(t_info *inf, t_rays *ray, int x);
 
 /**
 **	player struct functions
@@ -439,6 +444,7 @@ void		find_player(t_data *data, t_player *player);
 void		init_minimap(t_info *info);
 void		mini_interior(t_info *info, t_mini *mini);
 void		mini_pixel_put(t_mini *mini, int x, int y, int rgb);
+double		extract_decimal(t_player *player, char status);
 
 /**
 **	XPM Functions 
