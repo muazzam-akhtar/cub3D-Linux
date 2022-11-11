@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 09:28:29 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/11 15:41:36 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/11 19:03:48 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,23 +33,27 @@ static void	add_xpm(t_info *info, t_xpm *xpm, t_rays *ray, int x)
 	int				xpm_x;
 	int				y;
 	int				i;
+	double			temp;
 
-	xpm_y = 0;
+	temp = modf(ray->y, &temp);
+	xpm_y = temp * xpm->wi;
 	xpm_x = ray->y * xpm->wi;
 	if (ray->side == 1)
-		xpm_x = ray->x * xpm->wi;
+	{
+		temp = modf(ray->x, &temp);
+		xpm_y = 0;
+		xpm_x = temp * xpm->wi;
+	}
 	y = (HEIGHT - ray->height) / 2;
 	while (y < HEIGHT)
 	{
 		i = 0;
 		while (i < 4 && y >= 0 && xpm_y >= 0)
 		{
-			if (y >= 0 && xpm_y < ray->height)
-				info->image->addr[((x * 4) + 4 * (WIDTH * y)) + i]
-					= xpm->addr[((xpm_x * 4) + 4 * (xpm->wi * y)) + i];
+			info->image->addr[((x * 4) + 4 * (WIDTH * y)) + i]
+				= xpm->addr[((xpm_x * 4) + 4 * (xpm->wi * xpm_y)) + i];
 			i++;
 		}
-		xpm_y++;
 		y++;
 	}
 }
