@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/11 15:43:31 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/11 15:45:32 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #  include "../minilibx_opengl/mlx.h"
 #  define W 13
 #  define D 2
+#  define E 14
 #  define A 0
 #  define S 1
 #  define P 35
@@ -138,6 +139,9 @@ typedef struct s_sprite
 	double	height;
 	void	*prev;
 	void	*next;
+	int		open;
+	int		token;
+	int		index;
 }	t_sprite;
 
 /**
@@ -188,6 +192,21 @@ typedef struct s_ray
 }	t_ray;
 
 /**
+**	Door Structure
+*/
+typedef struct s_door
+{
+	int		open;
+	int		m_x;
+	int		m_y;
+	int		i;
+	double	y_pos;
+	double	x_pos;
+	double	dist;
+	double	height;
+}				t_door;
+
+/**
 **	Player Structure
 *	view	Orientation, N,S,W,E
 *	y_pos	Position on Y
@@ -202,10 +221,11 @@ typedef struct s_player
 	double		dx;
 	double		dy;
 	double		speed;
+	int			door_flag;
+	int			door_collide;
 	t_wall		wall;
 	t_rays		rays[RAYS];
-}	t_player;
-
+}				t_player;
 typedef struct s_xpm
 {
 	void	*img;
@@ -322,6 +342,8 @@ typedef struct s_info
 	void		*img;
 	void		*mini_map;
 	int			fire;
+	int			n_doors;
+	int			integrate;
 	t_data		*data;
 	t_mouse		*mouse;
 	t_img		*image;
@@ -329,6 +351,7 @@ typedef struct s_info
 	t_sprite	*sprite;
 	t_player	*player;
 	t_sprite	**spr;
+	t_door		*doors;
 }	t_info;
 
 /**
@@ -337,10 +360,11 @@ typedef struct s_info
 void		free_split(char **str);
 void		free_data(t_info *info);
 
-/**
+/**                       
 **	Math Functions
 **/
 double		sq(double num);
+double		fix_angle(double ang);
 double		get_dist(double x_one, double y_one, double x_two, double y_two);
 double		get_height(double dist, double r_ang, double p_ang);
 double		new_x_val(t_info *inf, t_ray *ray);
@@ -350,10 +374,14 @@ double		new_y_val(t_info *inf, t_ray *ray);
 **	Sprites Management
 **/
 int			key_sprite(int c);
-void		dup_values(t_sprite *new_spr, t_sprite *old_spr, t_ray *ray);
-t_sprite	**new_alloc_sprite(t_sprite **old_spr);
-void		check_sprite(t_ray *ray, t_info *inf);
+void		free_spr(t_sprite *spr);
 void		working_spr(t_info *inf, t_ray *ray);
+
+/**
+**	Doors Functions
+*/
+int			parse_doors(t_info *inf);
+int			lookup_door(t_info *inf, int x, int y);
 
 /**
 **	Parsing Functions
@@ -453,7 +481,6 @@ int			mouse_move(int x, int y, t_info *info);
 **	RayCasting functions
 **/
 void		raycasting(t_info *inf, t_ray *ray);
-int			edge_case(double x, double y, t_info *vars);
 int			wall_hit_direction(t_ray *ray);
 void		init_rays(t_info *inf);
 double		euclidean(t_ray *ray, double dist, double p_ang);

@@ -1,47 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   directions.c                                       :+:      :+:    :+:   */
+/*   doors.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/05 19:30:47 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/10 15:26:56 by makhtar          ###   ########.fr       */
+/*   Created: 2022/11/10 15:09:32 by makhtar           #+#    #+#             */
+/*   Updated: 2022/11/10 18:05:24 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-void	print_map(char **str)
+int	lookup_door(t_info *inf, int x, int y)
 {
 	int	i;
 
 	i = 0;
-	while (str[i] != NULL)
+	while (i < inf->n_doors)
 	{
-		printf("%s\n", str[i]);
+		if (y == inf->doors[i].m_y && x == inf->doors[i].m_x)
+			return (i);
 		i++;
 	}
-}
-
-/**
-**	Fetches the side of the wall when hitted with the ray
-**/
-int	wall_hit_direction(t_ray *ray)
-{
-	if (ray->side == 0)
-	{
-		if (ray->cx < 0)
-			return (3);
-		else
-			return (4);
-	}
-	else
-	{
-		if (ray->cy < 0)
-			return (1);
-		else
-			return (2);
-	}
-	return (FALSE);
+	return (EXIT_FAILURE);
 }

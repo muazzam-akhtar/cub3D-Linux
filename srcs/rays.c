@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:42:22 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/10 16:59:44 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/11 15:45:48 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ static void	revise_calc(t_rays *rays, t_ray *ray, t_info *inf,
 {
 	if (calc_height == 0)
 	{
-		if (ray->angle > 2 * PI)
-				ray->angle -= 2 * PI;
+		ray->angle += 0.000636318;
+		ray->angle = fix_angle(ray->angle);
 		if (ray->x1 > RAYS)
 			ray->x1 = RAYS;
 	}
@@ -69,9 +69,6 @@ static void	hit_wall_check(t_ray *ray, t_info *inf)
 		old_x = ray->x;
 		old_y = ray->y;
 		raycasting(inf, ray);
-		if (!ray->wall && (ray->grid_x != (int)ray->x
-				&& ray->grid_y != (int)ray->y))
-			ray->wall = edge_case(ray->x, ray->y, inf);
 	}
 	inf->player->rays[RAYS - ray->count].dir_wall
 		= wall_hit_direction(ray);
@@ -95,26 +92,26 @@ void	init_rays(t_info *inf)
 	t_ray	ray;
 
 	ray.angle = inf->player->angle - (35 * RADIAN);
-	if (ray.angle < 0)
-		ray.angle += 2 * PI;
+	ray.angle = fix_angle(ray.angle);
 	ray.count = RAYS;
 	ray.x1 = 0;
 	ceiling_floor(inf);
 	while (ray.count > 0)
 	{
 		hit_wall_check(&ray, inf);
+		if (inf->player->door_collide == 1 && inf->player->door_flag == 1
+			&& inf->integrate == 1)
+			inf->integrate = 1;
+		else
+			inf->integrate = 0;
 		ray.y = 540 - (inf->player->rays[RAYS - ray.count].height / 2);
 		inf->player->rays[RAYS - ray.count].ang = ray.angle;
-		ray.angle += 0.000636318; // (PI / 180) * (60 / RAYS)
 		revise_calc(NULL, &ray, inf, 0);
 		place_walls(inf, inf->sprite, &inf->player->rays[RAYS - ray.count], ray.x1);
 		ray.x1 += 1;
 		ray.count--;
 	}
-	if (inf->spr)
-	{
-		free(inf->spr);
-		inf->spr = NULL;
-	}
+	if (ray.spr != NULL)
+		free_spr(ray.spr);
 	init_cursor(inf);
 }

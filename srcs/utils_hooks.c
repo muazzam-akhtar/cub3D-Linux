@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 19:28:36 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/09 19:48:30 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/11 14:21:40 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,32 @@ int	controls(int keycode)
 		return (TRUE);
 	else if (keycode == SHIFT_KEY)
 		return (TRUE);
+	else if (keycode == E)
+		return (TRUE);
 	return (FALSE);
+}
+
+static void	handle_integration(int hook_num, t_info *inf)
+{
+	int	index;
+
+	if (hook_num == SHIFT_KEY)
+	{
+		if (inf->player->speed == 0.15)
+			inf->player->speed = 0.0556;
+		else
+			inf->player->speed = 0.15;
+	}
+	else if (hook_num == E)
+	{
+		inf->integrate = 1;
+		index = lookup_door(inf, (int)inf->player->x_pos,
+				(int)inf->player->y_pos);
+		if (inf->player->door_collide == 1 && inf->player->door_flag == 1
+			&& inf->data->map[inf->doors[index].m_y][inf->doors[index].m_x]
+			== 'D')
+			inf->integrate = 1;
+	}
 }
 
 /**
@@ -73,6 +98,7 @@ int	controls(int keycode)
 **/
 int	key_hook_manage(int hook_num, t_info *inf)
 {
+	inf->integrate = 0;
 	if (hook_num == ESC)
 	{
 		esc_win(inf);
@@ -80,21 +106,17 @@ int	key_hook_manage(int hook_num, t_info *inf)
 	}
 	if (hook_num == P)
 		handle_pause(inf);
-	if (controls(hook_num))
+	if (controls(hook_num) && inf->mouse->flag == 0)
 	{
-		if (hook_num == SHIFT_KEY)
-		{
-			if (inf->player->speed == 0.15)
-				inf->player->speed = 0.0556;
-			else
-				inf->player->speed = 0.15;
-		}
+		handle_integration(hook_num, inf);
 		moves(hook_num, inf);
 		draw_minimap(inf, inf->mini);
 		mlx_put_image_to_window(inf->mlx, inf->win, inf->img, 0, 0);
 		mlx_put_image_to_window(inf->mlx, inf->win,
 			inf->mini_map, 30, 30);
 		gun_image(inf);
+		if (inf->integrate == 1)
+			printf("Integrating\n");
 	}
 	return (EXIT_SUCCESS);
 }

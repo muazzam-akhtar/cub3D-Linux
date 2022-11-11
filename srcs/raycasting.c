@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 18:49:26 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/09 20:28:15 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/11 14:21:00 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static void	init_dda_vars(t_info *inf, t_ray *ray)
 {
+	static int	n;
+
 	ray->cx = cos(ray->angle);
 	ray->cy = sin(ray->angle);
 	ray->dx = sqrt(1 + (sq(ray->cy) / sq(ray->cx)));
@@ -23,6 +25,11 @@ static void	init_dda_vars(t_info *inf, t_ray *ray)
 	ray->wall = 0;
 	ray->spr = NULL;
 	ray->spr_len = 0;
+	if (n == 0)
+		inf->player->door_flag = 0;
+	if (n == 1920)
+		n = 0;
+	n++;
 }
 
 void	init_x_y_steps(t_info *inf, t_ray *ray)
@@ -51,6 +58,16 @@ void	init_x_y_steps(t_info *inf, t_ray *ray)
 	}
 }
 
+void	handle_sprite_lookups(t_info *inf, t_ray *ray)
+{
+	if (inf->doors[lookup_door(inf, ray->m_x, ray->m_y)].m_x
+		== ray->m_x && inf->doors[lookup_door(inf, ray->m_x, ray->m_y)].m_y
+		== ray->m_y)
+		working_spr(inf, ray);
+	else if (key_sprite(inf->data->map[ray->m_y][ray->m_x]))
+		working_spr(inf, ray);
+}
+
 /*
 **	side = 0 or 1 indicates x_coordinate hit or y-coordinate
 */
@@ -58,6 +75,7 @@ void	raycasting(t_info *inf, t_ray *ray)
 {
 	init_dda_vars(inf, ray);
 	init_x_y_steps(inf, ray);
+	handle_sprite_lookups(inf, ray);
 	while (!ray->wall)
 	{
 		if (ray->side_dist_x < ray->side_dist_y)
@@ -74,8 +92,7 @@ void	raycasting(t_info *inf, t_ray *ray)
 		}
 		if (inf->data->map[ray->m_y][ray->m_x] == '1')
 			ray->wall = 1;
-		else if (key_sprite(inf->data->map[ray->m_y][ray->m_x]))
-			working_spr(inf, ray);
+		handle_sprite_lookups(inf, ray);
 	}
 	if (ray->side == 0)
 		ray->y = new_y_val(inf, ray);

@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:29:29 by hawadh            #+#    #+#             */
-/*   Updated: 2022/10/18 17:02:43 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/10 15:45:44 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 **/
 static int	init(t_info *info)
 {
+	if (parse_doors(info))
+		return (EXIT_FAILURE);
 	info->mlx = mlx_init();
 	if (!info->mlx)
 		return (EXIT_FAILURE);

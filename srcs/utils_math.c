@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:44:02 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/10 15:33:03 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/11 15:46:02 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,15 @@ double	extract_decimal(t_player *player, char status)
 double	sq(double num)
 {
 	return (num * num);
+}
+
+double	fix_angle(double ang)
+{
+	if (ang < 0)
+		return (ang + (2 * PI));
+	else if (ang > (2 * PI))
+		return (ang - (2 * PI));
+	return (ang);
 }
 
 double	get_dist(double x_one, double y_one, double x_two, double y_two)
