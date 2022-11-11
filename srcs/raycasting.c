@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 18:49:26 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/11 14:21:00 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/11 18:03:02 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,36 @@ void	handle_sprite_lookups(t_info *inf, t_ray *ray)
 		working_spr(inf, ray);
 }
 
+void	raycast_door(t_info *inf)
+{
+	double	x;
+	double	y;
+	double	ang;
+	int		door;
+
+	door = 0;
+	ang = inf->player->angle;
+	x = inf->player->x_pos + cos(ang);
+	y = inf->player->y_pos + sin(ang);
+	// if (inf->doors[lookup_door(inf,
+	// 			(int)inf->player->x_pos, (int)inf->player->y_pos)].i >= 0)
+	// {
+	// 	if ((int)inf->player->x_pos == inf->doors[lookup_door(inf,
+	// 				(int)inf->player->x_pos, (int)inf->player->y_pos)].x_pos
+	// 		&& (int)inf->player->y_pos == inf->doors[lookup_door(inf, (int)x,
+	// 				(int)y)].y_pos)
+	// 		inf->integrate = 0;
+	// }
+	x += cos(ang);
+	y += sin(ang);
+	// while ((int)x == (int)inf->player->x_pos || (int)y == (int)inf->player->y_pos)
+	// {
+	// 	x += cos(ang);
+	// 	y += sin(ang);
+	// }
+	printf("Dist: %f\n", get_dist(x, y, inf->player->x_pos, inf->player->y_pos));
+}
+
 /*
 **	side = 0 or 1 indicates x_coordinate hit or y-coordinate
 */
@@ -75,7 +105,8 @@ void	raycasting(t_info *inf, t_ray *ray)
 {
 	init_dda_vars(inf, ray);
 	init_x_y_steps(inf, ray);
-	handle_sprite_lookups(inf, ray);
+	if (inf->integrate == 1)
+		raycast_door(inf);
 	while (!ray->wall)
 	{
 		if (ray->side_dist_x < ray->side_dist_y)

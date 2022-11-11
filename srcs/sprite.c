@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 17:09:19 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/10 20:02:41 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/11 17:25:23 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,6 @@ void	working_spr(t_info *inf, t_ray *ray)
 		ray->spr->prev = old;
 		ray->spr->next = NULL;
 	}
-	if (inf->doors[lookup_door(inf, ray->m_x, ray->m_y)].m_x == ray->m_x
-		&& inf->doors[lookup_door(inf, ray->m_x, ray->m_y)].m_y == ray->m_y)
-		ray->spr->token = 'D';
-	if (ray->spr->token == 'D')
-		inf->player->door_flag = 1;
 	place_vals_spr(inf, ray);
 }
 

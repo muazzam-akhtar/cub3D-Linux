@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 19:28:36 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/11 15:23:55 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/11 19:28:17 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,6 @@ int	controls(int keycode)
 
 static void	handle_integration(int hook_num, t_info *inf)
 {
-	int	index;
-
 	if (hook_num == SHIFT_KEY)
 	{
 		if (inf->player->speed == 0.15)
@@ -80,12 +78,6 @@ static void	handle_integration(int hook_num, t_info *inf)
 	else if (hook_num == E)
 	{
 		inf->integrate = 1;
-		index = lookup_door(inf, (int)inf->player->x_pos,
-				(int)inf->player->y_pos);
-		if (inf->player->door_collide == 1 && inf->player->door_flag == 1
-			&& inf->data->map[inf->doors[index].m_y][inf->doors[index].m_x]
-			== 'D')
-			inf->integrate = 1;
 	}
 }
 
@@ -98,6 +90,7 @@ static void	handle_integration(int hook_num, t_info *inf)
 **/
 int	key_hook_manage(int hook_num, t_info *inf)
 {
+	(void)inf;
 	inf->integrate = 0;
 	if (hook_num == ESC)
 	{
@@ -115,11 +108,11 @@ int	key_hook_manage(int hook_num, t_info *inf)
 		mlx_put_image_to_window(inf->mlx, inf->win,
 			inf->mini_map, 30, 30);
 		gun_image(inf);
-		printf("Collider: %d, Flag: %d, Integrate: %d\n",
-			inf->player->door_collide, inf->player->door_flag, inf->integrate);
+		// printf("Collider: %d, Flag: %d, Integrate: %d\n",
+			// inf->player->door_collide, inf->player->door_flag, inf->integrate);
 		if (inf->integrate == 1)
 		{
-			printf("Integrating\n");
+			// printf("Integrating\n");
 			if (inf->doors[lookup_door(inf, inf->player->wall.row,
 						inf->player->wall.col)].open == 0)
 				inf->doors[lookup_door(inf, inf->player->wall.row,
@@ -128,6 +121,8 @@ int	key_hook_manage(int hook_num, t_info *inf)
 						inf->player->wall.col)].open == 1)
 				inf->doors[lookup_door(inf, inf->player->wall.row,
 						inf->player->wall.col)].open = 0;
+			// printf("Wall Trigger: %d, Open: %d\n", inf->player->wall.wall_front, inf->doors[lookup_door(inf, inf->player->wall.row,
+			// 			inf->player->wall.col)].open);
 		}
 	}
 	return (EXIT_SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 15:09:32 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/10 18:05:24 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/11 16:57:06 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ int	lookup_door(t_info *inf, int x, int y)
 			return (i);
 		i++;
 	}
-	return (EXIT_FAILURE);
+	return (-1);
 }

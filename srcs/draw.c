@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 09:28:29 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/11 15:41:36 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/11 19:54:58 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,46 @@ static void	add_xpm(t_info *info, t_xpm *xpm, t_rays *ray, int x)
 	int				xpm_x;
 	int				y;
 	int				i;
+	// static int		iter;
+	double			fraction;
+	double			check;
+	int				tex_x;
+	int				tex_y;
 
 	xpm_y = 0;
 	xpm_x = ray->y * xpm->wi;
 	if (ray->side == 1)
-		xpm_x = ray->x * xpm->wi;
+	{
+		fraction = modf(ray->x, &check);
+		tex_x = fraction * 64;
+		tex_y = 0;
+	}
+	else
+	{
+		if (cos(ray->ang) < 0)
+			tex_x = 64;
+		else
+			tex_x = 0;
+	}
+	xpm_x = tex_x;
+	xpm_y = 0;
 	y = (HEIGHT - ray->height) / 2;
+	while (y < HEIGHT)
+	{
+		i = 0;
+		while (i < 4 && y >= 0 && xpm_y >= 0)
+		{
+			if (y >= 0 && xpm_y < ray->height)
+				info->image->addr[((x * 4) + 4 * (WIDTH * y)) + i]
+					= xpm->addr[((xpm_x * 4) + 4 * (xpm_y * 4)) + i];
+			i++;
+		}
+		xpm_y++;
+		y++;
+	}
+}
+
+/*
 	while (y < HEIGHT)
 	{
 		i = 0;
@@ -52,7 +86,7 @@ static void	add_xpm(t_info *info, t_xpm *xpm, t_rays *ray, int x)
 		xpm_y++;
 		y++;
 	}
-}
+*/
 
 static void	add_sprite(t_info *inf, t_sprite *spr, t_rays *ray, int x)
 {

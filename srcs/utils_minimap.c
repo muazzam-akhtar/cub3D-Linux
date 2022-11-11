@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_minimap.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 19:44:52 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/11 15:46:35 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/11 17:00:39 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ static void	draw_mini_walls(t_info *info, int x, int y, int rgb)
 	int	x_one;
 	int	x_rst;
 
-	y_one = y + (extract_decimal(info->player, 'y') * MINI_SCALE);
-	while (y - (extract_decimal(info->player, 'y') * MINI_SCALE) < y_one)
+	y_one = y + MINI_SCALE;
+	while (y < y_one - 1)
 	{
-		x_one = x + (extract_decimal(info->player, 'x') * MINI_SCALE);
-		x_rst = x - (extract_decimal(info->player, 'x') * MINI_SCALE);
-		while (x_rst < x_one)
+		x_one = x + MINI_SCALE;
+		x_rst = x;
+		while (x_rst < x_one - 1)
 		{
 			if (y > 2 && x_rst > 2 && y < 177 && x_rst < 177)
 				mini_pixel_put(info->mini, x_rst, y, rgb);
