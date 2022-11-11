@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:42:22 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/08 16:31:36 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/10 16:59:44 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	init_rays(t_info *inf)
 		inf->player->rays[RAYS - ray.count].ang = ray.angle;
 		ray.angle += 0.000636318; // (PI / 180) * (60 / RAYS)
 		revise_calc(NULL, &ray, inf, 0);
-		place_walls(inf, &inf->player->rays[RAYS - ray.count], ray.x1);
+		place_walls(inf, inf->sprite, &inf->player->rays[RAYS - ray.count], ray.x1);
 		ray.x1 += 1;
 		ray.count--;
 	}

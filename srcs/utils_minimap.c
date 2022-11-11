@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 19:44:52 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/10 10:19:47 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/10 20:27:09 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,15 @@ static void	draw_mini_walls(t_info *info, int x, int y, int rgb)
 	int	x_one;
 	int	x_rst;
 
-	y_one = y + MINI_SCALE;
-	while (y < y_one)
+	y_one = y + (extract_decimal(info->player, 'y') * MINI_SCALE);
+	while (y - (extract_decimal(info->player, 'y') * MINI_SCALE) < y_one)
 	{
-		x_one = x + MINI_SCALE;
-		x_rst = x;
+		x_one = x + (extract_decimal(info->player, 'x') * MINI_SCALE);
+		x_rst = x - (extract_decimal(info->player, 'x') * MINI_SCALE);
 		while (x_rst < x_one)
 		{
-			mini_pixel_put(info->mini, x_rst, y, rgb);
+			if (y > 2 && x_rst > 2 && y < 177 && x_rst < 177)
+				mini_pixel_put(info->mini, x_rst, y, rgb);
 			x_rst++;
 		}
 		y++;
@@ -78,19 +79,19 @@ void	mini_interior(t_info *info, t_mini *mini)
 	int		j;
 
 	i = info->player->y_pos - 3;
-	y = 0;
+	y = -15;
 	if (i < 0)
 	{
-		y = (i * -1) * MINI_SCALE;
+		y = (i * MINI_SCALE - 15) * -1;
 		i = 0;
 	}
 	while (info->data->map[i] && y < 180)
 	{
 		j = info->player->x_pos - 3;
-		x = 0;
+		x = -15;
 		if (j < 0)
 		{
-			x = (j * -1) * MINI_SCALE;
+			x = (j * MINI_SCALE -15) * -1;
 			j = 0;
 		}
 		while (info->data->map[i][j] && x < 180)

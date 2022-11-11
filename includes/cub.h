@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/10 09:21:56 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/10 17:28:45 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef enum e_compass
 	SO,
 	WE,
 	EA,
+	DO,
 }	t_pers;
 
 /**
@@ -156,6 +157,7 @@ typedef struct s_rays
 	double	height;
 	int		dir_wall;
 	int		side;
+	int		token;
 }	t_rays;
 
 typedef struct s_ray
@@ -394,7 +396,7 @@ void		draw_cursor(t_info *info);
 void		draw_map(t_info *info);
 void		ceiling_floor(t_info *info);
 void		draw_minimap(t_info *info, t_mini *mini);
-void		place_walls(t_info *inf, t_rays *ray, int x);
+void		place_walls(t_info *inf, t_sprite *sprite, t_rays *ray, int x);
 
 /**
 **	player struct functions
