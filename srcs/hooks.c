@@ -6,11 +6,21 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 14:33:53 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/09 19:34:40 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/09 19:51:07 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
+
+void	gun_animation(t_info *info)
+{
+	info->fire = 0;
+	draw_minimap(info, info->mini);
+	mlx_put_image_to_window(info->mlx, info->win, info->img, 0, 0);
+	mlx_put_image_to_window(info->mlx, info->win,
+		info->mini_map, 30, 30);
+	gun_image(info);
+}
 
 int	mouse_click(int keycode, int x, int y, t_info *info)
 {
@@ -26,20 +36,13 @@ int	mouse_click(int keycode, int x, int y, t_info *info)
 			mlx_put_image_to_window(info->mlx, info->win, info->img, 0, 0);
 			mlx_put_image_to_window(info->mlx, info->win,
 				info->mini_map, 30, 30);
-			mlx_put_image_to_window(info->mlx, info->win,
-				info->data->gun_anim, WIDTH - HEIGHT, (HEIGHT / 2));
 			info->fire = 1;
+			gun_image(info);
 			trig = 1;
 		}
 		else
 		{
-			draw_minimap(info, info->mini);
-			mlx_put_image_to_window(info->mlx, info->win, info->img, 0, 0);
-			mlx_put_image_to_window(info->mlx, info->win,
-				info->mini_map, 30, 30);
-			mlx_put_image_to_window(info->mlx, info->win,
-				info->data->gun, WIDTH - HEIGHT, (HEIGHT / 2));
-			info->fire = 0;
+			gun_animation(info);
 			trig = 0;
 		}
 	}

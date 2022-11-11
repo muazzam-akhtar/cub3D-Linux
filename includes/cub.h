@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/10 17:28:45 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/11 15:43:31 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,8 @@ typedef struct s_sprite
 	double	ang;
 	double	dist;
 	double	height;
+	void	*prev;
+	void	*next;
 }	t_sprite;
 
 /**
@@ -162,25 +164,27 @@ typedef struct s_rays
 
 typedef struct s_ray
 {
-	double	angle;
-	double	x;
-	double	y;
-	double	x1;
-	int		wall;
-	int		count;
-	int		grid_x;
-	int		grid_y;
-	double	cx;
-	double	cy;
-	double	dx;
-	double	dy;
-	int		m_x;
-	int		m_y;
-	double	x_step;
-	double	y_step;
-	double	side_dist_x;
-	double	side_dist_y;
-	int		side;
+	double		angle;
+	double		x;
+	double		y;
+	double		x1;
+	int			wall;
+	int			count;
+	int			grid_x;
+	int			grid_y;
+	double		cx;
+	double		cy;
+	double		dx;
+	double		dy;
+	int			m_x;
+	int			m_y;
+	double		x_step;
+	double		y_step;
+	double		side_dist_x;
+	double		side_dist_y;
+	int			side;
+	t_sprite	*spr;
+	int			spr_len;
 }	t_ray;
 
 /**
@@ -339,8 +343,8 @@ void		free_data(t_info *info);
 double		sq(double num);
 double		get_dist(double x_one, double y_one, double x_two, double y_two);
 double		get_height(double dist, double r_ang, double p_ang);
-double		dda_x(double new_x, double old_x, double old_y, double ang);
-double		dda_y(double new_y, double old_y, double old_x, double ang);
+double		new_x_val(t_info *inf, t_ray *ray);
+double		new_y_val(t_info *inf, t_ray *ray);
 
 /**
 **	Sprites Management
@@ -349,6 +353,7 @@ int			key_sprite(int c);
 void		dup_values(t_sprite *new_spr, t_sprite *old_spr, t_ray *ray);
 t_sprite	**new_alloc_sprite(t_sprite **old_spr);
 void		check_sprite(t_ray *ray, t_info *inf);
+void		working_spr(t_info *inf, t_ray *ray);
 
 /**
 **	Parsing Functions
@@ -397,6 +402,7 @@ void		draw_map(t_info *info);
 void		ceiling_floor(t_info *info);
 void		draw_minimap(t_info *info, t_mini *mini);
 void		place_walls(t_info *inf, t_sprite *sprite, t_rays *ray, int x);
+void		gun_image(t_info *inf);
 
 /**
 **	player struct functions
