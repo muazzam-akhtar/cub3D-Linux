@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 09:28:29 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/13 17:40:19 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/13 20:19:39 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,27 +22,6 @@ void	my_pixel_put(t_info *inf, int x, int y, uint32_t rgb)
 	draw = inf->image->addr
 		+ (y * inf->image->len + x * (inf->image->bitspix / 8));
 	*(unsigned int *)draw = rgb;
-}
-
-uint32_t	get_color(t_info *inf, int tex_x, int tex_y, t_xpm *xpm)
-{
-	uint32_t		color;
-	unsigned char	addr[5];
-	unsigned int	j;
-
-	j = 0;
-	color = 0;
-	while (j < 4)
-	{
-		addr[j] = *(xpm->addr + ((tex_y * xpm->len)
-					+ (tex_x * (xpm->bitspix / 8)) + j));
-		j++;
-	}
-	color = addr[0]
-		| addr[1] << 8
-		| addr[2] << 16
-		| addr[3] << 24;
-	return (color);
 }
 
 /**
@@ -71,29 +50,15 @@ static void	add_xpm(t_info *info, t_xpm *xpm, t_rays *ray, int x)
 	while (y < HEIGHT && y < end)
 	{
 		xpm_y = ((1.0 * abs(y - start)) / abs(end - start) * xpm->hi);
-		my_pixel_put(info, x, y, get_color(info, xpm_x, xpm_y, xpm));
+		my_pixel_put(info, x, y, get_color(xpm_x, xpm_y, xpm));
 		y++;
 	}
 }
 
-/*
-	while (y < HEIGHT)
-	{
-		i = 0;
-		while (i < 4 && y >= 0 && xpm_y >= 0)
-		{
-			if (y >= 0 && xpm_y < ray->height)
-				info->image->addr[((x * 4) + 4 * (WIDTH * y)) + i]
-					= xpm->addr[((xpm_x * 4) + 4 * (xpm->wi * y)) + i];
-			i++;
-		}
-		xpm_y++;
-		y++;
-	}
-*/
-
 static void	add_sprite(t_info *inf, t_sprite *spr, t_rays *ray, int x)
 {
+	if (spr->token == 'D')
+		printf("Yes\n");
 	(void)inf;
 	(void)spr;
 	(void)ray;
@@ -105,7 +70,7 @@ static void	add_sprite(t_info *inf, t_sprite *spr, t_rays *ray, int x)
 /**
 **	Calls xpm struct based on player orientation
 **/
-void	place_walls(t_info *inf, t_sprite *spr, t_rays *ray, int x)
+void	place_walls(t_info *inf, t_rays *ray, int x)
 {
 	static int	old_colour;
 
@@ -122,7 +87,7 @@ void	place_walls(t_info *inf, t_sprite *spr, t_rays *ray, int x)
 	if (ray->token == 5)
 		add_xpm(inf, &inf->data->xpm[DO], ray, x);
 	if (ray->token == 6)
-		add_sprite(inf, spr, ray, x);
+		add_sprite(inf, ray->spr, ray, x);
 	else if (ray->dir_wall == 0 || ray->dir_wall == 5)
 	{
 		add_xpm(inf, &inf->data->xpm[old_colour - 1], ray, x);

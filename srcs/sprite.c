@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 17:09:19 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/11 17:25:23 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/13 20:09:47 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static void	place_vals_spr(t_info *inf, t_ray *ray)
 {
+	int	index;
+
 	ray->spr->x_grid = ray->m_x;
 	ray->spr->y_grid = ray->m_y;
 	ray->spr->token = inf->data->map[ray->m_y][ray->m_x];
@@ -32,7 +34,9 @@ static void	place_vals_spr(t_info *inf, t_ray *ray)
 			inf->player->x_pos, inf->player->y_pos);
 	ray->spr->height = get_height(ray->spr->dist, ray->spr->ang,
 			inf->player->angle);
-	if (ray->spr->token == 'D')
+	index = lookup_door(inf, ray->spr->x_grid, ray->spr->y_grid);
+	if (index >= 0 && (inf->doors[index].x_pos == ray->spr->x_grid)
+		&& (inf->doors[index].y_pos == ray->spr->y_grid))
 	{
 		ray->spr->index = lookup_door(inf, ray->m_x, ray->m_y);
 		ray->spr->open = inf->doors[ray->spr->index].open;
@@ -58,6 +62,7 @@ void	working_spr(t_info *inf, t_ray *ray)
 		ray->spr->prev = old;
 		ray->spr->next = NULL;
 	}
+	ray->token = 6;
 	place_vals_spr(inf, ray);
 }
 

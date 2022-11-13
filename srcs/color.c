@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gun_image.c                                        :+:      :+:    :+:   */
+/*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 19:43:00 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/13 20:31:31 by makhtar          ###   ########.fr       */
+/*   Created: 2022/11/13 19:20:19 by makhtar           #+#    #+#             */
+/*   Updated: 2022/11/13 19:20:20 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-void	gun_image(t_info *inf)
+uint32_t	get_color(int tex_x, int tex_y, t_xpm *xpm)
 {
-	if (inf->fire == 0)
-		mlx_put_image_to_window(inf->mlx, inf->win,
-			inf->data->gun, WIDTH - HEIGHT, (HEIGHT / 2));
-	else
-		mlx_put_image_to_window(inf->mlx, inf->win,
-			inf->data->gun_anim, WIDTH - HEIGHT, (HEIGHT / 2));
+	uint32_t		color;
+	unsigned char	addr[5];
+	unsigned int	j;
+
+	j = 0;
+	color = 0;
+	while (j < 4)
+	{
+		addr[j] = *(xpm->addr + ((tex_y * xpm->len)
+					+ (tex_x * (xpm->bitspix / 8)) + j));
+		j++;
+	}
+	color = addr[0]
+		| addr[1] << 8
+		| addr[2] << 16
+		| addr[3] << 24;
+	return (color);
 }

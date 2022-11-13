@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 21:05:19 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/13 19:01:59 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/13 19:23:24 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	wall_coll(t_info *inf, int *wall_trigger, double angle)
 			&& inf->data->map[inf->player->wall.col][inf->player->wall.row]
 			== '1'))
 			*wall_trigger = 1;
-		// handle_sprite_coll(inf, wall_trigger);
+		handle_sprite_coll(inf, wall_trigger);
 		angle += (10 * PI / 180);
 		angle = fix_angle(angle);
 		inf->player->wall.count--;

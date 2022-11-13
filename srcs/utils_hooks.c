@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 19:28:36 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/11 19:28:17 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/13 20:28:05 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,22 +108,6 @@ int	key_hook_manage(int hook_num, t_info *inf)
 		mlx_put_image_to_window(inf->mlx, inf->win,
 			inf->mini_map, 30, 30);
 		gun_image(inf);
-		// printf("Collider: %d, Flag: %d, Integrate: %d\n",
-			// inf->player->door_collide, inf->player->door_flag, inf->integrate);
-		if (inf->integrate == 1)
-		{
-			// printf("Integrating\n");
-			if (inf->doors[lookup_door(inf, inf->player->wall.row,
-						inf->player->wall.col)].open == 0)
-				inf->doors[lookup_door(inf, inf->player->wall.row,
-						inf->player->wall.col)].open = 1;
-			else if (inf->doors[lookup_door(inf, inf->player->wall.row,
-						inf->player->wall.col)].open == 1)
-				inf->doors[lookup_door(inf, inf->player->wall.row,
-						inf->player->wall.col)].open = 0;
-			// printf("Wall Trigger: %d, Open: %d\n", inf->player->wall.wall_front, inf->doors[lookup_door(inf, inf->player->wall.row,
-			// 			inf->player->wall.col)].open);
-		}
 	}
 	return (EXIT_SUCCESS);
 }
