@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_math.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:44:02 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/11 15:46:02 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/13 19:11:23 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,6 @@ double	sq(double num)
 	return (num * num);
 }
 
-double	fix_angle(double ang)
-{
-	if (ang < 0)
-		return (ang + (2 * PI));
-	else if (ang > (2 * PI))
-		return (ang - (2 * PI));
-	return (ang);
-}
-
 double	get_dist(double x_one, double y_one, double x_two, double y_two)
 {
 	double	dist;
@@ -86,6 +77,6 @@ double	get_height(double dist, double r_ang, double p_ang)
 	c_angle = r_ang - p_ang;
 	if (c_angle < 0)
 		c_angle += 2 * PI;
-	height = (BLOCK_SIZE * 277) / dist;
+	height = (BLOCK_SIZE * 150) / dist;
 	return (height);
 }

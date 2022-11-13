@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/11 15:45:32 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/13 14:25:13 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -424,7 +424,7 @@ int			esc_win(t_info *info);
 /**
 **	Drawing Functions
 **/
-void		my_pixel_put(t_info *inf, int x, int y, int rgb);
+void		my_pixel_put(t_info *inf, int x, int y, uint32_t rgb);
 void		draw_cursor(t_info *info);
 void		draw_map(t_info *info);
 void		ceiling_floor(t_info *info);

@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 09:28:29 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/11 19:54:58 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/13 17:40:19 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /**
 **	Custom pixel put
 **/
-void	my_pixel_put(t_info *inf, int x, int y, int rgb)
+void	my_pixel_put(t_info *inf, int x, int y, uint32_t rgb)
 {
 	char	*draw;
 
@@ -24,50 +24,54 @@ void	my_pixel_put(t_info *inf, int x, int y, int rgb)
 	*(unsigned int *)draw = rgb;
 }
 
+uint32_t	get_color(t_info *inf, int tex_x, int tex_y, t_xpm *xpm)
+{
+	uint32_t		color;
+	unsigned char	addr[5];
+	unsigned int	j;
+
+	j = 0;
+	color = 0;
+	while (j < 4)
+	{
+		addr[j] = *(xpm->addr + ((tex_y * xpm->len)
+					+ (tex_x * (xpm->bitspix / 8)) + j));
+		j++;
+	}
+	color = addr[0]
+		| addr[1] << 8
+		| addr[2] << 16
+		| addr[3] << 24;
+	return (color);
+}
+
 /**
 **	Function to calculate size of xpm and add them to image
 **/
 static void	add_xpm(t_info *info, t_xpm *xpm, t_rays *ray, int x)
-{		
-	int				xpm_y;
-	int				xpm_x;
-	int				y;
-	int				i;
-	// static int		iter;
-	double			fraction;
-	double			check;
-	int				tex_x;
-	int				tex_y;
+{
+	int			xpm_x;
+	int			xpm_y;
+	int			start;
+	int			end;
+	int			y;
+	double		tex_x;
 
-	xpm_y = 0;
-	xpm_x = ray->y * xpm->wi;
-	if (ray->side == 1)
+	tex_x = modf(ray->x, &tex_x);
+	xpm_x = (int)(tex_x * xpm->wi);
+	if (ray->side == 0)
+		xpm_x = (ray->y * xpm->wi);
+	if (ray->side == 1 && sin(ray->ang) < 0)
+		xpm_x = WIDTH - xpm_x - 1;
+	start = (HEIGHT / 2) - (ray->height / 2);
+	end = (HEIGHT / 2) + (ray->height / 2);
+	y = ((HEIGHT - ray->height) / 2);
+	if (y < 0)
+		y = 0;
+	while (y < HEIGHT && y < end)
 	{
-		fraction = modf(ray->x, &check);
-		tex_x = fraction * 64;
-		tex_y = 0;
-	}
-	else
-	{
-		if (cos(ray->ang) < 0)
-			tex_x = 64;
-		else
-			tex_x = 0;
-	}
-	xpm_x = tex_x;
-	xpm_y = 0;
-	y = (HEIGHT - ray->height) / 2;
-	while (y < HEIGHT)
-	{
-		i = 0;
-		while (i < 4 && y >= 0 && xpm_y >= 0)
-		{
-			if (y >= 0 && xpm_y < ray->height)
-				info->image->addr[((x * 4) + 4 * (WIDTH * y)) + i]
-					= xpm->addr[((xpm_x * 4) + 4 * (xpm_y * 4)) + i];
-			i++;
-		}
-		xpm_y++;
+		xpm_y = ((1.0 * abs(y - start)) / abs(end - start) * xpm->hi);
+		my_pixel_put(info, x, y, get_color(info, xpm_x, xpm_y, xpm));
 		y++;
 	}
 }

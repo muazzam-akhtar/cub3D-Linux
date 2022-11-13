@@ -1,7 +1,7 @@
-NO ./imgs/northWall.xpm
-SO ./imgs/southWall.xpm
-WE ./imgs/westWall.xpm
-EA ./imgs/eastWall.xpm
+NO ./imgs/nW.xpm
+SO ./imgs/sW.xpm
+WE ./imgs/eW.xpm
+EA ./imgs/wW.xpm
 
 C 53,180,220
 F 100,100,100
@@ -10,7 +10,7 @@ F 100,100,100
               101
              11D11
             1000001
-           1000N0001
+           1000S0001
      111111000000000111111
      100000001000100000001
      100001001000100000001
