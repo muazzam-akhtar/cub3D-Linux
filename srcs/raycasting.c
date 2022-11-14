@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 18:49:26 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/13 20:23:12 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/14 15:03:48 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,15 @@ void	init_x_y_steps(t_info *inf, t_ray *ray)
 
 void	handle_sprite_lookups(t_info *inf, t_ray *ray)
 {
-	if (inf->doors[lookup_door(inf, ray->m_x, ray->m_y)].m_x
-		== ray->m_x && inf->doors[lookup_door(inf, ray->m_x, ray->m_y)].m_y
+	int	index;
+
+	index = lookup_door(inf, ray->m_x, ray->m_y);
+	if (index >= 0 && inf->doors[index].m_x
+		== ray->m_x && inf->doors[index].m_y
 		== ray->m_y)
-		working_spr(inf, ray);
+		working_spr(inf, ray, index);
 	else if (key_sprite(inf->data->map[ray->m_y][ray->m_x]))
-		working_spr(inf, ray);
+		working_spr(inf, ray, index);
 }
 
 void	raycast_door(t_info *inf)
@@ -137,7 +140,7 @@ void	raycasting(t_info *inf, t_ray *ray)
 		}
 		if (inf->data->map[ray->m_y][ray->m_x] == '1')
 			ray->wall = 1;
-		// handle_sprite_lookups(inf, ray);
+		handle_sprite_lookups(inf, ray);
 	}
 	if (ray->side == 0)
 		ray->y = new_y_val(inf, ray);

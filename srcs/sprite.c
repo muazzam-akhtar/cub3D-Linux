@@ -6,16 +6,14 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 17:09:19 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/13 20:09:47 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/14 15:05:50 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-static void	place_vals_spr(t_info *inf, t_ray *ray)
+static void	place_vals_spr(t_info *inf, t_ray *ray, int index)
 {
-	int	index;
-
 	ray->spr->x_grid = ray->m_x;
 	ray->spr->y_grid = ray->m_y;
 	ray->spr->token = inf->data->map[ray->m_y][ray->m_x];
@@ -34,16 +32,17 @@ static void	place_vals_spr(t_info *inf, t_ray *ray)
 			inf->player->x_pos, inf->player->y_pos);
 	ray->spr->height = get_height(ray->spr->dist, ray->spr->ang,
 			inf->player->angle);
-	index = lookup_door(inf, ray->spr->x_grid, ray->spr->y_grid);
+	if (index == -1)
+		return ;
 	if (index >= 0 && (inf->doors[index].x_pos == ray->spr->x_grid)
 		&& (inf->doors[index].y_pos == ray->spr->y_grid))
 	{
-		ray->spr->index = lookup_door(inf, ray->m_x, ray->m_y);
+		ray->spr->index = index;
 		ray->spr->open = inf->doors[ray->spr->index].open;
 	}
 }
 
-void	working_spr(t_info *inf, t_ray *ray)
+void	working_spr(t_info *inf, t_ray *ray, int index)
 {
 	t_sprite	*old;
 
@@ -63,7 +62,7 @@ void	working_spr(t_info *inf, t_ray *ray)
 		ray->spr->next = NULL;
 	}
 	ray->token = 6;
-	place_vals_spr(inf, ray);
+	place_vals_spr(inf, ray, index);
 }
 
 /*

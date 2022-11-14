@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 09:28:29 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/14 13:59:53 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/14 16:24:45 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	add_xpm(t_info *info, t_xpm *xpm, t_rays *ray, int x)
 	y = ((HEIGHT - ray->height) / 2);
 	if (y < 0)
 		y = 0;
-	while (y < HEIGHT && y < end)
+	while (y < HEIGHT && y < end - 4)
 	{
 		xpm_y = ((1.0 * abs(y - start)) / abs(end - start) * xpm->hi);
 		if (xpm_y > xpm->hi)

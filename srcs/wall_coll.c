@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 21:05:19 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/13 19:23:24 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/14 15:57:57 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ static void	handle_sprite_coll(t_info *inf, int *wall_trigger)
 	if (index >= 0 && inf->player->wall.row == inf->doors[index].m_x
 		&& inf->player->wall.col == inf->doors[index].m_y)
 	{
-		if (inf->doors[lookup_door(inf, inf->player->wall.row,
-					inf->player->wall.col)].open == 0)
+		if (inf->doors[index].open == 0)
 			*wall_trigger = 1;
+		// printf("Check\n");
 	}
 	else if (!inf->data->map[inf->player->wall.col][inf->player->wall.row]
 			|| (inf->data->map[inf->player->wall.col][inf->player->wall.row]
@@ -61,7 +61,8 @@ void	wall_coll(t_info *inf, int *wall_trigger, double angle)
 			&& inf->data->map[inf->player->wall.col][inf->player->wall.row]
 			== '1'))
 			*wall_trigger = 1;
-		handle_sprite_coll(inf, wall_trigger);
+		else
+			handle_sprite_coll(inf, wall_trigger);
 		angle += (10 * PI / 180);
 		angle = fix_angle(angle);
 		inf->player->wall.count--;

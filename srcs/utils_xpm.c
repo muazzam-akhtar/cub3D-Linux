@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 20:06:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/13 14:30:14 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/14 15:17:24 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	open_xpm(t_info *info, t_data *data, size_t len)
 	int		y;
 
 	i = 0;
-	data->xpm = (t_xpm *)ft_calloc(4, sizeof(t_xpm));
+	data->xpm = (t_xpm *)ft_calloc(4 + 1, sizeof(t_xpm));
 	while (i < len)
 	{
 		if (i < 4)
@@ -48,6 +48,7 @@ static int	open_xpm(t_info *info, t_data *data, size_t len)
 			data->confg[i] = ft_strdup(data->file[i]);
 		i++;
 	}
+	get_xpm_addr(info, &data->xpm[i], "./imgs/door1.xpm");
 	data->gun = mlx_xpm_file_to_image(info->mlx, "./imgs/Ak47.xpm", &x, &y);
 	data->gun_anim = mlx_xpm_file_to_image(info->mlx, "./imgs/Ak47Fired.xpm",
 			&x, &y);

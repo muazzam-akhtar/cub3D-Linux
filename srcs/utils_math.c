@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:44:02 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/13 19:11:23 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/14 14:57:24 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ double	get_height(double dist, double r_ang, double p_ang)
 	double	height;
 	double	c_angle;
 
-	c_angle = r_ang - p_ang;
+	(void)p_ang;
+	c_angle = r_ang;
 	if (c_angle < 0)
 		c_angle += 2 * PI;
 	height = (BLOCK_SIZE * 150) / dist;
