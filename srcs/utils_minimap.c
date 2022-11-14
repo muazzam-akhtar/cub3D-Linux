@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 19:44:52 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/14 14:07:51 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/14 16:21:57 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	draw_mini_walls(t_info *info, int x, int y, int rgb)
 	int				x_rst;
 	static int		flag;
 
-	if (flag)
+	if (!flag)
 	{
 		y_one = y + (extract_decimal(info->player, 'y') * MINI_SCALE);
 		y -= (extract_decimal(info->player, 'y') * MINI_SCALE);
@@ -64,7 +64,7 @@ static void	draw_mini_walls(t_info *info, int x, int y, int rgb)
 	while (y < y_one - 1)
 	{
 		x_rst = x;
-		if (flag)
+		if (!flag)
 		{
 			x_one = x + (extract_decimal(info->player, 'x') * MINI_SCALE);
 			x_rst = x - (extract_decimal(info->player, 'x') * MINI_SCALE);

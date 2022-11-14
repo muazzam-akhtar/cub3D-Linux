@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 09:28:29 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/14 18:46:09 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/14 18:58:06 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,8 @@ static void	add_xpm(t_info *info, t_xpm *xpm, t_rays *ray, int x)
 	int			start;
 	int			end;
 	int			y;
-	double		tex_x;
 
-	tex_x = modf(ray->x, &tex_x);
-	xpm_x = (int)(tex_x * xpm->wi);
+	xpm_x = (int)(modf(ray->x, &ray->x) * xpm->wi);
 	if (ray->side == 0)
 		xpm_x = (ray->y * xpm->wi);
 	if (ray->side == 1 && sin(ray->ang) < 0)
