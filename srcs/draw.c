@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 09:28:29 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/13 20:19:39 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/14 13:59:53 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,9 @@ static void	add_xpm(t_info *info, t_xpm *xpm, t_rays *ray, int x)
 	while (y < HEIGHT && y < end)
 	{
 		xpm_y = ((1.0 * abs(y - start)) / abs(end - start) * xpm->hi);
-		my_pixel_put(info, x, y, get_color(xpm_x, xpm_y, xpm));
+		if (xpm_y > xpm->hi)
+			xpm_y = xpm->hi - 1;
+		my_pixel_put(info, x, y, get_color(ray, xpm_x, xpm_y, xpm));
 		y++;
 	}
 }

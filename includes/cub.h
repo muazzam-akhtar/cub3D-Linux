@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/13 20:20:50 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/14 13:26:49 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -426,7 +426,7 @@ int			esc_win(t_info *info);
 /**
 **	Drawing Functions
 **/
-uint32_t	get_color(int tex_x, int tex_y, t_xpm *xpm);
+uint32_t	get_color(t_rays *ray, int tex_x, int tex_y, t_xpm *xpm);
 void		my_pixel_put(t_info *inf, int x, int y, uint32_t rgb);
 void		draw_cursor(t_info *info);
 void		draw_map(t_info *info);
