@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:42:22 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/13 20:23:43 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/14 14:58:45 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,6 @@ static void	hit_wall_check(t_ray *ray, t_info *inf)
 	inf->player->rays[RAYS - ray->count].side = ray->side;
 	revise_calc(&inf->player->rays[RAYS - ray->count], ray, inf, 1);
 }
-/*
-**	// printf("Angle of the player: %f, Height: %f, Angle of the ray: %f\n",
-**	// 	(inf->player->angle * (180 / PI)), inf->player->rays[1920
-**	// 	- ray->count].height, (inf->player->rays[1920 - ray->count].ang
-* (180 / PI)));*/
 
 // static void	reverse_list(t_ray *ray)
 // {

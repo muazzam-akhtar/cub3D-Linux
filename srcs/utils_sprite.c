@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 17:02:45 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/10 14:14:43 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/14 18:34:32 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,7 @@
 
 int	key_sprite(int c)
 {
-	if (c == 'U')
-		return (TRUE);
-	else if (c == 'V')
-		return (TRUE);
-	else if (c == 'W')
+	if (c == 'C')
 		return (TRUE);
 	else if (c == 'D')
 		return (TRUE);

@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/14 13:26:49 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/14 15:08:46 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -310,6 +310,7 @@ typedef struct s_data
 	char	*pause;
 	char	*gun;
 	char	*gun_anim;
+	char	*door;
 	t_xpm	*xpm;
 	t_floor	floor;
 	t_ceil	ceil;
@@ -377,7 +378,7 @@ double		new_y_val(t_info *inf, t_ray *ray);
 **/
 int			key_sprite(int c);
 void		free_spr(t_sprite *spr);
-void		working_spr(t_info *inf, t_ray *ray);
+void		working_spr(t_info *inf, t_ray *ray, int index);
 
 /**
 **	Doors Functions
