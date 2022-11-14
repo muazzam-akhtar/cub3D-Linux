@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 19:44:52 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/14 16:21:57 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/14 21:50:32 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ static void	draw_mini_enemy(t_mini *mini, int x, int y, int rgb)
 
 /**
 **	Draws walls on minimap
+*	TODO:	Need to adjust subtraction and addition of decimal point
 **/
 static void	draw_mini_walls(t_info *info, int x, int y, int rgb)
 {

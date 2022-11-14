@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 20:06:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/14 19:03:00 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/14 20:13:41 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,7 @@ static int	open_xpm(t_info *info, t_data *data, size_t len)
 		if (i < 4)
 			get_xpm_addr(info, &data->xpm[i], data->confg[i]);
 		if (i > 3)
-		{
 			data->confg[i] = ft_strdup(data->file[i]);
-			printf("%s\n", data->confg[i]);
-		}
 		i++;
 	}
 	if (init_bonus_xpm(info, data))

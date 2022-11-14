@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_math.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:44:02 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/14 14:57:24 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/14 21:49:49 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,19 @@
 
 /**
 **	Extracts Decimal point.
+*	TODO:	Check first iteration old_y will always be less than y_pos etc;
 **/
 double	extract_decimal(t_player *player, char status)
 {
 	double			diff;
+	static int		init;
 	static double	old_y;
 	static double	old_x;
 
 	if (status == 'y')
 	{
+		if (!init)
+			old_y = player->y_pos;
 		diff = modf(player->y_pos, &diff);
 		if (old_y < player->y_pos)
 			diff *= -1;
@@ -30,11 +34,14 @@ double	extract_decimal(t_player *player, char status)
 	}
 	if (status == 'x')
 	{
+		if (!init)
+			old_x = player->x_pos;
 		diff = modf(player->x_pos, &diff);
 		if (old_x < player->x_pos)
 			diff *= -1;
 		old_x = player->x_pos;
 	}
+	init = 1;
 	return (diff);
 }
 
