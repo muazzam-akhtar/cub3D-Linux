@@ -6,7 +6,7 @@
 #    By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/21 16:36:51 by hawadh            #+#    #+#              #
-#    Updated: 2022/11/10 18:04:05 by makhtar          ###   ########.fr        #
+#    Updated: 2022/11/13 19:20:59 by makhtar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRCS		=	./srcs/main.c ./srcs/parse_file.c ./srcs/errors.c \
 				./srcs/basic_movements.c ./srcs/doors.c ./srcs/directions.c \
 				./srcs/linux_osx_mouse.c ./srcs/utils_type.c ./srcs/utils_sprite.c ./srcs/sprite.c \
 				./srcs/raycasting.c ./srcs/utils_dda_math.c ./srcs/gun_image.c ./srcs/utils_door.c \
+				./srcs/angle.c ./srcs/color.c \
 
 MLX			=	libmlx.a
 
@@ -54,6 +55,8 @@ OBJS		=	${SRCS:.c=.o}
 CC			=	gcc
 
 CFLAGS 		+= -Wall -Werror -Wextra -g3
+
+# CFLAGS 		+= -Wall -Werror -Wextra -g3
 
 ${NAME}:	${OBJS}
 			${MAKE} -C ${GNLDIR}

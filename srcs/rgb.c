@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rgb.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:29:28 by hawadh            #+#    #+#             */
-/*   Updated: 2022/07/12 18:10:43 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/14 13:10:52 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,23 @@
 **/
 size_t	rgb(t_data *data, int status)
 {
-	size_t	rgb;
+	uint32_t	rgb;
+	uint32_t	col;
 
-	rgb = 0x00FFFFFF;
+	rgb = 0xFFFFFFFF;
 	if (status == 0)
 	{
-		rgb += data->ceil.red << 16 & rgb;
-		rgb += data->ceil.green << 8 & rgb;
-		rgb += data->ceil.blue & rgb;
+		col = ((rgb >> 16 & data->ceil.red) << 8);
+		col += (rgb >> 8 & data->ceil.green);
+		col = col << 8;
+		col += (data->ceil.blue & rgb);
 	}
 	if (status == 1)
 	{
-		rgb += data->floor.red << 16 & rgb;
-		rgb += data->floor.green << 8 & rgb;
-		rgb += data->floor.blue & rgb;
+		col = ((rgb >> 16 & data->floor.red) << 8);
+		col += (rgb >> 8 & data->floor.green);
+		col = col << 8;
+		col += (data->floor.blue & rgb);
 	}
-	return (rgb);
+	return (col);
 }

@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 18:49:26 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/11 14:21:00 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/13 20:23:12 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,50 @@ void	handle_sprite_lookups(t_info *inf, t_ray *ray)
 		working_spr(inf, ray);
 }
 
+void	raycast_door(t_info *inf)
+{
+	double		x;
+	double		y;
+	double		ang;
+	int			door;
+	static int	counter;
+
+	if (!counter)
+	{
+		door = 0;
+		x = inf->player->x_pos;
+		y = inf->player->y_pos;
+		if (inf->doors[lookup_door(inf, (int)x,
+					(int)y)].x_pos == (int)x
+			&& inf->doors[lookup_door(inf, (int)x,
+					(int)y)].y_pos == (int)y)
+		{
+			inf->integrate = 0;
+			return ;
+		}
+		ang = inf->player->angle;
+		while ((int)x != inf->doors[lookup_door(inf, (int)x, (int)y)].m_x
+			&& (int)y != inf->doors[lookup_door(inf, (int)x, (int)y)].m_y)
+		{
+			x += cos(ang);
+			y += sin(ang);
+			door++;
+			if (door == 3)
+			{
+				inf->integrate = 0;
+				return ;
+			}
+		}
+		if (inf->doors[lookup_door(inf, (int)x, (int)y)].open == 1)
+			inf->doors[lookup_door(inf, (int)x, (int)y)].open = 0;
+		else if (inf->doors[lookup_door(inf, (int)x, (int)y)].open == 0)
+			inf->doors[lookup_door(inf, (int)x, (int)y)].open = 1;
+	}
+	counter++;
+	if (counter == 1920)
+		counter = 0;
+}
+
 /*
 **	side = 0 or 1 indicates x_coordinate hit or y-coordinate
 */
@@ -75,7 +119,8 @@ void	raycasting(t_info *inf, t_ray *ray)
 {
 	init_dda_vars(inf, ray);
 	init_x_y_steps(inf, ray);
-	handle_sprite_lookups(inf, ray);
+	if (inf->integrate == 1)
+		raycast_door(inf);
 	while (!ray->wall)
 	{
 		if (ray->side_dist_x < ray->side_dist_y)
@@ -92,7 +137,7 @@ void	raycasting(t_info *inf, t_ray *ray)
 		}
 		if (inf->data->map[ray->m_y][ray->m_x] == '1')
 			ray->wall = 1;
-		handle_sprite_lookups(inf, ray);
+		// handle_sprite_lookups(inf, ray);
 	}
 	if (ray->side == 0)
 		ray->y = new_y_val(inf, ray);

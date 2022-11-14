@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/11 15:45:32 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/14 13:26:49 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,15 +155,16 @@ typedef struct s_sprite
 **/
 typedef struct s_rays
 {
-	double	dist;
-	double	ang;
-	double	x;
-	double	y;
-	double	width;
-	double	height;
-	int		dir_wall;
-	int		side;
-	int		token;
+	double		dist;
+	double		ang;
+	double		x;
+	double		y;
+	double		width;
+	double		height;
+	int			dir_wall;
+	int			side;
+	int			token;
+	t_sprite	*spr;
 }	t_rays;
 
 typedef struct s_ray
@@ -189,6 +190,7 @@ typedef struct s_ray
 	int			side;
 	t_sprite	*spr;
 	int			spr_len;
+	int			token;
 }	t_ray;
 
 /**
@@ -424,12 +426,13 @@ int			esc_win(t_info *info);
 /**
 **	Drawing Functions
 **/
-void		my_pixel_put(t_info *inf, int x, int y, int rgb);
+uint32_t	get_color(t_rays *ray, int tex_x, int tex_y, t_xpm *xpm);
+void		my_pixel_put(t_info *inf, int x, int y, uint32_t rgb);
 void		draw_cursor(t_info *info);
 void		draw_map(t_info *info);
 void		ceiling_floor(t_info *info);
 void		draw_minimap(t_info *info, t_mini *mini);
-void		place_walls(t_info *inf, t_sprite *sprite, t_rays *ray, int x);
+void		place_walls(t_info *inf, t_rays *ray, int x);
 void		gun_image(t_info *inf);
 
 /**

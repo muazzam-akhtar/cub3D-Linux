@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:42:22 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/11 15:45:48 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/13 20:23:43 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,14 @@ static void	hit_wall_check(t_ray *ray, t_info *inf)
 **	// 	- ray->count].height, (inf->player->rays[1920 - ray->count].ang
 * (180 / PI)));*/
 
+// static void	reverse_list(t_ray *ray)
+// {
+// 	while (ray->spr && ray->spr->prev != NULL)
+// 	{
+// 		ray->spr = ray->spr->prev;
+// 	}
+// }
+
 /**
 **	The Main Process of the raycasting which deals with pixel
 **	put for ceiling, floor, walls
@@ -104,14 +112,19 @@ void	init_rays(t_info *inf)
 			inf->integrate = 1;
 		else
 			inf->integrate = 0;
-		ray.y = 540 - (inf->player->rays[RAYS - ray.count].height / 2);
 		inf->player->rays[RAYS - ray.count].ang = ray.angle;
 		revise_calc(NULL, &ray, inf, 0);
-		place_walls(inf, inf->sprite, &inf->player->rays[RAYS - ray.count], ray.x1);
+		place_walls(inf, &inf->player->rays[RAYS - ray.count],
+			ray.x1);
+		// if (ray.token == 6)
+		// {
+		// 	inf->player->rays[RAYS - ray.count].spr = ray.spr;
+		// 	reverse_list(&ray);
+		// 	place_walls(inf, &inf->player->rays[RAYS - ray.count], ray.x1);
+		// 	free_spr(ray.spr);
+		// }
 		ray.x1 += 1;
 		ray.count--;
 	}
-	if (ray.spr != NULL)
-		free_spr(ray.spr);
 	init_cursor(inf);
 }

@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 09:28:29 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/11 19:03:48 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/14 14:07:22 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /**
 **	Custom pixel put
 **/
-void	my_pixel_put(t_info *inf, int x, int y, int rgb)
+void	my_pixel_put(t_info *inf, int x, int y, uint32_t rgb)
 {
 	char	*draw;
 
@@ -28,38 +28,39 @@ void	my_pixel_put(t_info *inf, int x, int y, int rgb)
 **	Function to calculate size of xpm and add them to image
 **/
 static void	add_xpm(t_info *info, t_xpm *xpm, t_rays *ray, int x)
-{		
-	int				xpm_y;
-	int				xpm_x;
-	int				y;
-	int				i;
-	double			temp;
+{
+	int			xpm_x;
+	int			xpm_y;
+	int			start;
+	int			end;
+	int			y;
+	double		tex_x;
 
-	temp = modf(ray->y, &temp);
-	xpm_y = temp * xpm->wi;
-	xpm_x = ray->y * xpm->wi;
-	if (ray->side == 1)
+	tex_x = modf(ray->x, &tex_x);
+	xpm_x = (int)(tex_x * xpm->wi);
+	if (ray->side == 0)
+		xpm_x = (ray->y * xpm->wi);
+	if (ray->side == 1 && sin(ray->ang) < 0)
+		xpm_x = WIDTH - xpm_x - 1;
+	start = (HEIGHT / 2) - (ray->height / 2);
+	end = (HEIGHT / 2) + (ray->height / 2);
+	y = ((HEIGHT - ray->height) / 2);
+	if (y < 0)
+		y = 0;
+	while (y < HEIGHT && y < end)
 	{
-		temp = modf(ray->x, &temp);
-		xpm_y = 0;
-		xpm_x = temp * xpm->wi;
-	}
-	y = (HEIGHT - ray->height) / 2;
-	while (y < HEIGHT)
-	{
-		i = 0;
-		while (i < 4 && y >= 0 && xpm_y >= 0)
-		{
-			info->image->addr[((x * 4) + 4 * (WIDTH * y)) + i]
-				= xpm->addr[((xpm_x * 4) + 4 * (xpm->wi * xpm_y)) + i];
-			i++;
-		}
+		xpm_y = ((1.0 * abs(y - start)) / abs(end - start) * xpm->hi);
+		if (xpm_y > xpm->hi)
+			xpm_y = xpm->hi - 1;
+		my_pixel_put(info, x, y, get_color(ray, xpm_x, xpm_y, xpm));
 		y++;
 	}
 }
 
 static void	add_sprite(t_info *inf, t_sprite *spr, t_rays *ray, int x)
 {
+	if (spr->token == 'D')
+		printf("Yes\n");
 	(void)inf;
 	(void)spr;
 	(void)ray;
@@ -71,7 +72,7 @@ static void	add_sprite(t_info *inf, t_sprite *spr, t_rays *ray, int x)
 /**
 **	Calls xpm struct based on player orientation
 **/
-void	place_walls(t_info *inf, t_sprite *spr, t_rays *ray, int x)
+void	place_walls(t_info *inf, t_rays *ray, int x)
 {
 	static int	old_colour;
 
@@ -88,7 +89,7 @@ void	place_walls(t_info *inf, t_sprite *spr, t_rays *ray, int x)
 	if (ray->token == 5)
 		add_xpm(inf, &inf->data->xpm[DO], ray, x);
 	if (ray->token == 6)
-		add_sprite(inf, spr, ray, x);
+		add_sprite(inf, ray->spr, ray, x);
 	else if (ray->dir_wall == 0 || ray->dir_wall == 5)
 	{
 		add_xpm(inf, &inf->data->xpm[old_colour - 1], ray, x);

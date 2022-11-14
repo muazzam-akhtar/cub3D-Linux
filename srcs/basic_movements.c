@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:40:38 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/08 19:08:34 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/13 19:06:44 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	move_frwrd(t_info *inf)
 	{
 		row = inf->player->x_pos + inf->player->dx;
 		col = inf->player->y_pos + inf->player->dy;
-		if (inf->data->map[col][row] == '1' || inf->player->wall.wall_front)
+		if (inf->data->map[col][row] == '1' || (inf->player->wall.wall_front))
 			return ;
 		inf->data->map[(int)inf->player->y_pos][(int)inf->player->x_pos] = '0';
 		inf->player->x_pos += inf->player->dx;

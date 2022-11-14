@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 21:05:19 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/11 14:24:38 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/13 19:23:24 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,24 @@ void	init_wall_coll(t_wall *inf)
 	inf->angle = 0;
 }
 
-static void	handle_sprite_coll(t_info *inf)
+static void	handle_sprite_coll(t_info *inf, int *wall_trigger)
 {
-	if (inf->player->wall.row == inf->doors[lookup_door(inf,
-				inf->player->wall.row, inf->player->wall.col)].m_x
-		&& inf->player->wall.col == inf->doors[lookup_door(inf,
-				inf->player->wall.row, inf->player->wall.col)].m_y)
-		inf->player->door_collide = 1;
+	int	index;
+
+	index = lookup_door(inf, inf->player->wall.row, inf->player->wall.col);
+	if (index >= 0 && inf->player->wall.row == inf->doors[index].m_x
+		&& inf->player->wall.col == inf->doors[index].m_y)
+	{
+		if (inf->doors[lookup_door(inf, inf->player->wall.row,
+					inf->player->wall.col)].open == 0)
+			*wall_trigger = 1;
+	}
+	else if (!inf->data->map[inf->player->wall.col][inf->player->wall.row]
+			|| (inf->data->map[inf->player->wall.col][inf->player->wall.row]
+			&& inf->data->map[inf->player->wall.col][inf->player->wall.row]
+			== key_sprite(inf->data->map[inf->player->wall.col]
+			[inf->player->wall.row]) != 0))
+		*wall_trigger = 1;
 }
 
 void	wall_coll(t_info *inf, int *wall_trigger, double angle)
@@ -50,10 +61,9 @@ void	wall_coll(t_info *inf, int *wall_trigger, double angle)
 			&& inf->data->map[inf->player->wall.col][inf->player->wall.row]
 			== '1'))
 			*wall_trigger = 1;
-		handle_sprite_coll(inf);
+		handle_sprite_coll(inf, wall_trigger);
 		angle += (10 * PI / 180);
-		if (angle > 2 * PI)
-			angle -= 2 * PI;
+		angle = fix_angle(angle);
 		inf->player->wall.count--;
 	}
 }
@@ -61,18 +71,18 @@ void	wall_coll(t_info *inf, int *wall_trigger, double angle)
 void	handle_wall_collision(t_info *inf)
 {
 	double	angle;
+	int		collider;
 
 	wall_coll(inf, &inf->player->wall.wall_front, inf->player->angle);
+	collider = inf->player->door_collide;
 	angle = inf->player->angle - PI;
-	if (angle < 0)
-		angle += 2 * PI;
+	angle = fix_angle(angle);
 	wall_coll(inf, &inf->player->wall.wall_back, angle);
 	angle = inf->player->angle + (PI / 2);
-	if (angle > 2 * PI)
-		angle -= 2 * PI;
+	angle = fix_angle(angle);
 	wall_coll(inf, &inf->player->wall.wall_right, angle);
 	angle = inf->player->angle + (3 * PI / 2);
-	if (angle > 2 * PI)
-		angle -= 2 * PI;
+	angle = fix_angle(angle);
 	wall_coll(inf, &inf->player->wall.wall_left, angle);
+	inf->player->door_collide = collider;
 }
