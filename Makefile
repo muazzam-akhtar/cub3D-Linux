@@ -6,7 +6,7 @@
 #    By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/21 16:36:51 by hawadh            #+#    #+#              #
-#    Updated: 2022/11/13 19:20:59 by makhtar          ###   ########.fr        #
+#    Updated: 2022/11/14 20:25:14 by makhtar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,8 +53,6 @@ endif
 OBJS		=	${SRCS:.c=.o}
 
 CC			=	gcc
-
-CFLAGS 		+= -Wall -Werror -Wextra -g3
 
 # CFLAGS 		+= -Wall -Werror -Wextra -g3
 

@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 19:20:19 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/14 18:44:15 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/14 20:56:26 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ uint32_t	get_color(t_rays *ray, int tex_x, int tex_y, t_xpm *xpm)
 		| (addr[1] << 8)
 		| (addr[2] << 16)
 		| (addr[3] << 24);
-	color = get_gradient(color, ray);
+	if (ray && ray != NULL)
+		color = get_gradient(color, ray);
 	return (color);
 }

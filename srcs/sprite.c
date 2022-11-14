@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 17:09:19 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/14 15:05:50 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/14 19:53:38 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,18 @@ static void	place_vals_spr(t_info *inf, t_ray *ray, int index)
 		ray->spr->x_pos = new_x_val(inf, ray);
 		ray->spr->y_pos = ray->y;
 	}
+	ray->spr->side = ray->side;
 	ray->spr->ang = ray->angle;
-	ray->spr->dist = get_dist(ray->spr->x_pos, ray->spr->y_pos,
-			inf->player->x_pos, inf->player->y_pos);
+	ray->spr->dist = euclidean(ray, get_dist(ray->spr->x_pos, ray->spr->y_pos,
+				inf->player->x_pos, inf->player->y_pos), inf->player->angle);
 	ray->spr->height = get_height(ray->spr->dist, ray->spr->ang,
 			inf->player->angle);
 	if (index == -1)
 		return ;
-	if (index >= 0 && (inf->doors[index].x_pos == ray->spr->x_grid)
-		&& (inf->doors[index].y_pos == ray->spr->y_grid))
+	if (index >= 0 && (inf->doors[index].m_x == ray->spr->x_grid)
+		&& (inf->doors[index].m_y == ray->spr->y_grid))
 	{
+		ray->token = 5;
 		ray->spr->index = index;
 		ray->spr->open = inf->doors[ray->spr->index].open;
 	}

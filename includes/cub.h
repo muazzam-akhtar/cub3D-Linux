@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/14 15:08:46 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/14 20:56:12 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,7 @@ typedef struct s_sprite
 	int		open;
 	int		token;
 	int		index;
+	int		side;
 }	t_sprite;
 
 /**

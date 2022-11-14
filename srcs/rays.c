@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:42:22 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/14 14:58:45 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/14 20:46:32 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,44 @@ static void	hit_wall_check(t_ray *ray, t_info *inf)
 	revise_calc(&inf->player->rays[RAYS - ray->count], ray, inf, 1);
 }
 
-// static void	reverse_list(t_ray *ray)
-// {
-// 	while (ray->spr && ray->spr->prev != NULL)
-// 	{
-// 		ray->spr = ray->spr->prev;
-// 	}
-// }
+static void	reverse_list(t_ray *ray)
+{
+	// if (!ray->spr && ray->spr->next != NULL)
+	// 	ray->spr = ray->spr->prev;
+	// while (ray->spr && ray->spr->prev != NULL)
+	// {
+		// ray->spr = ray->spr->prev;
+	// }
+	// printf("check\n");
+}
+
+static void	place_door(t_info *inf, t_xpm *xpm, t_ray *ray, int x)
+{
+	int			xpm_x;
+	int			xpm_y;
+	int			start;
+	int			end;
+	int			y;
+
+	xpm_x = (int)(modf(ray->spr->x_pos, &ray->spr->x_pos) * xpm->wi);
+	if (ray->spr->side == 0)
+		xpm_x = (ray->spr->y_pos * xpm->wi);
+	if (ray->spr->side == 1 && sin(ray->spr->ang) < 0)
+		xpm_x = WIDTH - xpm_x - 1;
+	start = (HEIGHT / 2) - (ray->spr->height / 2);
+	end = (HEIGHT / 2) + (ray->spr->height / 2);
+	y = ((HEIGHT - ray->spr->height) / 2);
+	if (y < 0)
+		y = 0;
+	while (y < HEIGHT && y < end - 4)
+	{
+		xpm_y = ((1.0 * abs(y - start)) / abs(end - start) * xpm->hi);
+		if (xpm_y > xpm->hi)
+			xpm_y = xpm->hi - 1;
+		my_pixel_put(inf, x, y, get_color(NULL, xpm_x, xpm_y, xpm));
+		y++;
+	}
+}
 
 /**
 **	The Main Process of the raycasting which deals with pixel
@@ -92,7 +123,8 @@ static void	hit_wall_check(t_ray *ray, t_info *inf)
 **/
 void	init_rays(t_info *inf)
 {
-	t_ray	ray;
+	t_ray		ray;
+	static int	iter;
 
 	ray.angle = inf->player->angle - (35 * RADIAN);
 	ray.angle = fix_angle(ray.angle);
@@ -101,6 +133,7 @@ void	init_rays(t_info *inf)
 	ceiling_floor(inf);
 	while (ray.count > 0)
 	{
+		inf->player->rays->spr = NULL;
 		hit_wall_check(&ray, inf);
 		if (inf->player->door_collide == 1 && inf->player->door_flag == 1
 			&& inf->integrate == 1)
@@ -111,13 +144,15 @@ void	init_rays(t_info *inf)
 		revise_calc(NULL, &ray, inf, 0);
 		place_walls(inf, &inf->player->rays[RAYS - ray.count],
 			ray.x1);
-		// if (ray.token == 6)
-		// {
-		// 	inf->player->rays[RAYS - ray.count].spr = ray.spr;
-		// 	reverse_list(&ray);
-		// 	place_walls(inf, &inf->player->rays[RAYS - ray.count], ray.x1);
-		// 	free_spr(ray.spr);
-		// }
+		if (ray.token == 5)
+		{
+			inf->player->rays[RAYS - ray.count].spr = ray.spr;
+			reverse_list(&ray);
+			if (ray.spr && ray.spr != NULL)
+				place_door(inf, &inf->data->xpm[DO], &ray, ray.x1);
+			if (ray.spr && ray.spr != NULL)
+				free_spr(ray.spr);
+		}
 		ray.x1 += 1;
 		ray.count--;
 	}

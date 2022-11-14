@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 09:28:29 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/14 16:24:45 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/14 20:56:46 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,15 @@ static void	add_xpm(t_info *info, t_xpm *xpm, t_rays *ray, int x)
 	}
 }
 
-static void	add_sprite(t_info *inf, t_sprite *spr, t_rays *ray, int x)
-{
-	if (spr->token == 'D')
-		printf("Yes\n");
-	(void)inf;
-	(void)spr;
-	(void)ray;
-	(void)x;
-}
+// static void	add_sprite(t_info *inf, t_sprite *spr, t_rays *ray, int x)
+// {
+// 	if (spr->token == 'D')
+// 		printf("Yes\n");
+// 	(void)inf;
+// 	(void)spr;
+// 	(void)ray;
+// 	(void)x;
+// }
 
 /*
 */
@@ -88,8 +88,6 @@ void	place_walls(t_info *inf, t_rays *ray, int x)
 		add_xpm(inf, &inf->data->xpm[EA], ray, x);
 	if (ray->token == 5)
 		add_xpm(inf, &inf->data->xpm[DO], ray, x);
-	if (ray->token == 6)
-		add_sprite(inf, ray->spr, ray, x);
 	else if (ray->dir_wall == 0 || ray->dir_wall == 5)
 	{
 		add_xpm(inf, &inf->data->xpm[old_colour - 1], ray, x);
