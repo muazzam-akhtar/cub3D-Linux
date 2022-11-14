@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 20:06:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/14 20:57:17 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/14 21:02:56 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,21 @@ static void	get_xpm_addr(t_info *info, t_xpm *xpm, char *xpm_str)
 	xpm->addr = xpm->addr + (xpm->len * (xpm->bitspix / 8));
 }
 
+static int	init_bonus_xpm(t_info *info, t_data *data)
+{
+	int	x;
+	int	y;
+
+	data->gun = mlx_xpm_file_to_image(info->mlx, "./imgs/Ak47.xpm", &x, &y);
+	data->gun_anim = mlx_xpm_file_to_image(info->mlx, "./imgs/Ak47Fired.xpm",
+			&x, &y);
+	data->pause = mlx_xpm_file_to_image(info->mlx, "./imgs/pause.xpm", &x, &y);
+	get_xpm_addr(info, &data->xpm[DO], "./imgs/door1.xpm");
+	if (!data->pause || !data->gun || !data->gun_anim)
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
+}
+
 /**
 **	Opens xpm layout images and stores them within
 *	data->confg		[0] == NO, [1] == SO, [2] == WE, [3] == EA
@@ -35,25 +50,21 @@ static void	get_xpm_addr(t_info *info, t_xpm *xpm, char *xpm_str)
 static int	open_xpm(t_info *info, t_data *data, size_t len)
 {
 	size_t	i;
-	int		x;
-	int		y;
 
 	i = 0;
-	data->xpm = (t_xpm *)ft_calloc(4 + 1, sizeof(t_xpm));
+	data->xpm = (t_xpm *)ft_calloc((4 + NUM_SPRITES) + 1, sizeof(t_xpm));
 	while (i < len)
 	{
 		if (i < 4)
 			get_xpm_addr(info, &data->xpm[i], data->confg[i]);
 		if (i > 3)
+		{
 			data->confg[i] = ft_strdup(data->file[i]);
+			printf("%s\n", data->confg[i]);
+		}
 		i++;
 	}
-	get_xpm_addr(info, &data->xpm[i], "./imgs/door1.xpm");
-	data->gun = mlx_xpm_file_to_image(info->mlx, "./imgs/Ak47.xpm", &x, &y);
-	data->gun_anim = mlx_xpm_file_to_image(info->mlx, "./imgs/Ak47Fired.xpm",
-			&x, &y);
-	data->pause = mlx_xpm_file_to_image(info->mlx, "./imgs/pause.xpm", &x, &y);
-	if (!data->pause || !data->gun)
+	if (init_bonus_xpm(info, data))
 		err_return(5, info);
 	return (EXIT_SUCCESS);
 }
