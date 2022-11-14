@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 21:05:19 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/14 15:57:57 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/14 18:32:51 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static void	handle_sprite_coll(t_info *inf, int *wall_trigger)
 	{
 		if (inf->doors[index].open == 0)
 			*wall_trigger = 1;
-		// printf("Check\n");
 	}
 	else if (!inf->data->map[inf->player->wall.col][inf->player->wall.row]
 			|| (inf->data->map[inf->player->wall.col][inf->player->wall.row]
