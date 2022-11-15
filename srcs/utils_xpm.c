@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 20:06:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/14 20:13:41 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/15 19:40:26 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	init_bonus_xpm(t_info *info, t_data *data)
 	data->gun_anim = mlx_xpm_file_to_image(info->mlx, "./imgs/Ak47Fired.xpm",
 			&x, &y);
 	data->pause = mlx_xpm_file_to_image(info->mlx, "./imgs/pause.xpm", &x, &y);
-	get_xpm_addr(info, &data->xpm[DO], "./imgs/door1.xpm");
+	get_xpm_addr(info, &data->xpm[DO], "./imgs/door.xpm");
 	if (!data->pause || !data->gun || !data->gun_anim)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
@@ -44,8 +44,9 @@ static int	init_bonus_xpm(t_info *info, t_data *data)
 
 /**
 **	Opens xpm layout images and stores them within
-*	data->confg		[0] == NO, [1] == SO, [2] == WE, [3] == EA
-*	data->pause		Fixed image ./imgs/pause.xpm
+*	data->confg			[0] == NO, [1] == SO, [2] == WE, [3] == EA
+*	data->pause			Fixed image ./imgs/pause.xpm
+*	init_bonus_xpm()	Loads additional xpm images for bonus
 **/
 static int	open_xpm(t_info *info, t_data *data, size_t len)
 {

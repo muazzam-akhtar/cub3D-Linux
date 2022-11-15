@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/14 19:02:59 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/15 22:47:28 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,7 +207,7 @@ typedef struct s_door
 	double	x_pos;
 	double	dist;
 	double	height;
-}				t_door;
+}	t_door;
 
 /**
 **	Player Structure
@@ -229,6 +229,7 @@ typedef struct s_player
 	t_wall		wall;
 	t_rays		rays[RAYS];
 }				t_player;
+
 typedef struct s_xpm
 {
 	void	*img;
@@ -447,9 +448,12 @@ void		find_player(t_data *data, t_player *player);
 **	Mini-map functions
 **/
 void		init_minimap(t_info *info);
-void		mini_interior(t_info *info, t_mini *mini);
+void		mini_interior(t_info *info);
 void		mini_pixel_put(t_mini *mini, int x, int y, int rgb);
 double		extract_decimal(t_player *player, char status);
+int			x_y_values(int index);
+int			mini_img_limit(t_info *info, int y, int x, char status);
+int			assign_index_values(int index);
 
 /**
 **	XPM Functions 

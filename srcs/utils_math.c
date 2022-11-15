@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:44:02 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/14 21:49:49 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/15 21:47:53 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,29 +19,11 @@
 double	extract_decimal(t_player *player, char status)
 {
 	double			diff;
-	static int		init;
-	static double	old_y;
-	static double	old_x;
 
 	if (status == 'y')
-	{
-		if (!init)
-			old_y = player->y_pos;
-		diff = modf(player->y_pos, &diff);
-		if (old_y < player->y_pos)
-			diff *= -1;
-		old_y = player->y_pos;
-	}
+		diff = modf(player->y_pos, &diff) * MINI_SCALE;
 	if (status == 'x')
-	{
-		if (!init)
-			old_x = player->x_pos;
-		diff = modf(player->x_pos, &diff);
-		if (old_x < player->x_pos)
-			diff *= -1;
-		old_x = player->x_pos;
-	}
-	init = 1;
+		diff = modf(player->x_pos, &diff) * MINI_SCALE;
 	return (diff);
 }
 

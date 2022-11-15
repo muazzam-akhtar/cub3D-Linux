@@ -72,22 +72,23 @@ https://lodev.org/cgtutor/raycasting.html
 19.	~~***HA:***	Fix minimap drawing to draw when player is closer to left side of array coords, possibly due coords calculation making coords negative and invalid read~~
 20.	~~***HA:***	Fix walls drawing in wrong position of image, perhaps because ra->y not correct value. X is also not increment in correct amount.~~
 21.	~~***HA && MAK:***	Figure out solution to fish-eye effect.~~
-22. ~~***MA*** Implement edge cases for the rays.~~
-23. ~~***MA*** Need to work on fixing the directions of the rays when hits the wall.~~
-24. ~~***MA*** Raycasting is optimised with DDA Algorithm~~
-27. ~~***MA*** Animation effect when the AK-47 is triggered.~~
+22. ~~***MAK:*** Implement edge cases for the rays.~~
+23. ~~***MAK:*** Need to work on fixing the directions of the rays when hits the wall.~~
+24. ~~***MAK:*** Raycasting is optimised with DDA Algorithm~~
+27. ~~***MAK:*** Animation effect when the AK-47 is triggered.~~
 25.	~~***HA:***	Figure out y step increments~~
-26. ~~***MA*** Work on sprites when rays will hit.~~
-28. ***MA*** Work on the management of sprites.
-29. ***MA*** Have character types for different types of sprites like D for Door, F for fire, B for barrel, etc.
-30. ***HA:***	Refactor minimap drawing in `utils_minimap.c` see `mini_interior();` on branch hawadh-minimap
-31.	~~***MA*** Finished working on the parsing for doors.~~
-32. ***MA*** Allocate structure for the doors and put xpm addresses in the sprites structures when the wall hits.
-33. ***MA*** Working on Integration for the doors.
+26. ~~***MAK:*** Work on sprites when rays will hit.~~
+28. ***MAK:*** Work on the management of sprites.
+29. ***MAK:*** Have character types for different types of sprites like D for Door, F for fire, B for barrel, etc.
+30. ***HA:*** Refactor minimap drawing in `utils_minimap.c` see `mini_interior();` on branch hawadh-minimap
+31.	~~***MAK:*** Finished working on the parsing for doors.~~
+32. ***MAK:*** Allocate structure for the doors and put xpm addresses in the sprites structures when the wall hits.
+33. ***MAK:*** Working on Integration for the doors.
+34. ***HA:*** Minimap not drawing EA/WE facing doors correctly. Need to adjust drawing depending on walls surrounding.
 
 `#CURRENT STATUS`
 
-`HA:	18 Jul 2022`
+`HA:	15 Nov 2022`
 
 1.	New files to split functions `parse_file.c`, `errors.c`, `parse_file.c`
 2.	Added .gitignore
@@ -224,6 +225,16 @@ function placed in `linux_osx_mouse.c`
 132. Branched from main to `hawadh-minimap` branch & refactoring minimap drawing algorithm.
 133. Implemented `# define NUM_SPRITES` in `cub.h` to auto increase allocation for `t_xpm *xpm` to add any new sprites to structures.
 134. Check comments for `utils_math.c` `utils_minimap.c` `utils_xpm.c`
+135. New file `utils_minimap_ext.c` with two new functions `x_y_values();` & `mini_img_limit();` called in `utils_minimap.c` in function `mini_interior();`
+136. New Function `x_y_values();` returns values of either `x` or `y` depending on whether index values are negative. Returns the values with calculation of scale for offset in minimap.
+137. New Function `mini_img_limit();` checks if `y` or `x` value has reached the loop limit to decide to continue or exit.
+138. New function `assign_index_values();` placed in file `utils_minimap_ext.c` returns index value depending if index calculated via input parameter and returns necessary value.
+139. Renamed `door1.xpm` to `door.xpm` and resized all wall images to 1920x1080.
+140. Adjust player drawing size in `mini_map.c` to draw smaller player.
+141. New `#define MINI_DIM` variable for minimap dimensions in `cub.h` and replaced all values in mini map functions that determined map dimensions.
+142. New function in `utils_minimap.c` draw_mini_interior` to determine which map icon was detected to draw.
+143. New `#define NUM_SPRITES` in `cub.h` to adjust memory allocation for `t_xpm*` when necessary as number of sprites increment.
+144. New function in `utils_minimap.c` called `draw_mini_doors();` WIP (NEEDS NORMINETTING) to draw doors on minimap.
 
 
 `MAK:	4 July 2022`

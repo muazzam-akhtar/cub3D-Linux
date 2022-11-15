@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 19:43:20 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/10 16:47:25 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/15 22:03:14 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ static void	draw_mini_player(t_mini *mini, int x, int y, int rgb)
 {
 	int	x_reset;
 
-	while (y < 100)
+	while (y < 97)
 	{
 		x_reset = x;
-		while (x_reset < 100)
+		while (x_reset < 97)
 		{
-			if (y == 80 || y == 99 || x_reset == 80 || x_reset == 99)
+			if (y == 82 || y == 96 || x_reset == 82 || x_reset == 96)
 				mini_pixel_put(mini, x_reset, y, 0x000E5227);
 			else
 				mini_pixel_put(mini, x_reset, y, rgb);
@@ -65,8 +65,8 @@ void	draw_minimap(t_info *info, t_mini *mini)
 		}
 		y++;
 	}
-	mini_interior(info, mini);
-	draw_mini_player(mini, 80, 80, 0x003D8758);
+	mini_interior(info);
+	draw_mini_player(mini, 82, 82, 0x003D8758);
 }
 
 /**
@@ -79,7 +79,7 @@ void	init_minimap(t_info *info)
 
 	mini = (t_mini *)ft_calloc(1, sizeof(t_mini));
 	info->mini = mini;
-	info->mini_map = mlx_new_image(info->mlx, 180, 180);
+	info->mini_map = mlx_new_image(info->mlx, MINI_DIM, MINI_DIM);
 	if (!info->mini_map)
 	{
 		free_data(info);
