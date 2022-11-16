@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 19:43:20 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/15 22:03:14 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/16 22:10:23 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,56 @@ void	mini_pixel_put(t_mini *mini, int x, int y, int rgb)
 static void	draw_mini_player(t_mini *mini, int x, int y, int rgb)
 {
 	int	x_reset;
+	int	y_one;
+	int	x_one;
+	int	x_brdr;
+	int	y_brdr;
 
-	while (y < 97)
+	y_one = (MINI_DIM / 2) + 4;
+	x_one = (MINI_DIM / 2) + 4;
+	y_brdr = (MINI_DIM / 2) - 4;
+	x_brdr = (MINI_DIM / 2) - 4;
+	while (y < y_one)
 	{
 		x_reset = x;
-		while (x_reset < 97)
+		while (x_reset < x_one)
 		{
-			if (y == 82 || y == 96 || x_reset == 82 || x_reset == 96)
+			if (y == x_brdr || y == (MINI_DIM / 2) + 3
+				|| x_reset == y_brdr || x_reset == (MINI_DIM / 2) + 3)
 				mini_pixel_put(mini, x_reset, y, 0x000E5227);
 			else
 				mini_pixel_put(mini, x_reset, y, rgb);
 			x_reset++;
 		}
 		y++;
+	}
+}
+
+/**
+**	Draws minimap interior
+*	TODO:	Fix index value issues when approaching index 0 of i or j
+**/
+static void	mini_interior(t_info *info)
+{
+	double	x;
+	double	y;
+	int		i;
+	int		j;
+
+	i = assign_index_values(info->player->y_pos - 3);
+	y = x_y_values(i) - extract_decimal(info->player->y_pos) * MINI_SCALE;
+	while (info->data->map[i] && mini_img_limit(info, y, x, 'y'))
+	{
+		j = assign_index_values(info->player->x_pos - 3);
+		x = x_y_values(j) - extract_decimal(info->player->x_pos) * MINI_SCALE;
+		while (info->data->map[i][j] && mini_img_limit(info, y, x, 'x'))
+		{
+			draw_mini_interior(info, &info->data->map[i][j], x, y);
+			j++;
+			x += MINI_SCALE;
+		}
+		i++;
+		y += MINI_SCALE;
 	}
 }
 
@@ -66,7 +103,7 @@ void	draw_minimap(t_info *info, t_mini *mini)
 		y++;
 	}
 	mini_interior(info);
-	draw_mini_player(mini, 82, 82, 0x003D8758);
+	draw_mini_player(mini, (MINI_DIM / 2) - 4, (MINI_DIM / 2) - 4, 0x003D8758);
 }
 
 /**

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprite.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 17:09:19 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/14 15:05:50 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/16 12:52:34 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ static void	place_vals_spr(t_info *inf, t_ray *ray, int index)
 	ray->spr->ang = ray->angle;
 	ray->spr->dist = get_dist(ray->spr->x_pos, ray->spr->y_pos,
 			inf->player->x_pos, inf->player->y_pos);
-	ray->spr->height = get_height(ray->spr->dist, ray->spr->ang,
-			inf->player->angle);
+	ray->spr->height = get_height(ray->spr->dist, ray->spr->ang);
 	if (index == -1)
 		return ;
 	if (index >= 0 && (inf->doors[index].x_pos == ray->spr->x_grid)

@@ -14,13 +14,11 @@
 
 ```
 ***NOTES:***
-
-42Docs guide on raycasting:
-https://lodev.org/cgtutor/raycasting.html
+NULL
 
 ```
 
-`#BUGS: NULL`
+`#BUGS: #27`
 
 1.	~~***HA:***	Segfaul in `get_next_line();` due to `ft_strchr();` in `libft`~~
 2.	~~***HA:***	Function parses whole file, should stop at first line of map~~
@@ -48,6 +46,7 @@ https://lodev.org/cgtutor/raycasting.html
 24.	~~***MAK && HA:***	Map should not contain any spaces within the map. Spaces in the middle of the map with 1's and 0's should be invalid? Need to confirm this.~~
 25.	~~***HA:***	`add_xpm();` still not incrementing y in correct increments to draw walls~~
 26. ~~***HA:***	Mouse not being released on hitting pause~~
+27. ***HA:***	Minimap jumping and resetting when approaching 0 index on both x and y.
 
 `#TODO:`
 
@@ -84,7 +83,8 @@ https://lodev.org/cgtutor/raycasting.html
 31.	~~***MAK:*** Finished working on the parsing for doors.~~
 32. ***MAK:*** Allocate structure for the doors and put xpm addresses in the sprites structures when the wall hits.
 33. ***MAK:*** Working on Integration for the doors.
-34. ***HA:*** Minimap not drawing EA/WE facing doors correctly. Need to adjust drawing depending on walls surrounding.
+34. ~~***HA:*** Minimap not drawing EA/WE facing doors correctly. Need to adjust drawing depending on walls surrounding.~~
+35.	~~***HA:***	Resize minimap dimensions and values. Reduce them by half `MINI_DIM 90`.~~
 
 `#CURRENT STATUS`
 
@@ -232,9 +232,13 @@ function placed in `linux_osx_mouse.c`
 139. Renamed `door1.xpm` to `door.xpm` and resized all wall images to 1920x1080.
 140. Adjust player drawing size in `mini_map.c` to draw smaller player.
 141. New `#define MINI_DIM` variable for minimap dimensions in `cub.h` and replaced all values in mini map functions that determined map dimensions.
-142. New function in `utils_minimap.c` draw_mini_interior` to determine which map icon was detected to draw.
+142. New function in `utils_minimap.c` draw_mini_interior()` to determine which map icon was detected to draw.
 143. New `#define NUM_SPRITES` in `cub.h` to adjust memory allocation for `t_xpm*` when necessary as number of sprites increment.
 144. New function in `utils_minimap.c` called `draw_mini_doors();` WIP (NEEDS NORMINETTING) to draw doors on minimap.
+145. Removed `p_ang` from `get_height();` parameters in `utils_math.c` and all `get_height();` function calls input.
+146. Added call `err_return();` with error `status == 3` in file `utils_door.c` to call error for invalid doors location.
+147. Finalised drawing of walls in minimap with two new functions `draw_mini_doors_horizontal();` and `draw_mini_doors_vertical();` separated due to different `x_one` and `y_one` values required. Functions placed in `utils_minimap_ext.c`
+148. Added `MINI_DIM` variables in all `draw_mini_player();` values to make change of minimap size more streamlined in file `mini_map.c`.
 
 
 `MAK:	4 July 2022`

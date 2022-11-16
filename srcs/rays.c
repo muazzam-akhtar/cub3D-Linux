@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:42:22 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/14 14:58:45 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/16 12:54:19 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,7 @@ static void	revise_calc(t_rays *rays, t_ray *ray, t_info *inf,
 		rays->dist = euclidean(ray,
 				get_dist(inf->player->x_pos,
 					inf->player->y_pos, ray->x, ray->y), inf->player->angle);
-		rays->height
-			= get_height(rays->dist,
-				rays->ang, inf->player->angle);
+		rays->height = get_height(rays->dist, rays->ang);
 	}
 }
 
@@ -78,14 +76,6 @@ static void	hit_wall_check(t_ray *ray, t_info *inf)
 	revise_calc(&inf->player->rays[RAYS - ray->count], ray, inf, 1);
 }
 
-// static void	reverse_list(t_ray *ray)
-// {
-// 	while (ray->spr && ray->spr->prev != NULL)
-// 	{
-// 		ray->spr = ray->spr->prev;
-// 	}
-// }
-
 /**
 **	The Main Process of the raycasting which deals with pixel
 **	put for ceiling, floor, walls
@@ -111,13 +101,6 @@ void	init_rays(t_info *inf)
 		revise_calc(NULL, &ray, inf, 0);
 		place_walls(inf, &inf->player->rays[RAYS - ray.count],
 			ray.x1);
-		// if (ray.token == 6)
-		// {
-		// 	inf->player->rays[RAYS - ray.count].spr = ray.spr;
-		// 	reverse_list(&ray);
-		// 	place_walls(inf, &inf->player->rays[RAYS - ray.count], ray.x1);
-		// 	free_spr(ray.spr);
-		// }
 		ray.x1 += 1;
 		ray.count--;
 	}

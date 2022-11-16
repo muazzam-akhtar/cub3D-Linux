@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 18:49:26 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/14 15:03:48 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/16 19:26:16 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,10 @@ void	raycast_door(t_info *inf)
 		if (inf->doors[lookup_door(inf, (int)x, (int)y)].open == 1)
 			inf->doors[lookup_door(inf, (int)x, (int)y)].open = 0;
 		else if (inf->doors[lookup_door(inf, (int)x, (int)y)].open == 0)
+		{
 			inf->doors[lookup_door(inf, (int)x, (int)y)].open = 1;
+			inf->data->map[(int)y][(int)x] = 'O';
+		}
 	}
 	counter++;
 	if (counter == 1920)

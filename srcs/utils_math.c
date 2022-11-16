@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:44:02 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/15 21:47:53 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/16 13:23:57 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,12 @@
 
 /**
 **	Extracts Decimal point.
-*	TODO:	Check first iteration old_y will always be less than y_pos etc;
 **/
-double	extract_decimal(t_player *player, char status)
+double	extract_decimal(double value)
 {
 	double			diff;
 
-	if (status == 'y')
-		diff = modf(player->y_pos, &diff) * MINI_SCALE;
-	if (status == 'x')
-		diff = modf(player->x_pos, &diff) * MINI_SCALE;
+	diff = modf(value, &diff);
 	return (diff);
 }
 
@@ -58,12 +54,11 @@ double	euclidean(t_ray *ray, double dist, double p_ang)
 /**
 **	Calculates the height of wall for each ray.
 **/
-double	get_height(double dist, double r_ang, double p_ang)
+double	get_height(double dist, double r_ang)
 {
 	double	height;
 	double	c_angle;
 
-	(void)p_ang;
 	c_angle = r_ang;
 	if (c_angle < 0)
 		c_angle += 2 * PI;

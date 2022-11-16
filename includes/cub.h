@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/15 22:47:28 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/16 22:20:05 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@
 # define RAYS 1920
 # define WIDTH 1920
 # define HEIGHT 1080
-# define MINI_DIM 180
-# define MINI_SCALE 30
+# define MINI_DIM 90
+# define MINI_SCALE 15
 # define NUM_SPRITES 1
 
 # include <unistd.h>
@@ -371,7 +371,7 @@ void		free_data(t_info *info);
 double		sq(double num);
 double		fix_angle(double ang);
 double		get_dist(double x_one, double y_one, double x_two, double y_two);
-double		get_height(double dist, double r_ang, double p_ang);
+double		get_height(double dist, double r_ang);
 double		new_x_val(t_info *inf, t_ray *ray);
 double		new_y_val(t_info *inf, t_ray *ray);
 
@@ -448,12 +448,18 @@ void		find_player(t_data *data, t_player *player);
 **	Mini-map functions
 **/
 void		init_minimap(t_info *info);
-void		mini_interior(t_info *info);
+void		draw_mini_interior(t_info *info, char *map_icon, int x, int y);
 void		mini_pixel_put(t_mini *mini, int x, int y, int rgb);
-double		extract_decimal(t_player *player, char status);
+void		draw_mini_doors_horizontal(t_info *info, int x, int y, int rgb);
+void		draw_mini_doors_vertical(t_info *info, int x, int y, int rgb);
 int			x_y_values(int index);
 int			mini_img_limit(t_info *info, int y, int x, char status);
 int			assign_index_values(int index);
+
+/**
+**	Math Functions
+**/
+double		extract_decimal(double value);
 
 /**
 **	XPM Functions 
