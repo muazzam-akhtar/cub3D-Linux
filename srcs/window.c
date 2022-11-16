@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 11:48:10 by hawadh            #+#    #+#             */
-/*   Updated: 2022/09/29 16:17:06 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/16 18:02:07 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ int	init_window(t_info *info)
 	draw_map(info);
 	mlx_put_image_to_window(info->mlx, info->win, info->img, 0, 0);
 	mlx_put_image_to_window(info->mlx, info->win,
-		info->data->gun, WIDTH - HEIGHT, (HEIGHT / 2));
-	mlx_put_image_to_window(info->mlx, info->win, info->mini_map, 30, 30);
+		info->data->gun, (WIDTH / 2) - 75, (HEIGHT / 2));
+	// mlx_put_image_to_window(info->mlx, info->win, info->mini_map, 30, 30);
 	mlx_loop(info->mlx);
 	return (EXIT_SUCCESS);
 }

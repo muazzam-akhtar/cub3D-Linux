@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:44:02 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/14 14:57:24 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/16 15:57:47 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,15 +69,10 @@ double	euclidean(t_ray *ray, double dist, double p_ang)
 /**
 **	Calculates the height of wall for each ray.
 **/
-double	get_height(double dist, double r_ang, double p_ang)
+double	get_height(double dist)
 {
 	double	height;
-	double	c_angle;
 
-	(void)p_ang;
-	c_angle = r_ang;
-	if (c_angle < 0)
-		c_angle += 2 * PI;
-	height = (BLOCK_SIZE * 150) / dist;
+	height = (BLOCK_SIZE * 62.5) / dist;
 	return (height);
 }

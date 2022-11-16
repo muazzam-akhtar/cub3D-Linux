@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 20:06:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/14 21:02:56 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/16 18:18:01 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ static int	init_bonus_xpm(t_info *info, t_data *data)
 	int	y;
 
 	data->gun = mlx_xpm_file_to_image(info->mlx, "./imgs/Ak47.xpm", &x, &y);
-	data->gun_anim = mlx_xpm_file_to_image(info->mlx, "./imgs/Ak47Fired.xpm",
+	data->gun_anim = mlx_xpm_file_to_image(info->mlx, "./imgs/Fired Ak47_1.xpm",
 			&x, &y);
 	data->pause = mlx_xpm_file_to_image(info->mlx, "./imgs/pause.xpm", &x, &y);
-	get_xpm_addr(info, &data->xpm[DO], "./imgs/door1.xpm");
+	get_xpm_addr(info, &data->xpm[DO], "./imgs/door.xpm");
 	if (!data->pause || !data->gun || !data->gun_anim)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
