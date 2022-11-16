@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_minimap.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 19:44:52 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/11 17:00:39 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/14 16:21:57 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,28 @@ static void	draw_mini_enemy(t_mini *mini, int x, int y, int rgb)
 **/
 static void	draw_mini_walls(t_info *info, int x, int y, int rgb)
 {
-	int	y_one;
-	int	x_one;
-	int	x_rst;
+	int				y_one;
+	int				x_one;
+	int				x_rst;
+	static int		flag;
 
-	y_one = y + MINI_SCALE;
+	if (!flag)
+	{
+		y_one = y + (extract_decimal(info->player, 'y') * MINI_SCALE);
+		y -= (extract_decimal(info->player, 'y') * MINI_SCALE);
+	}
+	else
+		y_one = y - (extract_decimal(info->player, 'y') * MINI_SCALE);
 	while (y < y_one - 1)
 	{
-		x_one = x + MINI_SCALE;
 		x_rst = x;
+		if (!flag)
+		{
+			x_one = x + (extract_decimal(info->player, 'x') * MINI_SCALE);
+			x_rst = x - (extract_decimal(info->player, 'x') * MINI_SCALE);
+		}
+		else
+			x_one = x - (extract_decimal(info->player, 'x') * MINI_SCALE);
 		while (x_rst < x_one - 1)
 		{
 			if (y > 2 && x_rst > 2 && y < 177 && x_rst < 177)
@@ -66,6 +79,7 @@ static void	draw_mini_walls(t_info *info, int x, int y, int rgb)
 		}
 		y++;
 	}
+	flag = 1;
 }
 
 /**

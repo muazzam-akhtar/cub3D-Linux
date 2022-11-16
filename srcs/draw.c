@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 09:28:29 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/14 20:56:46 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/16 17:07:56 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,18 @@ static void	add_xpm(t_info *info, t_xpm *xpm, t_rays *ray, int x)
 	int			start;
 	int			end;
 	int			y;
-	double		tex_x;
 
-	tex_x = modf(ray->x, &tex_x);
-	xpm_x = (int)(tex_x * xpm->wi);
+	xpm_x = (int)(modf(ray->x, &ray->x) * xpm->wi);
 	if (ray->side == 0)
-		xpm_x = (ray->y * xpm->wi);
-	if (ray->side == 1 && sin(ray->ang) < 0)
+		xpm_x = (int)(modf(ray->y, &ray->y) * xpm->wi);
+	if ((ray->side == 0 && cos(ray->ang) > 0)
+		|| (ray->side == 1 && sin(ray->ang) < 0))
 		xpm_x = WIDTH - xpm_x - 1;
 	start = (HEIGHT / 2) - (ray->height / 2);
 	end = (HEIGHT / 2) + (ray->height / 2);
 	y = ((HEIGHT - ray->height) / 2);
+	if (xpm_x > WIDTH)
+		xpm_x = WIDTH - xpm_x;
 	if (y < 0)
 		y = 0;
 	while (y < HEIGHT && y < end - 4)
@@ -86,14 +87,15 @@ void	place_walls(t_info *inf, t_rays *ray, int x)
 		add_xpm(inf, &inf->data->xpm[WE], ray, x);
 	if (ray->dir_wall == 4)
 		add_xpm(inf, &inf->data->xpm[EA], ray, x);
-	if (ray->token == 5)
+	if (ray->dir_wall == 6)
 		add_xpm(inf, &inf->data->xpm[DO], ray, x);
 	else if (ray->dir_wall == 0 || ray->dir_wall == 5)
 	{
 		add_xpm(inf, &inf->data->xpm[old_colour - 1], ray, x);
 		return ;
 	}
-	old_colour = ray->dir_wall;
+	if (ray->dir_wall != 6)
+		old_colour = ray->dir_wall;
 }
 
 /**
@@ -111,6 +113,6 @@ void	draw_map(t_info *info)
 		timer = 1;
 	}
 	init_rays(info);
-	draw_minimap(info, info->mini);
+	// draw_minimap(info, info->mini);
 	init_cursor(info);
 }

@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/14 20:56:12 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/16 19:45:31 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,12 @@
 # define PI 3.14159265358979323846
 # define RADIAN 0.017453292519943
 # define BLOCK_SIZE 8
-# define RAYS 1920
-# define WIDTH 1920
-# define HEIGHT 1080
+# define RAYS 960
+# define WIDTH 960
+# define HEIGHT 720
 # define MINI_DIM 180
 # define MINI_SCALE 30
+# define NUM_SPRITES 1
 
 # include <unistd.h>
 # include <fcntl.h>
@@ -57,6 +58,7 @@
 # include <sys/stat.h>
 # include "../libft/libft.h"
 # include "../get_next_line/get_next_line.h"
+# include <stdbool.h>
 # include <math.h>
 
 /**
@@ -139,10 +141,11 @@ typedef struct s_sprite
 	double	height;
 	void	*prev;
 	void	*next;
-	int		open;
+	bool	open;
 	int		token;
 	int		index;
 	int		side;
+	int		wall;
 }	t_sprite;
 
 /**
@@ -370,7 +373,7 @@ void		free_data(t_info *info);
 double		sq(double num);
 double		fix_angle(double ang);
 double		get_dist(double x_one, double y_one, double x_two, double y_two);
-double		get_height(double dist, double r_ang, double p_ang);
+double		get_height(double dist);
 double		new_x_val(t_info *inf, t_ray *ray);
 double		new_y_val(t_info *inf, t_ray *ray);
 

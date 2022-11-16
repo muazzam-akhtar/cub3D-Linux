@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 21:05:19 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/14 18:32:51 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/16 19:59:15 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,6 @@ static void	handle_sprite_coll(t_info *inf, int *wall_trigger)
 		if (inf->doors[index].open == 0)
 			*wall_trigger = 1;
 	}
-	else if (!inf->data->map[inf->player->wall.col][inf->player->wall.row]
-			|| (inf->data->map[inf->player->wall.col][inf->player->wall.row]
-			&& inf->data->map[inf->player->wall.col][inf->player->wall.row]
-			== key_sprite(inf->data->map[inf->player->wall.col]
-			[inf->player->wall.row]) != 0))
-		*wall_trigger = 1;
 }
 
 void	wall_coll(t_info *inf, int *wall_trigger, double angle)
@@ -51,8 +45,8 @@ void	wall_coll(t_info *inf, int *wall_trigger, double angle)
 	inf->player->door_collide = 0;
 	while (inf->player->wall.count > 0)
 	{
-		inf->player->wall.x = inf->player->x_pos + (cos(angle) * 0.125);
-		inf->player->wall.y = inf->player->y_pos + (sin(angle) * 0.125);
+		inf->player->wall.x = inf->player->x_pos + (cos(angle) * 0.25);
+		inf->player->wall.y = inf->player->y_pos + (sin(angle) * 0.25);
 		inf->player->wall.row = (int)inf->player->wall.x;
 		inf->player->wall.col = (int)inf->player->wall.y;
 		if (!inf->data->map[inf->player->wall.col][inf->player->wall.row]

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 19:43:20 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/10 16:47:25 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/16 14:33:46 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,48 +26,50 @@ void	mini_pixel_put(t_mini *mini, int x, int y, int rgb)
 /**
 **	Draws Player at centre of minimap 
 **/
-static void	draw_mini_player(t_mini *mini, int x, int y, int rgb)
-{
-	int	x_reset;
+// static void	draw_mini_player(t_mini *mini, int x, int y, int rgb)
+// {
+// 	int	x_reset;
 
-	while (y < 100)
-	{
-		x_reset = x;
-		while (x_reset < 100)
-		{
-			if (y == 80 || y == 99 || x_reset == 80 || x_reset == 99)
-				mini_pixel_put(mini, x_reset, y, 0x000E5227);
-			else
-				mini_pixel_put(mini, x_reset, y, rgb);
-			x_reset++;
-		}
-		y++;
-	}
-}
+// 	while (y < 100)
+// 	{
+// 		x_reset = x;
+// 		while (x_reset < 100)
+// 		{
+// 			if (y == 80 || y == 99 || x_reset == 80 || x_reset == 99)
+// 				mini_pixel_put(mini, x_reset, y, 0x000E5227);
+// 			else
+// 				mini_pixel_put(mini, x_reset, y, rgb);
+// 			x_reset++;
+// 		}
+// 		y++;
+// 	}
+// }
 
 /**
 **	Draws closer borders and calls function to draw
 **	Outer borders. Calls to draw minimap interior
 **/
-void	draw_minimap(t_info *info, t_mini *mini)
-{
-	int	x;
-	int	y;
+// void	draw_minimap(t_info *info, t_mini *mini)
+// {
+// 	(void)info;
+// 	(void)mini;
+// 	// int	x;
+// 	// int	y;
 
-	y = 3;
-	while (y < MINI_DIM - 3)
-	{
-		x = 3;
-		while (x < MINI_DIM - 3)
-		{
-			mini_pixel_put(mini, x, y, rgb(info->data, 1));
-			x++;
-		}
-		y++;
-	}
-	mini_interior(info, mini);
-	draw_mini_player(mini, 80, 80, 0x003D8758);
-}
+// 	// y = 3;
+// 	// while (y < MINI_DIM - 3)
+// 	// {
+// 	// 	x = 3;
+// 	// 	while (x < MINI_DIM - 3)
+// 	// 	{
+// 	// 		mini_pixel_put(mini, x, y, rgb(info->data, 1));
+// 	// 		x++;
+// 	// 	}
+// 	// 	y++;
+// 	// }
+// 	// mini_interior(info, mini);
+// 	// draw_mini_player(mini, 80, 80, 0x003D8758);
+// }
 
 /**
 **	Initialises struct mini and creates new image for

@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 19:28:36 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/13 20:28:05 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/16 18:19:09 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	handle_pause(t_info *inf)
 	if (inf->mouse->flag == 0)
 	{
 		mlx_put_image_to_window(inf->mlx, inf->win, \
-		inf->data->pause, WIDTH / 4, HEIGHT / 3);
+		inf->data->pause, WIDTH / 4 - 200, HEIGHT / 3);
 		mlx_mouse_show(inf->mlx, inf->win);
 		inf->mouse->flag = 1;
 	}
@@ -39,9 +39,9 @@ static void	handle_pause(t_info *inf)
 		inf->mouse->flag = 0;
 		draw_map(inf);
 		mlx_put_image_to_window(inf->mlx, inf->win, inf->img, 0, 0);
-		mlx_put_image_to_window(
-			inf->mlx, inf->win, inf->data->gun, WIDTH - HEIGHT, (HEIGHT / 2));
-		mlx_put_image_to_window(inf->mlx, inf->win, inf->mini_map, 30, 30);
+		mlx_put_image_to_window(inf->mlx, inf->win,
+		inf->data->gun, (WIDTH / 2) - 75, (HEIGHT / 2));
+		// mlx_put_image_to_window(inf->mlx, inf->win, inf->mini_map, 30, 30);
 	}
 }
 
@@ -70,10 +70,10 @@ static void	handle_integration(int hook_num, t_info *inf)
 {
 	if (hook_num == SHIFT_KEY)
 	{
-		if (inf->player->speed == 0.15)
+		if (inf->player->speed == 0.25)
 			inf->player->speed = 0.0556;
 		else
-			inf->player->speed = 0.15;
+			inf->player->speed = 0.25;
 	}
 	else if (hook_num == E)
 	{
@@ -103,10 +103,10 @@ int	key_hook_manage(int hook_num, t_info *inf)
 	{
 		handle_integration(hook_num, inf);
 		moves(hook_num, inf);
-		draw_minimap(inf, inf->mini);
+		// draw_minimap(inf, inf->mini);
 		mlx_put_image_to_window(inf->mlx, inf->win, inf->img, 0, 0);
-		mlx_put_image_to_window(inf->mlx, inf->win,
-			inf->mini_map, 30, 30);
+		// mlx_put_image_to_window(inf->mlx, inf->win,
+		// 	inf->mini_map, 30, 30);
 		gun_image(inf);
 	}
 	return (EXIT_SUCCESS);

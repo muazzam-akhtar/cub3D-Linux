@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 18:49:26 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/14 15:03:48 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/16 13:44:04 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 static void	init_dda_vars(t_info *inf, t_ray *ray)
 {
-	static int	n;
-
 	ray->cx = cos(ray->angle);
 	ray->cy = sin(ray->angle);
 	ray->dx = sqrt(1 + (sq(ray->cy) / sq(ray->cx)));
@@ -23,13 +21,7 @@ static void	init_dda_vars(t_info *inf, t_ray *ray)
 	ray->m_x = (int)inf->player->x_pos;
 	ray->m_y = (int)inf->player->y_pos;
 	ray->wall = 0;
-	ray->spr = NULL;
-	ray->spr_len = 0;
-	if (n == 0)
-		inf->player->door_flag = 0;
-	if (n == 1920)
-		n = 0;
-	n++;
+	ray->token = 0;
 }
 
 void	init_x_y_steps(t_info *inf, t_ray *ray)
@@ -58,7 +50,7 @@ void	init_x_y_steps(t_info *inf, t_ray *ray)
 	}
 }
 
-void	handle_sprite_lookups(t_info *inf, t_ray *ray)
+int	handle_sprite_lookups(t_info *inf, t_ray *ray)
 {
 	int	index;
 
@@ -66,53 +58,14 @@ void	handle_sprite_lookups(t_info *inf, t_ray *ray)
 	if (index >= 0 && inf->doors[index].m_x
 		== ray->m_x && inf->doors[index].m_y
 		== ray->m_y)
-		working_spr(inf, ray, index);
-	else if (key_sprite(inf->data->map[ray->m_y][ray->m_x]))
-		working_spr(inf, ray, index);
-}
-
-void	raycast_door(t_info *inf)
-{
-	double		x;
-	double		y;
-	double		ang;
-	int			door;
-	static int	counter;
-
-	if (!counter)
 	{
-		door = 0;
-		x = inf->player->x_pos;
-		y = inf->player->y_pos;
-		if (inf->doors[lookup_door(inf, (int)x,
-					(int)y)].x_pos == (int)x
-			&& inf->doors[lookup_door(inf, (int)x,
-					(int)y)].y_pos == (int)y)
+		if (inf->doors[index].open == 0)
 		{
-			inf->integrate = 0;
-			return ;
+			ray->token = 6;
+			return (1);
 		}
-		ang = inf->player->angle;
-		while ((int)x != inf->doors[lookup_door(inf, (int)x, (int)y)].m_x
-			&& (int)y != inf->doors[lookup_door(inf, (int)x, (int)y)].m_y)
-		{
-			x += cos(ang);
-			y += sin(ang);
-			door++;
-			if (door == 3)
-			{
-				inf->integrate = 0;
-				return ;
-			}
-		}
-		if (inf->doors[lookup_door(inf, (int)x, (int)y)].open == 1)
-			inf->doors[lookup_door(inf, (int)x, (int)y)].open = 0;
-		else if (inf->doors[lookup_door(inf, (int)x, (int)y)].open == 0)
-			inf->doors[lookup_door(inf, (int)x, (int)y)].open = 1;
 	}
-	counter++;
-	if (counter == 1920)
-		counter = 0;
+	return (0);
 }
 
 /*
@@ -122,8 +75,6 @@ void	raycasting(t_info *inf, t_ray *ray)
 {
 	init_dda_vars(inf, ray);
 	init_x_y_steps(inf, ray);
-	if (inf->integrate == 1)
-		raycast_door(inf);
 	while (!ray->wall)
 	{
 		if (ray->side_dist_x < ray->side_dist_y)
@@ -140,7 +91,8 @@ void	raycasting(t_info *inf, t_ray *ray)
 		}
 		if (inf->data->map[ray->m_y][ray->m_x] == '1')
 			ray->wall = 1;
-		handle_sprite_lookups(inf, ray);
+		if (ray->wall != 1)
+			ray->wall = handle_sprite_lookups(inf, ray);
 	}
 	if (ray->side == 0)
 		ray->y = new_y_val(inf, ray);

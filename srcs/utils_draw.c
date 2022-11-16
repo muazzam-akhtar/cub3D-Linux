@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_draw.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 18:06:53 by hawadh            #+#    #+#             */
-/*   Updated: 2022/10/04 21:25:24 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/16 16:06:49 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ static void	draw_ceiling(t_info *info)
 	int	y;
 
 	y = 0;
-	while (y < 540)
+	while (y < HEIGHT / 2)
 	{
 		x = 0;
-		while (x < 1920)
+		while (x < WIDTH)
 			my_pixel_put(info, x++, y, rgb(info->data, 0));
 		y++;
 	}
@@ -42,11 +42,11 @@ static void	draw_floor(t_info *info)
 	int	x;
 	int	y;
 
-	y = 540;
-	while (y < 1080)
+	y = HEIGHT / 2;
+	while (y < HEIGHT)
 	{
 		x = 0;
-		while (x < 1920)
+		while (x < WIDTH)
 			my_pixel_put(info, x++, y, rgb(info->data, 1));
 		y++;
 	}
