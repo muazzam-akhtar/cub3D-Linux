@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/16 19:45:31 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/17 20:27:27 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@
 # define MINI_DIM 180
 # define MINI_SCALE 30
 # define NUM_SPRITES 1
+# define ROT_SPEED 0.025
+# define SPEED_F 0.25
+# define SPEED_L 0.0556
 
 # include <unistd.h>
 # include <fcntl.h>
@@ -351,6 +354,7 @@ typedef struct s_info
 	int			fire;
 	int			n_doors;
 	int			integrate;
+	void		**gun_var;
 	t_data		*data;
 	t_mouse		*mouse;
 	t_img		*image;

@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 19:28:36 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/16 18:19:09 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/17 20:36:17 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	handle_pause(t_info *inf)
 		mlx_put_image_to_window(inf->mlx, inf->win, inf->img, 0, 0);
 		mlx_put_image_to_window(inf->mlx, inf->win,
 		inf->data->gun, (WIDTH / 2) - 75, (HEIGHT / 2));
-		// mlx_put_image_to_window(inf->mlx, inf->win, inf->mini_map, 30, 30);
+		mlx_put_image_to_window(inf->mlx, inf->win, inf->mini_map, 30, 30);
 	}
 }
 
@@ -70,10 +70,10 @@ static void	handle_integration(int hook_num, t_info *inf)
 {
 	if (hook_num == SHIFT_KEY)
 	{
-		if (inf->player->speed == 0.25)
-			inf->player->speed = 0.0556;
+		if (inf->player->speed == SPEED_F)
+			inf->player->speed = SPEED_L;
 		else
-			inf->player->speed = 0.25;
+			inf->player->speed = SPEED_F;
 	}
 	else if (hook_num == E)
 	{
@@ -103,10 +103,10 @@ int	key_hook_manage(int hook_num, t_info *inf)
 	{
 		handle_integration(hook_num, inf);
 		moves(hook_num, inf);
-		// draw_minimap(inf, inf->mini);
+		draw_minimap(inf, inf->mini);
 		mlx_put_image_to_window(inf->mlx, inf->win, inf->img, 0, 0);
-		// mlx_put_image_to_window(inf->mlx, inf->win,
-		// 	inf->mini_map, 30, 30);
+		mlx_put_image_to_window(inf->mlx, inf->win,
+			inf->mini_map, 30, 30);
 		gun_image(inf);
 	}
 	return (EXIT_SUCCESS);

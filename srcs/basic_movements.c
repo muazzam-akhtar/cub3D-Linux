@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:40:38 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/16 18:51:43 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/17 13:01:08 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,13 +136,13 @@ void	rotation(int hook_num, t_info *inf)
 {
 	if (hook_num == ARROW_R)
 	{
-		inf->player->angle += 0.025;
+		inf->player->angle += ROT_SPEED;
 		if (inf->player->angle > 2 * PI)
 			inf->player->angle -= 2 * PI;
 	}
 	if (hook_num == ARROW_L)
 	{
-		inf->player->angle -= 0.025;
+		inf->player->angle -= ROT_SPEED;
 		if (inf->player->angle < 0)
 			inf->player->angle += 2 * PI;
 	}

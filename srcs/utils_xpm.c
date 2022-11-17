@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 20:06:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/16 18:18:01 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/17 19:53:10 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,26 @@ static void	get_xpm_addr(t_info *info, t_xpm *xpm, char *xpm_str)
 
 static int	init_bonus_xpm(t_info *info, t_data *data)
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
 
 	data->gun = mlx_xpm_file_to_image(info->mlx, "./imgs/Ak47.xpm", &x, &y);
-	data->gun_anim = mlx_xpm_file_to_image(info->mlx, "./imgs/Fired Ak47_1.xpm",
-			&x, &y);
 	data->pause = mlx_xpm_file_to_image(info->mlx, "./imgs/pause.xpm", &x, &y);
+	info->gun_var = (void **)ft_calloc(6, sizeof(void));
+	info->gun_var[0] = mlx_xpm_file_to_image(info->mlx,
+			"./imgs/Fired Ak47_1.xpm", &x, &y);
+	info->gun_var[1] = mlx_xpm_file_to_image(info->mlx,
+			"./imgs/Fired Ak47_2.xpm", &x, &y);
+	info->gun_var[2] = mlx_xpm_file_to_image(info->mlx,
+			"./imgs/Fired Ak47_3.xpm", &x, &y);
+	info->gun_var[3] = mlx_xpm_file_to_image(info->mlx,
+			"./imgs/Fired Ak47_4.xpm", &x, &y);
+	info->gun_var[4] = mlx_xpm_file_to_image(info->mlx,
+			"./imgs/Fired Ak47_5.xpm", &x, &y);
+	info->gun_var[5] = NULL;
+	data->gun_anim = info->gun_var[0];
 	get_xpm_addr(info, &data->xpm[DO], "./imgs/door.xpm");
-	if (!data->pause || !data->gun || !data->gun_anim)
+	if (!data->pause || !data->gun || !data->gun_anim || !info->gun_var)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
