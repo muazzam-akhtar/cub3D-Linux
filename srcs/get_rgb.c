@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 13:44:01 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/19 20:41:53 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/19 21:04:06 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,38 @@ static char	*dup_num(char *str)
 	return (tmp);
 }
 
+int	calc_digits(int num)
+{
+	int	count;
+
+	count = 0;
+	if (num < 10)
+		return (1);
+	while (num > 0)
+	{
+		count++;
+		num /= 10;
+	}
+	return (count);
+}
+
+static int	parse_num(char *str)
+{
+	int		ret;
+	char	*dup;
+	int		i;
+
+	dup = ft_strdup(str);
+	i = 0;
+	while (str[i] && str[i] != ',')
+		i++;
+	dup[i] = 0;
+	ret = ft_atoi(dup);
+	if (calc_digits(ret) == ft_strlen_int(dup))
+		return (EXIT_SUCCESS);
+	return (EXIT_FAILURE);
+}
+
 /**
 **	After checking the color of RGB,
 *	if		success store
@@ -48,11 +80,14 @@ static char	*dup_num(char *str)
 **/
 static int	get_rgb(char *tmp, int *k, char *str, int i)
 {
-	int	ret;
+	int		ret;
 
 	ret = ft_atoi(tmp);
-	if (*tmp == '0' && ret > 0)
-		return (TRUE);
+	if (parse_num(tmp))
+	{
+		free (tmp);
+		return (EXIT_FAILURE);
+	}
 	free (tmp);
 	(*k)++;
 	if (ret < 0 || ret > 255)
