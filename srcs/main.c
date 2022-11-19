@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:29:29 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/10 15:45:44 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/19 19:32:36 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	main(int argc, char **argv)
 
 	ft_memset(&info, 0, sizeof(t_info));
 	ft_memset(&data, 0, sizeof(t_data));
-	info.spr = NULL;
 	info.data = &data;
 	if (argc == 2)
 	{

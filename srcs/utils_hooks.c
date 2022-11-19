@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 19:28:36 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/17 20:36:17 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/19 18:46:40 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	handle_pause(t_info *inf)
 		draw_map(inf);
 		mlx_put_image_to_window(inf->mlx, inf->win, inf->img, 0, 0);
 		mlx_put_image_to_window(inf->mlx, inf->win,
-		inf->data->gun, (WIDTH / 2) - 75, (HEIGHT / 2));
+			inf->data->gun, (WIDTH / 2) - 75, (HEIGHT / 2));
 		mlx_put_image_to_window(inf->mlx, inf->win, inf->mini_map, 30, 30);
 	}
 }
@@ -49,19 +49,19 @@ int	controls(int keycode)
 {
 	if (keycode == W)
 		return (TRUE);
-	else if (keycode == A)
+	if (keycode == A)
 		return (TRUE);
-	else if (keycode == S)
+	if (keycode == S)
 		return (TRUE);
-	else if (keycode == D)
+	if (keycode == D)
 		return (TRUE);
-	else if (keycode == ARROW_L)
+	if (keycode == ARROW_L)
 		return (TRUE);
-	else if (keycode == ARROW_R)
+	if (keycode == ARROW_R)
 		return (TRUE);
-	else if (keycode == SHIFT_KEY)
+	if (keycode == SHIFT_KEY)
 		return (TRUE);
-	else if (keycode == E)
+	if (keycode == E)
 		return (TRUE);
 	return (FALSE);
 }

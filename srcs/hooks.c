@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 14:33:53 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/17 20:37:27 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/19 19:27:48 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	gun_animation(t_info *info)
 	mlx_put_image_to_window(info->mlx, info->win,
 		info->mini_map, 30, 30);
 	mlx_put_image_to_window(info->mlx, info->win,
-			info->data->gun, (WIDTH / 2) - 75, (HEIGHT / 2));
+		info->data->gun, (WIDTH / 2) - 75, (HEIGHT / 2));
 }
 
 int	mouse_click(int keycode, int x, int y, t_info *info)
@@ -50,6 +50,26 @@ int	mouse_click(int keycode, int x, int y, t_info *info)
 	return (EXIT_SUCCESS);
 }
 
+static int	get_door(t_info *info, double *x, double *y)
+{
+	int	index;
+
+	index = 0;
+	while ((int)(*x) == (int)info->player->x_pos
+		&& (int)(*y) == (int)info->player->y_pos)
+	{
+		*x += cos(info->player->angle) * 0.1;
+		*y += sin(info->player->angle) * 0.1;
+		index++;
+		if (index == 8)
+		{
+			info->integrate = 0;
+			return (EXIT_FAILURE);
+		}
+	}
+	return (EXIT_SUCCESS);
+}
+
 static int	animate(t_info *info)
 {
 	double		x;
@@ -63,22 +83,13 @@ static int	animate(t_info *info)
 		index = lookup_door(info, (int)x, (int)y);
 		if (index == -1)
 		{
-			index = 0;
-			while ((int)x == (int)info->player->x_pos && (int)y == (int)info->player->y_pos)
-			{
-				x += cos(info->player->angle) * 0.1;
-				y += sin(info->player->angle) * 0.1;
-				index++;
-				if (index == 8)
-				{
-					info->integrate = 0;
-					return (EXIT_SUCCESS);
-				}
-			}
+			get_door(info, &x, &y);
 			index = lookup_door(info, (int)x, (int)y);
 			if (index >= 0 && info->integrate == 1)
+			{
 				info->doors[index].open = !info->doors[index].open;
-			key_hook_manage(E, info);
+				key_hook_manage(E, info);
+			}
 		}
 		info->integrate = 0;
 	}

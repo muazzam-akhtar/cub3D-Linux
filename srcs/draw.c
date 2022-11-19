@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 09:28:29 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/16 17:07:56 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/19 19:42:51 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,44 +29,32 @@ void	my_pixel_put(t_info *inf, int x, int y, uint32_t rgb)
 **/
 static void	add_xpm(t_info *info, t_xpm *xpm, t_rays *ray, int x)
 {
-	int			xpm_x;
-	int			xpm_y;
-	int			start;
-	int			end;
 	int			y;
+	t_tex		tex;
 
-	xpm_x = (int)(modf(ray->x, &ray->x) * xpm->wi);
+	tex.xpm_x = (int)(modf(ray->x, &ray->x) * xpm->wi);
 	if (ray->side == 0)
-		xpm_x = (int)(modf(ray->y, &ray->y) * xpm->wi);
+		tex.xpm_x = (int)(modf(ray->y, &ray->y) * xpm->wi);
 	if ((ray->side == 0 && cos(ray->ang) > 0)
 		|| (ray->side == 1 && sin(ray->ang) < 0))
-		xpm_x = WIDTH - xpm_x - 1;
-	start = (HEIGHT / 2) - (ray->height / 2);
-	end = (HEIGHT / 2) + (ray->height / 2);
+		tex.xpm_x = xpm->wi - tex.xpm_x - 1;
+	tex.start = (HEIGHT / 2) - (ray->height / 2);
+	tex.end = (HEIGHT / 2) + (ray->height / 2);
 	y = ((HEIGHT - ray->height) / 2);
-	if (xpm_x > WIDTH)
-		xpm_x = WIDTH - xpm_x;
+	if (tex.xpm_x > WIDTH)
+		tex.xpm_x = xpm->wi - 1;
 	if (y < 0)
 		y = 0;
-	while (y < HEIGHT && y < end - 4)
+	while (y < HEIGHT && y < tex.end - 4)
 	{
-		xpm_y = ((1.0 * abs(y - start)) / abs(end - start) * xpm->hi);
-		if (xpm_y > xpm->hi)
-			xpm_y = xpm->hi - 1;
-		my_pixel_put(info, x, y, get_color(ray, xpm_x, xpm_y, xpm));
+		tex.xpm_y = ((1.0 * abs(y - tex.start)) / abs(tex.end - tex.start)
+				* xpm->hi);
+		if (tex.xpm_y > xpm->hi)
+			tex.xpm_y = xpm->hi - 1;
+		my_pixel_put(info, x, y, get_color(ray, tex.xpm_x, tex.xpm_y, xpm));
 		y++;
 	}
 }
-
-// static void	add_sprite(t_info *inf, t_sprite *spr, t_rays *ray, int x)
-// {
-// 	if (spr->token == 'D')
-// 		printf("Yes\n");
-// 	(void)inf;
-// 	(void)spr;
-// 	(void)ray;
-// 	(void)x;
-// }
 
 /*
 */
@@ -113,6 +101,6 @@ void	draw_map(t_info *info)
 		timer = 1;
 	}
 	init_rays(info);
-	// draw_minimap(info, info->mini);
+	draw_minimap(info, info->mini);
 	init_cursor(info);
 }

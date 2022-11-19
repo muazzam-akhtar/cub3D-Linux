@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 20:06:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/17 19:53:10 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/19 16:25:14 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	init_bonus_xpm(t_info *info, t_data *data)
 
 	data->gun = mlx_xpm_file_to_image(info->mlx, "./imgs/Ak47.xpm", &x, &y);
 	data->pause = mlx_xpm_file_to_image(info->mlx, "./imgs/pause.xpm", &x, &y);
-	info->gun_var = (void **)ft_calloc(6, sizeof(void));
+	info->gun_var = (void **)ft_calloc(6, sizeof(void *));
 	info->gun_var[0] = mlx_xpm_file_to_image(info->mlx,
 			"./imgs/Fired Ak47_1.xpm", &x, &y);
 	info->gun_var[1] = mlx_xpm_file_to_image(info->mlx,

@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 18:49:26 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/16 13:44:04 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/19 19:16:38 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static void	init_dda_vars(t_info *inf, t_ray *ray)
 {
 	ray->cx = cos(ray->angle);
 	ray->cy = sin(ray->angle);
-	ray->dx = sqrt(1 + (sq(ray->cy) / sq(ray->cx)));
-	ray->dy = sqrt(1 + (sq(ray->cx) / sq(ray->cy)));
+	ray->dx = sqrt(1 + (sq(ray->cy / ray->cx)));
+	ray->dy = sqrt(1 + (sq(ray->cx / ray->cy)));
 	ray->m_x = (int)inf->player->x_pos;
 	ray->m_y = (int)inf->player->y_pos;
 	ray->wall = 0;

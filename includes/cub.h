@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/17 20:27:27 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/19 19:40:22 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@
 # define MINI_DIM 180
 # define MINI_SCALE 30
 # define NUM_SPRITES 1
-# define ROT_SPEED 0.025
+# define ROT_SPEED 0.03
 # define SPEED_F 0.25
 # define SPEED_L 0.0556
 
@@ -124,34 +124,6 @@ typedef struct s_wall
 }	t_wall;
 
 /**
- ** Sprite Structure
- **	x_pos in double an x-coordinate
- **	y_pos in double a y-coordinate
- **	x_grid in int an x-coordinate
- **	y_grid in int a y-coordinate
- **	ang = angle of the sprite
- ** dist = distance of the sprite.
- ** height of the sprite.
- **/
-typedef struct s_sprite
-{
-	double	x_pos;
-	double	y_pos;
-	int		x_grid;
-	int		y_grid;
-	double	ang;
-	double	dist;
-	double	height;
-	void	*prev;
-	void	*next;
-	bool	open;
-	int		token;
-	int		index;
-	int		side;
-	int		wall;
-}	t_sprite;
-
-/**
 **	Rays Structure
 *	Distance variable
 *	Angle of ray
@@ -171,7 +143,6 @@ typedef struct s_rays
 	int			dir_wall;
 	int			side;
 	int			token;
-	t_sprite	*spr;
 }	t_rays;
 
 typedef struct s_ray
@@ -195,7 +166,6 @@ typedef struct s_ray
 	double		side_dist_x;
 	double		side_dist_y;
 	int			side;
-	t_sprite	*spr;
 	int			spr_len;
 	int			token;
 }	t_ray;
@@ -336,6 +306,14 @@ typedef struct s_str
 	char	*str;
 }	t_str;
 
+typedef struct s_tex
+{
+	int	start;
+	int	end;
+	int	xpm_x;
+	int	xpm_y;
+}				t_tex;
+
 /**
 **	Main Struct with all info including struct Pointers
 *	minilibx	*mlx
@@ -359,9 +337,7 @@ typedef struct s_info
 	t_mouse		*mouse;
 	t_img		*image;
 	t_mini		*mini;
-	t_sprite	*sprite;
 	t_player	*player;
-	t_sprite	**spr;
 	t_door		*doors;
 }	t_info;
 
@@ -385,7 +361,6 @@ double		new_y_val(t_info *inf, t_ray *ray);
 **	Sprites Management
 **/
 int			key_sprite(int c);
-void		free_spr(t_sprite *spr);
 void		working_spr(t_info *inf, t_ray *ray, int index);
 
 /**
@@ -471,6 +446,7 @@ size_t		rgb(t_data *data, int status);
 /**
 **	Hook Functions
 **/
+void		printing_image(t_info *info);
 void		handle_wall_collision(t_info *inf);
 void		move_frwrd(t_info *inf);
 void		move_back(t_info *inf);

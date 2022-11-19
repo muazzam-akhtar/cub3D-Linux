@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:42:22 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/16 18:49:50 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/19 19:32:56 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ void	init_rays(t_info *inf)
 	ceiling_floor(inf);
 	while (ray.count > 0)
 	{
-		inf->player->rays->spr = NULL;
 		hit_wall_check(&ray, inf);
 		inf->player->rays[RAYS - ray.count].ang = ray.angle;
 		revise_calc(NULL, &ray, inf, 0);
