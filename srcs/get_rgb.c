@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_rgb.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 13:44:01 by makhtar           #+#    #+#             */
-/*   Updated: 2022/07/05 10:58:17 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/19 20:41:53 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ static int	get_rgb(char *tmp, int *k, char *str, int i)
 	int	ret;
 
 	ret = ft_atoi(tmp);
+	if (*tmp == '0' && ret > 0)
+		return (TRUE);
 	free (tmp);
 	(*k)++;
 	if (ret < 0 || ret > 255)

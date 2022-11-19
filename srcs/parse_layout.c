@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_layout.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 14:19:03 by makhtar           #+#    #+#             */
-/*   Updated: 2022/10/14 22:43:55 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/19 20:26:57 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,22 +78,6 @@ static int	parse_layout(char **line, int *index, t_info *info)
 	*index = i;
 	return (EXIT_SUCCESS);
 }
-	/*if (line[i] != NULL && parse_config(line[i++], "NO", info))
-		return (EXIT_FAILURE);
-	if (line[i] != NULL && parse_config(line[i++], "SO", info))
-		return (EXIT_FAILURE);
-	if (line[i] != NULL && parse_config(line[i++], "WE", info))
-		return (EXIT_FAILURE);
-	info->data->confg = (char **)ft_calloc(confg_count(info->data->file)
-			+ 1, sizeof(char *));
-	if (!info->data->confg)
-		return (EXIT_FAILURE);
-	if (line[i] != NULL && parse_config(line[i++], "EA", info))
-		return (EXIT_FAILURE);
-	if (line[i] != NULL && parse_config_rgb(line[i++], "F", info))
-		return (EXIT_FAILURE);
-	if (line[i] != NULL && parse_config_rgb(line[i++], "C", info))
-		return (EXIT_FAILURE);*/
 
 static void	print_xpm(t_data *d)
 {

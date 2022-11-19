@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_type.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 22:20:14 by makhtar           #+#    #+#             */
-/*   Updated: 2022/10/14 22:46:11 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/19 20:27:52 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static int	get_type(char *str)
 {
+	if (str == NULL)
+		return (EXIT_FAILURE);
 	if (!ft_strcmp(str, "NO"))
 		return (1);
 	else if (!ft_strcmp(str, "SO"))

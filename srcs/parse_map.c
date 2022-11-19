@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 13:41:18 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/10 15:08:18 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/19 20:24:01 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,20 @@ static int	parse_walls(char *str)
 	int	i;
 
 	i = 0;
-	while (str[i])
+	if (str && (*str))
 	{
-		if (valid_key(str[i]) == '1' || ft_isspace(str[i]))
-			i++;
-		else
+		while (str[i])
+		{
+			if (valid_key(str[i]) == '1' || ft_isspace(str[i]))
+				i++;
+			else
+				return (EXIT_FAILURE);
+		}
+		if (str[--i] != '1')
 			return (EXIT_FAILURE);
+		return (EXIT_SUCCESS);
 	}
-	if (str[--i] != '1')
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
+	return (EXIT_FAILURE);
 }
 
 /**
