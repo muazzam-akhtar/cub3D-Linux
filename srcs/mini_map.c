@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 19:43:20 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/16 14:33:46 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/21 21:08:13 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,50 +26,85 @@ void	mini_pixel_put(t_mini *mini, int x, int y, int rgb)
 /**
 **	Draws Player at centre of minimap 
 **/
-// static void	draw_mini_player(t_mini *mini, int x, int y, int rgb)
-// {
-// 	int	x_reset;
+static void	draw_mini_player(t_mini *mini, int x, int y, int rgb)
+{
+	int	x_reset;
+	int	y_one;
+	int	x_one;
+	int	x_brdr;
+	int	y_brdr;
 
-// 	while (y < 100)
-// 	{
-// 		x_reset = x;
-// 		while (x_reset < 100)
-// 		{
-// 			if (y == 80 || y == 99 || x_reset == 80 || x_reset == 99)
-// 				mini_pixel_put(mini, x_reset, y, 0x000E5227);
-// 			else
-// 				mini_pixel_put(mini, x_reset, y, rgb);
-// 			x_reset++;
-// 		}
-// 		y++;
-// 	}
-// }
+	y_one = (MINI_DIM / 2) + 4;
+	x_one = (MINI_DIM / 2) + 4;
+	y_brdr = (MINI_DIM / 2) - 4;
+	x_brdr = (MINI_DIM / 2) - 4;
+	while (y < y_one)
+	{
+		x_reset = x;
+		while (x_reset < x_one)
+		{
+			if (y == x_brdr || y == (MINI_DIM / 2) + 3
+				|| x_reset == y_brdr || x_reset == (MINI_DIM / 2) + 3)
+				mini_pixel_put(mini, x_reset, y, 0x000E5227);
+			else
+				mini_pixel_put(mini, x_reset, y, rgb);
+			x_reset++;
+		}
+		y++;
+	}
+}
+
+/**
+**	Draws minimap interior
+*	TODO:	Fix index value issues when approaching index 0 of i or j
+**/
+static void	mini_interior(t_info *info)
+{
+	double	x;
+	double	y;
+	int		i;
+	int		j;
+
+	i = assign_index_values(info->player->y_pos - 3);
+	y = x_y_values(i) - extract_decimal(info->player->y_pos) * MINI_SCALE;
+	while (info->data->map[i] && mini_img_limit(info, y, x, 'y'))
+	{
+		j = assign_index_values(info->player->x_pos - 3);
+		x = x_y_values(j) - extract_decimal(info->player->x_pos) * MINI_SCALE;
+		while (info->data->map[i][j] && mini_img_limit(info, y, x, 'x'))
+		{
+			draw_mini_interior(info, &info->data->map[i][j], x, y);
+			j++;
+			x += MINI_SCALE;
+		}
+		i++;
+		y += MINI_SCALE;
+	}
+}
 
 /**
 **	Draws closer borders and calls function to draw
 **	Outer borders. Calls to draw minimap interior
 **/
-// void	draw_minimap(t_info *info, t_mini *mini)
-// {
-// 	(void)info;
-// 	(void)mini;
-// 	// int	x;
-// 	// int	y;
+void	draw_minimap(t_info *info, t_mini *mini)
+{
+	int	x;
+	int	y;
 
-// 	// y = 3;
-// 	// while (y < MINI_DIM - 3)
-// 	// {
-// 	// 	x = 3;
-// 	// 	while (x < MINI_DIM - 3)
-// 	// 	{
-// 	// 		mini_pixel_put(mini, x, y, rgb(info->data, 1));
-// 	// 		x++;
-// 	// 	}
-// 	// 	y++;
-// 	// }
-// 	// mini_interior(info, mini);
-// 	// draw_mini_player(mini, 80, 80, 0x003D8758);
-// }
+	y = 3;
+	while (y < MINI_DIM - 3)
+	{
+		x = 3;
+		while (x < MINI_DIM - 3)
+		{
+			mini_pixel_put(mini, x, y, rgb(info->data, 1));
+			x++;
+		}
+		y++;
+	}
+	mini_interior(info);
+	draw_mini_player(mini, (MINI_DIM / 2) - 4, (MINI_DIM / 2) - 4, 0x003D8758);
+}
 
 /**
 **	Initialises struct mini and creates new image for
@@ -81,7 +116,7 @@ void	init_minimap(t_info *info)
 
 	mini = (t_mini *)ft_calloc(1, sizeof(t_mini));
 	info->mini = mini;
-	info->mini_map = mlx_new_image(info->mlx, 180, 180);
+	info->mini_map = mlx_new_image(info->mlx, MINI_DIM, MINI_DIM);
 	if (!info->mini_map)
 	{
 		free_data(info);

@@ -14,13 +14,11 @@
 
 ```
 ***NOTES:***
-
-42Docs guide on raycasting:
-https://lodev.org/cgtutor/raycasting.html
+NULL
 
 ```
 
-`#BUGS: #21, #22, #23`
+`#BUGS: #27`
 
 1.	~~***HA:***	Segfaul in `get_next_line();` due to `ft_strchr();` in `libft`~~
 2.	~~***HA:***	Function parses whole file, should stop at first line of map~~
@@ -36,18 +34,19 @@ https://lodev.org/cgtutor/raycasting.html
 12.	~~***HA:***	in `add_xpm();` image not placing in only Blue~~
 13.	~~***HA:***	Map not redrawing on clearing window when hitting pause button a second time~~
 14.	~~***HA:***	Minimap skipping areas and not drawing in walls~~
-15. ***HA:***	Minimap not drawing walls when player is closer to **TOP** side of array
+15. ~~***HA:***	Minimap not drawing walls when player is closer to **TOP** side of array~~
 16.	~~***HA:***	Walls not drawing in correct position of window~~
 17. ~~***MAK:*** Walls not drawing in correct distance, it is drawing as inversed distance.~~
 18.	~~***MAK:*** Check if bugs are present when have 1920 rays for walls.~~
 19.	~~***MAK:*** Parse spaces for the map.~~
 20. ~~***MAK && HA:***Fish Eye fixed.~~
 21. ~~***MAK:*** Given directions of all the sides of the wall in the game with direction.c, function named wall_hit_direction.~~
-21. ***MAK && HA:*** When the game starts the position of player is different than playing the game, even with the pause function- the player is somewhere else in the map not when in his latest position. Need to be fixed. Probably the init_rays function is not functioning it properly.
-22.	***HA && MAK:***	Bug, NO, SO, EA, WE can be in any order, our parser fails it.
-23.	***MAK && HA:***	Map should not contain any spaces within the map. Spaces in the middle of the map with 1's and 0's should be invalid? Need to confirm this.
-24.	***HA:***	`add_xpm();` still not incrementing y in correct increments to draw walls
-25. ***HA:***	~~Mouse not being released on hitting pause~~
+22. ~~***MAK && HA:*** When the game starts the position of player is different than playing the game, even with the pause function- the player is somewhere else in the map not when in his latest position. Need to be fixed. Probably the init_rays function is not functioning it properly.~~
+23.	~~***HA && MAK:***	Bug, NO, SO, EA, WE can be in any order, our parser fails it.~~
+24.	~~***MAK && HA:***	Map should not contain any spaces within the map. Spaces in the middle of the map with 1's and 0's should be invalid? Need to confirm this.~~
+25.	~~***HA:***	`add_xpm();` still not incrementing y in correct increments to draw walls~~
+26. ~~***HA:***	Mouse not being released on hitting pause~~
+27. ***HA:***	Minimap jumping and resetting when approaching 0 index on both x and y.
 
 `#TODO:`
 
@@ -66,28 +65,30 @@ https://lodev.org/cgtutor/raycasting.html
 13.	~~***MAK:***	Time for raycasting math to solve.~~
 14.	~~***HA:***	Draw interior of minimap~~
 15.	~~***HA:***	Figure out hook management for hook_num 46, see comments in `utils_hooks.c`~~
-16.	***HA:***	Figure out what is the event that detects clicking on window edges
+16.	~~***HA:***	Figure out what is the event that detects clicking on window edges~~
 17.	~~***HA:***	Figure out XPM image for pause in center of screen and implement removal~~
 18.	~~***HA:***	Correctly implement # 14~~
 19.	~~***HA:***	Fix minimap drawing to draw when player is closer to left side of array coords, possibly due coords calculation making coords negative and invalid read~~
 20.	~~***HA:***	Fix walls drawing in wrong position of image, perhaps because ra->y not correct value. X is also not increment in correct amount.~~
 21.	~~***HA && MAK:***	Figure out solution to fish-eye effect.~~
-22. ~~***MA*** Implement edge cases for the rays.~~
-23. ~~***MA*** Need to work on fixing the directions of the rays when hits the wall.~~
-24. ~~***MA*** Raycasting is optimised with DDA Algorithm~~
-~~27. ***MA*** Animation effect when the AK-47 is triggered.~~
-25.	***HA:***	Figure out y step increments
-26. ~~***MA*** Work on sprites when rays will hit.~~
-28. ***MA*** Work on the management of sprites.
-29. ***MA*** Have character types for different types of sprites like D for Door, F for fire, B for barrel, etc.
-30. ***HA:***	Refactor minimap drawing in `utils_minimap.c` see `mini_interior();` on branch hawadh-minimap
-31.	~~***MA*** Finished working on the parsing for doors.~~
-32. ***MA*** Allocate structure for the doors and put xpm addresses in the sprites structures when the wall hits.
-33. ***MA*** Working on Integration for the doors.
+22. ~~***MAK:*** Implement edge cases for the rays.~~
+23. ~~***MAK:*** Need to work on fixing the directions of the rays when hits the wall.~~
+24. ~~***MAK:*** Raycasting is optimised with DDA Algorithm~~
+27. ~~***MAK:*** Animation effect when the AK-47 is triggered.~~
+25.	~~***HA:***	Figure out y step increments~~
+26. ~~***MAK:*** Work on sprites when rays will hit.~~
+28. ***MAK:*** Work on the management of sprites.
+29. ***MAK:*** Have character types for different types of sprites like D for Door, F for fire, B for barrel, etc.
+30. ***HA:*** Refactor minimap drawing in `utils_minimap.c` see `mini_interior();` on branch hawadh-minimap
+31.	~~***MAK:*** Finished working on the parsing for doors.~~
+32. ***MAK:*** Allocate structure for the doors and put xpm addresses in the sprites structures when the wall hits.
+33. ***MAK:*** Working on Integration for the doors.
+34. ~~***HA:*** Minimap not drawing EA/WE facing doors correctly. Need to adjust drawing depending on walls surrounding.~~
+35.	~~***HA:***	Resize minimap dimensions and values. Reduce them by half `MINI_DIM 90`.~~
 
 `#CURRENT STATUS`
 
-`HA:	18 Jul 2022`
+`HA:	15 Nov 2022`
 
 1.	New files to split functions `parse_file.c`, `errors.c`, `parse_file.c`
 2.	Added .gitignore
@@ -222,6 +223,22 @@ function placed in `linux_osx_mouse.c`
 130. Fixed issue with mouse not being released on hitting pause, by implementing `int status` in function parameter `linux_osx_mouse(t_info *info, int x, int y, int status)` to only trigger mouse move when pause flag is triggered.
 131. Muazzam gave calculation `step = ((xpm->hi * xpm->wi) / ray->dist) / ray->height;` implemented in `draw.c` in current line `#46`, step was placed in `xpm->addr[]`
 132. Branched from main to `hawadh-minimap` branch & refactoring minimap drawing algorithm.
+133. Implemented `# define NUM_SPRITES` in `cub.h` to auto increase allocation for `t_xpm *xpm` to add any new sprites to structures.
+134. Check comments for `utils_math.c` `utils_minimap.c` `utils_xpm.c`
+135. New file `utils_minimap_ext.c` with two new functions `x_y_values();` & `mini_img_limit();` called in `utils_minimap.c` in function `mini_interior();`
+136. New Function `x_y_values();` returns values of either `x` or `y` depending on whether index values are negative. Returns the values with calculation of scale for offset in minimap.
+137. New Function `mini_img_limit();` checks if `y` or `x` value has reached the loop limit to decide to continue or exit.
+138. New function `assign_index_values();` placed in file `utils_minimap_ext.c` returns index value depending if index calculated via input parameter and returns necessary value.
+139. Renamed `door1.xpm` to `door.xpm` and resized all wall images to 1920x1080.
+140. Adjust player drawing size in `mini_map.c` to draw smaller player.
+141. New `#define MINI_DIM` variable for minimap dimensions in `cub.h` and replaced all values in mini map functions that determined map dimensions.
+142. New function in `utils_minimap.c` draw_mini_interior()` to determine which map icon was detected to draw.
+143. New `#define NUM_SPRITES` in `cub.h` to adjust memory allocation for `t_xpm*` when necessary as number of sprites increment.
+144. New function in `utils_minimap.c` called `draw_mini_doors();` WIP (NEEDS NORMINETTING) to draw doors on minimap.
+145. Removed `p_ang` from `get_height();` parameters in `utils_math.c` and all `get_height();` function calls input.
+146. Added call `err_return();` with error `status == 3` in file `utils_door.c` to call error for invalid doors location.
+147. Finalised drawing of walls in minimap with two new functions `draw_mini_doors_horizontal();` and `draw_mini_doors_vertical();` separated due to different `x_one` and `y_one` values required. Functions placed in `utils_minimap_ext.c`
+148. Added `MINI_DIM` variables in all `draw_mini_player();` values to make change of minimap size more streamlined in file `mini_map.c`.
 
 
 `MAK:	4 July 2022`

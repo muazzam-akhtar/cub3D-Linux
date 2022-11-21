@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:44:02 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/16 15:57:47 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/21 21:10:40 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,11 @@
 /**
 **	Extracts Decimal point.
 **/
-double	extract_decimal(t_player *player, char status)
+double	extract_decimal(double value)
 {
 	double			diff;
-	static double	old_y;
-	static double	old_x;
 
-	if (status == 'y')
-	{
-		diff = modf(player->y_pos, &diff);
-		if (old_y < player->y_pos)
-			diff *= -1;
-		old_y = player->y_pos;
-	}
-	if (status == 'x')
-	{
-		diff = modf(player->x_pos, &diff);
-		if (old_x < player->x_pos)
-			diff *= -1;
-		old_x = player->x_pos;
-	}
+	diff = modf(value, &diff);
 	return (diff);
 }
 

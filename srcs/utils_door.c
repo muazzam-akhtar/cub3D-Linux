@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_door.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 15:02:39 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/11 15:02:40 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/16 17:21:06 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,9 @@ int	parse_doors(t_info *inf)
 			{
 				if (x == 0 || (x + 1) == (int)ft_strlen(inf->data->map[y])
 					|| y == 0 || (y + 1) == (int)ft_ptrptrlen(inf->data->map))
-					return (EXIT_FAILURE);
+					err_return(3, inf);
 				if (door_check(inf, y, x))
-					return (EXIT_FAILURE);
+					err_return(3, inf);
 				count++;
 			}
 			x++;

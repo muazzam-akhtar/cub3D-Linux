@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/16 19:45:31 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/21 21:11:24 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,7 +210,7 @@ typedef struct s_door
 	double	x_pos;
 	double	dist;
 	double	height;
-}				t_door;
+}	t_door;
 
 /**
 **	Player Structure
@@ -232,6 +232,7 @@ typedef struct s_player
 	t_wall		wall;
 	t_rays		rays[RAYS];
 }				t_player;
+
 typedef struct s_xpm
 {
 	void	*img;
@@ -450,9 +451,18 @@ void		find_player(t_data *data, t_player *player);
 **	Mini-map functions
 **/
 void		init_minimap(t_info *info);
-void		mini_interior(t_info *info, t_mini *mini);
+void		draw_mini_interior(t_info *info, char *map_icon, int x, int y);
 void		mini_pixel_put(t_mini *mini, int x, int y, int rgb);
-double		extract_decimal(t_player *player, char status);
+void		draw_mini_doors_horizontal(t_info *info, int x, int y, int rgb);
+void		draw_mini_doors_vertical(t_info *info, int x, int y, int rgb);
+int			x_y_values(int index);
+int			mini_img_limit(t_info *info, int y, int x, char status);
+int			assign_index_values(int index);
+
+/**
+**	Math Functions
+**/
+double		extract_decimal(double value);
 
 /**
 **	XPM Functions 
