@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 19:43:20 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/21 21:08:13 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/21 21:25:48 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,61 +26,61 @@ void	mini_pixel_put(t_mini *mini, int x, int y, int rgb)
 /**
 **	Draws Player at centre of minimap 
 **/
-static void	draw_mini_player(t_mini *mini, int x, int y, int rgb)
-{
-	int	x_reset;
-	int	y_one;
-	int	x_one;
-	int	x_brdr;
-	int	y_brdr;
+// static void	draw_mini_player(t_mini *mini, int x, int y, int rgb)
+// {
+// 	int	x_reset;
+// 	int	y_one;
+// 	int	x_one;
+// 	int	x_brdr;
+// 	int	y_brdr;
 
-	y_one = (MINI_DIM / 2) + 4;
-	x_one = (MINI_DIM / 2) + 4;
-	y_brdr = (MINI_DIM / 2) - 4;
-	x_brdr = (MINI_DIM / 2) - 4;
-	while (y < y_one)
-	{
-		x_reset = x;
-		while (x_reset < x_one)
-		{
-			if (y == x_brdr || y == (MINI_DIM / 2) + 3
-				|| x_reset == y_brdr || x_reset == (MINI_DIM / 2) + 3)
-				mini_pixel_put(mini, x_reset, y, 0x000E5227);
-			else
-				mini_pixel_put(mini, x_reset, y, rgb);
-			x_reset++;
-		}
-		y++;
-	}
-}
+// 	y_one = (MINI_DIM / 2) + 4;
+// 	x_one = (MINI_DIM / 2) + 4;
+// 	y_brdr = (MINI_DIM / 2) - 4;
+// 	x_brdr = (MINI_DIM / 2) - 4;
+// 	while (y < y_one)
+// 	{
+// 		x_reset = x;
+// 		while (x_reset < x_one)
+// 		{
+// 			if (y == x_brdr || y == (MINI_DIM / 2) + 3
+// 				|| x_reset == y_brdr || x_reset == (MINI_DIM / 2) + 3)
+// 				mini_pixel_put(mini, x_reset, y, 0x000E5227);
+// 			else
+// 				mini_pixel_put(mini, x_reset, y, rgb);
+// 			x_reset++;
+// 		}
+// 		y++;
+// 	}
+// }
 
 /**
 **	Draws minimap interior
 *	TODO:	Fix index value issues when approaching index 0 of i or j
 **/
-static void	mini_interior(t_info *info)
-{
-	double	x;
-	double	y;
-	int		i;
-	int		j;
+// static void	mini_interior(t_info *info)
+// {
+// 	double	x;
+// 	double	y;
+// 	int		i;
+// 	int		j;
 
-	i = assign_index_values(info->player->y_pos - 3);
-	y = x_y_values(i) - extract_decimal(info->player->y_pos) * MINI_SCALE;
-	while (info->data->map[i] && mini_img_limit(info, y, x, 'y'))
-	{
-		j = assign_index_values(info->player->x_pos - 3);
-		x = x_y_values(j) - extract_decimal(info->player->x_pos) * MINI_SCALE;
-		while (info->data->map[i][j] && mini_img_limit(info, y, x, 'x'))
-		{
-			draw_mini_interior(info, &info->data->map[i][j], x, y);
-			j++;
-			x += MINI_SCALE;
-		}
-		i++;
-		y += MINI_SCALE;
-	}
-}
+// 	i = assign_index_values(info->player->y_pos - 3);
+// 	y = x_y_values(i) - extract_decimal(info->player->y_pos) * MINI_SCALE;
+// 	while (info->data->map[i] && mini_img_limit(info, y, x, 'y'))
+// 	{
+// 		j = assign_index_values(info->player->x_pos - 3);
+// 		x = x_y_values(j) - extract_decimal(info->player->x_pos) * MINI_SCALE;
+// 		while (info->data->map[i][j] && mini_img_limit(info, y, x, 'x'))
+// 		{
+// 			draw_mini_interior(info, &info->data->map[i][j], x, y);
+// 			j++;
+// 			x += MINI_SCALE;
+// 		}
+// 		i++;
+// 		y += MINI_SCALE;
+// 	}
+// }
 
 /**
 **	Draws closer borders and calls function to draw
@@ -97,13 +97,13 @@ void	draw_minimap(t_info *info, t_mini *mini)
 		x = 3;
 		while (x < MINI_DIM - 3)
 		{
-			mini_pixel_put(mini, x, y, rgb(info->data, 1));
+			mini_pixel_put(mini, x, y, 0X00000048);
 			x++;
 		}
 		y++;
 	}
-	mini_interior(info);
-	draw_mini_player(mini, (MINI_DIM / 2) - 4, (MINI_DIM / 2) - 4, 0x003D8758);
+	draw_mini_interior(info, mini);
+	// draw_mini_player(mini, 80, 80, 0x003D8758);
 }
 
 /**

@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 19:28:36 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/16 18:19:09 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/21 20:52:28 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,10 @@ int	key_hook_manage(int hook_num, t_info *inf)
 	{
 		handle_integration(hook_num, inf);
 		moves(hook_num, inf);
-		// draw_minimap(inf, inf->mini);
+		draw_minimap(inf, inf->mini);
 		mlx_put_image_to_window(inf->mlx, inf->win, inf->img, 0, 0);
-		// mlx_put_image_to_window(inf->mlx, inf->win,
-		// 	inf->mini_map, 30, 30);
+		mlx_put_image_to_window(inf->mlx, inf->win,
+			inf->mini_map, 30, 30);
 		gun_image(inf);
 	}
 	return (EXIT_SUCCESS);

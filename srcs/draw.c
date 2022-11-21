@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 09:28:29 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/21 21:06:56 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/21 21:25:06 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,6 @@ void	draw_map(t_info *info)
 		timer = 1;
 	}
 	init_rays(info);
-	// draw_minimap(info, info->mini);
+	draw_minimap(info, info->mini);
 	init_cursor(info);
 }

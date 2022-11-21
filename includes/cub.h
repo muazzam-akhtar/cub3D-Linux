@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/21 21:11:24 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/21 21:24:51 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,6 +258,19 @@ typedef struct s_minimap
 }	t_mini;
 
 /**
+**	Minimap image address
+**/
+typedef struct s_radar
+{
+	char	*addr;
+	int		bitspix;
+	int		len;
+	int		end;
+	int		x_pos;
+	int		y_pos;
+}	t_radar;
+
+/**
 **	Main window image address
 **/
 typedef struct s_image
@@ -360,6 +373,7 @@ typedef struct s_info
 	t_player	*player;
 	t_sprite	**spr;
 	t_door		*doors;
+	t_radar		*s_map;
 }	t_info;
 
 /**
@@ -451,7 +465,7 @@ void		find_player(t_data *data, t_player *player);
 **	Mini-map functions
 **/
 void		init_minimap(t_info *info);
-void		draw_mini_interior(t_info *info, char *map_icon, int x, int y);
+void		draw_mini_interior(t_info *info, t_mini *mini);
 void		mini_pixel_put(t_mini *mini, int x, int y, int rgb);
 void		draw_mini_doors_horizontal(t_info *info, int x, int y, int rgb);
 void		draw_mini_doors_vertical(t_info *info, int x, int y, int rgb);
