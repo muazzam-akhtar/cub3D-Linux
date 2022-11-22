@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 19:43:20 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/16 22:10:23 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/22 17:29:15 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,22 +56,26 @@ static void	draw_mini_player(t_mini *mini, int x, int y, int rgb)
 
 /**
 **	Draws minimap interior
-*	TODO:	Fix index value issues when approaching index 0 of i or j
 **/
 static void	mini_interior(t_info *info)
 {
-	double	x;
 	double	y;
+	double	x;
+	double	temp;
 	int		i;
 	int		j;
 
-	i = assign_index_values(info->player->y_pos - 3);
-	y = x_y_values(i) - extract_decimal(info->player->y_pos) * MINI_SCALE;
-	while (info->data->map[i] && mini_img_limit(info, y, x, 'y'))
+	modf(info->player->y_pos - 3.0, &temp);
+	i = temp - 3;
+	y = x_y_values(i, info->player->y_pos - 3.0) - extract_decimal(info->player->y_pos) * MINI_SCALE;
+	i = assign_index(i);
+	while (info->data->map[i] && mini_img_limit(y, x, 'y'))
 	{
-		j = assign_index_values(info->player->x_pos - 3);
-		x = x_y_values(j) - extract_decimal(info->player->x_pos) * MINI_SCALE;
-		while (info->data->map[i][j] && mini_img_limit(info, y, x, 'x'))
+		modf(info->player->x_pos - 3.0, &temp);
+		j = temp - 3;
+		x = x_y_values(j, info->player->x_pos - 3.0) - extract_decimal(info->player->x_pos) * MINI_SCALE;
+		j = assign_index(j);
+		while (info->data->map[i][j] && mini_img_limit(y, x, 'x'))
 		{
 			draw_mini_interior(info, &info->data->map[i][j], x, y);
 			j++;
@@ -103,6 +107,7 @@ void	draw_minimap(t_info *info, t_mini *mini)
 		y++;
 	}
 	mini_interior(info);
+	// mini_rot(info);
 	draw_mini_player(mini, (MINI_DIM / 2) - 4, (MINI_DIM / 2) - 4, 0x003D8758);
 }
 

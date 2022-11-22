@@ -18,7 +18,7 @@ NULL
 
 ```
 
-`#BUGS: #27`
+`#BUGS: NULL`
 
 1.	~~***HA:***	Segfaul in `get_next_line();` due to `ft_strchr();` in `libft`~~
 2.	~~***HA:***	Function parses whole file, should stop at first line of map~~
@@ -46,7 +46,7 @@ NULL
 24.	~~***MAK && HA:***	Map should not contain any spaces within the map. Spaces in the middle of the map with 1's and 0's should be invalid? Need to confirm this.~~
 25.	~~***HA:***	`add_xpm();` still not incrementing y in correct increments to draw walls~~
 26. ~~***HA:***	Mouse not being released on hitting pause~~
-27. ***HA:***	Minimap jumping and resetting when approaching 0 index on both x and y.
+27. ~~***HA:***	Minimap jumping and resetting when approaching 0 index on both x and y.~~
 
 `#TODO:`
 
@@ -79,7 +79,7 @@ NULL
 26. ~~***MAK:*** Work on sprites when rays will hit.~~
 28. ***MAK:*** Work on the management of sprites.
 29. ***MAK:*** Have character types for different types of sprites like D for Door, F for fire, B for barrel, etc.
-30. ***HA:*** Refactor minimap drawing in `utils_minimap.c` see `mini_interior();` on branch hawadh-minimap
+30. ~~***HA:*** Refactor minimap drawing in `utils_minimap.c` see `mini_interior();` on branch hawadh-minimap.~~
 31.	~~***MAK:*** Finished working on the parsing for doors.~~
 32. ***MAK:*** Allocate structure for the doors and put xpm addresses in the sprites structures when the wall hits.
 33. ***MAK:*** Working on Integration for the doors.
@@ -88,7 +88,7 @@ NULL
 
 `#CURRENT STATUS`
 
-`HA:	15 Nov 2022`
+`HA:	22 Nov 2022`
 
 1.	New files to split functions `parse_file.c`, `errors.c`, `parse_file.c`
 2.	Added .gitignore
@@ -239,6 +239,8 @@ function placed in `linux_osx_mouse.c`
 146. Added call `err_return();` with error `status == 3` in file `utils_door.c` to call error for invalid doors location.
 147. Finalised drawing of walls in minimap with two new functions `draw_mini_doors_horizontal();` and `draw_mini_doors_vertical();` separated due to different `x_one` and `y_one` values required. Functions placed in `utils_minimap_ext.c`
 148. Added `MINI_DIM` variables in all `draw_mini_player();` values to make change of minimap size more streamlined in file `mini_map.c`.
+149. Renamed function `draw_mini_enemy();` in `utils_minimap.c` to `draw_mini_sprite();`
+150. Refactored `x_y_values();` in `utils_minimap_ext.c` to calculate correct `x` & `y` values.
 
 
 `MAK:	4 July 2022`

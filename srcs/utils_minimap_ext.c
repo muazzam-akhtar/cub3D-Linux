@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 19:45:56 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/16 20:55:44 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/22 17:19:26 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,11 @@ static int	rgb_door_status(t_info *info)
 {
 	int	i;
 	int	j;
-	int	x;
-	int	y;
 
-	i = assign_index_values(info->player->y_pos - 3);
+	i = 0;
 	while (info->data->map[i])
 	{
-		y = info->player->y_pos;
-		x = info->player->x_pos;
-		j = assign_index_values(info->player->x_pos - 3);
+		j = 0;
 		while (info->data->map[i][j])
 		{
 			if (info->data->map[i][j] == 'D')
@@ -90,7 +86,7 @@ void	draw_mini_doors_horizontal(t_info *info, int x, int y, int rgb)
 		{
 			if (x_rst > 2 && x_rst < MINI_DIM - 3 && y > 2 && y < MINI_DIM - 3)
 			{
-				if (x_rst == x_one - 2 || y == y_one -1
+				if (x_rst == x_one - 2 || y == y_one - 1
 					|| x_rst == x || y == y_brdr)
 					mini_pixel_put(info->mini, x_rst, y, rgb_door_status(info));
 				else
@@ -103,21 +99,26 @@ void	draw_mini_doors_horizontal(t_info *info, int x, int y, int rgb)
 }
 
 /**
-**	Extracts x & y values
+**	Resets index to 0
 **/
-int	x_y_values(int index)
+int	assign_index(int index)
 {
 	if (index < 0)
-		return ((index * MINI_SCALE - 7));
-	return (7);
+		index = 0;
+	return (index);
 }
 
 /**
-**	Sets index value to 0 if index < 0
+**	Calculates value of XY in `mini_interior();`
 **/
-int	assign_index_values(int index)
+double	x_y_values(int index, double pos)
 {
+	double	x_y;
+
+	x_y = 0.0;
 	if (index < 0)
-		return (0);
-	return (index);
+		x_y = (index * -1) * MINI_SCALE;
+	if (pos > 0.0)
+		x_y -= MINI_SCALE;
+	return (x_y - (MINI_SCALE * 2));
 }

@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/16 22:20:05 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/22 17:32:23 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,8 +250,6 @@ typedef struct s_minimap
 	int		bitspix;
 	int		len;
 	int		end;
-	int		x_pos;
-	int		y_pos;
 }	t_mini;
 
 /**
@@ -452,9 +450,10 @@ void		draw_mini_interior(t_info *info, char *map_icon, int x, int y);
 void		mini_pixel_put(t_mini *mini, int x, int y, int rgb);
 void		draw_mini_doors_horizontal(t_info *info, int x, int y, int rgb);
 void		draw_mini_doors_vertical(t_info *info, int x, int y, int rgb);
-int			x_y_values(int index);
-int			mini_img_limit(t_info *info, int y, int x, char status);
-int			assign_index_values(int index);
+void		mini_rot(t_info *info);
+double		x_y_values(int index, double pos);
+int			assign_index(int index);
+int			mini_img_limit(int y, int x, char status);
 
 /**
 **	Math Functions
