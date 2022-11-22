@@ -47,6 +47,7 @@ NULL
 25.	~~***HA:***	`add_xpm();` still not incrementing y in correct increments to draw walls~~
 26. ~~***HA:***	Mouse not being released on hitting pause~~
 27. ~~***HA:***	Minimap jumping and resetting when approaching 0 index on both x and y.~~
+28. ~~***HA:***	Parsing for newlines etc; between map lines not working.~~
 
 `#TODO:`
 
@@ -85,6 +86,8 @@ NULL
 33. ***MAK:*** Working on Integration for the doors.
 34. ~~***HA:*** Minimap not drawing EA/WE facing doors correctly. Need to adjust drawing depending on walls surrounding.~~
 35.	~~***HA:***	Resize minimap dimensions and values. Reduce them by half `MINI_DIM 90`.~~
+36.	~~***HA:***	Fix map file parsing, map does not fail if newlines or any whitespace between map lines.~~
+37.	***HA:***	Add rotation to minimap player model.
 
 `#CURRENT STATUS`
 
@@ -241,6 +244,10 @@ function placed in `linux_osx_mouse.c`
 148. Added `MINI_DIM` variables in all `draw_mini_player();` values to make change of minimap size more streamlined in file `mini_map.c`.
 149. Renamed function `draw_mini_enemy();` in `utils_minimap.c` to `draw_mini_sprite();`
 150. Refactored `x_y_values();` in `utils_minimap_ext.c` to calculate correct `x` & `y` values.
+151. Moved `squash_lines();` to `parse_file.c` & now sending `t_info *info` to `store_data();` in `utils_file.c`
+152. New function in `parse_layout.c` called `hceck_map_config_lines();` called from `check_map_lines();` in `utils_file_ext.c`
+153. Fixed parsing issue with any new lines or empty spaces between map lines. See `#151` -> `#152`.
+154. Removed unused function in `directions.c` called `print_map(char **str);`.
 
 
 `MAK:	4 July 2022`

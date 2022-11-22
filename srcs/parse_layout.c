@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_layout.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 14:19:03 by makhtar           #+#    #+#             */
-/*   Updated: 2022/10/14 22:43:55 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/22 23:21:34 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,15 +95,6 @@ static int	parse_layout(char **line, int *index, t_info *info)
 	if (line[i] != NULL && parse_config_rgb(line[i++], "C", info))
 		return (EXIT_FAILURE);*/
 
-static void	print_xpm(t_data *d)
-{
-	printf("\n");
-	printf("NO	:	%s\n", d->confg[0]);
-	printf("SO	:	%s\n", d->confg[1]);
-	printf("WE	:	%s\n", d->confg[2]);
-	printf("EA	:	%s\n", d->confg[3]);
-}
-
 /**
 **	Calls parser for maps and config
 **/
@@ -118,10 +109,25 @@ int	parse_arg(char **maps, t_info *info)
 		err_return(3, info);
 	if (store_map(info->data))
 		return (EXIT_FAILURE);
-	print_xpm(info->data);
+	printf("\n");
+	printf("NO	:	%s\n", info->data->confg[0]);
+	printf("SO	:	%s\n", info->data->confg[1]);
+	printf("WE	:	%s\n", info->data->confg[2]);
+	printf("EA	:	%s\n", info->data->confg[3]);
 	printf("\nF	:	R: %d,	G: %d,	B: %d\n", \
 	info->data->floor.red, info->data->floor.green, info->data->floor.blue);
 	printf("C	:	R: %d,	G: %d,	B: %d\n", info->data->ceil.red, \
 	info->data->ceil.green, info->data->ceil.blue);
 	return (EXIT_SUCCESS);
+}
+
+int	check_map_config_lines(char *input)
+{
+	if (!ft_strncmp(input, "F", 1) || !ft_strncmp(input, "C", 1))
+		return (EXIT_SUCCESS);
+	if (!ft_strncmp(input, "NO", 2) || !ft_strncmp(input, "SO", 2))
+		return (EXIT_SUCCESS);
+	if (!ft_strncmp(input, "EA", 2) || !ft_strncmp(input, "WE", 2))
+		return (EXIT_SUCCESS);
+	return (EXIT_FAILURE);
 }

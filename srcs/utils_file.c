@@ -6,30 +6,37 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 17:09:10 by hawadh            #+#    #+#             */
-/*   Updated: 2022/07/12 14:59:34 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/22 23:50:11 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
 /**
-**	Only stores relevent lines in d->file
+**	Only stores relevent lines in info->data->file
+*
+**	check_config_map();
+*		Function to check for any new lines between map lines.
+*		placed in 'utils_file_ext.c'
 **/
-int	store_data(t_data *d, char **input)
+int	store_data(t_info *info, char **input)
 {
 	int	i;
 	int	j;
 
-	d->file = (char **)ft_calloc(get_act_size(input) + 1, sizeof(char *));
-	if (!d->file)
+	info->data->file
+		= (char **)ft_calloc(get_act_size(input) + 1, sizeof(char *));
+	if (!info->data->file)
 		return (EXIT_FAILURE);
+	if (check_config_map(input))
+		err_return(3, info);
 	i = 0;
 	j = 0;
 	while (input[i])
 	{
 		if (ft_strncmp(input[i], "", ft_strlen(input[i])))
 			if (!check_line(input[i]))
-				d->file[j++] = ft_strdup(input[i]);
+				info->data->file[j++] = ft_strdup(input[i]);
 		i++;
 	}
 	free_split(input);
