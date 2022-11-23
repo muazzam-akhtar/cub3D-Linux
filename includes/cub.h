@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/23 16:45:51 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/23 16:56:29 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,8 +226,6 @@ typedef struct s_minimap
 	int		bitspix;
 	int		len;
 	int		end;
-	int		x_pos;
-	int		y_pos;
 }	t_mini;
 
 /**
@@ -371,12 +369,14 @@ double		get_dist(double x_one, double y_one, double x_two, double y_two);
 double		get_height(double dist);
 double		new_x_val(t_info *inf, t_ray *ray);
 double		new_y_val(t_info *inf, t_ray *ray);
+double		extract_decimal(double value);
 
 /**
 **	Sprites Management
 **/
 int			key_sprite(int c);
 void		working_spr(t_info *inf, t_ray *ray, int index);
+int			key_sprite(int c);
 
 /**
 **	Doors Functions
@@ -395,8 +395,13 @@ void		check_map(t_info *info, char *str);
 void		fetch_rgb(char *str, t_info *info, const char *layout);
 char		**clean_whitespace(char **input);
 char		**squash_lines(char **file, char **input);
+char		*check_tabs(char *input);
 char		*squash(char *input);
-int			store_data(t_data *d, char **input);
+char		*get_layouts(char *str);
+char		*get_type_str(int type);
+int			check_config_map(char **input);
+int			check_map_config_lines(char *input);
+int			store_data(t_info *info, char **input);
 int			check_if_map(char *input);
 int			isdir(char *str);
 int			get_size(t_info *info, char *str);
@@ -406,9 +411,7 @@ int			check_rgb(char *str, const char *layout, t_info *info);
 int			parse_config(char *str, const char *layout, t_info *info);
 int			parse_config_rgb(char *str, const char *layout, t_info *info);
 int			data_init(t_info *info, int *i, int *ret);
-char		*get_layouts(char *str);
 int			get_raw_layout(char *line);
-char		*get_type_str(int type);
 int			get_2d_len(char **str);
 int			ft_strlen_int(char *str);
 int			parse_spaces(char **str);
@@ -443,19 +446,15 @@ void		find_player(t_data *data, t_player *player);
 /**
 **	Mini-map functions
 **/
+double		x_y_values(int index, double pos);
 void		init_minimap(t_info *info);
 void		draw_mini_interior(t_info *info, t_mini *mini);
 void		mini_pixel_put(t_mini *mini, int x, int y, int rgb);
 void		draw_mini_doors_horizontal(t_info *info, int x, int y, int rgb);
 void		draw_mini_doors_vertical(t_info *info, int x, int y, int rgb);
-int			x_y_values(int index);
-int			mini_img_limit(t_info *info, int y, int x, char status);
-int			assign_index_values(int index);
-
-/**
-**	Math Functions
-**/
-double		extract_decimal(double value);
+void		mini_rot(t_info *info);
+int			assign_index(int index);
+int			mini_img_limit(int y, int x, char status);
 
 /**
 **	XPM Functions 
@@ -492,9 +491,9 @@ int			mouse_move(int x, int y, t_info *info);
 /**
 **	RayCasting functions
 **/
-void		raycasting(t_info *inf, t_ray *ray);
-int			wall_hit_direction(t_ray *ray);
-void		init_rays(t_info *inf);
 double		euclidean(t_ray *ray, double dist, double p_ang);
+void		raycasting(t_info *inf, t_ray *ray);
+void		init_rays(t_info *inf);
+int			wall_hit_direction(t_ray *ray);
 
 #endif
