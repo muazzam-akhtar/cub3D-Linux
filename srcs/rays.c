@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:42:22 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/19 19:32:56 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/23 16:51:11 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,7 @@ static void	revise_calc(t_rays *rays, t_ray *ray, t_info *inf,
 		rays->dist = euclidean(ray,
 				get_dist(inf->player->x_pos,
 					inf->player->y_pos, ray->x, ray->y), inf->player->angle);
-		rays->height
-			= get_height(rays->dist);
+		rays->height = get_height(rays->dist);
 	}
 }
 

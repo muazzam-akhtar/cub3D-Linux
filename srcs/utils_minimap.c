@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_minimap.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 19:44:52 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/16 20:50:02 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/23 16:53:20 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,73 @@
 *!	DEPRECATED
 **/
 static void	draw_mini_enemy(t_mini *mini, int x, int y, int rgb)
+{
+	int	y_lmt;
+	int	y_brdr;
+	int	x_lmt;
+	int	x_rst;
+
+	y_brdr = y;
+	y_lmt = y + 15;
+	while (y < y_lmt)
+	{
+		x_rst = x;
+		x_lmt = x_rst + 15;
+		while (x_rst < x_lmt)
+		{
+			if (x_rst > 2 && x_rst < MINI_DIM - 3 && y > 2 && y < MINI_DIM - 3)
+			{
+				if (x_rst == x || x_rst == x_lmt - 1
+					|| y == y_lmt - 1 || y == y_brdr)
+					mini_pixel_put(mini, x_rst, y, 0x00660000);
+				else
+					mini_pixel_put(mini, x_rst, y, rgb);
+			}
+			x_rst++;
+		}
+		y++;
+	}
+}
+
+/**
+**	Draws walls on minimap
+**/
+static void	draw_mini_walls(t_info *info, int x, int y, int rgb)
+{
+	int				y_one;
+	int				x_one;
+	int				x_rst;
+	static int		flag;
+
+	if (!flag)
+	{
+		y_one = y + (extract_decimal(info->player, 'y') * MINI_SCALE);
+		y -= (extract_decimal(info->player, 'y') * MINI_SCALE);
+	}
+	else
+		y_one = y - (extract_decimal(info->player, 'y') * MINI_SCALE);
+	while (y < y_one - 1)
+	{
+		x_rst = x;
+		if (!flag)
+		{
+			x_one = x + (extract_decimal(info->player, 'x') * MINI_SCALE);
+			x_rst = x - (extract_decimal(info->player, 'x') * MINI_SCALE);
+		}
+		else
+			x_one = x - (extract_decimal(info->player, 'x') * MINI_SCALE);
+		while (x_rst < x_one - 1)
+		{
+			if (y > 2 && x_rst > 2 && y < 177 && x_rst < 177)
+				mini_pixel_put(info->mini, x_rst, y, rgb);
+			x_rst++;
+		}
+		y++;
+	}
+	flag = 1;
+}
+
+void	print_red_wall(t_mini *mini, int x, int y)
 {
 	int	y_one;
 	int	y_brdr;
@@ -41,14 +108,11 @@ static void	draw_mini_enemy(t_mini *mini, int x, int y, int rgb)
 			}
 			x_rst++;
 		}
-		y++;
+		j--;
 	}
 }
 
-/**
-**	Draws walls on minimap
-**/
-static void	draw_mini_walls(t_info *info, int x, int y, int rgb)
+void	print_player(t_info *info, t_mini *mini, int x, int y)
 {
 	int	y_one;
 	int	x_one;
@@ -65,7 +129,7 @@ static void	draw_mini_walls(t_info *info, int x, int y, int rgb)
 				mini_pixel_put(info->mini, x_rst, y, rgb);
 			x_rst++;
 		}
-		y++;
+		j--;
 	}
 }
 

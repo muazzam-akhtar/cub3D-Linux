@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 20:06:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/19 16:25:14 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/23 16:54:02 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,9 @@ static int	init_bonus_xpm(t_info *info, t_data *data)
 
 /**
 **	Opens xpm layout images and stores them within
-*	data->confg		[0] == NO, [1] == SO, [2] == WE, [3] == EA
-*	data->pause		Fixed image ./imgs/pause.xpm
+*	data->confg			[0] == NO, [1] == SO, [2] == WE, [3] == EA
+*	data->pause			Fixed image ./imgs/pause.xpm
+*	init_bonus_xpm()	Loads additional xpm images for bonus
 **/
 static int	open_xpm(t_info *info, t_data *data, size_t len)
 {
@@ -69,10 +70,7 @@ static int	open_xpm(t_info *info, t_data *data, size_t len)
 		if (i < 4)
 			get_xpm_addr(info, &data->xpm[i], data->confg[i]);
 		if (i > 3)
-		{
 			data->confg[i] = ft_strdup(data->file[i]);
-			printf("%s\n", data->confg[i]);
-		}
 		i++;
 	}
 	if (init_bonus_xpm(info, data))

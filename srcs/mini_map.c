@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 19:43:20 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/19 20:09:28 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/23 16:48:47 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ static void	draw_mini_player(t_mini *mini, int x, int y, int rgb)
 }
 
 /**
-**	Draws closer borders and calls function to draw
-**	Outer borders. Calls to draw minimap interior
+**	Draws minimap interior
+*	TODO:	Fix index value issues when approaching index 0 of i or j
 **/
 void	draw_minimap(t_info *info, t_mini *mini)
 {
@@ -72,6 +72,30 @@ void	draw_minimap(t_info *info, t_mini *mini)
 }
 
 /**
+**	Draws closer borders and calls function to draw
+**	Outer borders. Calls to draw minimap interior
+**/
+void	draw_minimap(t_info *info, t_mini *mini)
+{
+	int	x;
+	int	y;
+
+	y = 3;
+	while (y < MINI_DIM - 3)
+	{
+		x = 3;
+		while (x < MINI_DIM - 3)
+		{
+			mini_pixel_put(mini, x, y, 0X00000048);
+			x++;
+		}
+		y++;
+	}
+	draw_mini_interior(info, mini);
+	// draw_mini_player(mini, 80, 80, 0x003D8758);
+}
+
+/**
 **	Initialises struct mini and creates new image for
 **	mini-map
 **/
@@ -81,7 +105,7 @@ void	init_minimap(t_info *info)
 
 	mini = (t_mini *)ft_calloc(1, sizeof(t_mini));
 	info->mini = mini;
-	info->mini_map = mlx_new_image(info->mlx, 180, 180);
+	info->mini_map = mlx_new_image(info->mlx, MINI_DIM, MINI_DIM);
 	if (!info->mini_map)
 	{
 		free_data(info);
