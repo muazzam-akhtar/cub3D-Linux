@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 13:41:18 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/19 20:24:01 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/23 18:30:19 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,7 @@ static int	valid_key(int c)
 		return (c);
 	else if (c == 'E')
 		return (c);
-	else if (c == 'M')
-		return (c);
 	else if (c == 'D')
-		return (c);
-	else if (c == 'U')
-		return (c);
-	else if (c == 'V')
 		return (c);
 	return (FALSE);
 }
@@ -83,6 +77,16 @@ static int	key_layout(int c)
 	return (FALSE);
 }
 
+static int	parse_zero(char **map, char *str, int index, int i)
+{
+	(void)str;
+	if (i == 0 || index == 0)
+		return (EXIT_FAILURE);
+	if ((index - 1) <= 0 || i >= ft_strlen_int(map[index - 1]))
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
+}
+
 /**
 **	Parsing the middle part of the map and taking everything into the
 **	account
@@ -94,7 +98,7 @@ static int	key_layout(int c)
 *	S: South Navigator
 *	E: East Navigator
 **/
-static int	parse_env(char *str, int *trigger)
+static int	parse_env(char *str, int *trigger, char **map, int index)
 {
 	int			i;
 
@@ -109,6 +113,9 @@ static int	parse_env(char *str, int *trigger)
 		}
 		else if (!valid_key(str[i]) && !ft_isspace(str[i]))
 			return (EXIT_FAILURE);
+		else if (valid_key(str[i]) == '0')
+			if (parse_zero(map, str, index, i))
+				return (EXIT_FAILURE);
 		i++;
 	}
 	if ((str[i - 2] == '1' && str[i - 1] == 10)
@@ -132,7 +139,7 @@ int	parse_map(char **str, int index)
 		return (EXIT_FAILURE);
 	while (str[i + 1] != NULL)
 	{
-		if (parse_env(str[i], &trigger))
+		if (parse_env(str[i], &trigger, str, i))
 			return (EXIT_FAILURE);
 		i++;
 	}

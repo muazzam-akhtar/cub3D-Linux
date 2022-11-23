@@ -6,7 +6,7 @@
 #    By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/21 16:36:51 by hawadh            #+#    #+#              #
-#    Updated: 2022/11/23 17:59:34 by makhtar          ###   ########.fr        #
+#    Updated: 2022/11/23 19:06:22 by makhtar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ SRCS		=	./srcs/main.c ./srcs/parse_file.c ./srcs/errors.c \
 				./srcs/basic_movements.c ./srcs/doors.c ./srcs/directions.c \
 				./srcs/linux_osx_mouse.c ./srcs/utils_type.c ./srcs/utils_sprite.c \
 				./srcs/raycasting.c ./srcs/utils_dda_math.c ./srcs/gun_image.c ./srcs/utils_door.c \
-				./srcs/angle.c ./srcs/color.c ./srcs/utils_minimap_ext.c
+				./srcs/angle.c ./srcs/color.c ./srcs/utils_minimap_ext.c ./srcs/mini_map_rot.c
 
 MLX			=	libmlx.a
 

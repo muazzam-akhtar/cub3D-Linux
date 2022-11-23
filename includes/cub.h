@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/23 17:59:49 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/23 18:58:54 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -452,7 +452,7 @@ void		draw_mini_interior(t_info *info, char *map_icon, int x, int y);
 void		mini_pixel_put(t_mini *mini, int x, int y, int rgb);
 void		draw_mini_doors_horizontal(t_info *info, int x, int y, int rgb);
 void		draw_mini_doors_vertical(t_info *info, int x, int y, int rgb);
-void		mini_rot(t_info *info);
+void		mini_rot(t_info *info, t_mini *mini, int start, uint32_t rgb);
 int			assign_index(int index);
 int			mini_img_limit(int y, int x, char status);
 

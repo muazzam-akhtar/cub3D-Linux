@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 19:43:20 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/23 18:00:09 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/23 19:41:21 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,23 +26,33 @@ void	mini_pixel_put(t_mini *mini, int x, int y, int rgb)
 /**
 **	Draws Player at centre of minimap 
 **/
-static void	draw_mini_player(t_mini *mini, int x, int y, int rgb)
+static void draw_mini_player(t_mini *mini, int x, int y, int rgb)
 {
-	int	x_reset;
+    int 	x_reset;
+    int 	y_one;
+    int 	x_one;
+    int 	x_brdr;
+    int 	y_brdr;
 
-	while (y < 100)
-	{
-		x_reset = x;
-		while (x_reset < 100)
-		{
-			if (y == 80 || y == 99 || x_reset == 80 || x_reset == 99)
-				mini_pixel_put(mini, x_reset, y, 0x000E5227);
-			else
-				mini_pixel_put(mini, x_reset, y, rgb);
-			x_reset++;
-		}
-		y++;
-	}
+    y_one = (MINI_DIM / 2) + 4;
+    x_one = (MINI_DIM / 2) + 4;
+    y_brdr = (MINI_DIM / 2) - 4;
+    x_brdr = (MINI_DIM / 2) - 4;
+    while (y < y_one)
+    {
+        x_reset = x;
+        while (x_reset < x_one)
+        {
+            if (y == x_brdr || y == (MINI_DIM / 2) + 3
+                || x_reset == y_brdr || x_reset == (MINI_DIM / 2) + 3)
+                mini_pixel_put(mini, x_reset, y, 0x000E5227);
+            else
+                mini_pixel_put(mini, x_reset, y, rgb);
+            x_reset++;
+        }
+        y++;
+    }
+
 }
 
 /**
@@ -97,8 +107,8 @@ void	draw_minimap(t_info *info, t_mini *mini)
 		}
 		y++;
 	}
+	mini_rot(info, mini, MINI_DIM / 2, 0X00FF0000);
 	mini_interior(info);
-	// mini_rot(info);
 	draw_mini_player(mini, (MINI_DIM / 2) - 4, (MINI_DIM / 2) - 4, 0x003D8758);
 }
 
