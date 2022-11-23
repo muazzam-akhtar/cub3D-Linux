@@ -3,14 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:24:58 by hawadh            #+#    #+#             */
-/*   Updated: 2022/07/08 13:47:13 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/23 17:52:22 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
+
+/**
+**	Removes excess whitespace ' '
+*	check_if_map();		If not first line of map
+*								keep squashing
+*	check_tabs();		Replaces '\t' with 4 ' '
+*								spaces
+**/
+char	**squash_lines(char **file, char **input)
+{
+	size_t	i;
+
+	i = 0;
+	while (input[i])
+	{
+		if (!check_if_map(input[i]))
+			file[i] = squash(input[i]);
+		else if (ft_strchr(input[i], '\t'))
+			file[i] = check_tabs(input[i]);
+		else if (ft_strchr(input[i], '\n'))
+			file[i] = ft_substr(input[i], 0, ft_strlen(input[i]) - 1);
+		else
+			file[i] = ft_strdup(input[i]);
+		i++;
+	}
+	return (file);
+}
 
 /**
 **	Reads and stores file contents using get_next_lines();
@@ -64,7 +91,7 @@ static int	clean_file(t_info *inf, char **input)
 	file = squash_lines(file, tmp);
 	if (tmp)
 		free_split(tmp);
-	if (store_data(inf->data, file))
+	if (store_data(inf, file))
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

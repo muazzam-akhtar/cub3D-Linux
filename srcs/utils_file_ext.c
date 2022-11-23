@@ -6,11 +6,73 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:18:58 by hawadh            #+#    #+#             */
-/*   Updated: 2022/07/12 15:03:13 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/22 23:54:16 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
+
+/**
+**	Function to check if any misconfiguration in map
+*
+*	First loop skips any remaining config lines
+*
+*	Second loop, loops to first line of map skipping whitespaces
+*
+*	Finaly begin to check map lines:
+*
+*		EXIT_SUCCESS if no misconfig
+**/
+static int	check_map_lines(char **input)
+{
+	int	i;
+
+	i = 0;
+	while (!check_map_config_lines(input[i]) || check_line(input[i]))
+		i++;
+	while (input[i])
+	{
+		if (check_line(input[i]))
+			return (EXIT_FAILURE);
+		i++;
+	}
+	return (EXIT_SUCCESS);
+}
+
+/**
+**	Checks file to skip config to start parse from map
+**/
+int	check_config_map(char **input)
+{
+	static char	xpm[5][3] = {"NO", "SO", "WE", "EA", ""};
+	static char	colours[3][2] = {"C", "F", ""};
+	char		**temp;
+	int			count;
+	int			i;
+
+	count = 0;
+	temp = input;
+	while (temp && *temp)
+	{
+		i = 0;
+		while (xpm[i][0])
+		{
+			if (*temp && !ft_strncmp(*temp, xpm[i], 2))
+				count++;
+			i++;
+		}
+		i = 0;
+		while (colours[i][0])
+		{
+			if (*temp && !ft_strncmp(*temp, colours[i], 1))
+				count++;
+			i++;
+		}
+		if (++temp && count == 5)
+			return (check_map_lines(temp));
+	}
+	return (EXIT_SUCCESS);
+}
 
 /**
 **	Checks if line only contains spaces
@@ -55,7 +117,7 @@ static size_t	get_tab_size(char *input)
 /**
 **	Checks map for tabs and replaces them with ' ' == 32;
 **/
-static char	*check_tabs(char *input)
+char	*check_tabs(char *input)
 {
 	char	*temp;
 	int		i;
@@ -76,31 +138,4 @@ static char	*check_tabs(char *input)
 		i++;
 	}
 	return (temp);
-}
-
-/**
-**	Removes excess whitespace ' '
-*	check_if_map();		If not first line of map
-*								keep squashing
-*	check_tabs();		Replaces '\t' with 4 ' '
-*								spaces
-**/
-char	**squash_lines(char **file, char **input)
-{
-	size_t	i;
-
-	i = 0;
-	while (input[i])
-	{
-		if (!check_if_map(input[i]))
-			file[i] = squash(input[i]);
-		else if (ft_strchr(input[i], '\t'))
-			file[i] = check_tabs(input[i]);
-		else if (ft_strchr(input[i], '\n'))
-			file[i] = ft_substr(input[i], 0, ft_strlen(input[i]) - 1);
-		else
-			file[i] = ft_strdup(input[i]);
-		i++;
-	}
-	return (file);
 }
