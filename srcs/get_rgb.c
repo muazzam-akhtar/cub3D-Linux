@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_rgb.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 13:44:01 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/24 10:41:59 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/24 19:19:23 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,21 +39,6 @@ static char	*dup_num(char *str)
 	}
 	tmp[count] = 0;
 	return (tmp);
-}
-
-int	calc_digits(int num)
-{
-	int	count;
-
-	count = 0;
-	if (num < 10)
-		return (1);
-	while (num > 0)
-	{
-		count++;
-		num /= 10;
-	}
-	return (count);
 }
 
 static int	parse_num(char *str)
@@ -124,10 +109,9 @@ int	check_rgb(char *str, const char *layout, t_info *info)
 	int				i;
 	char			*tmp;
 	int				k;
+	int				count;
 
-	i = 0;
-	tmp = NULL;
-	k = 0;
+	init_num(&i, &tmp, &k, &count);
 	while (str && str[i])
 	{
 		if (str[i] && ft_isdigit(str[i]))
@@ -139,9 +123,12 @@ int	check_rgb(char *str, const char *layout, t_info *info)
 				return (EXIT_FAILURE);
 			if (str[i] != '\0' && str[i] == ',')
 				i++;
+			count++;
 		}
 		else
 			return (EXIT_FAILURE);
 	}
-	return (EXIT_SUCCESS);
+	if (count == 3)
+		return (EXIT_SUCCESS);
+	return (EXIT_FAILURE);
 }

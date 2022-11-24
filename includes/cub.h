@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/24 21:15:57 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/24 21:33:24 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -385,6 +385,8 @@ void		reset_doors(t_info *info);
 /**
 **	Parsing Functions
 **/
+int			calc_digits(int num);
+void		init_num(int *i, char **tmp, int *k, int *count);
 size_t		get_act_size(char **input);
 size_t		confg_count(char **file);
 void		error_print(char *str);

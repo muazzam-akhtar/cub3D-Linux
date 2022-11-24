@@ -81,17 +81,18 @@ NULL
 27. ~~***MAK:*** Animation effect when the AK-47 is triggered.~~
 25.	~~***HA:***	Figure out y step increments~~
 26. ~~***MAK:*** Work on sprites when rays will hit.~~
-28. ***MAK:*** Work on the management of sprites.
-29. ***MAK:*** Have character types for different types of sprites like D for Door, F for fire, B for barrel, etc.
+28. ~~***MAK:*** Work on the management of sprites.~~
+29. ~~***MAK:*** Have character types for different types of sprites like D for Door, F for fire, B for barrel, etc.~~
 30. ~~***HA:*** Refactor minimap drawing in `utils_minimap.c` see `mini_interior();` on branch hawadh-minimap.~~
 31.	~~***MAK:*** Finished working on the parsing for doors.~~
-32. ***MAK:*** Allocate structure for the doors and put xpm addresses in the sprites structures when the wall hits.
-33. ***MAK:*** Working on Integration for the doors.
+32. ~~***MAK:*** Allocate structure for the doors and put xpm addresses in the sprites structures when the wall hits.~~
+33. ~~ ***MAK:*** Working on Integration for the doors.~~
 34. ~~***HA:*** Minimap not drawing EA/WE facing doors correctly. Need to adjust drawing depending on walls surrounding.~~
 35.	~~***HA:***	Resize minimap dimensions and values. Reduce them by half `MINI_DIM 90`.~~
 36.	~~***HA:***	Fix map file parsing, map does not fail if newlines or any whitespace between map lines.~~
 37.	~~***MAK:***	Add rotation to minimap player model.~~
-38.	***MAK:***	Minimap Door Integration.
+38. ***MAK:***	Minimap Door Integration.
+39. ***MAK:***	Norm fix for some files.
 
 `#CURRENT STATUS`
 
@@ -296,4 +297,7 @@ function placed in `linux_osx_mouse.c`
 30.	Created an animation effect for AK-47.
 31. Finished Parsing for the doors.
 32. Finished allocations for the sprites.
+33. Parsing for Duplicates and rgb with commas are done.
+34. Got the door integration for the map.
+35. 
 

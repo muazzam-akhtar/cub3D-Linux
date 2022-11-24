@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 14:29:45 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/11 14:29:46 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/24 19:04:55 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,19 @@ double	new_x_val(t_info *inf, t_ray *ray)
 				inf->player->x_pos, ray->angle);
 	}
 	return (ray->x);
+}
+
+int	calc_digits(int num)
+{
+	int	count;
+
+	count = 0;
+	if (num < 10)
+		return (1);
+	while (num > 0)
+	{
+		count++;
+		num /= 10;
+	}
+	return (count);
 }

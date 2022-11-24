@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 22:20:14 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/19 20:27:52 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/24 19:50:57 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,44 @@ int	data_init(t_info *info, int *i, int *ret)
 	return (EXIT_SUCCESS);
 }
 
+static int	check_array(int *arr)
+{
+	int	i;
+
+	i = 0;
+	while (i < 6)
+	{
+		if (arr[i] == -1)
+			return (EXIT_FAILURE);
+		i++;
+	}
+	return (EXIT_SUCCESS);
+}
+
 int	get_raw_layout(char *line)
 {
-	char	*tmp;
-	int		ret;
+	char		*tmp;
+	int			ret;
+	static int	arr[6];
+	static int	i;
+	static int	counter;
 
 	tmp = NULL;
 	ret = 0;
+	if (!counter)
+	{
+		while (i < 6)
+			arr[i++] = -1;
+	}
 	tmp = get_layouts(line);
 	ret = get_type(tmp);
 	free(tmp);
+	arr[ret - 1] = 1;
+	counter++;
+	if (counter == 6)
+	{
+		if (check_array(arr))
+			return (FALSE);
+	}
 	return (ret);
 }
