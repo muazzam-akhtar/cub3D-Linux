@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 19:44:52 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/23 20:25:49 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/24 17:38:04 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int	mini_img_limit(int y, int x, char status)
 	if (status == 'y' && y < y_one)
 		return (EXIT_FAILURE);
 	x_one = x + MINI_DIM;
-	if (status == 'x' && x < y_one)
+	if (status == 'x' && x < x_one)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

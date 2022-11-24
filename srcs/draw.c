@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 09:28:29 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/23 18:00:03 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/23 19:49:26 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /**
 **	Custom pixel put
 **/
-void	my_pixel_put(t_info *inf, int x, int y, uint32_t rgb)
+void	my_pixel_put(t_info *inf, int x, int y, u_int32_t rgb)
 {
 	char	*draw;
 

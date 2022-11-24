@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/24 16:56:07 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/24 17:35:17 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@
 #  define P 112
 #  define ARROW_R 65363
 #  define ARROW_L 65361
+#  define SHIFT_KEY 65585
+#  define ENDIAN 1
 # endif
 
 # define PI 3.14159265358979323846
@@ -383,6 +385,7 @@ int			key_sprite(int c);
 */
 int			parse_doors(t_info *inf);
 int			lookup_door(t_info *inf, int x, int y);
+void		reset_doors(t_info *info);
 
 /**
 **	Parsing Functions
@@ -428,8 +431,8 @@ int			esc_win(t_info *info);
 /**
 **	Drawing Functions
 **/
-uint32_t	get_color(t_rays *ray, int tex_x, int tex_y, t_xpm *xpm);
-void		my_pixel_put(t_info *inf, int x, int y, uint32_t rgb);
+u_int32_t	get_color(t_rays *ray, int tex_x, int tex_y, t_xpm *xpm);
+void		my_pixel_put(t_info *inf, int x, int y, u_int32_t rgb);
 void		draw_cursor(t_info *info);
 void		draw_map(t_info *info);
 void		ceiling_floor(t_info *info);
@@ -452,7 +455,7 @@ void		draw_mini_interior(t_info *info, char *map_icon, int x, int y);
 void		mini_pixel_put(t_mini *mini, int x, int y, int rgb);
 void		draw_mini_doors_horizontal(t_info *info, int x, int y, int rgb);
 void		draw_mini_doors_vertical(t_info *info, int x, int y, int rgb);
-void		mini_rot(t_info *info);
+void		mini_rot(t_info *info, t_mini *mini, int start, u_int32_t rgb);
 int			assign_index(int index);
 int			mini_img_limit(int y, int x, char status);
 

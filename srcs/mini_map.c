@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 19:43:20 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/24 15:06:57 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/24 17:36:12 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	mini_pixel_put(t_mini *mini, int x, int y, int rgb)
 /**
 **	Draws Player at centre of minimap 
 **/
-static void	draw_mini_player(t_mini *mini, int x, int y, int rgb)
+static void draw_mini_player(t_mini *mini, int x, int y, int rgb)
 {
 	int	x_reset;
 	int	y_one;
@@ -106,6 +106,7 @@ void	draw_minimap(t_info *info, t_mini *mini)
 		}
 		y++;
 	}
+	mini_rot(info, mini, MINI_DIM / 2, 0X00FF0000);
 	mini_interior(info);
 	draw_mini_player(mini, (MINI_DIM / 2) - 4, (MINI_DIM / 2) - 4, 0x003D8758);
 }

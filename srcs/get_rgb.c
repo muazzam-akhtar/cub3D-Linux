@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_rgb.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 13:44:01 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/19 21:04:06 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/24 10:41:59 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,11 @@ static int	parse_num(char *str)
 	dup[i] = 0;
 	ret = ft_atoi(dup);
 	if (calc_digits(ret) == ft_strlen_int(dup))
+	{
+		free(dup);
 		return (EXIT_SUCCESS);
+	}
+	free(dup);
 	return (EXIT_FAILURE);
 }
 
@@ -133,8 +137,7 @@ int	check_rgb(char *str, const char *layout, t_info *info)
 			fetch_rgb(tmp, info, layout);
 			if (tmp && tmp[0] && ft_isdigit(tmp[0]) && get_rgb(tmp, &k, str, i))
 				return (EXIT_FAILURE);
-			while ((str[i] != '\0' && ft_isspace(str[i]))
-				|| (str[i] != '\0' && str[i] == ','))
+			if (str[i] != '\0' && str[i] == ',')
 				i++;
 		}
 		else
