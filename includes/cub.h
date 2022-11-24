@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/24 17:09:55 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/24 19:20:52 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -390,6 +390,8 @@ void		reset_doors(t_info *info);
 /**
 **	Parsing Functions
 **/
+int			calc_digits(int num);
+void		init_num(int *i, char **tmp, int *k, int *count);
 size_t		get_act_size(char **input);
 size_t		confg_count(char **file);
 void		error_print(char *str);

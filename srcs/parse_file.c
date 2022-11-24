@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:24:58 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/24 12:57:25 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/24 19:54:13 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,9 +121,6 @@ static int	ft_reading(t_info *info, char *str)
 **/
 void	check_map(t_info *info, char *str)
 {
-	// int	i;
-
-	// i = 0;
 	if (isdir(str) && ft_strchr(str, '.'))
 	{
 		if (compare_ext(str))

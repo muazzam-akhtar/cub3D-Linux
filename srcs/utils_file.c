@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 17:09:10 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/24 12:56:21 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/24 18:30:35 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	store_data(t_info *info, char **input)
 		return (EXIT_FAILURE);
 	if (check_config_map(input))
 	{
+		free(info->data->file);
+		info->data->file = NULL;
 		free_split(info->data->file);
 		err_return(3, info);
 	}
