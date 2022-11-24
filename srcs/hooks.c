@@ -6,7 +6,7 @@
 /*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 14:33:53 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/23 16:50:43 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/24 17:16:54 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	mouse_click(int keycode, int x, int y, t_info *info)
 	return (EXIT_SUCCESS);
 }
 
-static int	get_door(t_info *info, double *x, double *y)
+static void	get_door(t_info *info, double *x, double *y)
 {
 	int	index;
 
@@ -64,10 +64,9 @@ static int	get_door(t_info *info, double *x, double *y)
 		if (index == 8)
 		{
 			info->integrate = 0;
-			return (EXIT_FAILURE);
+			return ;
 		}
 	}
-	return (EXIT_SUCCESS);
 }
 
 static int	animate(t_info *info)
@@ -93,6 +92,7 @@ static int	animate(t_info *info)
 		}
 		info->integrate = 0;
 	}
+	reset_doors(info);
 	return (EXIT_SUCCESS);
 }
 

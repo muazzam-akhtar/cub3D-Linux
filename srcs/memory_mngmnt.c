@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   memory_mngmnt.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 20:02:35 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/24 10:27:27 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/24 12:42:04 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,10 @@ static void	free_xpm(t_info *info, t_data *data)
 	int	i;
 
 	i = 0;
-	while (&data->xpm[i] && i < 5)
+	while (data->xpm[i].img)
 	{
 		if (data->xpm[i].addr)
-		{
 			data->xpm[i].addr = NULL;
-		}
 		mlx_destroy_image(info->mlx, data->xpm[i].img);
 		i++;
 	}

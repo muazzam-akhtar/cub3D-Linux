@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/23 21:01:25 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/24 17:09:55 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -385,6 +385,7 @@ int			key_sprite(int c);
 */
 int			parse_doors(t_info *inf);
 int			lookup_door(t_info *inf, int x, int y);
+void		reset_doors(t_info *info);
 
 /**
 **	Parsing Functions

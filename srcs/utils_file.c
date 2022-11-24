@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 17:09:10 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/22 23:50:11 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/24 12:56:21 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ int	store_data(t_info *info, char **input)
 	if (!info->data->file)
 		return (EXIT_FAILURE);
 	if (check_config_map(input))
+	{
+		free_split(info->data->file);
 		err_return(3, info);
+	}
 	i = 0;
 	j = 0;
 	while (input[i])

@@ -6,7 +6,7 @@
 #    By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/21 16:36:51 by hawadh            #+#    #+#              #
-#    Updated: 2022/11/23 19:06:22 by makhtar          ###   ########.fr        #
+#    Updated: 2022/11/24 12:03:23 by makhtar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,5 +89,8 @@ fclean:	clean
 		rm -rf ${NAME}
 
 re: fclean all
+
+leak:
+		bash leaks.sh
 
 .PHONY : all clean re fclean
