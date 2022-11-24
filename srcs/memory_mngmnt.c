@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   memory_mngmnt.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hawadh <hawadh@student.42abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 20:02:35 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/24 14:05:51 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/24 19:28:00 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,24 +67,6 @@ static void	free_struct_data(t_info *info, t_data *data)
 	}
 }
 
-static void	free_gun(t_info *info)
-{
-	int	i;
-
-	i = 0;
-	while (i < 5)
-	{
-		mlx_destroy_image(info->mlx, info->gun_var[i]);
-		i++;
-	}
-	free(info->gun_var);
-	info->gun_var = NULL;
-	mlx_destroy_image(info->mlx, info->data->pause);
-	info->data->pause = NULL;
-	mlx_destroy_image(info->mlx, info->data->gun);
-	info->data->gun = NULL;
-}
-
 /**
 **	Frees all the Data
 **/
@@ -107,14 +89,5 @@ void	free_data(t_info *info)
 		free_gun(info);
 	if (info->doors)
 		free(info->doors);
-	if (info->player)
-	{
-		free(info->player);
-		info->player = NULL;
-	}
-	if (info->mlx)
-	{
-		free(info->mlx);
-		info->mlx = NULL;
-	}
+	free_more(info);
 }

@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:18:58 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/23 19:01:52 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/24 21:05:58 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,31 +43,15 @@ static int	check_map_lines(char **input)
 **/
 int	check_config_map(char **input)
 {
-	static char	xpm[5][3] = {"NO", "SO", "WE", "EA", ""};
-	static char	colours[3][2] = {"C", "F", ""};
+	static int	count;
 	char		**temp;
-	int			count;
-	int			i;
 
 	count = 0;
 	temp = input;
 	while (temp && *temp)
 	{
-		i = 0;
-		while (xpm[i][0])
-		{
-			if (*temp && !ft_strncmp(*temp, xpm[i], 2))
-				count++;
-			i++;
-		}
-		i = 0;
-		while (colours[i][0])
-		{
-			if (*temp && !ft_strncmp(*temp, colours[i], 1))
-				count++;
-			i++;
-		}
-		if (++temp && count == 5)
+		count += check_config_lines(*temp);
+		if (++temp && count == 6)
 			return (check_map_lines(temp));
 	}
 	return (EXIT_SUCCESS);

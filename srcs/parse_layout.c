@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_layout.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 14:19:03 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/24 11:48:08 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/24 18:59:04 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,15 +93,16 @@ int	parse_arg(char **maps, t_info *info)
 		err_return(3, info);
 	if (store_map(info->data))
 		return (EXIT_FAILURE);
-	// printf("\n");
-	// printf("NO	:	%s\n", info->data->confg[0]);
-	// printf("SO	:	%s\n", info->data->confg[1]);
-	// printf("WE	:	%s\n", info->data->confg[2]);
-	// printf("EA	:	%s\n", info->data->confg[3]);
-	// printf("\nF	:	R: %d,	G: %d,	B: %d\n", 
-	// info->data->floor.red, info->data->floor.green, info->data->floor.blue);
-	// printf("C	:	R: %d,	G: %d,	B: %d\n", info->data->ceil.red, 
-	// info->data->ceil.green, info->data->ceil.blue);
+	printf("\n");
+	printf("NO	:	%s\n", info->data->confg[0]);
+	printf("SO	:	%s\n", info->data->confg[1]);
+	printf("WE	:	%s\n", info->data->confg[2]);
+	printf("EA	:	%s\n", info->data->confg[3]);
+	printf("\nF	:	R: %d,	G: %d,	B: %d\n",
+		info->data->floor.red, info->data->floor.green,
+		info->data->floor.blue);
+	printf("C	:	R: %d,	G: %d,	B: %d\n", info->data->ceil.red,
+		info->data->ceil.green, info->data->ceil.blue);
 	return (EXIT_SUCCESS);
 }
 

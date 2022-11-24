@@ -49,7 +49,7 @@ NULL
 27. ~~***HA:***	Minimap jumping and resetting when approaching 0 index on both x and y.~~
 28. ~~***HA:***	Parsing for newlines etc; between map lines not working.~~
 29.	~~***HA:***	Parsing of 0 on right side of map not function for borders~~
-30.	***MAK:*** Player jumps into wall when increas speed by hitting left shift.
+30.	***MAK:*** Player jumps into wall when increase speed by hitting left shift.
 31.	~~***HA:***	Double free in `store_data();`~~
 
 `#TODO:`
@@ -91,7 +91,7 @@ NULL
 35.	~~***HA:***	Resize minimap dimensions and values. Reduce them by half `MINI_DIM 90`.~~
 36.	~~***HA:***	Fix map file parsing, map does not fail if newlines or any whitespace between map lines.~~
 37.	~~***MAK:***	Add rotation to minimap player model.~~
-38.	***HA:***	Minimap Door Integration.
+38.	***MAK:***	Minimap Door Integration.
 
 `#CURRENT STATUS`
 
@@ -255,6 +255,11 @@ function placed in `linux_osx_mouse.c`
 155. Refactored `rgb_door_status();` in `utils_minimap_ext.c` now calls `get_door();` from `hooks.c` to check if door status in `t_doors*` structure array.
 156. Removed function `rgb_door_status();` and no longer checking door status.
 157. Fixed double free() in `store_data();` in `utils_file.c` was attempting to free 2D array when only the main array was allocated.
+158. Fixed norm issues in `check_config_map();` in file `utils_file_ext.c` now calls function `check_config_lines()` placed in new file `utils_line_check.c`.
+159. Removed `utils_sprite.c` completely & removed `key_sprite();`.
+160. Moved function `valid_key();` from `parse_map.c` to `utils_parse.c`.
+161. New function `free_more();` placed in `utils_memory_mngmnt.c` called in `free_data();` to reduce number of lines.
+162. Moved `free_gun();` to `utils_memory_mngmnt.c` && removed function name `working_sprite();` from `cub.h` as not used anywhere.
 
 
 `MAK:	4 July 2022`

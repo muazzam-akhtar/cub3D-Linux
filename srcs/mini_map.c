@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 19:43:20 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/24 17:36:12 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/24 17:52:51 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	mini_pixel_put(t_mini *mini, int x, int y, int rgb)
 /**
 **	Draws Player at centre of minimap 
 **/
-static void draw_mini_player(t_mini *mini, int x, int y, int rgb)
+static void	draw_mini_player(t_mini *mini, int x, int y, int rgb)
 {
 	int	x_reset;
 	int	y_one;

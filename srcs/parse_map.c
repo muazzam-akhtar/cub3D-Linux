@@ -3,37 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 13:41:18 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/24 11:47:03 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/24 19:29:35 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
-
-/**
-**	Getting valid keys for the map
-*!	LINE #33 -> LINE #34 ADDED BY HA
-**/
-static int	valid_key(int c)
-{
-	if (c == '0')
-		return (c);
-	else if (c == '1')
-		return (c);
-	else if (c == 'N')
-		return (c);
-	else if (c == 'W')
-		return (c);
-	else if (c == 'S')
-		return (c);
-	else if (c == 'E')
-		return (c);
-	else if (c == 'D')
-		return (c);
-	return (FALSE);
-}
 
 /**
 **	Parsing for walls to check for top and bottom of the map

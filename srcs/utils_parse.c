@@ -6,11 +6,35 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 22:13:55 by hawadh            #+#    #+#             */
-/*   Updated: 2022/07/07 19:30:32 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/24 20:48:18 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
+
+/**
+**	Getting valid keys for the map
+**/
+int	valid_key(int c)
+{
+	if (c == '0')
+		return (c);
+	else if (c == '1')
+		return (c);
+	else if (c == 'N')
+		return (c);
+	else if (c == 'W')
+		return (c);
+	else if (c == 'S')
+		return (c);
+	else if (c == 'E')
+		return (c);
+	else if (c == 'D')
+		return (c);
+	else if (c == 'M')
+		return (c);
+	return (FALSE);
+}
 
 /**
 **	Takes actual size of 2D array

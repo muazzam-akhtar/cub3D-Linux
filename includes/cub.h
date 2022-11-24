@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/24 17:35:17 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/24 21:15:57 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -326,7 +326,7 @@ typedef struct s_tex
 	int	end;
 	int	xpm_x;
 	int	xpm_y;
-}				t_tex;
+}	t_tex;
 
 /**
 **	Main Struct with all info including struct Pointers
@@ -361,6 +361,8 @@ typedef struct s_info
 **/
 void		free_split(char **str);
 void		free_data(t_info *info);
+void		free_gun(t_info *info);
+void		free_more(t_info *info);
 
 /**                       
 **	Math Functions
@@ -372,13 +374,6 @@ double		get_height(double dist);
 double		new_x_val(t_info *inf, t_ray *ray);
 double		new_y_val(t_info *inf, t_ray *ray);
 double		extract_decimal(double value);
-
-/**
-**	Sprites Management
-**/
-int			key_sprite(int c);
-void		working_spr(t_info *inf, t_ray *ray, int index);
-int			key_sprite(int c);
 
 /**
 **	Doors Functions
@@ -420,6 +415,8 @@ int			ft_strlen_int(char *str);
 int			parse_spaces(char **str);
 int			parse_map(char **str, int index);
 int			parse_arg(char **maps, t_info *info);
+int			valid_key(int c);
+int			check_config_lines(char *input);
 
 /**
 **	Window Functions
