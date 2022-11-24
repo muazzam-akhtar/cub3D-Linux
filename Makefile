@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+         #
+#    By: hawadh <hawadh@student.42abudhabi.ae>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/21 16:36:51 by hawadh            #+#    #+#              #
-#    Updated: 2022/11/24 17:35:26 by hawadh           ###   ########.fr        #
+#    Updated: 2022/11/24 14:09:00 by hawadh           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ ifeq (${OS},Darwin)
 	CFLAGS		+=	-D OSX
 else
 	MLXDIR		=	./minilibx_linux
-	MLXFLG		=	./libmlx.a -lXext -lX11 -lm -lz
+	MLXFLG		=	./libmlx.a -lXext -lX11 -lm
 	CFLAGS		+=	-D LINUX
 endif
 
@@ -74,8 +74,8 @@ ${NAME}:	${OBJS}
 
 all:	${NAME}
 
-vg:		${NAME}
-		valgrind -s --leak-check=full --show-leak-kinds=all --track-origins=yes ./cub3d file.cub
+vg:		all
+		valgrind -s --leak-check=full --show-leak-kinds=all --track-origins=yes ./cub3d tester.cub
 
 clean:
 		rm -rf ${OBJS}

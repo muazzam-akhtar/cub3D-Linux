@@ -18,7 +18,7 @@ NULL
 
 ```
 
-`#BUGS: #30, #31`
+`#BUGS: #30`
 
 1.	~~***HA:***	Segfaul in `get_next_line();` due to `ft_strchr();` in `libft`~~
 2.	~~***HA:***	Function parses whole file, should stop at first line of map~~
@@ -50,7 +50,7 @@ NULL
 28. ~~***HA:***	Parsing for newlines etc; between map lines not working.~~
 29.	~~***HA:***	Parsing of 0 on right side of map not function for borders~~
 30.	***MAK:*** Player jumps into wall when increas speed by hitting left shift.
-31.	***HA:***	Memory leak in `squash_lines();` 
+31.	~~***HA:***	Double free in `store_data();`~~
 
 `#TODO:`
 
@@ -95,7 +95,7 @@ NULL
 
 `#CURRENT STATUS`
 
-`HA:	22 Nov 2022`
+`HA:	24 Nov 2022`
 
 1.	New files to split functions `parse_file.c`, `errors.c`, `parse_file.c`
 2.	Added .gitignore
@@ -254,6 +254,7 @@ function placed in `linux_osx_mouse.c`
 154. Removed unused function in `directions.c` called `print_map(char **str);`.
 155. Refactored `rgb_door_status();` in `utils_minimap_ext.c` now calls `get_door();` from `hooks.c` to check if door status in `t_doors*` structure array.
 156. Removed function `rgb_door_status();` and no longer checking door status.
+157. Fixed double free() in `store_data();` in `utils_file.c` was attempting to free 2D array when only the main array was allocated.
 
 
 `MAK:	4 July 2022`
