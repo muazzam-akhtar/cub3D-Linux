@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rgb.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:29:28 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/14 13:10:52 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/23 19:49:42 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 **/
 size_t	rgb(t_data *data, int status)
 {
-	uint32_t	rgb;
-	uint32_t	col;
+	u_int32_t	rgb;
+	u_int32_t	col;
 
 	rgb = 0xFFFFFFFF;
 	if (status == 0)

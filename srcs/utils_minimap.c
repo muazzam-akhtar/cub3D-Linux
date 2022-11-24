@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_minimap.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 19:44:52 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/23 19:41:32 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/23 19:54:01 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ int	mini_img_limit(int y, int x, char status)
 	int	y_one;
 	int	x_one;
 
+	(void)x_one;
 	y_one = y + MINI_DIM;
 	if (status == 'y' && y < y_one)
 		return (EXIT_FAILURE);

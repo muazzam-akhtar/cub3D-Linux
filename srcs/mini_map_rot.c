@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   mini_map_rot.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:26:19 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/23 19:31:00 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/23 19:49:34 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-void	mini_rot(t_info *info, t_mini *mini, int start, uint32_t rgb)
+void	mini_rot(t_info *info, t_mini *mini, int start, u_int32_t rgb)
 {
 	double	y;
 	double	x;

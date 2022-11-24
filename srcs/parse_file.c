@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:24:58 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/23 17:52:22 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/24 11:47:40 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,9 +121,9 @@ static int	ft_reading(t_info *info, char *str)
 **/
 void	check_map(t_info *info, char *str)
 {
-	int	i;
+	// int	i;
 
-	i = 0;
+	// i = 0;
 	if (isdir(str) && ft_strchr(str, '.'))
 	{
 		if (compare_ext(str))
@@ -135,9 +135,9 @@ void	check_map(t_info *info, char *str)
 		err_return(1, info);
 	if (parse_arg(info->data->file, info))
 		err_return(3, info);
-	printf("\n");
-	while (info->data->map[i])
-		printf("Map	:	%s\n", info->data->map[i++]);
-	printf("\n");
-	printf("Reading/Cleaning and Parsing Complete\n");
+	// printf("\n");
+	// while (info->data->map[i])
+	// 	printf("Map	:	%s\n", info->data->map[i++]);
+	// printf("\n");
+	// printf("Reading/Cleaning and Parsing Complete\n");
 }

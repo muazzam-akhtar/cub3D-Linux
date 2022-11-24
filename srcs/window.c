@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 11:48:10 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/23 16:54:20 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/23 21:01:42 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void	get_img_addr(t_info *inf)
 	}
 	image->addr = mlx_get_data_addr(inf->img, &image->bitspix,
 			&image->len, &image->end);
+	image->end = ENDIAN;
 	if (!image->addr)
 		err_return(4, inf);
 }

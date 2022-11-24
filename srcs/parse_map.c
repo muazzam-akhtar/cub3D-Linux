@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 13:41:18 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/23 18:30:19 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/24 11:47:03 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ static int	parse_zero(char **map, char *str, int index, int i)
 	if (i == 0 || index == 0)
 		return (EXIT_FAILURE);
 	if ((index - 1) <= 0 || i >= ft_strlen_int(map[index - 1]))
+		return (EXIT_FAILURE);
+	if ((index + 1) >= get_2d_len(map) || i >= ft_strlen_int(map[index + 1]))
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
