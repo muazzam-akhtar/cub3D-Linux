@@ -93,6 +93,8 @@ NULL
 37.	~~***MAK:***	Add rotation to minimap player model.~~
 38. ***MAK:***	Minimap Door Integration.
 39. ***MAK:***	Norm fix for some files.
+40. ***HA:***	Norm fix for `mini_map.c` function `mini_interior();`
+41. ***HA:***	Parse for any lines before first element in file.
 
 `#CURRENT STATUS`
 
@@ -261,6 +263,8 @@ function placed in `linux_osx_mouse.c`
 160. Moved function `valid_key();` from `parse_map.c` to `utils_parse.c`.
 161. New function `free_more();` placed in `utils_memory_mngmnt.c` called in `free_data();` to reduce number of lines.
 162. Moved `free_gun();` to `utils_memory_mngmnt.c` && removed function name `working_sprite();` from `cub.h` as not used anywhere.
+163. Removed function `draw_mini_sprites();` as it is not in use from `utils_minimap.c`.
+164. Added empty line check in `utils_file_ext.c` in two functions `check_map_lines();` && `check_config_map();` to detect any non-empty lines between elements that contain only whitespaces other than a newline.
 
 
 `MAK:	4 July 2022`

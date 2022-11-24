@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:18:58 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/24 21:05:58 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/24 21:51:47 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,11 @@ static int	check_map_lines(char **input)
 
 	i = 0;
 	while (!check_map_config_lines(input[i]) || check_line(input[i]))
+	{
+		if (check_line(input[i]) && ft_strlen(input[i]) > 1)
+			return (EXIT_FAILURE);
 		i++;
+	}
 	while (input[i])
 	{
 		if (check_line(input[i]))
@@ -51,6 +55,8 @@ int	check_config_map(char **input)
 	while (temp && *temp)
 	{
 		count += check_config_lines(*temp);
+		if (*temp && check_line(*temp) && ft_strlen(*temp) > 1)
+			return (EXIT_FAILURE);
 		if (++temp && count == 6)
 			return (check_map_lines(temp));
 	}

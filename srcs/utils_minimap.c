@@ -6,43 +6,11 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 19:44:52 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/24 17:38:04 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/24 21:21:39 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
-
-/**
-**	Draws minimap collectable symbol
-**/
-static void	draw_mini_sprite(t_mini *mini, int x, int y, int rgb)
-{
-	int	y_one;
-	int	y_brdr;
-	int	x_one;
-	int	x_rst;
-
-	y_brdr = y;
-	y_one = y + (MINI_SCALE / 2);
-	while (y < y_one)
-	{
-		x_rst = x;
-		x_one = x_rst + (MINI_SCALE / 2);
-		while (x_rst < x_one)
-		{
-			if (x_rst > 2 && x_rst < MINI_DIM - 3 && y > 2 && y < MINI_DIM - 3)
-			{
-				if (x_rst == x || x_rst == x_one - 1
-					|| y == y_one - 1 || y == y_brdr)
-					mini_pixel_put(mini, x_rst, y, 0x00A4861F);
-				else
-					mini_pixel_put(mini, x_rst, y, rgb);
-			}
-			x_rst++;
-		}
-		y++;
-	}
-}
 
 /**
 **	Draws walls on minimap
@@ -80,8 +48,6 @@ void	draw_mini_interior(t_info *info, char *map_icon, int x, int y)
 {
 	if (*map_icon == '1')
 		draw_mini_walls(info, x, y, 0x00000066);
-	if (*map_icon == 'M')
-		draw_mini_sprite(info->mini, x + 7, y + 7, 0x00563D2D);
 	if (*map_icon == 'D')
 	{
 		if (*(map_icon - 1) == '1' && *(map_icon + 1) == '1')
