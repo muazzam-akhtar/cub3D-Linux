@@ -3,18 +3,20 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+         #
+#    By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/21 16:36:51 by hawadh            #+#    #+#              #
-#    Updated: 2022/11/23 17:59:34 by makhtar          ###   ########.fr        #
+#    Updated: 2022/11/24 16:44:10 by hawadh           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+RED			=	\033[0;31m
 
-RED = \033[0;31m
-BLACK = \033[1;30m
-WHITE = \033[1;37m
-BLUE = \033[1;34m
+BLACK		=	\033[1;30m
+
+WHITE		=	\033[1;37m
+
+BLUE		=	\033[1;34m
 
 NAME		=	cub3D
 

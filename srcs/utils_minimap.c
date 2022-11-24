@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_minimap.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 19:44:52 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/23 18:00:51 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/23 20:25:49 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	draw_mini_interior(t_info *info, char *map_icon, int x, int y)
 		draw_mini_walls(info, x, y, 0x00000066);
 	if (*map_icon == 'M')
 		draw_mini_sprite(info->mini, x + 7, y + 7, 0x00563D2D);
-	if (*map_icon == 'D' || *map_icon == 'O')
+	if (*map_icon == 'D')
 	{
 		if (*(map_icon - 1) == '1' && *(map_icon + 1) == '1')
 		{

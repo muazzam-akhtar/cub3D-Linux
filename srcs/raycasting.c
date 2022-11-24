@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 18:49:26 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/23 16:51:01 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/24 14:49:23 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,13 @@ int	handle_sprite_lookups(t_info *inf, t_ray *ray)
 		== ray->m_x && inf->doors[index].m_y
 		== ray->m_y)
 	{
-		if (inf->doors[index].open == 0)
+		if (inf->doors[index].open == FALSE)
 		{
 			ray->token = 6;
-			return (1);
+			return (TRUE);
 		}
 	}
-	return (0);
+	return (FALSE);
 }
 
 /*

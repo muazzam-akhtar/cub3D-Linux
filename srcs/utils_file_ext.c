@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:18:58 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/22 23:54:16 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/23 19:01:52 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 *	Second loop, loops to first line of map skipping whitespaces
 *
 *	Finaly begin to check map lines:
-*
 *		EXIT_SUCCESS if no misconfig
 **/
 static int	check_map_lines(char **input)

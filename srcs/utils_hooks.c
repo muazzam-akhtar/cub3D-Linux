@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_hooks.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 19:28:36 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/23 16:51:19 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/23 19:45:29 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ static void	handle_integration(int hook_num, t_info *inf)
 **/
 int	key_hook_manage(int hook_num, t_info *inf)
 {
-	(void)inf;
 	inf->integrate = 0;
 	if (hook_num == ESC)
 	{

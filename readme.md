@@ -18,7 +18,7 @@ NULL
 
 ```
 
-`#BUGS: NULL`
+`#BUGS: #30, #31`
 
 1.	~~***HA:***	Segfaul in `get_next_line();` due to `ft_strchr();` in `libft`~~
 2.	~~***HA:***	Function parses whole file, should stop at first line of map~~
@@ -48,6 +48,9 @@ NULL
 26. ~~***HA:***	Mouse not being released on hitting pause~~
 27. ~~***HA:***	Minimap jumping and resetting when approaching 0 index on both x and y.~~
 28. ~~***HA:***	Parsing for newlines etc; between map lines not working.~~
+29.	~~***HA:***	Parsing of 0 on right side of map not function for borders~~
+30.	***MAK:*** Player jumps into wall when increas speed by hitting left shift.
+31.	***HA:***	Memory leak in `squash_lines();` 
 
 `#TODO:`
 
@@ -87,7 +90,8 @@ NULL
 34. ~~***HA:*** Minimap not drawing EA/WE facing doors correctly. Need to adjust drawing depending on walls surrounding.~~
 35.	~~***HA:***	Resize minimap dimensions and values. Reduce them by half `MINI_DIM 90`.~~
 36.	~~***HA:***	Fix map file parsing, map does not fail if newlines or any whitespace between map lines.~~
-37.	***HA:***	Add rotation to minimap player model.
+37.	~~***MAK:***	Add rotation to minimap player model.~~
+38.	***HA:***	Minimap Door Integration.
 
 `#CURRENT STATUS`
 
@@ -248,6 +252,8 @@ function placed in `linux_osx_mouse.c`
 152. New function in `parse_layout.c` called `hceck_map_config_lines();` called from `check_map_lines();` in `utils_file_ext.c`
 153. Fixed parsing issue with any new lines or empty spaces between map lines. See `#151` -> `#152`.
 154. Removed unused function in `directions.c` called `print_map(char **str);`.
+155. Refactored `rgb_door_status();` in `utils_minimap_ext.c` now calls `get_door();` from `hooks.c` to check if door status in `t_doors*` structure array.
+156. Removed function `rgb_door_status();` and no longer checking door status.
 
 
 `MAK:	4 July 2022`

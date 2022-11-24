@@ -6,33 +6,11 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 19:45:56 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/22 17:19:26 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/24 15:05:17 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
-
-static int	rgb_door_status(t_info *info)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (info->data->map[i])
-	{
-		j = 0;
-		while (info->data->map[i][j])
-		{
-			if (info->data->map[i][j] == 'D')
-				return (0x00660000);
-			else if (info->data->map[i][j] == 'O')
-				return (0x03D8758);
-			j++;
-		}
-		i++;
-	}
-	return (0x03D8758);
-}
 
 /**
 **	Draws minimap doors vertically
@@ -56,7 +34,7 @@ void	draw_mini_doors_vertical(t_info *info, int x, int y, int rgb)
 			{
 				if (x_rst == x_one - 1 || y == y_one - 2
 					|| x_rst == x || y == y_brdr)
-					mini_pixel_put(info->mini, x_rst, y, rgb_door_status(info));
+					mini_pixel_put(info->mini, x_rst, y, 0x00000000);
 				else
 					mini_pixel_put(info->mini, x_rst, y, rgb);
 			}
@@ -88,7 +66,7 @@ void	draw_mini_doors_horizontal(t_info *info, int x, int y, int rgb)
 			{
 				if (x_rst == x_one - 2 || y == y_one - 1
 					|| x_rst == x || y == y_brdr)
-					mini_pixel_put(info->mini, x_rst, y, rgb_door_status(info));
+					mini_pixel_put(info->mini, x_rst, y, 0x00000000);
 				else
 					mini_pixel_put(info->mini, x_rst, y, rgb);
 			}
