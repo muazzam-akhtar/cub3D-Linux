@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 19:43:20 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/24 17:52:51 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/25 19:10:13 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,13 @@ static void	mini_interior(t_info *info)
 
 	modf(info->player->y_pos - 3.0, &temp);
 	i = temp - 3;
-	y = x_y_values(i, info->player->y_pos - 3.0) - extract_decimal(info->player->y_pos) * MINI_SCALE;
+	y = get_values(info, i, 'y');
 	i = assign_index(i);
 	while (info->data->map[i] && mini_img_limit(y, x, 'y'))
 	{
 		modf(info->player->x_pos - 3.0, &temp);
 		j = temp - 3;
-		x = x_y_values(j, info->player->x_pos - 3.0) - extract_decimal(info->player->x_pos) * MINI_SCALE;
+		x = get_values(info, j, 'x');
 		j = assign_index(j);
 		while (info->data->map[i][j] && mini_img_limit(y, x, 'x'))
 		{
@@ -106,7 +106,7 @@ void	draw_minimap(t_info *info, t_mini *mini)
 		}
 		y++;
 	}
-	mini_rot(info, mini, MINI_DIM / 2, 0X00FF0000);
+	mini_rot(info, mini, MINI_DIM / 2, 0x00A0F0F0);
 	mini_interior(info);
 	draw_mini_player(mini, (MINI_DIM / 2) - 4, (MINI_DIM / 2) - 4, 0x003D8758);
 }

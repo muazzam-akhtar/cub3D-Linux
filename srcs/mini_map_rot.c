@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   mini_map_rot.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:26:19 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/23 19:49:34 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/25 18:10:07 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
+/**
+**	Draws Cone of view in minimap starting from player spot.
+**/
 void	mini_rot(t_info *info, t_mini *mini, int start, u_int32_t rgb)
 {
 	double	y;
@@ -26,7 +29,7 @@ void	mini_rot(t_info *info, t_mini *mini, int start, u_int32_t rgb)
 	ang = info->player->angle - (35 * (PI / 180));
 	while (iter > 0)
 	{
-		ang_iter = 20;
+		ang_iter = 40;
 		x = start * 1.0;
 		y = start * 1.0;
 		while (ang_iter > 0)

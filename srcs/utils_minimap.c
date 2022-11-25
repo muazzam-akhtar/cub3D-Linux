@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 19:44:52 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/24 21:21:39 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/25 19:12:55 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,17 @@ void	draw_mini_interior(t_info *info, char *map_icon, int x, int y)
 {
 	if (*map_icon == '1')
 		draw_mini_walls(info, x, y, 0x00000066);
-	if (*map_icon == 'D')
+	if (*map_icon == 'D' || *map_icon == 'O')
 	{
 		if (*(map_icon - 1) == '1' && *(map_icon + 1) == '1')
 		{
 			y += (MINI_SCALE / 2) / 2;
-			draw_mini_doors_horizontal(info, x, y, 0x00454545);
+			draw_mini_doors_horizontal(info, x, y, map_icon);
 		}
 		else
 		{
 			x += (MINI_SCALE / 2) / 2;
-			draw_mini_doors_vertical(info, x, y, 0x00454545);
+			draw_mini_doors_vertical(info, x, y, map_icon);
 		}
 	}
 }
@@ -79,4 +79,38 @@ int	mini_img_limit(int y, int x, char status)
 	if (status == 'x' && x < x_one)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
+}
+
+/**
+**	Returns value of y or x dependant on status.
+*
+*		status == 'y';
+*			return value of double y after extracting value from
+*			x_y_values();
+*			extract_decimal to get exact position to draw
+*
+*
+*		status == 'x';
+*			return value of double x after extracting value from
+*			x_y_values();
+*			extract_decimal to get exact position to draw
+*
+**/
+double	get_values(t_info *info, int map_index, char status)
+{
+	double	y;
+	double	x;
+
+	if (status == 'y')
+	{
+		y = x_y_values(map_index, info->player->y_pos - 3.0);
+		y -= extract_decimal(info->player->y_pos) * MINI_SCALE;
+		return (y);
+	}
+	else
+	{
+		x = x_y_values(map_index, info->player->x_pos - 3.0);
+		x -= extract_decimal(info->player->x_pos) * MINI_SCALE;
+		return (x);
+	}
 }

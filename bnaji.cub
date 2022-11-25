@@ -1,16 +1,19 @@
+		
 NO ./imgs/nW.xpm
 
-
-
-SO ./imgs/sW.xpm
-
+SO         ./imgs/sW.xpm          
 WE ./imgs/wW.xpm
+
+F     30,5,255
+
+C 255,255,0
+
+
 
 EA ./imgs/eW.xpm
 
-F 30,5,123
 
-C 255,123,123
+
 
 
                1

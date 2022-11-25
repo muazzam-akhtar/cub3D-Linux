@@ -6,16 +6,23 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 19:45:56 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/24 15:05:17 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/25 19:11:58 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
+static int	check_open(char *map_icon)
+{
+	if (*map_icon == 'O')
+		return (0x0039FF14);
+	return (0x00FF0000);
+}
+
 /**
 **	Draws minimap doors vertically
 **/
-void	draw_mini_doors_vertical(t_info *info, int x, int y, int rgb)
+void	draw_mini_doors_vertical(t_info *info, int x, int y, char *map_icon)
 {
 	int	y_brdr;
 	int	y_one;
@@ -34,9 +41,9 @@ void	draw_mini_doors_vertical(t_info *info, int x, int y, int rgb)
 			{
 				if (x_rst == x_one - 1 || y == y_one - 2
 					|| x_rst == x || y == y_brdr)
-					mini_pixel_put(info->mini, x_rst, y, 0x00000000);
+					mini_pixel_put(info->mini, x_rst, y, check_open(map_icon));
 				else
-					mini_pixel_put(info->mini, x_rst, y, rgb);
+					mini_pixel_put(info->mini, x_rst, y, 0x00454545);
 			}
 			x_rst++;
 		}
@@ -47,7 +54,7 @@ void	draw_mini_doors_vertical(t_info *info, int x, int y, int rgb)
 /**
 **	Draws minimap doors horizontally
 **/
-void	draw_mini_doors_horizontal(t_info *info, int x, int y, int rgb)
+void	draw_mini_doors_horizontal(t_info *info, int x, int y, char *map_icon)
 {
 	int	y_brdr;
 	int	y_one;
@@ -66,9 +73,9 @@ void	draw_mini_doors_horizontal(t_info *info, int x, int y, int rgb)
 			{
 				if (x_rst == x_one - 2 || y == y_one - 1
 					|| x_rst == x || y == y_brdr)
-					mini_pixel_put(info->mini, x_rst, y, 0x00000000);
+					mini_pixel_put(info->mini, x_rst, y, check_open(map_icon));
 				else
-					mini_pixel_put(info->mini, x_rst, y, rgb);
+					mini_pixel_put(info->mini, x_rst, y, 0x00454545);
 			}
 			x_rst++;
 		}

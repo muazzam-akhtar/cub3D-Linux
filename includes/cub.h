@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/24 21:33:24 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/25 19:19:00 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -449,11 +449,14 @@ void		find_player(t_data *data, t_player *player);
 **	Mini-map functions
 **/
 double		x_y_values(int index, double pos);
+double		get_values(t_info *info, int map_index, char status);
 void		init_minimap(t_info *info);
 void		draw_mini_interior(t_info *info, char *map_icon, int x, int y);
 void		mini_pixel_put(t_mini *mini, int x, int y, int rgb);
-void		draw_mini_doors_horizontal(t_info *info, int x, int y, int rgb);
-void		draw_mini_doors_vertical(t_info *info, int x, int y, int rgb);
+void		draw_mini_doors_horizontal(t_info *info, int x,
+				int y, char *map_icon);
+void		draw_mini_doors_vertical(t_info *info, int x,
+				int y, char *map_icon);
 void		mini_rot(t_info *info, t_mini *mini, int start, u_int32_t rgb);
 int			assign_index(int index);
 int			mini_img_limit(int y, int x, char status);

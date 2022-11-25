@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 22:13:55 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/24 20:48:18 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/25 19:22:39 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ int	valid_key(int c)
 	else if (c == 'E')
 		return (c);
 	else if (c == 'D')
-		return (c);
-	else if (c == 'M')
 		return (c);
 	return (FALSE);
 }

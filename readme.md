@@ -93,7 +93,7 @@ NULL
 37.	~~***MAK:***	Add rotation to minimap player model.~~
 38. ***MAK:***	Minimap Door Integration.
 39. ***MAK:***	Norm fix for some files.
-40. ***HA:***	Norm fix for `mini_map.c` function `mini_interior();`
+40. ~~***HA:***	Norm fix for `mini_map.c` function `mini_interior();`~~
 41. ***HA:***	Parse for any lines before first element in file.
 
 `#CURRENT STATUS`
@@ -265,6 +265,10 @@ function placed in `linux_osx_mouse.c`
 162. Moved `free_gun();` to `utils_memory_mngmnt.c` && removed function name `working_sprite();` from `cub.h` as not used anywhere.
 163. Removed function `draw_mini_sprites();` as it is not in use from `utils_minimap.c`.
 164. Added empty line check in `utils_file_ext.c` in two functions `check_map_lines();` && `check_config_map();` to detect any non-empty lines between elements that contain only whitespaces other than a newline.
+165. Fixed norm issue in `minimap.c` in function `mini_interior();` by creating new function to call `x_y_values();` and `extract_decimal()` for `x` and `y` values, function is called `get_values();` placed in `utils_minimap.c`.
+166. Added 20 more to `ang_iter` in `mini_rot()` in file `mini_map_rot.c` to make view cone longer in minimap, and changed colour value from `0x00FF0000` to `0x00A0F0F0`.
+167. Added `*map_icon == 'O'` to `draw_mini_interior();` in `utils_minimap.c` and changed input for `draw_mini_doors_*(t_info *info, int x, int y, >>char *map_icon<<);` to send `*map_icon` to draw correct door colour.
+168. Refactored `check_open();` in `utils_minimap_ext.c` to take `char *map_icon` as parameter from `draw_mini_interior();`. Function now return green only if `*map_icon == 'O'` else it returns red. Function `check_open();` is called in `draw_mini_doors_*();` in the position of `rgb` of `mini_pixel_put();`
 
 
 `MAK:	4 July 2022`
