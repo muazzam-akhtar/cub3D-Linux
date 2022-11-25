@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:24:58 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/24 21:33:49 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/25 20:25:32 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,28 @@
 
 /**
 **	Removes excess whitespace ' '
-*	check_if_map();		If not first line of map
-*								keep squashing
-*	check_tabs();		Replaces '\t' with 4 ' '
-*								spaces
+*
+*	First check		:	If at beginning, if empty line, return error
+*
+*	check_if_map();		If not first line of map keep squashing
+*
+*	check_tabs();		Replaces '\t' with 4 ' ' spaces
+*
 **/
-char	**squash_lines(char **file, char **input)
+char	**squash_lines(t_info *info, char **file, char **input)
 {
 	size_t	i;
 
 	i = 0;
 	while (input[i])
 	{
+		if (i == 0 && check_line(input[i]))
+		{
+			free(file);
+			file = NULL;
+			free_split(input);
+			err_return(3, info);
+		}
 		if (!check_if_map(input[i]))
 			file[i] = squash(input[i]);
 		else if (ft_strchr(input[i], '\t'))
@@ -88,7 +98,7 @@ static int	clean_file(t_info *inf, char **input)
 	file = (char **)ft_calloc(ft_ptrptrlen(tmp) + 1, sizeof(char *));
 	if (!file)
 		return (EXIT_FAILURE);
-	file = squash_lines(file, tmp);
+	file = squash_lines(inf, file, tmp);
 	if (tmp)
 		free_split(tmp);
 	if (store_data(inf, file))

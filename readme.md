@@ -18,7 +18,7 @@ NULL
 
 ```
 
-`#BUGS: #30`
+`#BUGS: NULL`
 
 1.	~~***HA:***	Segfaul in `get_next_line();` due to `ft_strchr();` in `libft`~~
 2.	~~***HA:***	Function parses whole file, should stop at first line of map~~
@@ -49,7 +49,7 @@ NULL
 27. ~~***HA:***	Minimap jumping and resetting when approaching 0 index on both x and y.~~
 28. ~~***HA:***	Parsing for newlines etc; between map lines not working.~~
 29.	~~***HA:***	Parsing of 0 on right side of map not function for borders~~
-30.	***MAK:*** Player jumps into wall when increase speed by hitting left shift.
+30.	~~***MAK:*** Player jumps into wall when increase speed by hitting left shift.~~
 31.	~~***HA:***	Double free in `store_data();`~~
 
 `#TODO:`
@@ -86,19 +86,19 @@ NULL
 30. ~~***HA:*** Refactor minimap drawing in `utils_minimap.c` see `mini_interior();` on branch hawadh-minimap.~~
 31.	~~***MAK:*** Finished working on the parsing for doors.~~
 32. ~~***MAK:*** Allocate structure for the doors and put xpm addresses in the sprites structures when the wall hits.~~
-33. ~~ ***MAK:*** Working on Integration for the doors.~~
+33. ~~***MAK:*** Working on Integration for the doors.~~
 34. ~~***HA:*** Minimap not drawing EA/WE facing doors correctly. Need to adjust drawing depending on walls surrounding.~~
 35.	~~***HA:***	Resize minimap dimensions and values. Reduce them by half `MINI_DIM 90`.~~
 36.	~~***HA:***	Fix map file parsing, map does not fail if newlines or any whitespace between map lines.~~
 37.	~~***MAK:***	Add rotation to minimap player model.~~
-38. ***MAK:***	Minimap Door Integration.
-39. ***MAK:***	Norm fix for some files.
+38. ~~***MAK:***	Minimap Door Integration.~~
+39. ~~***MAK:***	Norm fix for some files.~~
 40. ~~***HA:***	Norm fix for `mini_map.c` function `mini_interior();`~~
-41. ***HA:***	Parse for any lines before first element in file.
+41. ~~***HA:***	Parse for any lines before first element in file.~~
 
 `#CURRENT STATUS`
 
-`HA:	24 Nov 2022`
+`HA:	25 Nov 2022`
 
 1.	New files to split functions `parse_file.c`, `errors.c`, `parse_file.c`
 2.	Added .gitignore
@@ -269,7 +269,8 @@ function placed in `linux_osx_mouse.c`
 166. Added 20 more to `ang_iter` in `mini_rot()` in file `mini_map_rot.c` to make view cone longer in minimap, and changed colour value from `0x00FF0000` to `0x00A0F0F0`.
 167. Added `*map_icon == 'O'` to `draw_mini_interior();` in `utils_minimap.c` and changed input for `draw_mini_doors_*(t_info *info, int x, int y, >>char *map_icon<<);` to send `*map_icon` to draw correct door colour.
 168. Refactored `check_open();` in `utils_minimap_ext.c` to take `char *map_icon` as parameter from `draw_mini_interior();`. Function now return green only if `*map_icon == 'O'` else it returns red. Function `check_open();` is called in `draw_mini_doors_*();` in the position of `rgb` of `mini_pixel_put();`
-
+169. Added check in `squash_line();` `if (i == 0 && check_line())` to clean and return error if any lines before config at the begining of the file as it is invalid.
+170. Added `t_info *info` parameter to `squash_lines();` to call `err_return();` for cleanup before exit.
 
 `MAK:	4 July 2022`
 

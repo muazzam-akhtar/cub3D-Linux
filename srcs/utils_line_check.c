@@ -6,12 +6,16 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 19:47:50 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/24 21:06:25 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/25 20:21:14 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
+/**
+**	Function to check number of config lines and skip to check for any
+**	non-empty lines outside of config.
+**/
 int	check_config_lines(char *input)
 {
 	static char	xpm[5][3] = {"NO", "SO", "WE", "EA", ""};

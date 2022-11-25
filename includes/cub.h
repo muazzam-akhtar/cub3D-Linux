@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:38:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/25 19:19:00 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/25 20:18:46 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -394,7 +394,7 @@ void		err_return(int status, t_info *info);
 void		check_map(t_info *info, char *str);
 void		fetch_rgb(char *str, t_info *info, const char *layout);
 char		**clean_whitespace(char **input);
-char		**squash_lines(char **file, char **input);
+char		**squash_lines(t_info *info, char **file, char **input);
 char		*check_tabs(char *input);
 char		*squash(char *input);
 char		*get_layouts(char *str);
