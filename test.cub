@@ -1,7 +1,7 @@
 C 255,255,45
 NO ./ /nW.xpm
-NO ./imgs/sW.xpm
-WE ./imgs/wW.xpm
+SO ./imgs/sW.xpm   
+EA ./imgs/wW.xpm
 
 
 

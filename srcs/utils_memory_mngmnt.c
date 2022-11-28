@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_memory_mngmnt.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 13:37:48 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/24 19:28:22 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/28 14:56:48 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,20 @@ void	free_split(char **str)
 		free(str);
 		str = NULL;
 	}
+}
+
+void	free_config(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (i < 6)
+	{
+		if (str[i])
+			free(str[i]);
+		i++;
+	}
+	if (str)
+		free(str);
+	str = NULL;
 }
