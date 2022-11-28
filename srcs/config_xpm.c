@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 14:17:51 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/28 14:11:13 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/28 14:26:29 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@
 **/
 static int	xpm_store(char *str, t_info *info, const char *layout)
 {
-	if (!ft_strcmp(info->data->confg[0], "") && !ft_strcmp(layout, "NO"))
+	if (!info->data->confg[0] && !ft_strcmp(layout, "NO"))
 		info->data->confg[0] = ft_strdup(str);
-	else if (!ft_strcmp(info->data->confg[1], "") && !ft_strcmp(layout, "SO"))
+	else if (!info->data->confg[1] && !ft_strcmp(layout, "SO"))
 		info->data->confg[1] = ft_strdup(str);
-	else if (!ft_strcmp(info->data->confg[2], "") && ft_strcmp(layout, "WE"))
+	else if (!info->data->confg[2] && ft_strcmp(layout, "WE"))
 		info->data->confg[2] = ft_strdup(str);
-	else if (!ft_strcmp(info->data->confg[3], "") && !ft_strcmp(layout, "EA"))
+	else if (!info->data->confg[3] && !ft_strcmp(layout, "EA"))
 		info->data->confg[3] = ft_strdup(str);
 	return (EXIT_SUCCESS);
 }

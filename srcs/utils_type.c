@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_type.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 22:20:14 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/24 19:50:57 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/28 14:25:07 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,21 @@ char	*get_type_str(int type)
 
 int	data_init(t_info *info, int *i, int *ret)
 {
-	*i = 0;
-	*ret = 0;
-	info->data->confg = (char **)ft_calloc(confg_count(info->data->file)
-			+ 1, sizeof(char *));
+	int	config_len;
+	int	count;
+
+	config_len = confg_count(info->data->file);
+	info->data->confg = (char **)ft_calloc(config_len + 1, sizeof(char *));
 	if (!info->data->confg)
 		return (EXIT_FAILURE);
+	*i = 0;
+	*ret = 0;
+	count = 0;
+	while (count <= config_len)
+	{
+		info->data->confg[count] = NULL;
+		count++;
+	}
 	return (EXIT_SUCCESS);
 }
 

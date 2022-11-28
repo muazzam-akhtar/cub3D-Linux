@@ -274,6 +274,7 @@ function placed in `linux_osx_mouse.c`
 171. Added comments to some functions in `doors.c` && `draw.c` && `utils_xpm.c` && `parse_layout.c`.
 172. Added bool condition in `if`, `if else` && `else` statements in function `xpm_store();` in file `config_xpm.c` to check if data already exists in case of duplicates to fix memory leak.
 172. Fix for `xpm_store();` now compares with empty string.
+173. Refactored `data_init();` to now loop through `data->confg` 2D array to set each element as `NULL` to avoid future invalid reads and leaks and changed back to bool condition for `HA:#172`.
 
 `MAK:	4 July 2022`
 
