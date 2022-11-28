@@ -3,15 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   utils_memory_mngmnt.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 13:37:48 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/28 14:56:48 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/28 15:46:07 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
+/**
+**	Frees other allocated memory placed here
+**	due to norm requirements.
+*	called from free_struct_data();
+**/
 void	free_more(t_info *info)
 {
 	if (info->player)
@@ -26,6 +31,9 @@ void	free_more(t_info *info)
 	}
 }
 
+/**
+**	Free and destroy gun images.
+**/
 void	free_gun(t_info *info)
 {
 	int	i;
@@ -68,6 +76,15 @@ void	free_split(char **str)
 	}
 }
 
+/**
+**	For freeing config
+*
+*	while (i < 6)	Number of elements in config is 6.
+*
+*	For any errors some indexes will not be filled and hence
+*	hardcoded value of 6 is taken.
+*
+**/
 void	free_config(char **str)
 {
 	int	i;

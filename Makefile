@@ -6,7 +6,7 @@
 #    By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/21 16:36:51 by hawadh            #+#    #+#              #
-#    Updated: 2022/11/24 21:37:14 by hawadh           ###   ########.fr        #
+#    Updated: 2022/11/28 15:43:39 by hawadh           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,6 +74,45 @@ ${NAME}:	${OBJS}
 			${CC} ${CFLAGS} ${OBJS} ${LIBFT} ${GNL} ${MLXFLG} -o ${NAME}
 
 all:	${NAME}
+	@echo "${BLACK}  ${RED}WKkK${BLACK}                                                                                         ${RED}xX${BLACK}   "
+	@echo "${RED}XK0xxX${BLACK}                                                                                         ${RED}xk0KN"
+	@echo "${RED}xloxK${BLACK}                                                                                         ${RED}N0dllk"
+	@echo "${RED}OoodOX${BLACK}                                       ${BLUE}WNXK0OOO0KNW${BLACK}                                    ${RED}N0xold0"
+	@echo " ${RED}X0Oxdx00dx0N${BLACK}                             ${BLUE}WKOdolccc::;;:lxK${BLACK}                            ${RED}XOdx0OddxOKX${BLACK} "
+	@echo "   ${RED}NKxlloooox0X${BLACK}                         ${BLUE}N0dodkO000OOkdc,..'c${BLACK}                        ${RED}NKkdoooolokKN${BLACK}   "
+	@echo "     ${RED}X0xoooolcldOX${BLACK}                     ${BLUE}NkdxOXWWWWNXXKOdc,.. .c${BLACK}                   ${RED}N0kocclooodk0N${BLACK}     "
+	@echo "       ${RED}NKOd:;;:cldkK${BLACK}                  ${BLUE}NkoxOXWMMWNXKK0Oxl,.   .c${BLACK}                ${RED}XOxolc:;;cx0XN${BLACK}       "
+	@echo "         ${RED}NKo,';ccloox0${BLACK}                ${BLUE}Xo:lOXWWWX0Okxdol;'.    'O${BLACK}            ${RED}NKkdollcc;';xKN${BLACK}         "
+	@echo "           ${RED}Xkc,,:lcccldO${BLACK}              ${BLUE}Kl,l0XXNKOxoloool:'..   .x${BLACK}          ${RED}N0xolcclc:,;lOX${BLACK}           "
+	@echo "            ${RED}NKxc,,:ccloodk${BLACK}            ${BLUE}Xo:xK0OOOOxc,ckOdl:,'...,O${BLACK}         ${RED}Kxoollcc:,,c${BLACK}               "
+	@echo "              ${RED}N0x:;::ccodxO${BLACK}           ${BLUE}Nxlc,....,locoxc.....'''lX${BLACK}       ${RED}NKkxdlc::;;cx${BLACK}                "
+	@echo "                ${RED}NOocc::coxOO0${BLACK}         ${BLUE}WOl.  .....oOo'   .....;k${BLACK}      ${RED}NK0OOxoc::cco${BLACK}                  "
+	@echo "                  ${RED}X0kdollloxOO0${BLACK}       ${BLUE}Nxl;. ..',:ll:.   ...,,;k${BLACK}    ${RED}NK0Okxocloodk0X${BLACK}                  "
+	@echo "                    ${RED}KxcclloodxkO0${BLACK}      ${BLUE}0ooolclll;.....',,;:c;:${BLACK}   ${RED}NK0OkxooollccxK${BLACK}                    "
+	@echo "                ${RED}NKOxl:;;;:cooodkO00${BLACK}     ${BLUE}Xx:,',,,'.'... .,;;cx${BLACK}  ${RED}NK00Oxdoooc:;;;:lx${BLACK}                   "
+	@echo "         ${RED}XOkkxdol:;;;,,;::;:lodddxkOOK${BLACK}   ${BLUE}0c'.,cdkOOxc.  ...l${BLACK}  ${RED}KOOkxddxolc;;:;,,;;;:${BLACK}                 "
+	@echo "        ${RED}Xd;;;;;;,,,,:cdkkddxocldxdddk0N${BLACK}   ${BLUE}o;';lx0Okkx:.....${BLACK}  ${RED}N0xdodxdlcoxdokkdc${RED}:,,,,;;;;;;oK${BLACK}        "
+	@echo "       ${RED}WO:;;;;;:clok0XN${RED}WNXK0xc:ldxxooON${BLACK}    ${BLUE}c;:lodoool:'..'${BLACK}   ${RED}Nkooxkdl:cx0KXN${BLACK} ${RED}NX0xol:;;,,,,;xN${BLACK}       "
+	@echo "       ${RED}N0xxxxkO0KXN${RED}WMMMMMWN${RED}Xd;;::clollkX${BLACK}    ${BLUE}llodxxxoc;,'.${BLACK}   ${RED}Xkllllc::;;oKNW${BLACK}                         "
+	@echo "                          ${RED}W0c;;;ldoc;;:dK${RED}N${BLACK}   ${BLUE}kxdOKXk:;:${BLACK}   ${RED}N0dc;;:odl:;;cOW${BLACK}                          "
+	@echo "                          ${RED}Xo::cxX${RED}NKd;,;lxOK${BLACK}           ${RED}0XXKOxl:,,o0NXkl:;lK${BLACK}                          "
+	@echo "                         ${RED}Xdcclk${RED}NMMW0l,:lxO00K${BLACK}         ${RED}NK00Oxo:,cON${BLACK}  ${RED}NOlc:oK${BLACK}                         "
+	@echo "                         ${RED}KxodO${RED}NMMMMNO:,cdkO00KN${BLACK}      ${RED}NK00Okdl,;xNW${BLACK}   ${RED}N0dod0W${BLACK}                        "
+	@echo "                          ${RED}NXN${RED}WMMMMMW${RED}Xd,,codxO00X${RED}WMMW${RED}XK0Okdol,'lKW${BLACK}      ${RED}NXXNW${BLACK}                        "
+	@echo "                                     ${RED}Kl.,clodkO00KK00Okdolc,.:ON${BLACK}                                    "
+	@echo "                                      ${RED}O;.;llloodxOOkdoolll:',xXW${BLACK}                                    "
+	@echo "                                      ${RED}Xd'';::cokKN${BLACK} ${RED}XOdc:::,.c0W${BLACK}                                     "
+	@echo "                                       ${RED}0:.':oOX${BLACK}       ${RED}0dc,.'xN${BLACK}                                      "
+	@echo "                                       ${RED}Xd,ckX${BLACK}           ${RED}0l'c0W${BLACK}                                      ${RED}"
+	@echo ""
+	@echo "                               ██████╗██╗   ██╗██████╗ ██████╗ ██████╗ "
+	@echo "                              ██╔════╝██║   ██║██╔══██╗╚════██╗██╔══██╗"
+	@echo "                              ██║     ██║   ██║██████╔╝ █████╔╝██║  ██║"
+	@echo "                              ██║     ██║   ██║██╔══██╗ ╚═══██╗██║  ██║"
+	@echo "                              ╚██████╗╚██████╔╝██████╔╝██████╔╝██████╔╝"
+	@echo "                               ╚═════╝ ╚═════╝ ╚═════╝ ╚═════╝ ╚═════╝ "
+	@echo "                                                                       ${WHITE}"
+	@cat authors
 
 vg:		all
 		valgrind -s --leak-check=full --show-leak-kinds=all --track-origins=yes ./cub3d tester.cub
