@@ -273,6 +273,7 @@ function placed in `linux_osx_mouse.c`
 170. Added `t_info *info` parameter to `squash_lines();` to call `err_return();` for cleanup before exit.
 171. Added comments to some functions in `doors.c` && `draw.c` && `utils_xpm.c` && `parse_layout.c`.
 172. Added bool condition in `if`, `if else` && `else` statements in function `xpm_store();` in file `config_xpm.c` to check if data already exists in case of duplicates to fix memory leak.
+172. Fix for `xpm_store();` now compares with empty string.
 
 `MAK:	4 July 2022`
 
