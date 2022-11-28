@@ -271,6 +271,8 @@ function placed in `linux_osx_mouse.c`
 168. Refactored `check_open();` in `utils_minimap_ext.c` to take `char *map_icon` as parameter from `draw_mini_interior();`. Function now return green only if `*map_icon == 'O'` else it returns red. Function `check_open();` is called in `draw_mini_doors_*();` in the position of `rgb` of `mini_pixel_put();`
 169. Added check in `squash_line();` `if (i == 0 && check_line())` to clean and return error if any lines before config at the begining of the file as it is invalid.
 170. Added `t_info *info` parameter to `squash_lines();` to call `err_return();` for cleanup before exit.
+171. Added comments to some functions in `doors.c` && `draw.c` && `utils_xpm.c` && `parse_layout.c`.
+172. Added bool condition in `if`, `if else` && `else` statements in function `xpm_store();` in file `config_xpm.c` to check if data already exists in case of duplicates to fix memory leak.
 
 `MAK:	4 July 2022`
 

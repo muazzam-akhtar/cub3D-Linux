@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   doors.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 15:09:32 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/24 17:15:35 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/28 12:13:14 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,14 @@ int	lookup_door(t_info *inf, int x, int y)
 	return (-1);
 }
 
+/**
+**	Resets and re-places door characters on map after player moves
+**	through them.
+*
+*	Closed doors	:	'D'
+*	Open doors		:	'O'
+*
+**/
 void	reset_doors(t_info *info)
 {
 	int	x;

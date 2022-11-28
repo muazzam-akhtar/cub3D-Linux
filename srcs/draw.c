@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 09:28:29 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/24 21:14:52 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/28 12:17:06 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,19 @@ void	place_walls(t_info *inf, t_rays *ray, int x)
 
 /**
 **	Draws everything include map
-*	init_cursor(); to reinitialise crosshair
-*	after each redraw
+*
+*	find_player();		Finds initial player position in map
+*	
+*	static int timer;	For intial finding of player position to not interrupt
+*						later player positions by blocking reset
+*
+*	init_rays(); 		Begins raycaster
+*	
+*	init_cursor();		to reinitialise crosshair
+*						after each redraw
+*
+*	draw_minimap();		Draws minimap
+*
 **/
 void	draw_map(t_info *info)
 {

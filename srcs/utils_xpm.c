@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_xpm.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: makhtar <makhtar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 20:06:18 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/24 12:40:17 by makhtar          ###   ########.fr       */
+/*   Updated: 2022/11/28 12:10:32 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,15 @@ static void	get_xpm_addr(t_info *info, t_xpm *xpm, char *xpm_str)
 	xpm->addr = xpm->addr + (xpm->len * (xpm->bitspix / 8));
 }
 
+/**
+**	Initialises all bonus xpm files
+*
+*	1. Gun 				"Ak47.xpm"
+*	2. Pause 			"pause.xpm"
+*	3. Gun Animation	"Ak47_*.xpm" (Ak47_1.xpm Ak47_2.xpm etc;)
+*	4. Door				"door.xpm"
+*
+**/
 static int	init_bonus_xpm(t_info *info, t_data *data)
 {
 	int		x;

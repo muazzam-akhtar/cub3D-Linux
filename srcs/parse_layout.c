@@ -6,7 +6,7 @@
 /*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 14:19:03 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/24 21:34:05 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/28 12:00:36 by hawadh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,12 @@ int	parse_arg(char **maps, t_info *info)
 	return (EXIT_SUCCESS);
 }
 
+/**
+**	Called from check_map_lines(); in utils_file_ext.c
+*
+*	Confirms if input is a map configuration element
+*
+**/
 int	check_map_config_lines(char *input)
 {
 	if (!ft_strncmp(input, "F", 1) || !ft_strncmp(input, "C", 1))
