@@ -312,5 +312,5 @@ function placed in `linux_osx_mouse.c`
 32. Finished allocations for the sprites.
 33. Parsing for Duplicates and rgb with commas are done.
 34. Got the door integration for the map.
-35. 
-
+35. Added a new function for freeing the configuration data. Using if statements for each and every index of the 2d array if the memory exists and freeing it if it exists.The function is called from free_struct_data -> free_config(data->cong)
+36. 

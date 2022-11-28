@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config_xpm.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 14:17:51 by makhtar           #+#    #+#             */
-/*   Updated: 2022/11/28 14:26:29 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/28 14:38:03 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@
 **/
 static int	xpm_store(char *str, t_info *info, const char *layout)
 {
-	if (!info->data->confg[0] && !ft_strcmp(layout, "NO"))
+	if ((info->data->confg[0] == NULL) && !ft_strcmp(layout, "NO"))
 		info->data->confg[0] = ft_strdup(str);
-	else if (!info->data->confg[1] && !ft_strcmp(layout, "SO"))
+	else if ((info->data->confg[1] == NULL) && !ft_strcmp(layout, "SO"))
 		info->data->confg[1] = ft_strdup(str);
-	else if (!info->data->confg[2] && ft_strcmp(layout, "WE"))
+	else if ((info->data->confg[2] == NULL) && !ft_strcmp(layout, "WE"))
 		info->data->confg[2] = ft_strdup(str);
-	else if (!info->data->confg[3] && !ft_strcmp(layout, "EA"))
+	else if ((info->data->confg[3] == NULL) && !ft_strcmp(layout, "EA"))
 		info->data->confg[3] = ft_strdup(str);
 	return (EXIT_SUCCESS);
 }

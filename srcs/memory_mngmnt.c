@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   memory_mngmnt.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hawadh <hawadh@student.42Abudhabi.ae>      +#+  +:+       +#+        */
+/*   By: makhtar <makhtar@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 20:02:35 by hawadh            #+#    #+#             */
-/*   Updated: 2022/11/24 19:28:00 by hawadh           ###   ########.fr       */
+/*   Updated: 2022/11/28 14:47:58 by makhtar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,34 @@ static void	free_struct_img(t_img *img)
 		img = NULL;
 }
 
+void	free_config(char **str)
+{
+	int	i;
+
+	i = 0;
+	if (str[i])
+		free(str[i]);
+	i++;
+	if (str[i])
+		free(str[i]);
+	i++;
+	if (str[i])
+		free(str[i]);
+	i++;
+	if (str[i])
+		free(str[i]);
+	i++;
+	if (str[i])
+		free(str[i]);
+	i++;
+	if (str[i])
+		free(str[i]);
+	i++;
+	if (str)
+		free(str);
+	str = NULL;
+}
+
 static void	free_struct_data(t_info *info, t_data *data)
 {
 	if (data->xpm)
@@ -57,7 +85,7 @@ static void	free_struct_data(t_info *info, t_data *data)
 	}
 	if (data->confg)
 	{
-		free_split(data->confg);
+		free_config(data->confg);
 		data->confg = NULL;
 	}
 	if (data->file)
