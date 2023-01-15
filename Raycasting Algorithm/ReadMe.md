@@ -196,5 +196,60 @@ After performing the whole operation, we will get this.
 
 <img width="200" alt="cube" src="https://user-images.githubusercontent.com/81755254/196190055-e4ade114-f29e-4ea7-acd3-d9ba2d1a0678.png">
 
+## Effective Raycasting Algorithm
 
+Above algorithm/method taskes more time depending on the distance between the player and the wall. For faster FPS or avoiding the lag of the game, I approached DDA Algorithm. 
 
+The approach of this line drawing algorithm is pretty simple. From moving one grid to the other, we only need to check if it's a horizontal or vertical hit.
+
+      Let c_x = change in x, c_y = change in y, angle = angle of the ray, dx = rate of change in x when x moves one unit of grid corresponding to change in y,
+      dy = rate of change in y when y moves one unit of grid corresponding to change in x, x_step = steps of each unit of x based on the change in x, y_step = steps of       each unit of y based on the change in y, x_pos = current x-position of the player(in float), y_pos = current y-position of the player(in float),
+      m_x = x-coordinates in int value, m_y = y-coordinates in int value, dist_x = distance if x moves one unit, dist_y = distance if y moves one unit.
+      c_x = cos(angle), c_y = sin(angle)
+      m_x = (int)x_pos
+      m_y = (int)y_pos
+      d_x = (1 + (c_y / c_x)^2)^1/2
+      d_y = (1 + (c_x / c_y)^2)^1/2
+
+First we need to calculate the distance of both scenarios if x moves one unit or y moves one unit and compare which has less distance. If x is hitting first then it's a horizontal hit else it's a vertical hit.
+
+      if (c_x < 0)
+            x_step = -1
+            dist_x = (x_pos - m_x) * dx;
+      else
+            x_step = 1
+            dist_x = ((int)x_pos + 1.0 - x_pos) * dx;
+      if (c_y < 0)
+            y_step = -1
+            dist_y = (y_pos - m_y) * dy;
+      else
+            y_step = 1
+            dist_y = ((int)y_pos + 1.0 - y_pos) * dy;
+
+Now we have steps, rate of change of both x and y, we can start a while loop for every iteration of the unit of grid. We declare a wall trigger and a side to get the indication if it's a horizontal or vertical hit.
+
+      wall = 0;
+      side = 0;
+      while (!wall)
+      {
+            if (dist_x < dist_y)
+		{
+			dist_x += dx;
+			m_x += x_step;
+			side = 0;
+		}
+		else
+		{
+			dist_y += dy;
+			m_y += y_step;
+			side = 1;
+		}
+		if (map[m_y][m_x] == '1')
+			wall = 1;
+       }
+
+If it's a vertical hit then to get the new value of x, we can use this equation: y2 = m_y, y1 = y-coordinate of the player, x2 = need to find, x1 = x-coordinate of the player, angle = angle of the ray.
+      tan(angle) = (y2 - y1) / (x2 -x1)
+
+If it's a horizontal hit vice-versa: y2 = need to find, y1 = y-coordinate of the player, x2 = m_x, x1 = x-coordinate of the player, angle = angle of the ray.
+      tan(angle) = (y2 - y1) / (x2 -x1)
