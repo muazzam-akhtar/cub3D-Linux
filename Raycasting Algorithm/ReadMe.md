@@ -19,7 +19,7 @@ Topics covered in this project are:
 * [Right Angle Triangle](https://github.com/Genius-gambit/cub3D-Linux/edit/master/Raycasting%20Algorithm/ReadMe.md#right-angle-triangle)
 * [Cube](https://github.com/Genius-gambit/cub3D-Linux/edit/master/Raycasting%20Algorithm/ReadMe.md#cube)
 * [Wall Height](https://github.com/Genius-gambit/cub3D-Linux/edit/master/Raycasting%20Algorithm/ReadMe.md#wall-height)
-* [DDA Algorithm]
+* [DDA Algorithm](https://github.com/Genius-gambit/cub3D-Linux/edit/master/Raycasting%20Algorithm/ReadMe.md#dda-algorithm)
 
 ![begin](https://user-images.githubusercontent.com/81755254/195951594-38adbeff-ec0a-4c3b-9cce-2159907b9a0f.gif)
 
