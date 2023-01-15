@@ -19,6 +19,7 @@ Topics covered in this project are:
 * [Right Angle Triangle](https://github.com/Genius-gambit/cub3D-Linux/edit/master/Raycasting%20Algorithm/ReadMe.md#right-angle-triangle)
 * [Cube](https://github.com/Genius-gambit/cub3D-Linux/edit/master/Raycasting%20Algorithm/ReadMe.md#cube)
 * [Wall Height](https://github.com/Genius-gambit/cub3D-Linux/edit/master/Raycasting%20Algorithm/ReadMe.md#wall-height)
+* [DDA Algorithm]
 
 ![begin](https://user-images.githubusercontent.com/81755254/195951594-38adbeff-ec0a-4c3b-9cce-2159907b9a0f.gif)
 
@@ -196,7 +197,7 @@ After performing the whole operation, we will get this.
 
 <img width="200" alt="cube" src="https://user-images.githubusercontent.com/81755254/196190055-e4ade114-f29e-4ea7-acd3-d9ba2d1a0678.png">
 
-## Effective Raycasting Algorithm
+## DDA Algorithm
 
 Above algorithm/method taskes more time depending on the distance between the player and the wall. For faster FPS or avoiding the lag of the game, I approached DDA Algorithm. 
 
